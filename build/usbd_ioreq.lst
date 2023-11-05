@@ -1,0 +1,549 @@
+ARM GAS  /tmp/ccsXUOVw.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"usbd_ioreq.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.USBD_CtlSendData,"ax",%progbits
+  20              		.align	1
+  21              		.global	USBD_CtlSendData
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	USBD_CtlSendData:
+  27              	.LVL0:
+  28              	.LFB145:
+  29              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c"
+   1:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+   2:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   ******************************************************************************
+   3:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @file    usbd_ioreq.c
+   4:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @author  MCD Application Team
+   5:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief   This file provides the IO requests APIs for control endpoints.
+   6:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   ******************************************************************************
+   7:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @attention
+   8:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *
+   9:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * <h2><center>&copy; Copyright (c) 2015 STMicroelectronics.
+  10:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * All rights reserved.</center></h2>
+  11:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *
+  12:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * This software component is licensed by ST under Ultimate Liberty license
+  13:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * SLA0044, the "License"; You may not use this file except in compliance with
+  14:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * the License. You may obtain a copy of the License at:
+  15:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *                      www.st.com/SLA0044
+  16:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *
+  17:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   ******************************************************************************
+  18:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  19:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  20:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /* Includes ------------------------------------------------------------------*/
+  21:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #include "usbd_ioreq.h"
+  22:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  23:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @addtogroup STM32_USB_DEVICE_LIBRARY
+  24:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
+  25:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  26:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  27:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @defgroup USBD_IOREQ
+  29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief control I/O requests module
+ARM GAS  /tmp/ccsXUOVw.s 			page 2
+
+
+  30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
+  31:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  32:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  33:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @defgroup USBD_IOREQ_Private_TypesDefinitions
+  34:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
+  35:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  36:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+  37:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @}
+  38:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  39:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  40:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  41:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @defgroup USBD_IOREQ_Private_Defines
+  42:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
+  43:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  44:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  45:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+  46:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @}
+  47:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  48:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  49:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  50:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @defgroup USBD_IOREQ_Private_Macros
+  51:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
+  52:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  53:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+  54:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @}
+  55:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  56:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  57:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  58:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @defgroup USBD_IOREQ_Private_Variables
+  59:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
+  60:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  61:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  62:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+  63:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @}
+  64:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  65:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  66:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  67:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @defgroup USBD_IOREQ_Private_FunctionPrototypes
+  68:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
+  69:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  70:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+  71:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @}
+  72:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  73:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  74:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  75:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @defgroup USBD_IOREQ_Private_Functions
+  76:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
+  77:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+  78:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  79:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+  80:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlSendData
+  81:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *         send data on the ctl pipe
+  82:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  pdev: device instance
+  83:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  buff: pointer to data buffer
+  84:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  len: length of data to be sent
+  85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @retval status
+  86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+ARM GAS  /tmp/ccsXUOVw.s 			page 3
+
+
+  87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlSendData(USBD_HandleTypeDef *pdev,
+  88:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****                                     uint8_t *pbuf, uint32_t len)
+  89:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
+  30              		.loc 1 89 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 89 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  40 0002 1346     		mov	r3, r2
+  90:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Set EP0 State */
+  91:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep0_state = USBD_EP0_DATA_IN;
+  41              		.loc 1 91 3 is_stmt 1 view .LVU2
+  42              		.loc 1 91 19 is_stmt 0 view .LVU3
+  43 0004 0222     		movs	r2, #2
+  44              	.LVL1:
+  45              		.loc 1 91 19 view .LVU4
+  46 0006 C0F89422 		str	r2, [r0, #660]
+  92:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_in[0].total_length = len;
+  47              		.loc 1 92 3 is_stmt 1 view .LVU5
+  48              		.loc 1 92 31 is_stmt 0 view .LVU6
+  49 000a 8361     		str	r3, [r0, #24]
+  93:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+  94:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #ifdef USBD_AVOID_PACKET_SPLIT_MPS
+  95:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_in[0].rem_length = 0U;
+  96:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #else
+  97:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_in[0].rem_length = len;
+  50              		.loc 1 97 3 is_stmt 1 view .LVU7
+  51              		.loc 1 97 29 is_stmt 0 view .LVU8
+  52 000c C361     		str	r3, [r0, #28]
+  98:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #endif
+  99:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 100:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the transfer */
+ 101:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_Transmit(pdev, 0x00U, pbuf, len);
+  53              		.loc 1 101 3 is_stmt 1 view .LVU9
+  54              		.loc 1 101 9 is_stmt 0 view .LVU10
+  55 000e 0A46     		mov	r2, r1
+  56 0010 0021     		movs	r1, #0
+  57              	.LVL2:
+  58              		.loc 1 101 9 view .LVU11
+  59 0012 FFF7FEFF 		bl	USBD_LL_Transmit
+  60              	.LVL3:
+ 102:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 103:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
+  61              		.loc 1 103 3 is_stmt 1 view .LVU12
+ 104:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
+  62              		.loc 1 104 1 is_stmt 0 view .LVU13
+  63 0016 0020     		movs	r0, #0
+  64 0018 08BD     		pop	{r3, pc}
+  65              		.cfi_endproc
+  66              	.LFE145:
+  68              		.section	.text.USBD_CtlContinueSendData,"ax",%progbits
+  69              		.align	1
+ARM GAS  /tmp/ccsXUOVw.s 			page 4
+
+
+  70              		.global	USBD_CtlContinueSendData
+  71              		.syntax unified
+  72              		.thumb
+  73              		.thumb_func
+  75              	USBD_CtlContinueSendData:
+  76              	.LVL4:
+  77              	.LFB146:
+ 105:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 106:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+ 107:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlContinueSendData
+ 108:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *         continue sending data on the ctl pipe
+ 109:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  pdev: device instance
+ 110:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  buff: pointer to data buffer
+ 111:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  len: length of data to be sent
+ 112:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @retval status
+ 113:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+ 114:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlContinueSendData(USBD_HandleTypeDef *pdev,
+ 115:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****                                             uint8_t *pbuf, uint32_t len)
+ 116:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
+  78              		.loc 1 116 1 is_stmt 1 view -0
+  79              		.cfi_startproc
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82              		.loc 1 116 1 is_stmt 0 view .LVU15
+  83 0000 08B5     		push	{r3, lr}
+  84              	.LCFI1:
+  85              		.cfi_def_cfa_offset 8
+  86              		.cfi_offset 3, -8
+  87              		.cfi_offset 14, -4
+  88 0002 1346     		mov	r3, r2
+ 117:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the next transfer */
+ 118:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_Transmit(pdev, 0x00U, pbuf, len);
+  89              		.loc 1 118 3 is_stmt 1 view .LVU16
+  90              		.loc 1 118 9 is_stmt 0 view .LVU17
+  91 0004 0A46     		mov	r2, r1
+  92              	.LVL5:
+  93              		.loc 1 118 9 view .LVU18
+  94 0006 0021     		movs	r1, #0
+  95              	.LVL6:
+  96              		.loc 1 118 9 view .LVU19
+  97 0008 FFF7FEFF 		bl	USBD_LL_Transmit
+  98              	.LVL7:
+ 119:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 120:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
+  99              		.loc 1 120 3 is_stmt 1 view .LVU20
+ 121:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
+ 100              		.loc 1 121 1 is_stmt 0 view .LVU21
+ 101 000c 0020     		movs	r0, #0
+ 102 000e 08BD     		pop	{r3, pc}
+ 103              		.cfi_endproc
+ 104              	.LFE146:
+ 106              		.section	.text.USBD_CtlPrepareRx,"ax",%progbits
+ 107              		.align	1
+ 108              		.global	USBD_CtlPrepareRx
+ 109              		.syntax unified
+ 110              		.thumb
+ 111              		.thumb_func
+ARM GAS  /tmp/ccsXUOVw.s 			page 5
+
+
+ 113              	USBD_CtlPrepareRx:
+ 114              	.LVL8:
+ 115              	.LFB147:
+ 122:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 123:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+ 124:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlPrepareRx
+ 125:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *         receive data on the ctl pipe
+ 126:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  pdev: device instance
+ 127:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  buff: pointer to data buffer
+ 128:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  len: length of data to be received
+ 129:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @retval status
+ 130:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+ 131:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlPrepareRx(USBD_HandleTypeDef *pdev,
+ 132:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****                                      uint8_t *pbuf, uint32_t len)
+ 133:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
+ 116              		.loc 1 133 1 is_stmt 1 view -0
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 120              		.loc 1 133 1 is_stmt 0 view .LVU23
+ 121 0000 08B5     		push	{r3, lr}
+ 122              	.LCFI2:
+ 123              		.cfi_def_cfa_offset 8
+ 124              		.cfi_offset 3, -8
+ 125              		.cfi_offset 14, -4
+ 126 0002 1346     		mov	r3, r2
+ 134:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Set EP0 State */
+ 135:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep0_state = USBD_EP0_DATA_OUT;
+ 127              		.loc 1 135 3 is_stmt 1 view .LVU24
+ 128              		.loc 1 135 19 is_stmt 0 view .LVU25
+ 129 0004 0322     		movs	r2, #3
+ 130              	.LVL9:
+ 131              		.loc 1 135 19 view .LVU26
+ 132 0006 C0F89422 		str	r2, [r0, #660]
+ 136:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_out[0].total_length = len;
+ 133              		.loc 1 136 3 is_stmt 1 view .LVU27
+ 134              		.loc 1 136 32 is_stmt 0 view .LVU28
+ 135 000a C0F85831 		str	r3, [r0, #344]
+ 137:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 138:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #ifdef USBD_AVOID_PACKET_SPLIT_MPS
+ 139:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_out[0].rem_length = 0U;
+ 140:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #else
+ 141:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_out[0].rem_length = len;
+ 136              		.loc 1 141 3 is_stmt 1 view .LVU29
+ 137              		.loc 1 141 30 is_stmt 0 view .LVU30
+ 138 000e C0F85C31 		str	r3, [r0, #348]
+ 142:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #endif
+ 143:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 144:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the transfer */
+ 145:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_PrepareReceive(pdev, 0U, pbuf, len);
+ 139              		.loc 1 145 3 is_stmt 1 view .LVU31
+ 140              		.loc 1 145 9 is_stmt 0 view .LVU32
+ 141 0012 0A46     		mov	r2, r1
+ 142 0014 0021     		movs	r1, #0
+ 143              	.LVL10:
+ 144              		.loc 1 145 9 view .LVU33
+ 145 0016 FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ARM GAS  /tmp/ccsXUOVw.s 			page 6
+
+
+ 146              	.LVL11:
+ 146:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 147:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
+ 147              		.loc 1 147 3 is_stmt 1 view .LVU34
+ 148:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
+ 148              		.loc 1 148 1 is_stmt 0 view .LVU35
+ 149 001a 0020     		movs	r0, #0
+ 150 001c 08BD     		pop	{r3, pc}
+ 151              		.cfi_endproc
+ 152              	.LFE147:
+ 154              		.section	.text.USBD_CtlContinueRx,"ax",%progbits
+ 155              		.align	1
+ 156              		.global	USBD_CtlContinueRx
+ 157              		.syntax unified
+ 158              		.thumb
+ 159              		.thumb_func
+ 161              	USBD_CtlContinueRx:
+ 162              	.LVL12:
+ 163              	.LFB148:
+ 149:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 150:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+ 151:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlContinueRx
+ 152:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *         continue receive data on the ctl pipe
+ 153:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  pdev: device instance
+ 154:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  buff: pointer to data buffer
+ 155:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  len: length of data to be received
+ 156:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @retval status
+ 157:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+ 158:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlContinueRx(USBD_HandleTypeDef *pdev,
+ 159:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****                                       uint8_t *pbuf, uint32_t len)
+ 160:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
+ 164              		.loc 1 160 1 is_stmt 1 view -0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 0, uses_anonymous_args = 0
+ 168              		.loc 1 160 1 is_stmt 0 view .LVU37
+ 169 0000 08B5     		push	{r3, lr}
+ 170              	.LCFI3:
+ 171              		.cfi_def_cfa_offset 8
+ 172              		.cfi_offset 3, -8
+ 173              		.cfi_offset 14, -4
+ 174 0002 1346     		mov	r3, r2
+ 161:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_PrepareReceive(pdev, 0U, pbuf, len);
+ 175              		.loc 1 161 3 is_stmt 1 view .LVU38
+ 176              		.loc 1 161 9 is_stmt 0 view .LVU39
+ 177 0004 0A46     		mov	r2, r1
+ 178              	.LVL13:
+ 179              		.loc 1 161 9 view .LVU40
+ 180 0006 0021     		movs	r1, #0
+ 181              	.LVL14:
+ 182              		.loc 1 161 9 view .LVU41
+ 183 0008 FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 184              	.LVL15:
+ 162:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 163:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
+ 185              		.loc 1 163 3 is_stmt 1 view .LVU42
+ 164:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
+ARM GAS  /tmp/ccsXUOVw.s 			page 7
+
+
+ 186              		.loc 1 164 1 is_stmt 0 view .LVU43
+ 187 000c 0020     		movs	r0, #0
+ 188 000e 08BD     		pop	{r3, pc}
+ 189              		.cfi_endproc
+ 190              	.LFE148:
+ 192              		.section	.text.USBD_CtlSendStatus,"ax",%progbits
+ 193              		.align	1
+ 194              		.global	USBD_CtlSendStatus
+ 195              		.syntax unified
+ 196              		.thumb
+ 197              		.thumb_func
+ 199              	USBD_CtlSendStatus:
+ 200              	.LVL16:
+ 201              	.LFB149:
+ 165:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 166:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+ 167:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlSendStatus
+ 168:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *         send zero lzngth packet on the ctl pipe
+ 169:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  pdev: device instance
+ 170:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @retval status
+ 171:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+ 172:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlSendStatus(USBD_HandleTypeDef *pdev)
+ 173:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
+ 202              		.loc 1 173 1 is_stmt 1 view -0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 0, uses_anonymous_args = 0
+ 206              		.loc 1 173 1 is_stmt 0 view .LVU45
+ 207 0000 08B5     		push	{r3, lr}
+ 208              	.LCFI4:
+ 209              		.cfi_def_cfa_offset 8
+ 210              		.cfi_offset 3, -8
+ 211              		.cfi_offset 14, -4
+ 174:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Set EP0 State */
+ 175:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep0_state = USBD_EP0_STATUS_IN;
+ 212              		.loc 1 175 3 is_stmt 1 view .LVU46
+ 213              		.loc 1 175 19 is_stmt 0 view .LVU47
+ 214 0002 0422     		movs	r2, #4
+ 215 0004 C0F89422 		str	r2, [r0, #660]
+ 176:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 177:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the transfer */
+ 178:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_Transmit(pdev, 0x00U, NULL, 0U);
+ 216              		.loc 1 178 3 is_stmt 1 view .LVU48
+ 217              		.loc 1 178 9 is_stmt 0 view .LVU49
+ 218 0008 0023     		movs	r3, #0
+ 219 000a 1A46     		mov	r2, r3
+ 220 000c 1946     		mov	r1, r3
+ 221 000e FFF7FEFF 		bl	USBD_LL_Transmit
+ 222              	.LVL17:
+ 179:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 180:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
+ 223              		.loc 1 180 3 is_stmt 1 view .LVU50
+ 181:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
+ 224              		.loc 1 181 1 is_stmt 0 view .LVU51
+ 225 0012 0020     		movs	r0, #0
+ 226 0014 08BD     		pop	{r3, pc}
+ 227              		.cfi_endproc
+ARM GAS  /tmp/ccsXUOVw.s 			page 8
+
+
+ 228              	.LFE149:
+ 230              		.section	.text.USBD_CtlReceiveStatus,"ax",%progbits
+ 231              		.align	1
+ 232              		.global	USBD_CtlReceiveStatus
+ 233              		.syntax unified
+ 234              		.thumb
+ 235              		.thumb_func
+ 237              	USBD_CtlReceiveStatus:
+ 238              	.LVL18:
+ 239              	.LFB150:
+ 182:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 183:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+ 184:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlReceiveStatus
+ 185:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *         receive zero lzngth packet on the ctl pipe
+ 186:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  pdev: device instance
+ 187:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @retval status
+ 188:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+ 189:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlReceiveStatus(USBD_HandleTypeDef *pdev)
+ 190:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
+ 240              		.loc 1 190 1 is_stmt 1 view -0
+ 241              		.cfi_startproc
+ 242              		@ args = 0, pretend = 0, frame = 0
+ 243              		@ frame_needed = 0, uses_anonymous_args = 0
+ 244              		.loc 1 190 1 is_stmt 0 view .LVU53
+ 245 0000 08B5     		push	{r3, lr}
+ 246              	.LCFI5:
+ 247              		.cfi_def_cfa_offset 8
+ 248              		.cfi_offset 3, -8
+ 249              		.cfi_offset 14, -4
+ 191:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Set EP0 State */
+ 192:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep0_state = USBD_EP0_STATUS_OUT;
+ 250              		.loc 1 192 3 is_stmt 1 view .LVU54
+ 251              		.loc 1 192 19 is_stmt 0 view .LVU55
+ 252 0002 0522     		movs	r2, #5
+ 253 0004 C0F89422 		str	r2, [r0, #660]
+ 193:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 194:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the transfer */
+ 195:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_PrepareReceive(pdev, 0U, NULL, 0U);
+ 254              		.loc 1 195 3 is_stmt 1 view .LVU56
+ 255              		.loc 1 195 9 is_stmt 0 view .LVU57
+ 256 0008 0023     		movs	r3, #0
+ 257 000a 1A46     		mov	r2, r3
+ 258 000c 1946     		mov	r1, r3
+ 259 000e FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 260              	.LVL19:
+ 196:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 197:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
+ 261              		.loc 1 197 3 is_stmt 1 view .LVU58
+ 198:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
+ 262              		.loc 1 198 1 is_stmt 0 view .LVU59
+ 263 0012 0020     		movs	r0, #0
+ 264 0014 08BD     		pop	{r3, pc}
+ 265              		.cfi_endproc
+ 266              	.LFE150:
+ 268              		.section	.text.USBD_GetRxCount,"ax",%progbits
+ 269              		.align	1
+ 270              		.global	USBD_GetRxCount
+ARM GAS  /tmp/ccsXUOVw.s 			page 9
+
+
+ 271              		.syntax unified
+ 272              		.thumb
+ 273              		.thumb_func
+ 275              	USBD_GetRxCount:
+ 276              	.LVL20:
+ 277              	.LFB151:
+ 199:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
+ 200:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
+ 201:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_GetRxCount
+ 202:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   *         returns the received data length
+ 203:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  pdev: device instance
+ 204:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  ep_addr: endpoint address
+ 205:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @retval Rx Data blength
+ 206:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
+ 207:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** uint32_t USBD_GetRxCount(USBD_HandleTypeDef *pdev, uint8_t ep_addr)
+ 208:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
+ 278              		.loc 1 208 1 is_stmt 1 view -0
+ 279              		.cfi_startproc
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282              		.loc 1 208 1 is_stmt 0 view .LVU61
+ 283 0000 08B5     		push	{r3, lr}
+ 284              	.LCFI6:
+ 285              		.cfi_def_cfa_offset 8
+ 286              		.cfi_offset 3, -8
+ 287              		.cfi_offset 14, -4
+ 209:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_LL_GetRxDataSize(pdev, ep_addr);
+ 288              		.loc 1 209 3 is_stmt 1 view .LVU62
+ 289              		.loc 1 209 10 is_stmt 0 view .LVU63
+ 290 0002 FFF7FEFF 		bl	USBD_LL_GetRxDataSize
+ 291              	.LVL21:
+ 210:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
+ 292              		.loc 1 210 1 view .LVU64
+ 293 0006 08BD     		pop	{r3, pc}
+ 294              		.cfi_endproc
+ 295              	.LFE151:
+ 297              		.text
+ 298              	.Letext0:
+ 299              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 300              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 301              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
+ 302              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
+ARM GAS  /tmp/ccsXUOVw.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 usbd_ioreq.c
+     /tmp/ccsXUOVw.s:20     .text.USBD_CtlSendData:0000000000000000 $t
+     /tmp/ccsXUOVw.s:26     .text.USBD_CtlSendData:0000000000000000 USBD_CtlSendData
+     /tmp/ccsXUOVw.s:69     .text.USBD_CtlContinueSendData:0000000000000000 $t
+     /tmp/ccsXUOVw.s:75     .text.USBD_CtlContinueSendData:0000000000000000 USBD_CtlContinueSendData
+     /tmp/ccsXUOVw.s:107    .text.USBD_CtlPrepareRx:0000000000000000 $t
+     /tmp/ccsXUOVw.s:113    .text.USBD_CtlPrepareRx:0000000000000000 USBD_CtlPrepareRx
+     /tmp/ccsXUOVw.s:155    .text.USBD_CtlContinueRx:0000000000000000 $t
+     /tmp/ccsXUOVw.s:161    .text.USBD_CtlContinueRx:0000000000000000 USBD_CtlContinueRx
+     /tmp/ccsXUOVw.s:193    .text.USBD_CtlSendStatus:0000000000000000 $t
+     /tmp/ccsXUOVw.s:199    .text.USBD_CtlSendStatus:0000000000000000 USBD_CtlSendStatus
+     /tmp/ccsXUOVw.s:231    .text.USBD_CtlReceiveStatus:0000000000000000 $t
+     /tmp/ccsXUOVw.s:237    .text.USBD_CtlReceiveStatus:0000000000000000 USBD_CtlReceiveStatus
+     /tmp/ccsXUOVw.s:269    .text.USBD_GetRxCount:0000000000000000 $t
+     /tmp/ccsXUOVw.s:275    .text.USBD_GetRxCount:0000000000000000 USBD_GetRxCount
+
+UNDEFINED SYMBOLS
+USBD_LL_Transmit
+USBD_LL_PrepareReceive
+USBD_LL_GetRxDataSize
