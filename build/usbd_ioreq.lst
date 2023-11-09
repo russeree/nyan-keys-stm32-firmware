@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccsXUOVw.s 			page 1
+ARM GAS  /tmp/ccwBiLvn.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,16 +19,16 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.USBD_CtlSendData,"ax",%progbits
-  20              		.align	1
-  21              		.global	USBD_CtlSendData
-  22              		.syntax unified
-  23              		.thumb
-  24              		.thumb_func
-  26              	USBD_CtlSendData:
-  27              	.LVL0:
-  28              	.LFB145:
-  29              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c"
+  19              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c"
+  20              		.section	.text.USBD_CtlSendData,"ax",%progbits
+  21              		.align	1
+  22              		.global	USBD_CtlSendData
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	USBD_CtlSendData:
+  28              	.LVL0:
+  29              	.LFB145:
    1:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
    2:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   ******************************************************************************
    3:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @file    usbd_ioreq.c
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
   27:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
   28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /** @defgroup USBD_IOREQ
   29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief control I/O requests module
-ARM GAS  /tmp/ccsXUOVw.s 			page 2
+ARM GAS  /tmp/ccwBiLvn.s 			page 2
 
 
   30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @{
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
   84:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @param  len: length of data to be sent
   85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @retval status
   86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
-ARM GAS  /tmp/ccsXUOVw.s 			page 3
+ARM GAS  /tmp/ccwBiLvn.s 			page 3
 
 
   87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlSendData(USBD_HandleTypeDef *pdev,
@@ -130,64 +130,63 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		.loc 1 89 1 is_stmt 0 view .LVU1
   35 0000 08B5     		push	{r3, lr}
-  36              	.LCFI0:
-  37              		.cfi_def_cfa_offset 8
-  38              		.cfi_offset 3, -8
-  39              		.cfi_offset 14, -4
-  40 0002 1346     		mov	r3, r2
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 3, -8
+  38              		.cfi_offset 14, -4
+  39 0002 1346     		mov	r3, r2
   90:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Set EP0 State */
   91:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep0_state = USBD_EP0_DATA_IN;
-  41              		.loc 1 91 3 is_stmt 1 view .LVU2
-  42              		.loc 1 91 19 is_stmt 0 view .LVU3
-  43 0004 0222     		movs	r2, #2
-  44              	.LVL1:
-  45              		.loc 1 91 19 view .LVU4
-  46 0006 C0F89422 		str	r2, [r0, #660]
+  40              		.loc 1 91 3 is_stmt 1 view .LVU2
+  41              		.loc 1 91 19 is_stmt 0 view .LVU3
+  42 0004 0222     		movs	r2, #2
+  43              	.LVL1:
+  44              		.loc 1 91 19 view .LVU4
+  45 0006 C0F89422 		str	r2, [r0, #660]
   92:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_in[0].total_length = len;
-  47              		.loc 1 92 3 is_stmt 1 view .LVU5
-  48              		.loc 1 92 31 is_stmt 0 view .LVU6
-  49 000a 8361     		str	r3, [r0, #24]
+  46              		.loc 1 92 3 is_stmt 1 view .LVU5
+  47              		.loc 1 92 31 is_stmt 0 view .LVU6
+  48 000a 8361     		str	r3, [r0, #24]
   93:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
   94:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #ifdef USBD_AVOID_PACKET_SPLIT_MPS
   95:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_in[0].rem_length = 0U;
   96:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #else
   97:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_in[0].rem_length = len;
-  50              		.loc 1 97 3 is_stmt 1 view .LVU7
-  51              		.loc 1 97 29 is_stmt 0 view .LVU8
-  52 000c C361     		str	r3, [r0, #28]
+  49              		.loc 1 97 3 is_stmt 1 view .LVU7
+  50              		.loc 1 97 29 is_stmt 0 view .LVU8
+  51 000c C361     		str	r3, [r0, #28]
   98:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #endif
   99:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  100:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the transfer */
  101:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_Transmit(pdev, 0x00U, pbuf, len);
-  53              		.loc 1 101 3 is_stmt 1 view .LVU9
-  54              		.loc 1 101 9 is_stmt 0 view .LVU10
-  55 000e 0A46     		mov	r2, r1
-  56 0010 0021     		movs	r1, #0
-  57              	.LVL2:
-  58              		.loc 1 101 9 view .LVU11
-  59 0012 FFF7FEFF 		bl	USBD_LL_Transmit
-  60              	.LVL3:
+  52              		.loc 1 101 3 is_stmt 1 view .LVU9
+  53              		.loc 1 101 9 is_stmt 0 view .LVU10
+  54 000e 0A46     		mov	r2, r1
+  55 0010 0021     		movs	r1, #0
+  56              	.LVL2:
+  57              		.loc 1 101 9 view .LVU11
+  58 0012 FFF7FEFF 		bl	USBD_LL_Transmit
+  59              	.LVL3:
  102:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  103:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
-  61              		.loc 1 103 3 is_stmt 1 view .LVU12
+  60              		.loc 1 103 3 is_stmt 1 view .LVU12
  104:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
-  62              		.loc 1 104 1 is_stmt 0 view .LVU13
-  63 0016 0020     		movs	r0, #0
-  64 0018 08BD     		pop	{r3, pc}
-  65              		.cfi_endproc
-  66              	.LFE145:
-  68              		.section	.text.USBD_CtlContinueSendData,"ax",%progbits
-  69              		.align	1
-ARM GAS  /tmp/ccsXUOVw.s 			page 4
+  61              		.loc 1 104 1 is_stmt 0 view .LVU13
+  62 0016 0020     		movs	r0, #0
+  63 0018 08BD     		pop	{r3, pc}
+  64              		.cfi_endproc
+  65              	.LFE145:
+  67              		.section	.text.USBD_CtlContinueSendData,"ax",%progbits
+  68              		.align	1
+  69              		.global	USBD_CtlContinueSendData
+ARM GAS  /tmp/ccwBiLvn.s 			page 4
 
 
-  70              		.global	USBD_CtlContinueSendData
-  71              		.syntax unified
-  72              		.thumb
-  73              		.thumb_func
-  75              	USBD_CtlContinueSendData:
-  76              	.LVL4:
-  77              	.LFB146:
+  70              		.syntax unified
+  71              		.thumb
+  72              		.thumb_func
+  74              	USBD_CtlContinueSendData:
+  75              	.LVL4:
+  76              	.LFB146:
  105:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  106:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
  107:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlContinueSendData
@@ -200,50 +199,49 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
  114:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlContinueSendData(USBD_HandleTypeDef *pdev,
  115:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****                                             uint8_t *pbuf, uint32_t len)
  116:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
-  78              		.loc 1 116 1 is_stmt 1 view -0
-  79              		.cfi_startproc
-  80              		@ args = 0, pretend = 0, frame = 0
-  81              		@ frame_needed = 0, uses_anonymous_args = 0
-  82              		.loc 1 116 1 is_stmt 0 view .LVU15
-  83 0000 08B5     		push	{r3, lr}
-  84              	.LCFI1:
-  85              		.cfi_def_cfa_offset 8
-  86              		.cfi_offset 3, -8
-  87              		.cfi_offset 14, -4
-  88 0002 1346     		mov	r3, r2
+  77              		.loc 1 116 1 is_stmt 1 view -0
+  78              		.cfi_startproc
+  79              		@ args = 0, pretend = 0, frame = 0
+  80              		@ frame_needed = 0, uses_anonymous_args = 0
+  81              		.loc 1 116 1 is_stmt 0 view .LVU15
+  82 0000 08B5     		push	{r3, lr}
+  83              		.cfi_def_cfa_offset 8
+  84              		.cfi_offset 3, -8
+  85              		.cfi_offset 14, -4
+  86 0002 1346     		mov	r3, r2
  117:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the next transfer */
  118:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_Transmit(pdev, 0x00U, pbuf, len);
-  89              		.loc 1 118 3 is_stmt 1 view .LVU16
-  90              		.loc 1 118 9 is_stmt 0 view .LVU17
-  91 0004 0A46     		mov	r2, r1
-  92              	.LVL5:
-  93              		.loc 1 118 9 view .LVU18
-  94 0006 0021     		movs	r1, #0
-  95              	.LVL6:
-  96              		.loc 1 118 9 view .LVU19
-  97 0008 FFF7FEFF 		bl	USBD_LL_Transmit
-  98              	.LVL7:
+  87              		.loc 1 118 3 is_stmt 1 view .LVU16
+  88              		.loc 1 118 9 is_stmt 0 view .LVU17
+  89 0004 0A46     		mov	r2, r1
+  90              	.LVL5:
+  91              		.loc 1 118 9 view .LVU18
+  92 0006 0021     		movs	r1, #0
+  93              	.LVL6:
+  94              		.loc 1 118 9 view .LVU19
+  95 0008 FFF7FEFF 		bl	USBD_LL_Transmit
+  96              	.LVL7:
  119:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  120:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
-  99              		.loc 1 120 3 is_stmt 1 view .LVU20
+  97              		.loc 1 120 3 is_stmt 1 view .LVU20
  121:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
- 100              		.loc 1 121 1 is_stmt 0 view .LVU21
- 101 000c 0020     		movs	r0, #0
- 102 000e 08BD     		pop	{r3, pc}
- 103              		.cfi_endproc
- 104              	.LFE146:
- 106              		.section	.text.USBD_CtlPrepareRx,"ax",%progbits
- 107              		.align	1
- 108              		.global	USBD_CtlPrepareRx
- 109              		.syntax unified
- 110              		.thumb
- 111              		.thumb_func
-ARM GAS  /tmp/ccsXUOVw.s 			page 5
+  98              		.loc 1 121 1 is_stmt 0 view .LVU21
+  99 000c 0020     		movs	r0, #0
+ 100 000e 08BD     		pop	{r3, pc}
+ 101              		.cfi_endproc
+ 102              	.LFE146:
+ 104              		.section	.text.USBD_CtlPrepareRx,"ax",%progbits
+ 105              		.align	1
+ 106              		.global	USBD_CtlPrepareRx
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	USBD_CtlPrepareRx:
+ 112              	.LVL8:
+ARM GAS  /tmp/ccwBiLvn.s 			page 5
 
 
- 113              	USBD_CtlPrepareRx:
- 114              	.LVL8:
- 115              	.LFB147:
+ 113              	.LFB147:
  122:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  123:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
  124:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlPrepareRx
@@ -256,70 +254,69 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
  131:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlPrepareRx(USBD_HandleTypeDef *pdev,
  132:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****                                      uint8_t *pbuf, uint32_t len)
  133:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
- 116              		.loc 1 133 1 is_stmt 1 view -0
- 117              		.cfi_startproc
- 118              		@ args = 0, pretend = 0, frame = 0
- 119              		@ frame_needed = 0, uses_anonymous_args = 0
- 120              		.loc 1 133 1 is_stmt 0 view .LVU23
- 121 0000 08B5     		push	{r3, lr}
- 122              	.LCFI2:
- 123              		.cfi_def_cfa_offset 8
- 124              		.cfi_offset 3, -8
- 125              		.cfi_offset 14, -4
- 126 0002 1346     		mov	r3, r2
+ 114              		.loc 1 133 1 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		.loc 1 133 1 is_stmt 0 view .LVU23
+ 119 0000 08B5     		push	{r3, lr}
+ 120              		.cfi_def_cfa_offset 8
+ 121              		.cfi_offset 3, -8
+ 122              		.cfi_offset 14, -4
+ 123 0002 1346     		mov	r3, r2
  134:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Set EP0 State */
  135:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep0_state = USBD_EP0_DATA_OUT;
- 127              		.loc 1 135 3 is_stmt 1 view .LVU24
- 128              		.loc 1 135 19 is_stmt 0 view .LVU25
- 129 0004 0322     		movs	r2, #3
- 130              	.LVL9:
- 131              		.loc 1 135 19 view .LVU26
- 132 0006 C0F89422 		str	r2, [r0, #660]
+ 124              		.loc 1 135 3 is_stmt 1 view .LVU24
+ 125              		.loc 1 135 19 is_stmt 0 view .LVU25
+ 126 0004 0322     		movs	r2, #3
+ 127              	.LVL9:
+ 128              		.loc 1 135 19 view .LVU26
+ 129 0006 C0F89422 		str	r2, [r0, #660]
  136:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_out[0].total_length = len;
- 133              		.loc 1 136 3 is_stmt 1 view .LVU27
- 134              		.loc 1 136 32 is_stmt 0 view .LVU28
- 135 000a C0F85831 		str	r3, [r0, #344]
+ 130              		.loc 1 136 3 is_stmt 1 view .LVU27
+ 131              		.loc 1 136 32 is_stmt 0 view .LVU28
+ 132 000a C0F85831 		str	r3, [r0, #344]
  137:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  138:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #ifdef USBD_AVOID_PACKET_SPLIT_MPS
  139:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_out[0].rem_length = 0U;
  140:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #else
  141:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep_out[0].rem_length = len;
- 136              		.loc 1 141 3 is_stmt 1 view .LVU29
- 137              		.loc 1 141 30 is_stmt 0 view .LVU30
- 138 000e C0F85C31 		str	r3, [r0, #348]
+ 133              		.loc 1 141 3 is_stmt 1 view .LVU29
+ 134              		.loc 1 141 30 is_stmt 0 view .LVU30
+ 135 000e C0F85C31 		str	r3, [r0, #348]
  142:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** #endif
  143:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  144:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the transfer */
  145:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_PrepareReceive(pdev, 0U, pbuf, len);
- 139              		.loc 1 145 3 is_stmt 1 view .LVU31
- 140              		.loc 1 145 9 is_stmt 0 view .LVU32
- 141 0012 0A46     		mov	r2, r1
- 142 0014 0021     		movs	r1, #0
- 143              	.LVL10:
- 144              		.loc 1 145 9 view .LVU33
- 145 0016 FFF7FEFF 		bl	USBD_LL_PrepareReceive
-ARM GAS  /tmp/ccsXUOVw.s 			page 6
-
-
- 146              	.LVL11:
+ 136              		.loc 1 145 3 is_stmt 1 view .LVU31
+ 137              		.loc 1 145 9 is_stmt 0 view .LVU32
+ 138 0012 0A46     		mov	r2, r1
+ 139 0014 0021     		movs	r1, #0
+ 140              	.LVL10:
+ 141              		.loc 1 145 9 view .LVU33
+ 142 0016 FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 143              	.LVL11:
  146:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  147:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
- 147              		.loc 1 147 3 is_stmt 1 view .LVU34
+ARM GAS  /tmp/ccwBiLvn.s 			page 6
+
+
+ 144              		.loc 1 147 3 is_stmt 1 view .LVU34
  148:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
- 148              		.loc 1 148 1 is_stmt 0 view .LVU35
- 149 001a 0020     		movs	r0, #0
- 150 001c 08BD     		pop	{r3, pc}
- 151              		.cfi_endproc
- 152              	.LFE147:
- 154              		.section	.text.USBD_CtlContinueRx,"ax",%progbits
- 155              		.align	1
- 156              		.global	USBD_CtlContinueRx
- 157              		.syntax unified
- 158              		.thumb
- 159              		.thumb_func
- 161              	USBD_CtlContinueRx:
- 162              	.LVL12:
- 163              	.LFB148:
+ 145              		.loc 1 148 1 is_stmt 0 view .LVU35
+ 146 001a 0020     		movs	r0, #0
+ 147 001c 08BD     		pop	{r3, pc}
+ 148              		.cfi_endproc
+ 149              	.LFE147:
+ 151              		.section	.text.USBD_CtlContinueRx,"ax",%progbits
+ 152              		.align	1
+ 153              		.global	USBD_CtlContinueRx
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	USBD_CtlContinueRx:
+ 159              	.LVL12:
+ 160              	.LFB148:
  149:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  150:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
  151:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlContinueRx
@@ -332,49 +329,48 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
  158:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlContinueRx(USBD_HandleTypeDef *pdev,
  159:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****                                       uint8_t *pbuf, uint32_t len)
  160:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
- 164              		.loc 1 160 1 is_stmt 1 view -0
- 165              		.cfi_startproc
- 166              		@ args = 0, pretend = 0, frame = 0
- 167              		@ frame_needed = 0, uses_anonymous_args = 0
- 168              		.loc 1 160 1 is_stmt 0 view .LVU37
- 169 0000 08B5     		push	{r3, lr}
- 170              	.LCFI3:
- 171              		.cfi_def_cfa_offset 8
- 172              		.cfi_offset 3, -8
- 173              		.cfi_offset 14, -4
- 174 0002 1346     		mov	r3, r2
+ 161              		.loc 1 160 1 is_stmt 1 view -0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              		.loc 1 160 1 is_stmt 0 view .LVU37
+ 166 0000 08B5     		push	{r3, lr}
+ 167              		.cfi_def_cfa_offset 8
+ 168              		.cfi_offset 3, -8
+ 169              		.cfi_offset 14, -4
+ 170 0002 1346     		mov	r3, r2
  161:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_PrepareReceive(pdev, 0U, pbuf, len);
- 175              		.loc 1 161 3 is_stmt 1 view .LVU38
- 176              		.loc 1 161 9 is_stmt 0 view .LVU39
- 177 0004 0A46     		mov	r2, r1
- 178              	.LVL13:
- 179              		.loc 1 161 9 view .LVU40
- 180 0006 0021     		movs	r1, #0
- 181              	.LVL14:
- 182              		.loc 1 161 9 view .LVU41
- 183 0008 FFF7FEFF 		bl	USBD_LL_PrepareReceive
- 184              	.LVL15:
+ 171              		.loc 1 161 3 is_stmt 1 view .LVU38
+ 172              		.loc 1 161 9 is_stmt 0 view .LVU39
+ 173 0004 0A46     		mov	r2, r1
+ 174              	.LVL13:
+ 175              		.loc 1 161 9 view .LVU40
+ 176 0006 0021     		movs	r1, #0
+ 177              	.LVL14:
+ 178              		.loc 1 161 9 view .LVU41
+ 179 0008 FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 180              	.LVL15:
  162:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  163:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
- 185              		.loc 1 163 3 is_stmt 1 view .LVU42
+ 181              		.loc 1 163 3 is_stmt 1 view .LVU42
  164:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
-ARM GAS  /tmp/ccsXUOVw.s 			page 7
+ 182              		.loc 1 164 1 is_stmt 0 view .LVU43
+ 183 000c 0020     		movs	r0, #0
+ 184 000e 08BD     		pop	{r3, pc}
+ 185              		.cfi_endproc
+ARM GAS  /tmp/ccwBiLvn.s 			page 7
 
 
- 186              		.loc 1 164 1 is_stmt 0 view .LVU43
- 187 000c 0020     		movs	r0, #0
- 188 000e 08BD     		pop	{r3, pc}
- 189              		.cfi_endproc
- 190              	.LFE148:
- 192              		.section	.text.USBD_CtlSendStatus,"ax",%progbits
- 193              		.align	1
- 194              		.global	USBD_CtlSendStatus
- 195              		.syntax unified
- 196              		.thumb
- 197              		.thumb_func
- 199              	USBD_CtlSendStatus:
- 200              	.LVL16:
- 201              	.LFB149:
+ 186              	.LFE148:
+ 188              		.section	.text.USBD_CtlSendStatus,"ax",%progbits
+ 189              		.align	1
+ 190              		.global	USBD_CtlSendStatus
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 195              	USBD_CtlSendStatus:
+ 196              	.LVL16:
+ 197              	.LFB149:
  165:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  166:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
  167:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlSendStatus
@@ -384,53 +380,52 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
  171:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
  172:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlSendStatus(USBD_HandleTypeDef *pdev)
  173:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
- 202              		.loc 1 173 1 is_stmt 1 view -0
- 203              		.cfi_startproc
- 204              		@ args = 0, pretend = 0, frame = 0
- 205              		@ frame_needed = 0, uses_anonymous_args = 0
- 206              		.loc 1 173 1 is_stmt 0 view .LVU45
- 207 0000 08B5     		push	{r3, lr}
- 208              	.LCFI4:
- 209              		.cfi_def_cfa_offset 8
- 210              		.cfi_offset 3, -8
- 211              		.cfi_offset 14, -4
+ 198              		.loc 1 173 1 is_stmt 1 view -0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202              		.loc 1 173 1 is_stmt 0 view .LVU45
+ 203 0000 08B5     		push	{r3, lr}
+ 204              		.cfi_def_cfa_offset 8
+ 205              		.cfi_offset 3, -8
+ 206              		.cfi_offset 14, -4
  174:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Set EP0 State */
  175:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep0_state = USBD_EP0_STATUS_IN;
- 212              		.loc 1 175 3 is_stmt 1 view .LVU46
- 213              		.loc 1 175 19 is_stmt 0 view .LVU47
- 214 0002 0422     		movs	r2, #4
- 215 0004 C0F89422 		str	r2, [r0, #660]
+ 207              		.loc 1 175 3 is_stmt 1 view .LVU46
+ 208              		.loc 1 175 19 is_stmt 0 view .LVU47
+ 209 0002 0422     		movs	r2, #4
+ 210 0004 C0F89422 		str	r2, [r0, #660]
  176:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  177:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the transfer */
  178:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_Transmit(pdev, 0x00U, NULL, 0U);
- 216              		.loc 1 178 3 is_stmt 1 view .LVU48
- 217              		.loc 1 178 9 is_stmt 0 view .LVU49
- 218 0008 0023     		movs	r3, #0
- 219 000a 1A46     		mov	r2, r3
- 220 000c 1946     		mov	r1, r3
- 221 000e FFF7FEFF 		bl	USBD_LL_Transmit
- 222              	.LVL17:
+ 211              		.loc 1 178 3 is_stmt 1 view .LVU48
+ 212              		.loc 1 178 9 is_stmt 0 view .LVU49
+ 213 0008 0023     		movs	r3, #0
+ 214 000a 1A46     		mov	r2, r3
+ 215 000c 1946     		mov	r1, r3
+ 216 000e FFF7FEFF 		bl	USBD_LL_Transmit
+ 217              	.LVL17:
  179:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  180:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
- 223              		.loc 1 180 3 is_stmt 1 view .LVU50
+ 218              		.loc 1 180 3 is_stmt 1 view .LVU50
  181:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
- 224              		.loc 1 181 1 is_stmt 0 view .LVU51
- 225 0012 0020     		movs	r0, #0
- 226 0014 08BD     		pop	{r3, pc}
- 227              		.cfi_endproc
-ARM GAS  /tmp/ccsXUOVw.s 			page 8
+ 219              		.loc 1 181 1 is_stmt 0 view .LVU51
+ 220 0012 0020     		movs	r0, #0
+ 221 0014 08BD     		pop	{r3, pc}
+ 222              		.cfi_endproc
+ 223              	.LFE149:
+ 225              		.section	.text.USBD_CtlReceiveStatus,"ax",%progbits
+ 226              		.align	1
+ 227              		.global	USBD_CtlReceiveStatus
+ 228              		.syntax unified
+ARM GAS  /tmp/ccwBiLvn.s 			page 8
 
 
- 228              	.LFE149:
- 230              		.section	.text.USBD_CtlReceiveStatus,"ax",%progbits
- 231              		.align	1
- 232              		.global	USBD_CtlReceiveStatus
- 233              		.syntax unified
- 234              		.thumb
- 235              		.thumb_func
- 237              	USBD_CtlReceiveStatus:
- 238              	.LVL18:
- 239              	.LFB150:
+ 229              		.thumb
+ 230              		.thumb_func
+ 232              	USBD_CtlReceiveStatus:
+ 233              	.LVL18:
+ 234              	.LFB150:
  182:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  183:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
  184:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_CtlReceiveStatus
@@ -440,53 +435,52 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
  188:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
  189:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** USBD_StatusTypeDef USBD_CtlReceiveStatus(USBD_HandleTypeDef *pdev)
  190:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
- 240              		.loc 1 190 1 is_stmt 1 view -0
- 241              		.cfi_startproc
- 242              		@ args = 0, pretend = 0, frame = 0
- 243              		@ frame_needed = 0, uses_anonymous_args = 0
- 244              		.loc 1 190 1 is_stmt 0 view .LVU53
- 245 0000 08B5     		push	{r3, lr}
- 246              	.LCFI5:
- 247              		.cfi_def_cfa_offset 8
- 248              		.cfi_offset 3, -8
- 249              		.cfi_offset 14, -4
+ 235              		.loc 1 190 1 is_stmt 1 view -0
+ 236              		.cfi_startproc
+ 237              		@ args = 0, pretend = 0, frame = 0
+ 238              		@ frame_needed = 0, uses_anonymous_args = 0
+ 239              		.loc 1 190 1 is_stmt 0 view .LVU53
+ 240 0000 08B5     		push	{r3, lr}
+ 241              		.cfi_def_cfa_offset 8
+ 242              		.cfi_offset 3, -8
+ 243              		.cfi_offset 14, -4
  191:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Set EP0 State */
  192:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   pdev->ep0_state = USBD_EP0_STATUS_OUT;
- 250              		.loc 1 192 3 is_stmt 1 view .LVU54
- 251              		.loc 1 192 19 is_stmt 0 view .LVU55
- 252 0002 0522     		movs	r2, #5
- 253 0004 C0F89422 		str	r2, [r0, #660]
+ 244              		.loc 1 192 3 is_stmt 1 view .LVU54
+ 245              		.loc 1 192 19 is_stmt 0 view .LVU55
+ 246 0002 0522     		movs	r2, #5
+ 247 0004 C0F89422 		str	r2, [r0, #660]
  193:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  194:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   /* Start the transfer */
  195:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   (void)USBD_LL_PrepareReceive(pdev, 0U, NULL, 0U);
- 254              		.loc 1 195 3 is_stmt 1 view .LVU56
- 255              		.loc 1 195 9 is_stmt 0 view .LVU57
- 256 0008 0023     		movs	r3, #0
- 257 000a 1A46     		mov	r2, r3
- 258 000c 1946     		mov	r1, r3
- 259 000e FFF7FEFF 		bl	USBD_LL_PrepareReceive
- 260              	.LVL19:
+ 248              		.loc 1 195 3 is_stmt 1 view .LVU56
+ 249              		.loc 1 195 9 is_stmt 0 view .LVU57
+ 250 0008 0023     		movs	r3, #0
+ 251 000a 1A46     		mov	r2, r3
+ 252 000c 1946     		mov	r1, r3
+ 253 000e FFF7FEFF 		bl	USBD_LL_PrepareReceive
+ 254              	.LVL19:
  196:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  197:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_OK;
- 261              		.loc 1 197 3 is_stmt 1 view .LVU58
+ 255              		.loc 1 197 3 is_stmt 1 view .LVU58
  198:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
- 262              		.loc 1 198 1 is_stmt 0 view .LVU59
- 263 0012 0020     		movs	r0, #0
- 264 0014 08BD     		pop	{r3, pc}
- 265              		.cfi_endproc
- 266              	.LFE150:
- 268              		.section	.text.USBD_GetRxCount,"ax",%progbits
- 269              		.align	1
- 270              		.global	USBD_GetRxCount
-ARM GAS  /tmp/ccsXUOVw.s 			page 9
+ 256              		.loc 1 198 1 is_stmt 0 view .LVU59
+ 257 0012 0020     		movs	r0, #0
+ 258 0014 08BD     		pop	{r3, pc}
+ 259              		.cfi_endproc
+ 260              	.LFE150:
+ 262              		.section	.text.USBD_GetRxCount,"ax",%progbits
+ 263              		.align	1
+ 264              		.global	USBD_GetRxCount
+ 265              		.syntax unified
+ 266              		.thumb
+ 267              		.thumb_func
+ 269              	USBD_GetRxCount:
+ 270              	.LVL20:
+ 271              	.LFB151:
+ARM GAS  /tmp/ccwBiLvn.s 			page 9
 
 
- 271              		.syntax unified
- 272              		.thumb
- 273              		.thumb_func
- 275              	USBD_GetRxCount:
- 276              	.LVL20:
- 277              	.LFB151:
  199:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** 
  200:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** /**
  201:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   * @brief  USBD_GetRxCount
@@ -497,51 +491,50 @@ ARM GAS  /tmp/ccsXUOVw.s 			page 1
  206:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   */
  207:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** uint32_t USBD_GetRxCount(USBD_HandleTypeDef *pdev, uint8_t ep_addr)
  208:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** {
- 278              		.loc 1 208 1 is_stmt 1 view -0
- 279              		.cfi_startproc
- 280              		@ args = 0, pretend = 0, frame = 0
- 281              		@ frame_needed = 0, uses_anonymous_args = 0
- 282              		.loc 1 208 1 is_stmt 0 view .LVU61
- 283 0000 08B5     		push	{r3, lr}
- 284              	.LCFI6:
- 285              		.cfi_def_cfa_offset 8
- 286              		.cfi_offset 3, -8
- 287              		.cfi_offset 14, -4
+ 272              		.loc 1 208 1 is_stmt 1 view -0
+ 273              		.cfi_startproc
+ 274              		@ args = 0, pretend = 0, frame = 0
+ 275              		@ frame_needed = 0, uses_anonymous_args = 0
+ 276              		.loc 1 208 1 is_stmt 0 view .LVU61
+ 277 0000 08B5     		push	{r3, lr}
+ 278              		.cfi_def_cfa_offset 8
+ 279              		.cfi_offset 3, -8
+ 280              		.cfi_offset 14, -4
  209:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c ****   return USBD_LL_GetRxDataSize(pdev, ep_addr);
- 288              		.loc 1 209 3 is_stmt 1 view .LVU62
- 289              		.loc 1 209 10 is_stmt 0 view .LVU63
- 290 0002 FFF7FEFF 		bl	USBD_LL_GetRxDataSize
- 291              	.LVL21:
+ 281              		.loc 1 209 3 is_stmt 1 view .LVU62
+ 282              		.loc 1 209 10 is_stmt 0 view .LVU63
+ 283 0002 FFF7FEFF 		bl	USBD_LL_GetRxDataSize
+ 284              	.LVL21:
  210:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_ioreq.c **** }
- 292              		.loc 1 210 1 view .LVU64
- 293 0006 08BD     		pop	{r3, pc}
- 294              		.cfi_endproc
- 295              	.LFE151:
- 297              		.text
- 298              	.Letext0:
- 299              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
- 300              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
- 301              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
- 302              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
-ARM GAS  /tmp/ccsXUOVw.s 			page 10
+ 285              		.loc 1 210 1 view .LVU64
+ 286 0006 08BD     		pop	{r3, pc}
+ 287              		.cfi_endproc
+ 288              	.LFE151:
+ 290              		.text
+ 291              	.Letext0:
+ 292              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 293              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 294              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
+ 295              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
+ARM GAS  /tmp/ccwBiLvn.s 			page 10
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 usbd_ioreq.c
-     /tmp/ccsXUOVw.s:20     .text.USBD_CtlSendData:0000000000000000 $t
-     /tmp/ccsXUOVw.s:26     .text.USBD_CtlSendData:0000000000000000 USBD_CtlSendData
-     /tmp/ccsXUOVw.s:69     .text.USBD_CtlContinueSendData:0000000000000000 $t
-     /tmp/ccsXUOVw.s:75     .text.USBD_CtlContinueSendData:0000000000000000 USBD_CtlContinueSendData
-     /tmp/ccsXUOVw.s:107    .text.USBD_CtlPrepareRx:0000000000000000 $t
-     /tmp/ccsXUOVw.s:113    .text.USBD_CtlPrepareRx:0000000000000000 USBD_CtlPrepareRx
-     /tmp/ccsXUOVw.s:155    .text.USBD_CtlContinueRx:0000000000000000 $t
-     /tmp/ccsXUOVw.s:161    .text.USBD_CtlContinueRx:0000000000000000 USBD_CtlContinueRx
-     /tmp/ccsXUOVw.s:193    .text.USBD_CtlSendStatus:0000000000000000 $t
-     /tmp/ccsXUOVw.s:199    .text.USBD_CtlSendStatus:0000000000000000 USBD_CtlSendStatus
-     /tmp/ccsXUOVw.s:231    .text.USBD_CtlReceiveStatus:0000000000000000 $t
-     /tmp/ccsXUOVw.s:237    .text.USBD_CtlReceiveStatus:0000000000000000 USBD_CtlReceiveStatus
-     /tmp/ccsXUOVw.s:269    .text.USBD_GetRxCount:0000000000000000 $t
-     /tmp/ccsXUOVw.s:275    .text.USBD_GetRxCount:0000000000000000 USBD_GetRxCount
+                            *ABS*:00000000 usbd_ioreq.c
+     /tmp/ccwBiLvn.s:21     .text.USBD_CtlSendData:00000000 $t
+     /tmp/ccwBiLvn.s:27     .text.USBD_CtlSendData:00000000 USBD_CtlSendData
+     /tmp/ccwBiLvn.s:68     .text.USBD_CtlContinueSendData:00000000 $t
+     /tmp/ccwBiLvn.s:74     .text.USBD_CtlContinueSendData:00000000 USBD_CtlContinueSendData
+     /tmp/ccwBiLvn.s:105    .text.USBD_CtlPrepareRx:00000000 $t
+     /tmp/ccwBiLvn.s:111    .text.USBD_CtlPrepareRx:00000000 USBD_CtlPrepareRx
+     /tmp/ccwBiLvn.s:152    .text.USBD_CtlContinueRx:00000000 $t
+     /tmp/ccwBiLvn.s:158    .text.USBD_CtlContinueRx:00000000 USBD_CtlContinueRx
+     /tmp/ccwBiLvn.s:189    .text.USBD_CtlSendStatus:00000000 $t
+     /tmp/ccwBiLvn.s:195    .text.USBD_CtlSendStatus:00000000 USBD_CtlSendStatus
+     /tmp/ccwBiLvn.s:226    .text.USBD_CtlReceiveStatus:00000000 $t
+     /tmp/ccwBiLvn.s:232    .text.USBD_CtlReceiveStatus:00000000 USBD_CtlReceiveStatus
+     /tmp/ccwBiLvn.s:263    .text.USBD_GetRxCount:00000000 $t
+     /tmp/ccwBiLvn.s:269    .text.USBD_GetRxCount:00000000 USBD_GetRxCount
 
 UNDEFINED SYMBOLS
 USBD_LL_Transmit

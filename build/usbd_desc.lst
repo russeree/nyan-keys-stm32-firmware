@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cceLofzu.s 			page 1
+ARM GAS  /tmp/ccw88p90.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,16 +19,16 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.USBD_DeviceDescriptor,"ax",%progbits
-  20              		.align	1
-  21              		.global	USBD_DeviceDescriptor
-  22              		.syntax unified
-  23              		.thumb
-  24              		.thumb_func
-  26              	USBD_DeviceDescriptor:
-  27              	.LVL0:
-  28              	.LFB145:
-  29              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c"
+  19              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c"
+  20              		.section	.text.USBD_DeviceDescriptor,"ax",%progbits
+  21              		.align	1
+  22              		.global	USBD_DeviceDescriptor
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	USBD_DeviceDescriptor:
+  28              	.LVL0:
+  29              	.LFB145:
    1:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** /* USER CODE BEGIN Header */
    2:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** /**
    3:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
   27:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** /* USER CODE BEGIN INCLUDE */
   28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** #include "usbd_composite.h"
   29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** /* USER CODE END INCLUDE */
-ARM GAS  /tmp/cceLofzu.s 			page 2
+ARM GAS  /tmp/ccw88p90.s 			page 2
 
 
   30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
   84:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   */
   85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
   86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** /* USER CODE BEGIN 0 */
-ARM GAS  /tmp/cceLofzu.s 			page 3
+ARM GAS  /tmp/ccw88p90.s 			page 3
 
 
   87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
  141:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** , USBD_ManufacturerStrDescriptor
  142:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** , USBD_ProductStrDescriptor
  143:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** , USBD_SerialStrDescriptor
-ARM GAS  /tmp/cceLofzu.s 			page 4
+ARM GAS  /tmp/ccw88p90.s 			page 4
 
 
  144:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** , USBD_ConfigStrDescriptor
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
  198:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** #endif /* defined ( __ICCARM__ ) */
  199:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** /* Internal string descriptor. */
  200:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** __ALIGN_BEGIN uint8_t USBD_StrDesc[USBD_MAX_STR_DESC_SIZ] __ALIGN_END;
-ARM GAS  /tmp/cceLofzu.s 			page 5
+ARM GAS  /tmp/ccw88p90.s 			page 5
 
 
  201:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
@@ -290,7 +290,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
   46              	.L3:
   47              		.align	2
   48              	.L2:
-  49 0008 00000000 		.word	.LANCHOR0
+  49 0008 00000000 		.word	USBD_DeviceDesc
   50              		.cfi_endproc
   51              	.LFE145:
   53              		.section	.text.USBD_LangIDStrDescriptor,"ax",%progbits
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
   55              		.global	USBD_LangIDStrDescriptor
   56              		.syntax unified
   57              		.thumb
-ARM GAS  /tmp/cceLofzu.s 			page 6
+ARM GAS  /tmp/ccw88p90.s 			page 6
 
 
   58              		.thumb_func
@@ -337,7 +337,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
   79              	.L6:
   80              		.align	2
   81              	.L5:
-  82 0008 00000000 		.word	.LANCHOR1
+  82 0008 00000000 		.word	USBD_LangIDDesc
   83              		.cfi_endproc
   84              	.LFE146:
   86              		.section	.text.IntToUnicode,"ax",%progbits
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
  251:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** uint8_t * USBD_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  252:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** {
  253:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == 0)
-ARM GAS  /tmp/cceLofzu.s 			page 7
+ARM GAS  /tmp/ccw88p90.s 			page 7
 
 
  254:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
  308:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     USBD_GetString((uint8_t *)USBD_CONFIGURATION_STRING, USBD_StrDesc, length);
  309:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
  310:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   else
-ARM GAS  /tmp/cceLofzu.s 			page 8
+ARM GAS  /tmp/ccw88p90.s 			page 8
 
 
  311:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
  365:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
  366:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if (deviceserial0 != 0)
  367:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
-ARM GAS  /tmp/cceLofzu.s 			page 9
+ARM GAS  /tmp/ccw88p90.s 			page 9
 
 
  368:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     IntToUnicode(deviceserial0, &USBD_StringSerial[2], 8);
@@ -507,18 +507,16 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
  101              		.loc 1 384 12 is_stmt 0 view .LVU17
  102 0000 0023     		movs	r3, #0
  103              	.LVL5:
- 104              		.loc 1 384 17 is_stmt 1 view .LVU18
- 105              		.loc 1 384 3 is_stmt 0 view .LVU19
- 106 0002 9342     		cmp	r3, r2
- 107 0004 1ED2     		bcs	.L15
+ 104              		.loc 1 384 21 is_stmt 1 view .LVU18
+ 105 0002 9342     		cmp	r3, r2
+ 106 0004 1ED2     		bcs	.L15
  381:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   uint8_t idx = 0;
- 108              		.loc 1 381 1 view .LVU20
- 109 0006 00B5     		push	{lr}
- 110              	.LCFI0:
- 111              		.cfi_def_cfa_offset 4
- 112              		.cfi_offset 14, -4
- 113 0008 10E0     		b	.L11
- 114              	.L9:
+ 107              		.loc 1 381 1 is_stmt 0 view .LVU19
+ 108 0006 00B5     		push	{lr}
+ 109              		.cfi_def_cfa_offset 4
+ 110              		.cfi_offset 14, -4
+ 111 0008 10E0     		b	.L11
+ 112              	.L9:
  385:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
  386:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     if (((value >> 28)) < 0xA)
  387:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     {
@@ -527,625 +525,610 @@ ARM GAS  /tmp/cceLofzu.s 			page 1
  390:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     else
  391:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     {
  392:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****       pbuf[2 * idx] = (value >> 28) + 'A' - 10;
- 115              		.loc 1 392 7 is_stmt 1 view .LVU21
- 116              		.loc 1 392 43 is_stmt 0 view .LVU22
- 117 000a 0CF1370C 		add	ip, ip, #55
- 118              		.loc 1 392 21 view .LVU23
- 119 000e 01F813C0 		strb	ip, [r1, r3, lsl #1]
- 120              	.L10:
+ 113              		.loc 1 392 7 is_stmt 1 view .LVU20
+ 114              		.loc 1 392 43 is_stmt 0 view .LVU21
+ 115 000a 0CF1370C 		add	ip, ip, #55
+ 116              		.loc 1 392 21 view .LVU22
+ 117 000e 01F813C0 		strb	ip, [r1, r3, lsl #1]
+ 118              	.L10:
  393:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     }
  394:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
  395:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     value = value << 4;
- 121              		.loc 1 395 5 is_stmt 1 discriminator 2 view .LVU24
- 122              		.loc 1 395 11 is_stmt 0 discriminator 2 view .LVU25
-ARM GAS  /tmp/cceLofzu.s 			page 10
+ 119              		.loc 1 395 5 is_stmt 1 discriminator 2 view .LVU23
+ 120              		.loc 1 395 11 is_stmt 0 discriminator 2 view .LVU24
+ 121 0012 0001     		lsls	r0, r0, #4
+ 122              	.LVL6:
+ARM GAS  /tmp/ccw88p90.s 			page 10
 
 
- 123 0012 0001     		lsls	r0, r0, #4
- 124              	.LVL6:
  396:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
  397:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     pbuf[2 * idx + 1] = 0;
- 125              		.loc 1 397 5 is_stmt 1 discriminator 2 view .LVU26
- 126              		.loc 1 397 12 is_stmt 0 discriminator 2 view .LVU27
- 127 0014 4FEA430C 		lsl	ip, r3, #1
- 128              		.loc 1 397 9 discriminator 2 view .LVU28
- 129 0018 0CF1010C 		add	ip, ip, #1
- 130              		.loc 1 397 23 discriminator 2 view .LVU29
- 131 001c 4FF0000E 		mov	lr, #0
- 132 0020 01F80CE0 		strb	lr, [r1, ip]
+ 123              		.loc 1 397 5 is_stmt 1 discriminator 2 view .LVU25
+ 124              		.loc 1 397 12 is_stmt 0 discriminator 2 view .LVU26
+ 125 0014 4FEA430C 		lsl	ip, r3, #1
+ 126              		.loc 1 397 9 discriminator 2 view .LVU27
+ 127 0018 0CF1010C 		add	ip, ip, #1
+ 128              		.loc 1 397 23 discriminator 2 view .LVU28
+ 129 001c 4FF0000E 		mov	lr, #0
+ 130 0020 01F80CE0 		strb	lr, [r1, ip]
  384:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 133              		.loc 1 384 28 is_stmt 1 discriminator 2 view .LVU30
+ 131              		.loc 1 384 31 is_stmt 1 discriminator 2 view .LVU29
+ 132 0024 0133     		adds	r3, r3, #1
+ 133              	.LVL7:
  384:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 134              		.loc 1 384 31 is_stmt 0 discriminator 2 view .LVU31
- 135 0024 0133     		adds	r3, r3, #1
- 136              	.LVL7:
+ 134              		.loc 1 384 31 is_stmt 0 discriminator 2 view .LVU30
+ 135 0026 DBB2     		uxtb	r3, r3
+ 136              	.LVL8:
  384:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 137              		.loc 1 384 31 discriminator 2 view .LVU32
- 138 0026 DBB2     		uxtb	r3, r3
- 139              	.LVL8:
- 384:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 140              		.loc 1 384 17 is_stmt 1 discriminator 2 view .LVU33
- 384:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 141              		.loc 1 384 3 is_stmt 0 discriminator 2 view .LVU34
- 142 0028 9342     		cmp	r3, r2
- 143 002a 09D2     		bcs	.L16
- 144              	.L11:
+ 137              		.loc 1 384 21 is_stmt 1 discriminator 2 view .LVU31
+ 138 0028 9342     		cmp	r3, r2
+ 139 002a 09D2     		bcs	.L16
+ 140              	.L11:
  386:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     {
- 145              		.loc 1 386 5 is_stmt 1 view .LVU35
+ 141              		.loc 1 386 5 view .LVU32
  386:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     {
- 146              		.loc 1 386 17 is_stmt 0 view .LVU36
- 147 002c 4FEA107C 		lsr	ip, r0, #28
+ 142              		.loc 1 386 17 is_stmt 0 view .LVU33
+ 143 002c 4FEA107C 		lsr	ip, r0, #28
  386:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     {
- 148              		.loc 1 386 8 view .LVU37
- 149 0030 B0F1204F 		cmp	r0, #-1610612736
- 150 0034 E9D2     		bcs	.L9
+ 144              		.loc 1 386 8 view .LVU34
+ 145 0030 B0F1204F 		cmp	r0, #-1610612736
+ 146 0034 E9D2     		bcs	.L9
  388:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     }
- 151              		.loc 1 388 7 is_stmt 1 view .LVU38
+ 147              		.loc 1 388 7 is_stmt 1 view .LVU35
  388:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     }
- 152              		.loc 1 388 37 is_stmt 0 view .LVU39
- 153 0036 0CF1300C 		add	ip, ip, #48
+ 148              		.loc 1 388 37 is_stmt 0 view .LVU36
+ 149 0036 0CF1300C 		add	ip, ip, #48
  388:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     }
- 154              		.loc 1 388 21 view .LVU40
- 155 003a 01F813C0 		strb	ip, [r1, r3, lsl #1]
- 156 003e E8E7     		b	.L10
- 157              	.L16:
+ 150              		.loc 1 388 21 view .LVU37
+ 151 003a 01F813C0 		strb	ip, [r1, r3, lsl #1]
+ 152 003e E8E7     		b	.L10
+ 153              	.L16:
  398:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
  399:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** }
- 158              		.loc 1 399 1 view .LVU41
- 159 0040 5DF804FB 		ldr	pc, [sp], #4
- 160              	.L15:
- 161              	.LCFI1:
- 162              		.cfi_def_cfa_offset 0
- 163              		.cfi_restore 14
- 164              		.loc 1 399 1 view .LVU42
-ARM GAS  /tmp/cceLofzu.s 			page 11
+ 154              		.loc 1 399 1 view .LVU38
+ 155 0040 5DF804FB 		ldr	pc, [sp], #4
+ 156              	.L15:
+ 157              		.cfi_def_cfa_offset 0
+ 158              		.cfi_restore 14
+ 159              		.loc 1 399 1 view .LVU39
+ 160 0044 7047     		bx	lr
+ 161              		.cfi_endproc
+ 162              	.LFE153:
+ 164              		.section	.text.Get_SerialNum,"ax",%progbits
+ 165              		.align	1
+ 166              		.syntax unified
+ 167              		.thumb
+ARM GAS  /tmp/ccw88p90.s 			page 11
 
 
- 165 0044 7047     		bx	lr
- 166              		.cfi_endproc
- 167              	.LFE153:
- 169              		.section	.text.Get_SerialNum,"ax",%progbits
- 170              		.align	1
- 171              		.syntax unified
- 172              		.thumb
- 173              		.thumb_func
- 175              	Get_SerialNum:
- 176              	.LFB152:
+ 168              		.thumb_func
+ 170              	Get_SerialNum:
+ 171              	.LFB152:
  357:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   uint32_t deviceserial0, deviceserial1, deviceserial2;
- 177              		.loc 1 357 1 is_stmt 1 view -0
- 178              		.cfi_startproc
- 179              		@ args = 0, pretend = 0, frame = 0
- 180              		@ frame_needed = 0, uses_anonymous_args = 0
- 181 0000 38B5     		push	{r3, r4, r5, lr}
- 182              	.LCFI2:
- 183              		.cfi_def_cfa_offset 16
- 184              		.cfi_offset 3, -16
- 185              		.cfi_offset 4, -12
- 186              		.cfi_offset 5, -8
- 187              		.cfi_offset 14, -4
+ 172              		.loc 1 357 1 is_stmt 1 view -0
+ 173              		.cfi_startproc
+ 174              		@ args = 0, pretend = 0, frame = 0
+ 175              		@ frame_needed = 0, uses_anonymous_args = 0
+ 176 0000 38B5     		push	{r3, r4, r5, lr}
+ 177              		.cfi_def_cfa_offset 16
+ 178              		.cfi_offset 3, -16
+ 179              		.cfi_offset 4, -12
+ 180              		.cfi_offset 5, -8
+ 181              		.cfi_offset 14, -4
  358:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 188              		.loc 1 358 3 view .LVU44
+ 182              		.loc 1 358 3 view .LVU41
  360:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   deviceserial1 = *(uint32_t *) DEVICE_ID2;
- 189              		.loc 1 360 3 view .LVU45
+ 183              		.loc 1 360 3 view .LVU42
  360:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   deviceserial1 = *(uint32_t *) DEVICE_ID2;
- 190              		.loc 1 360 17 is_stmt 0 view .LVU46
- 191 0002 0B4B     		ldr	r3, .L21
- 192 0004 D3F8100A 		ldr	r0, [r3, #2576]
- 193              	.LVL9:
+ 184              		.loc 1 360 17 is_stmt 0 view .LVU43
+ 185 0002 0B4B     		ldr	r3, .L21
+ 186 0004 D3F8100A 		ldr	r0, [r3, #2576]
+ 187              	.LVL9:
  361:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   deviceserial2 = *(uint32_t *) DEVICE_ID3;
- 194              		.loc 1 361 3 is_stmt 1 view .LVU47
+ 188              		.loc 1 361 3 is_stmt 1 view .LVU44
  361:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   deviceserial2 = *(uint32_t *) DEVICE_ID3;
- 195              		.loc 1 361 17 is_stmt 0 view .LVU48
- 196 0008 D3F8144A 		ldr	r4, [r3, #2580]
- 197              	.LVL10:
+ 189              		.loc 1 361 17 is_stmt 0 view .LVU45
+ 190 0008 D3F8144A 		ldr	r4, [r3, #2580]
+ 191              	.LVL10:
  362:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 198              		.loc 1 362 3 is_stmt 1 view .LVU49
+ 192              		.loc 1 362 3 is_stmt 1 view .LVU46
  362:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 199              		.loc 1 362 17 is_stmt 0 view .LVU50
- 200 000c D3F8183A 		ldr	r3, [r3, #2584]
- 201              	.LVL11:
+ 193              		.loc 1 362 17 is_stmt 0 view .LVU47
+ 194 000c D3F8183A 		ldr	r3, [r3, #2584]
+ 195              	.LVL11:
  364:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 202              		.loc 1 364 3 is_stmt 1 view .LVU51
+ 196              		.loc 1 364 3 is_stmt 1 view .LVU48
  366:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 203              		.loc 1 366 3 view .LVU52
+ 197              		.loc 1 366 3 view .LVU49
  366:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 204              		.loc 1 366 6 is_stmt 0 view .LVU53
- 205 0010 C018     		adds	r0, r0, r3
- 206              	.LVL12:
+ 198              		.loc 1 366 6 is_stmt 0 view .LVU50
+ 199 0010 C018     		adds	r0, r0, r3
+ 200              	.LVL12:
  366:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 207              		.loc 1 366 6 view .LVU54
- 208 0012 00D1     		bne	.L20
- 209              	.LVL13:
- 210              	.L17:
+ 201              		.loc 1 366 6 view .LVU51
+ 202 0012 00D1     		bne	.L20
+ 203              	.LVL13:
+ 204              	.L17:
  371:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
-ARM GAS  /tmp/cceLofzu.s 			page 12
-
-
- 211              		.loc 1 371 1 view .LVU55
- 212 0014 38BD     		pop	{r3, r4, r5, pc}
- 213              	.LVL14:
- 214              	.L20:
+ 205              		.loc 1 371 1 view .LVU52
+ 206 0014 38BD     		pop	{r3, r4, r5, pc}
+ 207              	.LVL14:
+ 208              	.L20:
  368:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****     IntToUnicode(deviceserial1, &USBD_StringSerial[18], 4);
- 215              		.loc 1 368 5 is_stmt 1 view .LVU56
- 216 0016 074D     		ldr	r5, .L21+4
- 217 0018 0822     		movs	r2, #8
- 218 001a A91C     		adds	r1, r5, #2
- 219 001c FFF7FEFF 		bl	IntToUnicode
- 220              	.LVL15:
+ 209              		.loc 1 368 5 is_stmt 1 view .LVU53
+ 210 0016 074D     		ldr	r5, .L21+4
+ 211 0018 0822     		movs	r2, #8
+ARM GAS  /tmp/ccw88p90.s 			page 12
+
+
+ 212 001a 2946     		mov	r1, r5
+ 213 001c FFF7FEFF 		bl	IntToUnicode
+ 214              	.LVL15:
  369:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 221              		.loc 1 369 5 view .LVU57
- 222 0020 0422     		movs	r2, #4
- 223 0022 05F11201 		add	r1, r5, #18
- 224 0026 2046     		mov	r0, r4
- 225 0028 FFF7FEFF 		bl	IntToUnicode
- 226              	.LVL16:
+ 215              		.loc 1 369 5 view .LVU54
+ 216 0020 0422     		movs	r2, #4
+ 217 0022 05F11001 		add	r1, r5, #16
+ 218 0026 2046     		mov	r0, r4
+ 219 0028 FFF7FEFF 		bl	IntToUnicode
+ 220              	.LVL16:
  371:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 227              		.loc 1 371 1 is_stmt 0 view .LVU58
- 228 002c F2E7     		b	.L17
- 229              	.L22:
- 230 002e 00BF     		.align	2
- 231              	.L21:
- 232 0030 0070F01F 		.word	535851008
- 233 0034 00000000 		.word	.LANCHOR2
- 234              		.cfi_endproc
- 235              	.LFE152:
- 237              		.section	.text.USBD_SerialStrDescriptor,"ax",%progbits
- 238              		.align	1
- 239              		.global	USBD_SerialStrDescriptor
- 240              		.syntax unified
- 241              		.thumb
- 242              		.thumb_func
- 244              	USBD_SerialStrDescriptor:
- 245              	.LVL17:
- 246              	.LFB149:
+ 221              		.loc 1 371 1 is_stmt 0 view .LVU55
+ 222 002c F2E7     		b	.L17
+ 223              	.L22:
+ 224 002e 00BF     		.align	2
+ 225              	.L21:
+ 226 0030 0070F01F 		.word	535851008
+ 227 0034 02000000 		.word	USBD_StringSerial+2
+ 228              		.cfi_endproc
+ 229              	.LFE152:
+ 231              		.section	.text.USBD_SerialStrDescriptor,"ax",%progbits
+ 232              		.align	1
+ 233              		.global	USBD_SerialStrDescriptor
+ 234              		.syntax unified
+ 235              		.thumb
+ 236              		.thumb_func
+ 238              	USBD_SerialStrDescriptor:
+ 239              	.LVL17:
+ 240              	.LFB149:
  284:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   UNUSED(speed);
- 247              		.loc 1 284 1 is_stmt 1 view -0
- 248              		.cfi_startproc
- 249              		@ args = 0, pretend = 0, frame = 0
- 250              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241              		.loc 1 284 1 is_stmt 1 view -0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 0
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
  284:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   UNUSED(speed);
- 251              		.loc 1 284 1 is_stmt 0 view .LVU60
- 252 0000 08B5     		push	{r3, lr}
- 253              	.LCFI3:
- 254              		.cfi_def_cfa_offset 8
- 255              		.cfi_offset 3, -8
- 256              		.cfi_offset 14, -4
+ 245              		.loc 1 284 1 is_stmt 0 view .LVU57
+ 246 0000 08B5     		push	{r3, lr}
+ 247              		.cfi_def_cfa_offset 8
+ 248              		.cfi_offset 3, -8
+ 249              		.cfi_offset 14, -4
  285:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   *length = USB_SIZ_STRING_SERIAL;
- 257              		.loc 1 285 3 is_stmt 1 view .LVU61
+ 250              		.loc 1 285 3 is_stmt 1 view .LVU58
  286:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 258              		.loc 1 286 3 view .LVU62
+ 251              		.loc 1 286 3 view .LVU59
  286:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 259              		.loc 1 286 11 is_stmt 0 view .LVU63
- 260 0002 1A23     		movs	r3, #26
- 261 0004 0B80     		strh	r3, [r1]	@ movhi
-ARM GAS  /tmp/cceLofzu.s 			page 13
-
-
+ 252              		.loc 1 286 11 is_stmt 0 view .LVU60
+ 253 0002 1A23     		movs	r3, #26
+ 254 0004 0B80     		strh	r3, [r1]	@ movhi
  290:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   /* USER CODE BEGIN USBD_SerialStrDescriptor */
- 262              		.loc 1 290 3 is_stmt 1 view .LVU64
- 263 0006 FFF7FEFF 		bl	Get_SerialNum
- 264              	.LVL18:
+ 255              		.loc 1 290 3 is_stmt 1 view .LVU61
+ 256 0006 FFF7FEFF 		bl	Get_SerialNum
+ 257              	.LVL18:
  295:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** }
- 265              		.loc 1 295 3 view .LVU65
+ 258              		.loc 1 295 3 view .LVU62
  296:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 266              		.loc 1 296 1 is_stmt 0 view .LVU66
- 267 000a 0148     		ldr	r0, .L25
- 268 000c 08BD     		pop	{r3, pc}
- 269              	.L26:
- 270 000e 00BF     		.align	2
- 271              	.L25:
- 272 0010 00000000 		.word	.LANCHOR2
- 273              		.cfi_endproc
- 274              	.LFE149:
- 276              		.section	.rodata.USBD_ProductStrDescriptor.str1.4,"aMS",%progbits,1
- 277              		.align	2
- 278              	.LC0:
- 279 0000 53544D33 		.ascii	"STM32 COMPOSITE DEVICE\000"
- 279      3220434F 
- 279      4D504F53 
- 279      49544520 
- 279      44455649 
- 280              		.section	.text.USBD_ProductStrDescriptor,"ax",%progbits
- 281              		.align	1
- 282              		.global	USBD_ProductStrDescriptor
- 283              		.syntax unified
- 284              		.thumb
- 285              		.thumb_func
- 287              	USBD_ProductStrDescriptor:
- 288              	.LVL19:
- 289              	.LFB147:
- 252:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == 0)
- 290              		.loc 1 252 1 is_stmt 1 view -0
- 291              		.cfi_startproc
- 292              		@ args = 0, pretend = 0, frame = 0
- 293              		@ frame_needed = 0, uses_anonymous_args = 0
- 252:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == 0)
- 294              		.loc 1 252 1 is_stmt 0 view .LVU68
- 295 0000 08B5     		push	{r3, lr}
- 296              	.LCFI4:
- 297              		.cfi_def_cfa_offset 8
- 298              		.cfi_offset 3, -8
- 299              		.cfi_offset 14, -4
- 300 0002 0A46     		mov	r2, r1
- 253:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 301              		.loc 1 253 3 is_stmt 1 view .LVU69
- 253:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 302              		.loc 1 253 5 is_stmt 0 view .LVU70
- 303 0004 28B9     		cbnz	r0, .L28
- 255:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 304              		.loc 1 255 5 is_stmt 1 view .LVU71
- 305 0006 0549     		ldr	r1, .L31
- 306              	.LVL20:
- 255:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 307              		.loc 1 255 5 is_stmt 0 view .LVU72
-ARM GAS  /tmp/cceLofzu.s 			page 14
+ 259              		.loc 1 296 1 is_stmt 0 view .LVU63
+ 260 000a 0148     		ldr	r0, .L25
+ARM GAS  /tmp/ccw88p90.s 			page 13
 
 
- 308 0008 0548     		ldr	r0, .L31+4
- 309              	.LVL21:
+ 261 000c 08BD     		pop	{r3, pc}
+ 262              	.L26:
+ 263 000e 00BF     		.align	2
+ 264              	.L25:
+ 265 0010 00000000 		.word	USBD_StringSerial
+ 266              		.cfi_endproc
+ 267              	.LFE149:
+ 269              		.section	.rodata.USBD_ProductStrDescriptor.str1.4,"aMS",%progbits,1
+ 270              		.align	2
+ 271              	.LC0:
+ 272 0000 53544D33 		.ascii	"STM32 COMPOSITE DEVICE\000"
+ 272      3220434F 
+ 272      4D504F53 
+ 272      49544520 
+ 272      44455649 
+ 273              		.section	.text.USBD_ProductStrDescriptor,"ax",%progbits
+ 274              		.align	1
+ 275              		.global	USBD_ProductStrDescriptor
+ 276              		.syntax unified
+ 277              		.thumb
+ 278              		.thumb_func
+ 280              	USBD_ProductStrDescriptor:
+ 281              	.LVL19:
+ 282              	.LFB147:
+ 252:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == 0)
+ 283              		.loc 1 252 1 is_stmt 1 view -0
+ 284              		.cfi_startproc
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 252:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == 0)
+ 287              		.loc 1 252 1 is_stmt 0 view .LVU65
+ 288 0000 08B5     		push	{r3, lr}
+ 289              		.cfi_def_cfa_offset 8
+ 290              		.cfi_offset 3, -8
+ 291              		.cfi_offset 14, -4
+ 292 0002 0A46     		mov	r2, r1
+ 253:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
+ 293              		.loc 1 253 3 is_stmt 1 view .LVU66
+ 253:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
+ 294              		.loc 1 253 5 is_stmt 0 view .LVU67
+ 295 0004 28B9     		cbnz	r0, .L28
  255:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 310              		.loc 1 255 5 view .LVU73
- 311 000a FFF7FEFF 		bl	USBD_GetString
- 312              	.LVL22:
- 313              	.L29:
+ 296              		.loc 1 255 5 is_stmt 1 view .LVU68
+ 297 0006 0549     		ldr	r1, .L31
+ 298              	.LVL20:
+ 255:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
+ 299              		.loc 1 255 5 is_stmt 0 view .LVU69
+ 300 0008 0548     		ldr	r0, .L31+4
+ 301              	.LVL21:
+ 255:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
+ 302              		.loc 1 255 5 view .LVU70
+ 303 000a FFF7FEFF 		bl	USBD_GetString
+ 304              	.LVL22:
+ 305              	.L29:
  261:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** }
- 314              		.loc 1 261 3 is_stmt 1 view .LVU74
+ 306              		.loc 1 261 3 is_stmt 1 view .LVU71
  262:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 315              		.loc 1 262 1 is_stmt 0 view .LVU75
- 316 000e 0348     		ldr	r0, .L31
- 317 0010 08BD     		pop	{r3, pc}
- 318              	.LVL23:
- 319              	.L28:
+ARM GAS  /tmp/ccw88p90.s 			page 14
+
+
+ 307              		.loc 1 262 1 is_stmt 0 view .LVU72
+ 308 000e 0348     		ldr	r0, .L31
+ 309 0010 08BD     		pop	{r3, pc}
+ 310              	.LVL23:
+ 311              	.L28:
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 320              		.loc 1 259 5 is_stmt 1 view .LVU76
- 321 0012 0249     		ldr	r1, .L31
- 322              	.LVL24:
+ 312              		.loc 1 259 5 is_stmt 1 view .LVU73
+ 313 0012 0249     		ldr	r1, .L31
+ 314              	.LVL24:
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 323              		.loc 1 259 5 is_stmt 0 view .LVU77
- 324 0014 0248     		ldr	r0, .L31+4
- 325              	.LVL25:
+ 315              		.loc 1 259 5 is_stmt 0 view .LVU74
+ 316 0014 0248     		ldr	r0, .L31+4
+ 317              	.LVL25:
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 326              		.loc 1 259 5 view .LVU78
- 327 0016 FFF7FEFF 		bl	USBD_GetString
- 328              	.LVL26:
+ 318              		.loc 1 259 5 view .LVU75
+ 319 0016 FFF7FEFF 		bl	USBD_GetString
+ 320              	.LVL26:
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 329              		.loc 1 259 5 view .LVU79
- 330 001a F8E7     		b	.L29
- 331              	.L32:
+ 321              		.loc 1 259 5 view .LVU76
+ 322 001a F8E7     		b	.L29
+ 323              	.L32:
+ 324              		.align	2
+ 325              	.L31:
+ 326 001c 00000000 		.word	USBD_StrDesc
+ 327 0020 00000000 		.word	.LC0
+ 328              		.cfi_endproc
+ 329              	.LFE147:
+ 331              		.section	.rodata.USBD_ManufacturerStrDescriptor.str1.4,"aMS",%progbits,1
  332              		.align	2
- 333              	.L31:
- 334 001c 00000000 		.word	.LANCHOR3
- 335 0020 00000000 		.word	.LC0
- 336              		.cfi_endproc
- 337              	.LFE147:
- 339              		.section	.rodata.USBD_ManufacturerStrDescriptor.str1.4,"aMS",%progbits,1
- 340              		.align	2
- 341              	.LC1:
- 342 0000 53544D69 		.ascii	"STMicroelectronics\000"
- 342      63726F65 
- 342      6C656374 
- 342      726F6E69 
- 342      637300
- 343              		.section	.text.USBD_ManufacturerStrDescriptor,"ax",%progbits
- 344              		.align	1
- 345              		.global	USBD_ManufacturerStrDescriptor
- 346              		.syntax unified
- 347              		.thumb
- 348              		.thumb_func
- 350              	USBD_ManufacturerStrDescriptor:
- 351              	.LVL27:
- 352              	.LFB148:
+ 333              	.LC1:
+ 334 0000 53544D69 		.ascii	"STMicroelectronics\000"
+ 334      63726F65 
+ 334      6C656374 
+ 334      726F6E69 
+ 334      637300
+ 335              		.section	.text.USBD_ManufacturerStrDescriptor,"ax",%progbits
+ 336              		.align	1
+ 337              		.global	USBD_ManufacturerStrDescriptor
+ 338              		.syntax unified
+ 339              		.thumb
+ 340              		.thumb_func
+ 342              	USBD_ManufacturerStrDescriptor:
+ 343              	.LVL27:
+ 344              	.LFB148:
  271:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   UNUSED(speed);
- 353              		.loc 1 271 1 is_stmt 1 view -0
- 354              		.cfi_startproc
-ARM GAS  /tmp/cceLofzu.s 			page 15
-
-
- 355              		@ args = 0, pretend = 0, frame = 0
- 356              		@ frame_needed = 0, uses_anonymous_args = 0
+ 345              		.loc 1 271 1 is_stmt 1 view -0
+ 346              		.cfi_startproc
+ 347              		@ args = 0, pretend = 0, frame = 0
+ 348              		@ frame_needed = 0, uses_anonymous_args = 0
  271:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   UNUSED(speed);
- 357              		.loc 1 271 1 is_stmt 0 view .LVU81
- 358 0000 10B5     		push	{r4, lr}
- 359              	.LCFI5:
- 360              		.cfi_def_cfa_offset 8
- 361              		.cfi_offset 4, -8
- 362              		.cfi_offset 14, -4
- 363 0002 0A46     		mov	r2, r1
+ 349              		.loc 1 271 1 is_stmt 0 view .LVU78
+ 350 0000 10B5     		push	{r4, lr}
+ 351              		.cfi_def_cfa_offset 8
+ 352              		.cfi_offset 4, -8
+ 353              		.cfi_offset 14, -4
+ 354 0002 0A46     		mov	r2, r1
  272:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   USBD_GetString((uint8_t *)USBD_MANUFACTURER_STRING, USBD_StrDesc, length);
- 364              		.loc 1 272 3 is_stmt 1 view .LVU82
+ARM GAS  /tmp/ccw88p90.s 			page 15
+
+
+ 355              		.loc 1 272 3 is_stmt 1 view .LVU79
  273:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   return USBD_StrDesc;
- 365              		.loc 1 273 3 view .LVU83
- 366 0004 034C     		ldr	r4, .L35
- 367 0006 2146     		mov	r1, r4
- 368              	.LVL28:
+ 356              		.loc 1 273 3 view .LVU80
+ 357 0004 034C     		ldr	r4, .L35
+ 358 0006 2146     		mov	r1, r4
+ 359              	.LVL28:
  273:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   return USBD_StrDesc;
- 369              		.loc 1 273 3 is_stmt 0 view .LVU84
- 370 0008 0348     		ldr	r0, .L35+4
- 371              	.LVL29:
+ 360              		.loc 1 273 3 is_stmt 0 view .LVU81
+ 361 0008 0348     		ldr	r0, .L35+4
+ 362              	.LVL29:
  273:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   return USBD_StrDesc;
- 372              		.loc 1 273 3 view .LVU85
- 373 000a FFF7FEFF 		bl	USBD_GetString
- 374              	.LVL30:
+ 363              		.loc 1 273 3 view .LVU82
+ 364 000a FFF7FEFF 		bl	USBD_GetString
+ 365              	.LVL30:
  274:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** }
- 375              		.loc 1 274 3 is_stmt 1 view .LVU86
+ 366              		.loc 1 274 3 is_stmt 1 view .LVU83
  275:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 376              		.loc 1 275 1 is_stmt 0 view .LVU87
- 377 000e 2046     		mov	r0, r4
- 378 0010 10BD     		pop	{r4, pc}
- 379              	.L36:
- 380 0012 00BF     		.align	2
- 381              	.L35:
- 382 0014 00000000 		.word	.LANCHOR3
- 383 0018 00000000 		.word	.LC1
- 384              		.cfi_endproc
- 385              	.LFE148:
- 387              		.section	.rodata.USBD_ConfigStrDescriptor.str1.4,"aMS",%progbits,1
- 388              		.align	2
- 389              	.LC2:
- 390 0000 434F4E46 		.ascii	"CONFIGURATION 0\000"
- 390      49475552 
- 390      4154494F 
- 390      4E203000 
- 391              		.section	.text.USBD_ConfigStrDescriptor,"ax",%progbits
- 392              		.align	1
- 393              		.global	USBD_ConfigStrDescriptor
- 394              		.syntax unified
- 395              		.thumb
- 396              		.thumb_func
- 398              	USBD_ConfigStrDescriptor:
- 399              	.LVL31:
- 400              	.LFB150:
+ 367              		.loc 1 275 1 is_stmt 0 view .LVU84
+ 368 000e 2046     		mov	r0, r4
+ 369 0010 10BD     		pop	{r4, pc}
+ 370              	.L36:
+ 371 0012 00BF     		.align	2
+ 372              	.L35:
+ 373 0014 00000000 		.word	USBD_StrDesc
+ 374 0018 00000000 		.word	.LC1
+ 375              		.cfi_endproc
+ 376              	.LFE148:
+ 378              		.section	.rodata.USBD_ConfigStrDescriptor.str1.4,"aMS",%progbits,1
+ 379              		.align	2
+ 380              	.LC2:
+ 381 0000 434F4E46 		.ascii	"CONFIGURATION 0\000"
+ 381      49475552 
+ 381      4154494F 
+ 381      4E203000 
+ 382              		.section	.text.USBD_ConfigStrDescriptor,"ax",%progbits
+ 383              		.align	1
+ 384              		.global	USBD_ConfigStrDescriptor
+ 385              		.syntax unified
+ 386              		.thumb
+ 387              		.thumb_func
+ 389              	USBD_ConfigStrDescriptor:
+ 390              	.LVL31:
+ 391              	.LFB150:
  305:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == USBD_SPEED_HIGH)
- 401              		.loc 1 305 1 is_stmt 1 view -0
- 402              		.cfi_startproc
-ARM GAS  /tmp/cceLofzu.s 			page 16
+ 392              		.loc 1 305 1 is_stmt 1 view -0
+ 393              		.cfi_startproc
+ 394              		@ args = 0, pretend = 0, frame = 0
+ 395              		@ frame_needed = 0, uses_anonymous_args = 0
+ 305:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == USBD_SPEED_HIGH)
+ 396              		.loc 1 305 1 is_stmt 0 view .LVU86
+ 397 0000 08B5     		push	{r3, lr}
+ 398              		.cfi_def_cfa_offset 8
+ 399              		.cfi_offset 3, -8
+ 400              		.cfi_offset 14, -4
+ 401 0002 0A46     		mov	r2, r1
+ 306:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
+ 402              		.loc 1 306 3 is_stmt 1 view .LVU87
+ARM GAS  /tmp/ccw88p90.s 			page 16
 
 
- 403              		@ args = 0, pretend = 0, frame = 0
- 404              		@ frame_needed = 0, uses_anonymous_args = 0
- 305:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == USBD_SPEED_HIGH)
- 405              		.loc 1 305 1 is_stmt 0 view .LVU89
- 406 0000 08B5     		push	{r3, lr}
- 407              	.LCFI6:
- 408              		.cfi_def_cfa_offset 8
- 409              		.cfi_offset 3, -8
- 410              		.cfi_offset 14, -4
- 411 0002 0A46     		mov	r2, r1
  306:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 412              		.loc 1 306 3 is_stmt 1 view .LVU90
- 306:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 413              		.loc 1 306 5 is_stmt 0 view .LVU91
- 414 0004 28B9     		cbnz	r0, .L38
+ 403              		.loc 1 306 5 is_stmt 0 view .LVU88
+ 404 0004 28B9     		cbnz	r0, .L38
  308:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 415              		.loc 1 308 5 is_stmt 1 view .LVU92
- 416 0006 0549     		ldr	r1, .L41
- 417              	.LVL32:
+ 405              		.loc 1 308 5 is_stmt 1 view .LVU89
+ 406 0006 0549     		ldr	r1, .L41
+ 407              	.LVL32:
  308:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 418              		.loc 1 308 5 is_stmt 0 view .LVU93
- 419 0008 0548     		ldr	r0, .L41+4
- 420              	.LVL33:
+ 408              		.loc 1 308 5 is_stmt 0 view .LVU90
+ 409 0008 0548     		ldr	r0, .L41+4
+ 410              	.LVL33:
  308:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 421              		.loc 1 308 5 view .LVU94
- 422 000a FFF7FEFF 		bl	USBD_GetString
- 423              	.LVL34:
- 424              	.L39:
+ 411              		.loc 1 308 5 view .LVU91
+ 412 000a FFF7FEFF 		bl	USBD_GetString
+ 413              	.LVL34:
+ 414              	.L39:
  314:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** }
- 425              		.loc 1 314 3 is_stmt 1 view .LVU95
+ 415              		.loc 1 314 3 is_stmt 1 view .LVU92
  315:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 426              		.loc 1 315 1 is_stmt 0 view .LVU96
- 427 000e 0348     		ldr	r0, .L41
- 428 0010 08BD     		pop	{r3, pc}
- 429              	.LVL35:
- 430              	.L38:
+ 416              		.loc 1 315 1 is_stmt 0 view .LVU93
+ 417 000e 0348     		ldr	r0, .L41
+ 418 0010 08BD     		pop	{r3, pc}
+ 419              	.LVL35:
+ 420              	.L38:
  312:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 431              		.loc 1 312 5 is_stmt 1 view .LVU97
- 432 0012 0249     		ldr	r1, .L41
- 433              	.LVL36:
+ 421              		.loc 1 312 5 is_stmt 1 view .LVU94
+ 422 0012 0249     		ldr	r1, .L41
+ 423              	.LVL36:
  312:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 434              		.loc 1 312 5 is_stmt 0 view .LVU98
- 435 0014 0248     		ldr	r0, .L41+4
- 436              	.LVL37:
+ 424              		.loc 1 312 5 is_stmt 0 view .LVU95
+ 425 0014 0248     		ldr	r0, .L41+4
+ 426              	.LVL37:
  312:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 437              		.loc 1 312 5 view .LVU99
- 438 0016 FFF7FEFF 		bl	USBD_GetString
- 439              	.LVL38:
+ 427              		.loc 1 312 5 view .LVU96
+ 428 0016 FFF7FEFF 		bl	USBD_GetString
+ 429              	.LVL38:
  312:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 440              		.loc 1 312 5 view .LVU100
- 441 001a F8E7     		b	.L39
- 442              	.L42:
- 443              		.align	2
- 444              	.L41:
- 445 001c 00000000 		.word	.LANCHOR3
- 446 0020 00000000 		.word	.LC2
- 447              		.cfi_endproc
-ARM GAS  /tmp/cceLofzu.s 			page 17
+ 430              		.loc 1 312 5 view .LVU97
+ 431 001a F8E7     		b	.L39
+ 432              	.L42:
+ 433              		.align	2
+ 434              	.L41:
+ 435 001c 00000000 		.word	USBD_StrDesc
+ 436 0020 00000000 		.word	.LC2
+ 437              		.cfi_endproc
+ 438              	.LFE150:
+ 440              		.section	.rodata.USBD_InterfaceStrDescriptor.str1.4,"aMS",%progbits,1
+ 441              		.align	2
+ 442              	.LC3:
+ 443 0000 434F4D50 		.ascii	"COMPOSITE INTERFACE\000"
+ 443      4F534954 
+ 443      4520494E 
+ 443      54455246 
+ 443      41434500 
+ 444              		.section	.text.USBD_InterfaceStrDescriptor,"ax",%progbits
+ 445              		.align	1
+ 446              		.global	USBD_InterfaceStrDescriptor
+ARM GAS  /tmp/ccw88p90.s 			page 17
 
 
- 448              	.LFE150:
- 450              		.section	.rodata.USBD_InterfaceStrDescriptor.str1.4,"aMS",%progbits,1
- 451              		.align	2
- 452              	.LC3:
- 453 0000 434F4D50 		.ascii	"COMPOSITE INTERFACE\000"
- 453      4F534954 
- 453      4520494E 
- 453      54455246 
- 453      41434500 
- 454              		.section	.text.USBD_InterfaceStrDescriptor,"ax",%progbits
- 455              		.align	1
- 456              		.global	USBD_InterfaceStrDescriptor
- 457              		.syntax unified
- 458              		.thumb
- 459              		.thumb_func
- 461              	USBD_InterfaceStrDescriptor:
- 462              	.LVL39:
- 463              	.LFB151:
+ 447              		.syntax unified
+ 448              		.thumb
+ 449              		.thumb_func
+ 451              	USBD_InterfaceStrDescriptor:
+ 452              	.LVL39:
+ 453              	.LFB151:
  324:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == 0)
- 464              		.loc 1 324 1 is_stmt 1 view -0
- 465              		.cfi_startproc
- 466              		@ args = 0, pretend = 0, frame = 0
- 467              		@ frame_needed = 0, uses_anonymous_args = 0
+ 454              		.loc 1 324 1 is_stmt 1 view -0
+ 455              		.cfi_startproc
+ 456              		@ args = 0, pretend = 0, frame = 0
+ 457              		@ frame_needed = 0, uses_anonymous_args = 0
  324:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   if(speed == 0)
- 468              		.loc 1 324 1 is_stmt 0 view .LVU102
- 469 0000 08B5     		push	{r3, lr}
- 470              	.LCFI7:
- 471              		.cfi_def_cfa_offset 8
- 472              		.cfi_offset 3, -8
- 473              		.cfi_offset 14, -4
- 474 0002 0A46     		mov	r2, r1
+ 458              		.loc 1 324 1 is_stmt 0 view .LVU99
+ 459 0000 08B5     		push	{r3, lr}
+ 460              		.cfi_def_cfa_offset 8
+ 461              		.cfi_offset 3, -8
+ 462              		.cfi_offset 14, -4
+ 463 0002 0A46     		mov	r2, r1
  325:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 475              		.loc 1 325 3 is_stmt 1 view .LVU103
+ 464              		.loc 1 325 3 is_stmt 1 view .LVU100
  325:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   {
- 476              		.loc 1 325 5 is_stmt 0 view .LVU104
- 477 0004 28B9     		cbnz	r0, .L44
+ 465              		.loc 1 325 5 is_stmt 0 view .LVU101
+ 466 0004 28B9     		cbnz	r0, .L44
  327:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 478              		.loc 1 327 5 is_stmt 1 view .LVU105
- 479 0006 0549     		ldr	r1, .L47
- 480              	.LVL40:
+ 467              		.loc 1 327 5 is_stmt 1 view .LVU102
+ 468 0006 0549     		ldr	r1, .L47
+ 469              	.LVL40:
  327:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 481              		.loc 1 327 5 is_stmt 0 view .LVU106
- 482 0008 0548     		ldr	r0, .L47+4
- 483              	.LVL41:
+ 470              		.loc 1 327 5 is_stmt 0 view .LVU103
+ 471 0008 0548     		ldr	r0, .L47+4
+ 472              	.LVL41:
  327:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 484              		.loc 1 327 5 view .LVU107
- 485 000a FFF7FEFF 		bl	USBD_GetString
- 486              	.LVL42:
- 487              	.L45:
+ 473              		.loc 1 327 5 view .LVU104
+ 474 000a FFF7FEFF 		bl	USBD_GetString
+ 475              	.LVL42:
+ 476              	.L45:
  333:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** }
- 488              		.loc 1 333 3 is_stmt 1 view .LVU108
+ 477              		.loc 1 333 3 is_stmt 1 view .LVU105
  334:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c **** 
- 489              		.loc 1 334 1 is_stmt 0 view .LVU109
- 490 000e 0348     		ldr	r0, .L47
- 491 0010 08BD     		pop	{r3, pc}
- 492              	.LVL43:
- 493              	.L44:
-ARM GAS  /tmp/cceLofzu.s 			page 18
+ 478              		.loc 1 334 1 is_stmt 0 view .LVU106
+ 479 000e 0348     		ldr	r0, .L47
+ 480 0010 08BD     		pop	{r3, pc}
+ 481              	.LVL43:
+ 482              	.L44:
+ 331:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
+ 483              		.loc 1 331 5 is_stmt 1 view .LVU107
+ 484 0012 0249     		ldr	r1, .L47
+ 485              	.LVL44:
+ 331:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
+ 486              		.loc 1 331 5 is_stmt 0 view .LVU108
+ 487 0014 0248     		ldr	r0, .L47+4
+ 488              	.LVL45:
+ 331:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
+ 489              		.loc 1 331 5 view .LVU109
+ 490 0016 FFF7FEFF 		bl	USBD_GetString
+ 491              	.LVL46:
+ 331:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
+ARM GAS  /tmp/ccw88p90.s 			page 18
 
 
- 331:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 494              		.loc 1 331 5 is_stmt 1 view .LVU110
- 495 0012 0249     		ldr	r1, .L47
- 496              	.LVL44:
- 331:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 497              		.loc 1 331 5 is_stmt 0 view .LVU111
- 498 0014 0248     		ldr	r0, .L47+4
- 499              	.LVL45:
- 331:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 500              		.loc 1 331 5 view .LVU112
- 501 0016 FFF7FEFF 		bl	USBD_GetString
- 502              	.LVL46:
- 331:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.c ****   }
- 503              		.loc 1 331 5 view .LVU113
- 504 001a F8E7     		b	.L45
- 505              	.L48:
- 506              		.align	2
- 507              	.L47:
- 508 001c 00000000 		.word	.LANCHOR3
- 509 0020 00000000 		.word	.LC3
- 510              		.cfi_endproc
- 511              	.LFE151:
- 513              		.global	USBD_StringSerial
- 514              		.global	USBD_StrDesc
- 515              		.global	USBD_LangIDDesc
- 516              		.global	USBD_DeviceDesc
- 517              		.global	USBD_Desc
- 518              		.section	.bss.USBD_StrDesc,"aw",%nobits
+ 492              		.loc 1 331 5 view .LVU110
+ 493 001a F8E7     		b	.L45
+ 494              	.L48:
+ 495              		.align	2
+ 496              	.L47:
+ 497 001c 00000000 		.word	USBD_StrDesc
+ 498 0020 00000000 		.word	.LC3
+ 499              		.cfi_endproc
+ 500              	.LFE151:
+ 502              		.global	USBD_StringSerial
+ 503              		.section	.data.USBD_StringSerial,"aw"
+ 504              		.align	2
+ 507              	USBD_StringSerial:
+ 508 0000 1A0300   		.ascii	"\032\003\000"
+ 509 0003 00000000 		.space	23
+ 509      00000000 
+ 509      00000000 
+ 509      00000000 
+ 509      00000000 
+ 510              		.global	USBD_StrDesc
+ 511              		.section	.bss.USBD_StrDesc,"aw",%nobits
+ 512              		.align	2
+ 515              	USBD_StrDesc:
+ 516 0000 00000000 		.space	512
+ 516      00000000 
+ 516      00000000 
+ 516      00000000 
+ 516      00000000 
+ 517              		.global	USBD_LangIDDesc
+ 518              		.section	.data.USBD_LangIDDesc,"aw"
  519              		.align	2
- 520              		.set	.LANCHOR3,. + 0
- 523              	USBD_StrDesc:
- 524 0000 00000000 		.space	512
- 524      00000000 
- 524      00000000 
- 524      00000000 
- 524      00000000 
- 525              		.section	.data.USBD_Desc,"aw"
+ 522              	USBD_LangIDDesc:
+ 523 0000 04030904 		.ascii	"\004\003\011\004"
+ 524              		.global	USBD_DeviceDesc
+ 525              		.section	.data.USBD_DeviceDesc,"aw"
  526              		.align	2
- 529              	USBD_Desc:
- 530 0000 00000000 		.word	USBD_DeviceDescriptor
- 531 0004 00000000 		.word	USBD_LangIDStrDescriptor
- 532 0008 00000000 		.word	USBD_ManufacturerStrDescriptor
- 533 000c 00000000 		.word	USBD_ProductStrDescriptor
- 534 0010 00000000 		.word	USBD_SerialStrDescriptor
- 535 0014 00000000 		.word	USBD_ConfigStrDescriptor
- 536 0018 00000000 		.word	USBD_InterfaceStrDescriptor
- 537              		.section	.data.USBD_DeviceDesc,"aw"
- 538              		.align	2
- 539              		.set	.LANCHOR0,. + 0
- 542              	USBD_DeviceDesc:
- 543 0000 12010002 		.ascii	"\022\001\000\002\357\002\001@\203\004\244R\000\002\001"
- 543      EF020140 
- 543      8304A452 
- 543      000201
- 544 000f 020301   		.ascii	"\002\003\001"
- 545              		.section	.data.USBD_LangIDDesc,"aw"
- 546              		.align	2
-ARM GAS  /tmp/cceLofzu.s 			page 19
+ 529              	USBD_DeviceDesc:
+ 530 0000 12010002 		.ascii	"\022\001\000\002\357\002\001@\203\004\244R\000\002\001"
+ 530      EF020140 
+ 530      8304A452 
+ 530      000201
+ 531 000f 020301   		.ascii	"\002\003\001"
+ 532              		.global	USBD_Desc
+ 533              		.section	.data.USBD_Desc,"aw"
+ 534              		.align	2
+ 537              	USBD_Desc:
+ 538 0000 00000000 		.word	USBD_DeviceDescriptor
+ 539 0004 00000000 		.word	USBD_LangIDStrDescriptor
+ 540 0008 00000000 		.word	USBD_ManufacturerStrDescriptor
+ 541 000c 00000000 		.word	USBD_ProductStrDescriptor
+ 542 0010 00000000 		.word	USBD_SerialStrDescriptor
+ 543 0014 00000000 		.word	USBD_ConfigStrDescriptor
+ 544 0018 00000000 		.word	USBD_InterfaceStrDescriptor
+ 545              		.text
+ 546              	.Letext0:
+ 547              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 548              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ARM GAS  /tmp/ccw88p90.s 			page 19
 
 
- 547              		.set	.LANCHOR1,. + 0
- 550              	USBD_LangIDDesc:
- 551 0000 04030904 		.ascii	"\004\003\011\004"
- 552              		.section	.data.USBD_StringSerial,"aw"
- 553              		.align	2
- 554              		.set	.LANCHOR2,. + 0
- 557              	USBD_StringSerial:
- 558 0000 1A0300   		.ascii	"\032\003\000"
- 559 0003 00000000 		.space	23
- 559      00000000 
- 559      00000000 
- 559      00000000 
- 559      00000000 
- 560              		.text
- 561              	.Letext0:
- 562              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
- 563              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
- 564              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
- 565              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.h"
- 566              		.file 6 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h"
-ARM GAS  /tmp/cceLofzu.s 			page 20
+ 549              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
+ 550              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_desc.h"
+ 551              		.file 6 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h"
+ARM GAS  /tmp/ccw88p90.s 			page 20
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 usbd_desc.c
-     /tmp/cceLofzu.s:20     .text.USBD_DeviceDescriptor:0000000000000000 $t
-     /tmp/cceLofzu.s:26     .text.USBD_DeviceDescriptor:0000000000000000 USBD_DeviceDescriptor
-     /tmp/cceLofzu.s:49     .text.USBD_DeviceDescriptor:0000000000000008 $d
-     /tmp/cceLofzu.s:54     .text.USBD_LangIDStrDescriptor:0000000000000000 $t
-     /tmp/cceLofzu.s:60     .text.USBD_LangIDStrDescriptor:0000000000000000 USBD_LangIDStrDescriptor
-     /tmp/cceLofzu.s:82     .text.USBD_LangIDStrDescriptor:0000000000000008 $d
-     /tmp/cceLofzu.s:87     .text.IntToUnicode:0000000000000000 $t
-     /tmp/cceLofzu.s:92     .text.IntToUnicode:0000000000000000 IntToUnicode
-     /tmp/cceLofzu.s:170    .text.Get_SerialNum:0000000000000000 $t
-     /tmp/cceLofzu.s:175    .text.Get_SerialNum:0000000000000000 Get_SerialNum
-     /tmp/cceLofzu.s:232    .text.Get_SerialNum:0000000000000030 $d
-     /tmp/cceLofzu.s:238    .text.USBD_SerialStrDescriptor:0000000000000000 $t
-     /tmp/cceLofzu.s:244    .text.USBD_SerialStrDescriptor:0000000000000000 USBD_SerialStrDescriptor
-     /tmp/cceLofzu.s:272    .text.USBD_SerialStrDescriptor:0000000000000010 $d
-     /tmp/cceLofzu.s:277    .rodata.USBD_ProductStrDescriptor.str1.4:0000000000000000 $d
-     /tmp/cceLofzu.s:281    .text.USBD_ProductStrDescriptor:0000000000000000 $t
-     /tmp/cceLofzu.s:287    .text.USBD_ProductStrDescriptor:0000000000000000 USBD_ProductStrDescriptor
-     /tmp/cceLofzu.s:334    .text.USBD_ProductStrDescriptor:000000000000001c $d
-     /tmp/cceLofzu.s:340    .rodata.USBD_ManufacturerStrDescriptor.str1.4:0000000000000000 $d
-     /tmp/cceLofzu.s:344    .text.USBD_ManufacturerStrDescriptor:0000000000000000 $t
-     /tmp/cceLofzu.s:350    .text.USBD_ManufacturerStrDescriptor:0000000000000000 USBD_ManufacturerStrDescriptor
-     /tmp/cceLofzu.s:382    .text.USBD_ManufacturerStrDescriptor:0000000000000014 $d
-     /tmp/cceLofzu.s:388    .rodata.USBD_ConfigStrDescriptor.str1.4:0000000000000000 $d
-     /tmp/cceLofzu.s:392    .text.USBD_ConfigStrDescriptor:0000000000000000 $t
-     /tmp/cceLofzu.s:398    .text.USBD_ConfigStrDescriptor:0000000000000000 USBD_ConfigStrDescriptor
-     /tmp/cceLofzu.s:445    .text.USBD_ConfigStrDescriptor:000000000000001c $d
-     /tmp/cceLofzu.s:451    .rodata.USBD_InterfaceStrDescriptor.str1.4:0000000000000000 $d
-     /tmp/cceLofzu.s:455    .text.USBD_InterfaceStrDescriptor:0000000000000000 $t
-     /tmp/cceLofzu.s:461    .text.USBD_InterfaceStrDescriptor:0000000000000000 USBD_InterfaceStrDescriptor
-     /tmp/cceLofzu.s:508    .text.USBD_InterfaceStrDescriptor:000000000000001c $d
-     /tmp/cceLofzu.s:557    .data.USBD_StringSerial:0000000000000000 USBD_StringSerial
-     /tmp/cceLofzu.s:523    .bss.USBD_StrDesc:0000000000000000 USBD_StrDesc
-     /tmp/cceLofzu.s:550    .data.USBD_LangIDDesc:0000000000000000 USBD_LangIDDesc
-     /tmp/cceLofzu.s:542    .data.USBD_DeviceDesc:0000000000000000 USBD_DeviceDesc
-     /tmp/cceLofzu.s:529    .data.USBD_Desc:0000000000000000 USBD_Desc
-     /tmp/cceLofzu.s:519    .bss.USBD_StrDesc:0000000000000000 $d
-     /tmp/cceLofzu.s:526    .data.USBD_Desc:0000000000000000 $d
-     /tmp/cceLofzu.s:538    .data.USBD_DeviceDesc:0000000000000000 $d
-     /tmp/cceLofzu.s:546    .data.USBD_LangIDDesc:0000000000000000 $d
-     /tmp/cceLofzu.s:553    .data.USBD_StringSerial:0000000000000000 $d
+                            *ABS*:00000000 usbd_desc.c
+     /tmp/ccw88p90.s:21     .text.USBD_DeviceDescriptor:00000000 $t
+     /tmp/ccw88p90.s:27     .text.USBD_DeviceDescriptor:00000000 USBD_DeviceDescriptor
+     /tmp/ccw88p90.s:49     .text.USBD_DeviceDescriptor:00000008 $d
+     /tmp/ccw88p90.s:529    .data.USBD_DeviceDesc:00000000 USBD_DeviceDesc
+     /tmp/ccw88p90.s:54     .text.USBD_LangIDStrDescriptor:00000000 $t
+     /tmp/ccw88p90.s:60     .text.USBD_LangIDStrDescriptor:00000000 USBD_LangIDStrDescriptor
+     /tmp/ccw88p90.s:82     .text.USBD_LangIDStrDescriptor:00000008 $d
+     /tmp/ccw88p90.s:522    .data.USBD_LangIDDesc:00000000 USBD_LangIDDesc
+     /tmp/ccw88p90.s:87     .text.IntToUnicode:00000000 $t
+     /tmp/ccw88p90.s:92     .text.IntToUnicode:00000000 IntToUnicode
+     /tmp/ccw88p90.s:165    .text.Get_SerialNum:00000000 $t
+     /tmp/ccw88p90.s:170    .text.Get_SerialNum:00000000 Get_SerialNum
+     /tmp/ccw88p90.s:226    .text.Get_SerialNum:00000030 $d
+     /tmp/ccw88p90.s:507    .data.USBD_StringSerial:00000000 USBD_StringSerial
+     /tmp/ccw88p90.s:232    .text.USBD_SerialStrDescriptor:00000000 $t
+     /tmp/ccw88p90.s:238    .text.USBD_SerialStrDescriptor:00000000 USBD_SerialStrDescriptor
+     /tmp/ccw88p90.s:265    .text.USBD_SerialStrDescriptor:00000010 $d
+     /tmp/ccw88p90.s:270    .rodata.USBD_ProductStrDescriptor.str1.4:00000000 $d
+     /tmp/ccw88p90.s:274    .text.USBD_ProductStrDescriptor:00000000 $t
+     /tmp/ccw88p90.s:280    .text.USBD_ProductStrDescriptor:00000000 USBD_ProductStrDescriptor
+     /tmp/ccw88p90.s:326    .text.USBD_ProductStrDescriptor:0000001c $d
+     /tmp/ccw88p90.s:515    .bss.USBD_StrDesc:00000000 USBD_StrDesc
+     /tmp/ccw88p90.s:332    .rodata.USBD_ManufacturerStrDescriptor.str1.4:00000000 $d
+     /tmp/ccw88p90.s:336    .text.USBD_ManufacturerStrDescriptor:00000000 $t
+     /tmp/ccw88p90.s:342    .text.USBD_ManufacturerStrDescriptor:00000000 USBD_ManufacturerStrDescriptor
+     /tmp/ccw88p90.s:373    .text.USBD_ManufacturerStrDescriptor:00000014 $d
+     /tmp/ccw88p90.s:379    .rodata.USBD_ConfigStrDescriptor.str1.4:00000000 $d
+     /tmp/ccw88p90.s:383    .text.USBD_ConfigStrDescriptor:00000000 $t
+     /tmp/ccw88p90.s:389    .text.USBD_ConfigStrDescriptor:00000000 USBD_ConfigStrDescriptor
+     /tmp/ccw88p90.s:435    .text.USBD_ConfigStrDescriptor:0000001c $d
+     /tmp/ccw88p90.s:441    .rodata.USBD_InterfaceStrDescriptor.str1.4:00000000 $d
+     /tmp/ccw88p90.s:445    .text.USBD_InterfaceStrDescriptor:00000000 $t
+     /tmp/ccw88p90.s:451    .text.USBD_InterfaceStrDescriptor:00000000 USBD_InterfaceStrDescriptor
+     /tmp/ccw88p90.s:497    .text.USBD_InterfaceStrDescriptor:0000001c $d
+     /tmp/ccw88p90.s:504    .data.USBD_StringSerial:00000000 $d
+     /tmp/ccw88p90.s:512    .bss.USBD_StrDesc:00000000 $d
+     /tmp/ccw88p90.s:519    .data.USBD_LangIDDesc:00000000 $d
+     /tmp/ccw88p90.s:526    .data.USBD_DeviceDesc:00000000 $d
+     /tmp/ccw88p90.s:537    .data.USBD_Desc:00000000 USBD_Desc
+     /tmp/ccw88p90.s:534    .data.USBD_Desc:00000000 $d
 
 UNDEFINED SYMBOLS
 USBD_GetString

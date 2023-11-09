@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "i2c.h"
 #include "rng.h"
 #include "spi.h"
@@ -28,8 +29,12 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usb_device.h"
+#include "usbd_cdc_acm_if.h"
+#include "24xx_eeprom.h"
 #include "nyan_os.h"
 #include "nyan_leds.h"
+#include "nyan_strings.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,7 +56,8 @@
 
 /* USER CODE BEGIN PV */
 double system_status_led_angle;
-Nyan_OS nos;
+volatile NyanOS nos;
+Eeprom24xx nos_eeprom;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -72,7 +78,6 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  system_status_led_angle = 0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -81,7 +86,9 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
+  system_status_led_angle = 0;
   NyanOsInit(&nos);
+  EepromInit(&nos_eeprom, true, true);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -93,7 +100,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_RNG_Init();
+  MX_DMA_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_SPI4_Init();
@@ -102,12 +109,15 @@ int main(void)
   MX_TIM6_Init();
   MX_TIM1_Init();
   MX_USB_OTG_HS_PCD_Init();
+  MX_RNG_Init();
+  MX_TIM8_Init();
   /* USER CODE BEGIN 2 */
   // Activate the STM32F7 timer interrupts
   HAL_TIM_Base_Start_IT(&htim1);
   HAL_TIM_Base_Start_IT(&htim7);
   HAL_TIM_Base_Start_IT(&htim6);
   HAL_TIM_OC_Start_IT(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
   // USB composite device creation
   MX_USB_DEVICE_Init();
   /* USER CODE END 2 */
@@ -116,6 +126,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    const uint8_t name[] = "Programmed by Reese Russell";
+    EepromRead(&nos_eeprom, true, 0x0000, 800);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -176,10 +188,31 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_I2C_MemTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
+{
+  nos_eeprom.tx_inflight = false;
+}
+
+void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *I2cHandle)
+{
+  nos_eeprom.rx_inflight = false;
+}
+
+void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *I2cHandle)
+{
+  uint8_t error = HAL_I2C_GetError(I2cHandle);
+  switch (error)
+  {
+    case HAL_I2C_ERROR_AF :
+    default:
+      Error_Handler();
+  }
+}
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM1) {
-    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED4_Pin, GPIO_PIN_SET);
   }
 }
 
@@ -187,12 +220,24 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM1) {
     // Pulse the SystemStatus LED off
-    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED4_Pin, GPIO_PIN_RESET);
     // Now lets set the new capture compare register value.
     unsigned char cc_val = getSystemStatusOCRValue(system_status_led_angle);
     __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_1, (unsigned int)cc_val);
   }
-
+  if (htim->Instance == TIM8) {
+    if((nos.tx_buffer.p_array != NULL || nos.tx_buffer.size != 0) && nos.tx_inflight == 0) {
+      CDC_Transmit(nos.cdc_ch, nos.tx_buffer.p_array, nos.tx_buffer.size);
+    }
+    // Every 200ms check to see if the welcome display needs to be presented 
+    NyanWelcomeDisplay(&nos);
+    // Program Execution - Must be idle with no TXs inflight since we are modifying the ptr
+    if(nos.exe != NYAN_EXE_IDLE && nos.tx_inflight == 0) {
+      NyanExecute(&nos);
+    }
+    // Turn off the RX CDC LED
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED3_Pin, GPIO_PIN_RESET);
+  }
 }
 /* USER CODE END 4 */
 
@@ -207,6 +252,10 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+    // Flash Led 0 on error
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
+    HAL_Delay(1000);
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
   }
   /* USER CODE END Error_Handler_Debug */
 }
