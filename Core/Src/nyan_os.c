@@ -12,7 +12,7 @@
 #include "nyan_strings.h"
 #include "usbd_cdc_acm_if.h"
 
-NyanReturn NyanOsInit(volatile NyanOS *nos)
+NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
 {
     // Set the operational state
     nos->state = READY;
@@ -24,6 +24,7 @@ NyanReturn NyanOsInit(volatile NyanOS *nos)
     nos->cdc_ch = 0;
     nos->send_welcome_screen = 1;
     nos->tx_inflight = 0;
+    nos->eeprom = eeprom;
 
     // Manual Setting of the memory because of the volatile qualifier.
     memset((void*)nos->command_buffer, 0, sizeof(nos->command_buffer));

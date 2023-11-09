@@ -31,7 +31,8 @@ build/stm32f7xx_it.o: Core/Src/stm32f7xx_it.c Core/Inc/main.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h \
- Core/Inc/stm32f7xx_it.h Core/Inc/nyan_os.h Core/Inc/nyan_leds.h
+ Core/Inc/stm32f7xx_it.h Core/Inc/nyan_os.h Core/Inc/24xx_eeprom.h \
+ Core/Inc/nyan_leds.h
 Core/Inc/main.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 Core/Inc/stm32f7xx_hal_conf.h:
@@ -69,4 +70,5 @@ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h:
 Core/Inc/stm32f7xx_it.h:
 Core/Inc/nyan_os.h:
+Core/Inc/24xx_eeprom.h:
 Core/Inc/nyan_leds.h:

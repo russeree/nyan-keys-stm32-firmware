@@ -3,6 +3,7 @@
 #define NYAN_OS_H
 
 #include <stdint.h>
+#include "24xx_eeprom.h"
 
 #define _NYAN_CMD_BUF_LEN 128
 #define _NYAN_EXE_CHAR '\n'
@@ -38,6 +39,8 @@ typedef struct {
 } NyanString;
 
 typedef struct {
+    // pointers to drivers
+    Eeprom24xx* eeprom; 
     // state management Inputs
     NyanStates state;
     NyanStates next_state;
@@ -62,7 +65,7 @@ typedef struct {
 /**
  * Initializes the NyanOS state structure, NyanOS will not function without this call.
  */
-NyanReturn NyanOsInit(volatile NyanOS *nos);
+NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom);
 
 /**
  * Handle needed state changes to Nyan
