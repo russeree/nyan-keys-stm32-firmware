@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccVluowp.s 			page 1
+ARM GAS  /tmp/cc70tQPM.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,16 +19,16 @@ ARM GAS  /tmp/ccVluowp.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.NyanOsInit,"ax",%progbits
-  20              		.align	1
-  21              		.global	NyanOsInit
-  22              		.syntax unified
-  23              		.thumb
-  24              		.thumb_func
-  26              	NyanOsInit:
-  27              	.LVL0:
-  28              	.LFB145:
-  29              		.file 1 "Core/Src/nyan_os.c"
+  19              		.file 1 "Core/Src/nyan_os.c"
+  20              		.section	.text.NyanPrint,"ax",%progbits
+  21              		.align	1
+  22              		.global	NyanPrint
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	NyanPrint:
+  28              	.LVL0:
+  29              	.LFB148:
    1:Core/Src/nyan_os.c **** /**
    2:Core/Src/nyan_os.c ****  * NyanOS (NOS) v0.01
    3:Core/Src/nyan_os.c ****  * Reese Russell
@@ -36,1289 +36,2866 @@ ARM GAS  /tmp/ccVluowp.s 			page 1
    5:Core/Src/nyan_os.c ****  */
    6:Core/Src/nyan_os.c **** 
    7:Core/Src/nyan_os.c **** #include <stdio.h>
-   8:Core/Src/nyan_os.c **** #include <string.h>
-   9:Core/Src/nyan_os.c **** 
-  10:Core/Src/nyan_os.c **** #include "main.h"
-  11:Core/Src/nyan_os.c **** #include "nyan_os.h"
-  12:Core/Src/nyan_os.c **** #include "nyan_strings.h"
-  13:Core/Src/nyan_os.c **** #include "usbd_cdc_acm_if.h"
-  14:Core/Src/nyan_os.c **** 
-  15:Core/Src/nyan_os.c **** NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
-  16:Core/Src/nyan_os.c **** {
-  30              		.loc 1 16 1 view -0
+   8:Core/Src/nyan_os.c **** #include <stdlib.h> 
+   9:Core/Src/nyan_os.c **** #include <string.h>
+  10:Core/Src/nyan_os.c **** 
+  11:Core/Src/nyan_os.c **** #include "main.h"
+  12:Core/Src/nyan_os.c **** #include "24xx_eeprom.h"
+  13:Core/Src/nyan_os.c **** #include "nyan_os.h"
+  14:Core/Src/nyan_os.c **** #include "nyan_strings.h"
+  15:Core/Src/nyan_os.c **** #include "usbd_cdc_acm_if.h"
+  16:Core/Src/nyan_os.c **** 
+  17:Core/Src/nyan_os.c **** NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
+  18:Core/Src/nyan_os.c **** {
+  19:Core/Src/nyan_os.c ****     // Set the operational state
+  20:Core/Src/nyan_os.c ****     nos->state = READY;
+  21:Core/Src/nyan_os.c ****     nos->next_state = READY;
+  22:Core/Src/nyan_os.c ****     nos->exe = NYAN_EXE_IDLE;
+  23:Core/Src/nyan_os.c ****     nos->exe_char = _NYAN_EXE_CHAR;
+  24:Core/Src/nyan_os.c ****     nos->command_buffer_num_args = 0;
+  25:Core/Src/nyan_os.c ****     nos->command_buffer_pos = 0;
+  26:Core/Src/nyan_os.c ****     nos->data_buffer_pos = 0;
+  27:Core/Src/nyan_os.c ****     nos->cdc_ch = 0;
+  28:Core/Src/nyan_os.c ****     nos->send_welcome_screen = 0;
+  29:Core/Src/nyan_os.c ****     nos->eeprom = eeprom;
+ARM GAS  /tmp/cc70tQPM.s 			page 2
+
+
+  30:Core/Src/nyan_os.c ****     nos->eeprom->tx_inflight = false;
+  31:Core/Src/nyan_os.c **** 
+  32:Core/Src/nyan_os.c ****     // Manual Setting of the memory because of the volatile qualifier.
+  33:Core/Src/nyan_os.c ****     ClearNyanCommandBuffer(nos);
+  34:Core/Src/nyan_os.c **** 
+  35:Core/Src/nyan_os.c ****     // Set the arg pointer to a zero value
+  36:Core/Src/nyan_os.c ****     for (int i = 0; i < _NYAN_CMD_MAX_ARGS; ++i) {
+  37:Core/Src/nyan_os.c ****         nos->command_arg_buffer[i] = NULL;
+  38:Core/Src/nyan_os.c ****     }
+  39:Core/Src/nyan_os.c **** 
+  40:Core/Src/nyan_os.c ****     // Output Buffer Creation
+  41:Core/Src/nyan_os.c ****     nos->tx_buffer.p_array = NULL;
+  42:Core/Src/nyan_os.c ****     nos->tx_buffer.size = 0;
+  43:Core/Src/nyan_os.c ****     
+  44:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+  45:Core/Src/nyan_os.c **** }
+  46:Core/Src/nyan_os.c **** 
+  47:Core/Src/nyan_os.c **** NyanReturn NyanWelcomeDisplay(volatile NyanOS *nos)
+  48:Core/Src/nyan_os.c **** {
+  49:Core/Src/nyan_os.c ****     if(nos->send_welcome_screen) {
+  50:Core/Src/nyan_os.c ****         nos->send_welcome_screen = 0x00;
+  51:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
+  52:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+  53:Core/Src/nyan_os.c ****     }
+  54:Core/Src/nyan_os.c **** 
+  55:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+  56:Core/Src/nyan_os.c **** };
+  57:Core/Src/nyan_os.c **** 
+  58:Core/Src/nyan_os.c **** NyanReturn NyanAddInputBuffer(volatile NyanOS *nos, uint8_t *pbuf, uint32_t *Len)
+  59:Core/Src/nyan_os.c **** {
+  60:Core/Src/nyan_os.c ****     const char del_char = 0x7F;
+  61:Core/Src/nyan_os.c ****     const char backspace_char = 0x08;
+  62:Core/Src/nyan_os.c ****     const char carriage_return = '\r';
+  63:Core/Src/nyan_os.c ****     const char line_feed = '\n';
+  64:Core/Src/nyan_os.c ****     // 0. Check which state we are in.
+  65:Core/Src/nyan_os.c ****     switch(nos->state){
+  66:Core/Src/nyan_os.c ****         case READY: {
+  67:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+  68:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
+  69:Core/Src/nyan_os.c ****                     // Handle backspace
+  70:Core/Src/nyan_os.c ****                     uint8_t backspace_seq[3] = {backspace_char, ' ', backspace_char};
+  71:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&backspace_seq[0], sizeof(backspace_seq));
+  72:Core/Src/nyan_os.c ****                     --nos->command_buffer_pos;
+  73:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
+  74:Core/Src/nyan_os.c ****                     // Handle the action of executing a command by pressing enter
+  75:Core/Src/nyan_os.c ****                     nos->command_buffer_pos = 0;
+  76:Core/Src/nyan_os.c ****                     NyanDecode(nos);
+  77:Core/Src/nyan_os.c ****                     ClearNyanCommandBuffer(nos);
+  78:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+  79:Core/Src/nyan_os.c ****                     break;
+  80:Core/Src/nyan_os.c ****                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
+  81:Core/Src/nyan_os.c ****                     // Handle out of command buffer space on next char
+  82:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] >= 0x20 && pbuf[idx] <= 0x7E) {
+  83:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
+  84:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)pbuf, (size_t)*Len);
+  85:Core/Src/nyan_os.c ****                 }
+  86:Core/Src/nyan_os.c ****             }
+ARM GAS  /tmp/cc70tQPM.s 			page 3
+
+
+  87:Core/Src/nyan_os.c ****             break;
+  88:Core/Src/nyan_os.c ****         }
+  89:Core/Src/nyan_os.c ****         case DIRECT_BUFFER_ACCESS: {
+  90:Core/Src/nyan_os.c ****             // In this state all signals are written directly to the buffer until the buffer is ful
+  91:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+  92:Core/Src/nyan_os.c ****                 if(nos->bytes_received < nos->bytes_array_size)
+  93:Core/Src/nyan_os.c ****                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+  94:Core/Src/nyan_os.c ****             }
+  95:Core/Src/nyan_os.c ****         }
+  96:Core/Src/nyan_os.c ****         default: 
+  97:Core/Src/nyan_os.c ****             break;
+  98:Core/Src/nyan_os.c ****     }
+  99:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+ 100:Core/Src/nyan_os.c **** }
+ 101:Core/Src/nyan_os.c **** 
+ 102:Core/Src/nyan_os.c **** NyanReturn NyanPrint(volatile NyanOS *nos, char* data, size_t len)
+ 103:Core/Src/nyan_os.c **** {
+  30              		.loc 1 103 1 view -0
   31              		.cfi_startproc
   32              		@ args = 0, pretend = 0, frame = 0
   33              		@ frame_needed = 0, uses_anonymous_args = 0
-  34              		.loc 1 16 1 is_stmt 0 view .LVU1
-  35 0000 70B5     		push	{r4, r5, r6, lr}
-  36              	.LCFI0:
-  37              		.cfi_def_cfa_offset 16
-  38              		.cfi_offset 4, -16
-  39              		.cfi_offset 5, -12
-  40              		.cfi_offset 6, -8
-  41              		.cfi_offset 14, -4
-  42 0002 0446     		mov	r4, r0
-ARM GAS  /tmp/ccVluowp.s 			page 2
+ 104:Core/Src/nyan_os.c ****     if (!nos || !data) {
+  34              		.loc 1 104 5 view .LVU1
+  35              		.loc 1 104 8 is_stmt 0 view .LVU2
+  36 0000 0029     		cmp	r1, #0
+  37 0002 18BF     		it	ne
+  38 0004 0028     		cmpne	r0, #0
+  39 0006 32D0     		beq	.L4
+ 103:Core/Src/nyan_os.c ****     if (!nos || !data) {
+  40              		.loc 1 103 1 view .LVU3
+  41 0008 70B5     		push	{r4, r5, r6, lr}
+  42              		.cfi_def_cfa_offset 16
+  43              		.cfi_offset 4, -16
+  44              		.cfi_offset 5, -12
+  45              		.cfi_offset 6, -8
+  46              		.cfi_offset 14, -4
+  47 000a 1546     		mov	r5, r2
+  48 000c 0446     		mov	r4, r0
+  49 000e 0E46     		mov	r6, r1
+ 105:Core/Src/nyan_os.c ****         // Handle null pointers being passed in
+ 106:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 107:Core/Src/nyan_os.c ****     }
+ 108:Core/Src/nyan_os.c **** 
+ 109:Core/Src/nyan_os.c ****     if (nos->tx_buffer.p_array == NULL) {
+  50              		.loc 1 109 5 is_stmt 1 view .LVU4
+  51              		.loc 1 109 23 is_stmt 0 view .LVU5
+  52 0010 D0F8BC30 		ldr	r3, [r0, #188]
+  53              		.loc 1 109 8 view .LVU6
+  54 0014 CBB1     		cbz	r3, .L11
+  55              	.LBB2:
+ 110:Core/Src/nyan_os.c ****         // Since the pointer is null we need to create a new one to hold our new data!
+ 111:Core/Src/nyan_os.c ****         nos->tx_buffer.p_array = (uint8_t *)malloc(len);
+ 112:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
+ 113:Core/Src/nyan_os.c ****             // Handle failed memory allocation
+ 114:Core/Src/nyan_os.c ****             return NOS_FAILURE;
+ 115:Core/Src/nyan_os.c ****         }
+ 116:Core/Src/nyan_os.c ****         nos->tx_buffer.size = len;
+ARM GAS  /tmp/cc70tQPM.s 			page 4
 
 
-  17:Core/Src/nyan_os.c ****     // Set the operational state
-  18:Core/Src/nyan_os.c ****     nos->state = READY;
-  43              		.loc 1 18 5 is_stmt 1 view .LVU2
-  44              		.loc 1 18 16 is_stmt 0 view .LVU3
-  45 0004 0126     		movs	r6, #1
-  46 0006 0671     		strb	r6, [r0, #4]
-  19:Core/Src/nyan_os.c ****     nos->next_state = READY;
-  47              		.loc 1 19 5 is_stmt 1 view .LVU4
-  48              		.loc 1 19 21 is_stmt 0 view .LVU5
-  49 0008 4671     		strb	r6, [r0, #5]
-  20:Core/Src/nyan_os.c ****     nos->exe = NYAN_EXE_IDLE;
-  50              		.loc 1 20 5 is_stmt 1 view .LVU6
-  51              		.loc 1 20 14 is_stmt 0 view .LVU7
-  52 000a 0323     		movs	r3, #3
-  53 000c 8371     		strb	r3, [r0, #6]
-  21:Core/Src/nyan_os.c ****     nos->exe_char = _NYAN_EXE_CHAR;
-  54              		.loc 1 21 5 is_stmt 1 view .LVU8
-  55              		.loc 1 21 19 is_stmt 0 view .LVU9
-  56 000e 0A23     		movs	r3, #10
-  57 0010 80F88D30 		strb	r3, [r0, #141]
-  22:Core/Src/nyan_os.c ****     nos->command_buffer_pos = 0;
-  58              		.loc 1 22 5 is_stmt 1 view .LVU10
-  59              		.loc 1 22 29 is_stmt 0 view .LVU11
-  60 0014 0025     		movs	r5, #0
-  61 0016 80F88750 		strb	r5, [r0, #135]
-  23:Core/Src/nyan_os.c ****     nos->data_buffer_pos = 0;
-  62              		.loc 1 23 5 is_stmt 1 view .LVU12
-  63              		.loc 1 23 26 is_stmt 0 view .LVU13
-  64 001a 80F88C50 		strb	r5, [r0, #140]
-  24:Core/Src/nyan_os.c ****     nos->cdc_ch = 0;
-  65              		.loc 1 24 5 is_stmt 1 view .LVU14
-  66              		.loc 1 24 17 is_stmt 0 view .LVU15
-  67 001e 80F88E50 		strb	r5, [r0, #142]
-  25:Core/Src/nyan_os.c ****     nos->send_welcome_screen = 1;
-  68              		.loc 1 25 5 is_stmt 1 view .LVU16
-  69              		.loc 1 25 30 is_stmt 0 view .LVU17
-  70 0022 80F88F60 		strb	r6, [r0, #143]
-  26:Core/Src/nyan_os.c ****     nos->tx_inflight = 0;
-  71              		.loc 1 26 5 is_stmt 1 view .LVU18
-  72              		.loc 1 26 22 is_stmt 0 view .LVU19
-  73 0026 80F89050 		strb	r5, [r0, #144]
-  27:Core/Src/nyan_os.c ****     nos->eeprom = eeprom;
-  74              		.loc 1 27 5 is_stmt 1 view .LVU20
-  75              		.loc 1 27 17 is_stmt 0 view .LVU21
-  76 002a 40F8071B 		str	r1, [r0], #7
-  77              	.LVL1:
-  28:Core/Src/nyan_os.c **** 
-  29:Core/Src/nyan_os.c ****     // Manual Setting of the memory because of the volatile qualifier.
-  30:Core/Src/nyan_os.c ****     memset((void*)nos->command_buffer, 0, sizeof(nos->command_buffer));
-  78              		.loc 1 30 5 is_stmt 1 view .LVU22
-  79 002e 8022     		movs	r2, #128
-  80 0030 2946     		mov	r1, r5
-  81              	.LVL2:
-  82              		.loc 1 30 5 is_stmt 0 view .LVU23
-  83 0032 FFF7FEFF 		bl	memset
-  84              	.LVL3:
-  31:Core/Src/nyan_os.c **** 
-ARM GAS  /tmp/ccVluowp.s 			page 3
+ 117:Core/Src/nyan_os.c ****         memcpy(nos->tx_buffer.p_array, data, len); // Copy the data into the buffer
+ 118:Core/Src/nyan_os.c ****     } else {
+ 119:Core/Src/nyan_os.c ****         // The pointer is not null, so we realloc and then add the contents of data to it
+ 120:Core/Src/nyan_os.c ****         uint8_t *new_buffer = (uint8_t *)realloc(nos->tx_buffer.p_array, nos->tx_buffer.size + len)
+  56              		.loc 1 120 9 is_stmt 1 view .LVU7
+  57              		.loc 1 120 64 is_stmt 0 view .LVU8
+  58 0016 D0F8BC00 		ldr	r0, [r0, #188]
+  59              	.LVL1:
+  60              		.loc 1 120 88 view .LVU9
+  61 001a D4F8C010 		ldr	r1, [r4, #192]
+  62              	.LVL2:
+  63              		.loc 1 120 42 view .LVU10
+  64 001e 1144     		add	r1, r1, r2
+  65 0020 FFF7FEFF 		bl	realloc
+  66              	.LVL3:
+ 121:Core/Src/nyan_os.c ****         if (new_buffer == NULL) {
+  67              		.loc 1 121 9 is_stmt 1 view .LVU11
+  68              		.loc 1 121 12 is_stmt 0 view .LVU12
+  69 0024 38B3     		cbz	r0, .L6
+ 122:Core/Src/nyan_os.c ****             // Handle failed memory reallocation
+ 123:Core/Src/nyan_os.c ****             return NOS_FAILURE;
+ 124:Core/Src/nyan_os.c ****         }
+ 125:Core/Src/nyan_os.c ****         nos->tx_buffer.p_array = new_buffer;
+  70              		.loc 1 125 9 is_stmt 1 view .LVU13
+  71              		.loc 1 125 32 is_stmt 0 view .LVU14
+  72 0026 C4F8BC00 		str	r0, [r4, #188]
+ 126:Core/Src/nyan_os.c ****         memcpy(nos->tx_buffer.p_array + nos->tx_buffer.size, data, len); // Append the new data
+  73              		.loc 1 126 9 is_stmt 1 view .LVU15
+  74              		.loc 1 126 30 is_stmt 0 view .LVU16
+  75 002a D4F8BC00 		ldr	r0, [r4, #188]
+  76              	.LVL4:
+  77              		.loc 1 126 55 view .LVU17
+  78 002e D4F8C030 		ldr	r3, [r4, #192]
+  79              		.loc 1 126 9 view .LVU18
+  80 0032 2A46     		mov	r2, r5
+  81 0034 3146     		mov	r1, r6
+  82 0036 1844     		add	r0, r0, r3
+  83 0038 FFF7FEFF 		bl	memcpy
+  84              	.LVL5:
+ 127:Core/Src/nyan_os.c ****         nos->tx_buffer.size += len; // Increase the size to reflect the new total size
+  85              		.loc 1 127 9 is_stmt 1 view .LVU19
+  86              		.loc 1 127 23 is_stmt 0 view .LVU20
+  87 003c D4F8C030 		ldr	r3, [r4, #192]
+  88              		.loc 1 127 29 view .LVU21
+  89 0040 2B44     		add	r3, r3, r5
+  90 0042 C4F8C030 		str	r3, [r4, #192]
+  91              	.LBE2:
+ 128:Core/Src/nyan_os.c ****     }
+ 129:Core/Src/nyan_os.c **** 
+ 130:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+  92              		.loc 1 130 12 view .LVU22
+  93 0046 0120     		movs	r0, #1
+  94              	.LVL6:
+  95              	.L2:
+ 131:Core/Src/nyan_os.c **** }
+  96              		.loc 1 131 1 view .LVU23
+  97 0048 70BD     		pop	{r4, r5, r6, pc}
+ARM GAS  /tmp/cc70tQPM.s 			page 5
 
 
-  32:Core/Src/nyan_os.c ****     // Output Buffer Creation
-  33:Core/Src/nyan_os.c ****     nos->tx_buffer.p_array = NULL;
-  85              		.loc 1 33 5 is_stmt 1 view .LVU24
-  86              		.loc 1 33 28 is_stmt 0 view .LVU25
-  87 0036 C4F89450 		str	r5, [r4, #148]
-  34:Core/Src/nyan_os.c ****     nos->tx_buffer.size = 0;
-  88              		.loc 1 34 5 is_stmt 1 view .LVU26
-  89              		.loc 1 34 25 is_stmt 0 view .LVU27
-  90 003a C4F89850 		str	r5, [r4, #152]
-  35:Core/Src/nyan_os.c ****     
-  36:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
-  91              		.loc 1 36 5 is_stmt 1 view .LVU28
-  37:Core/Src/nyan_os.c **** }
-  92              		.loc 1 37 1 is_stmt 0 view .LVU29
-  93 003e 3046     		mov	r0, r6
-  94 0040 70BD     		pop	{r4, r5, r6, pc}
-  95              		.loc 1 37 1 view .LVU30
-  96              		.cfi_endproc
-  97              	.LFE145:
-  99              		.section	.text.NyanPrint,"ax",%progbits
- 100              		.align	1
- 101              		.global	NyanPrint
- 102              		.syntax unified
- 103              		.thumb
- 104              		.thumb_func
- 106              	NyanPrint:
- 107              	.LVL4:
- 108              	.LFB148:
-  38:Core/Src/nyan_os.c **** 
-  39:Core/Src/nyan_os.c **** NyanReturn NyanWelcomeDisplay(volatile NyanOS *nos) {
-  40:Core/Src/nyan_os.c ****     if(nos->send_welcome_screen) {
-  41:Core/Src/nyan_os.c ****         nos->send_welcome_screen = 0x00;
-  42:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
-  43:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
-  44:Core/Src/nyan_os.c ****     }
-  45:Core/Src/nyan_os.c **** 
-  46:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
-  47:Core/Src/nyan_os.c **** };
-  48:Core/Src/nyan_os.c **** 
-  49:Core/Src/nyan_os.c **** NyanReturn NyanAddInputBuffer(volatile NyanOS *nos, uint8_t *pbuf, uint32_t *Len)
-  50:Core/Src/nyan_os.c **** {
-  51:Core/Src/nyan_os.c ****     const char del_char = 0x7F;
-  52:Core/Src/nyan_os.c ****     const char backspace_char = 0x08;
-  53:Core/Src/nyan_os.c ****     const char carriage_return = '\r';
-  54:Core/Src/nyan_os.c ****     const char line_feed = '\n';
-  55:Core/Src/nyan_os.c ****     // 0. Check which state we are in.
-  56:Core/Src/nyan_os.c ****     switch(nos->state){
-  57:Core/Src/nyan_os.c ****         case READY: {
-  58:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
-  59:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
-  60:Core/Src/nyan_os.c ****                     // Handle backspace
-  61:Core/Src/nyan_os.c ****                     uint8_t backspace_seq[3] = {backspace_char, ' ', backspace_char};
-  62:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&backspace_seq[0], sizeof(backspace_seq));
-  63:Core/Src/nyan_os.c ****                     --nos->command_buffer_pos;
-  64:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
-  65:Core/Src/nyan_os.c ****                     // Handle the action of executing a command by pressing enter
-  66:Core/Src/nyan_os.c ****                     nos->command_buffer_pos = 0;
-ARM GAS  /tmp/ccVluowp.s 			page 4
+  98              	.LVL7:
+  99              	.L11:
+ 111:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
+ 100              		.loc 1 111 9 is_stmt 1 view .LVU24
+ 111:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
+ 101              		.loc 1 111 45 is_stmt 0 view .LVU25
+ 102 004a 1046     		mov	r0, r2
+ 103              	.LVL8:
+ 111:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
+ 104              		.loc 1 111 45 view .LVU26
+ 105 004c FFF7FEFF 		bl	malloc
+ 106              	.LVL9:
+ 111:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
+ 107              		.loc 1 111 32 view .LVU27
+ 108 0050 C4F8BC00 		str	r0, [r4, #188]
+ 112:Core/Src/nyan_os.c ****             // Handle failed memory allocation
+ 109              		.loc 1 112 9 is_stmt 1 view .LVU28
+ 112:Core/Src/nyan_os.c ****             // Handle failed memory allocation
+ 110              		.loc 1 112 27 is_stmt 0 view .LVU29
+ 111 0054 D4F8BC30 		ldr	r3, [r4, #188]
+ 112:Core/Src/nyan_os.c ****             // Handle failed memory allocation
+ 112              		.loc 1 112 12 view .LVU30
+ 113 0058 5BB1     		cbz	r3, .L5
+ 116:Core/Src/nyan_os.c ****         memcpy(nos->tx_buffer.p_array, data, len); // Copy the data into the buffer
+ 114              		.loc 1 116 9 is_stmt 1 view .LVU31
+ 116:Core/Src/nyan_os.c ****         memcpy(nos->tx_buffer.p_array, data, len); // Copy the data into the buffer
+ 115              		.loc 1 116 29 is_stmt 0 view .LVU32
+ 116 005a C4F8C050 		str	r5, [r4, #192]
+ 117:Core/Src/nyan_os.c ****     } else {
+ 117              		.loc 1 117 9 is_stmt 1 view .LVU33
+ 117:Core/Src/nyan_os.c ****     } else {
+ 118              		.loc 1 117 30 is_stmt 0 view .LVU34
+ 119 005e D4F8BC00 		ldr	r0, [r4, #188]
+ 117:Core/Src/nyan_os.c ****     } else {
+ 120              		.loc 1 117 9 view .LVU35
+ 121 0062 2A46     		mov	r2, r5
+ 122 0064 3146     		mov	r1, r6
+ 123 0066 FFF7FEFF 		bl	memcpy
+ 124              	.LVL10:
+ 130:Core/Src/nyan_os.c **** }
+ 125              		.loc 1 130 12 view .LVU36
+ 126 006a 0120     		movs	r0, #1
+ 127 006c ECE7     		b	.L2
+ 128              	.LVL11:
+ 129              	.L4:
+ 130              		.cfi_def_cfa_offset 0
+ 131              		.cfi_restore 4
+ 132              		.cfi_restore 5
+ 133              		.cfi_restore 6
+ 134              		.cfi_restore 14
+ 106:Core/Src/nyan_os.c ****     }
+ 135              		.loc 1 106 16 view .LVU37
+ 136 006e 0020     		movs	r0, #0
+ 137              	.LVL12:
+ 138              		.loc 1 131 1 view .LVU38
+ 139 0070 7047     		bx	lr
+ 140              	.LVL13:
+ARM GAS  /tmp/cc70tQPM.s 			page 6
 
 
-  67:Core/Src/nyan_os.c ****                     NyanDecode(nos);
-  68:Core/Src/nyan_os.c ****                     memset((void*)nos->command_buffer, 0, sizeof(nos->command_buffer));
-  69:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));       
-  70:Core/Src/nyan_os.c ****                     break;
-  71:Core/Src/nyan_os.c ****                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
-  72:Core/Src/nyan_os.c ****                     // Handle out of command buffer space on next char
-  73:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] >= 0x20 && pbuf[idx] <= 0x7E) {
-  74:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
-  75:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)pbuf, (size_t)*Len);
-  76:Core/Src/nyan_os.c ****                 }
-  77:Core/Src/nyan_os.c ****             }
-  78:Core/Src/nyan_os.c ****             break;
-  79:Core/Src/nyan_os.c ****         }
-  80:Core/Src/nyan_os.c ****         default: 
-  81:Core/Src/nyan_os.c ****             break;
-  82:Core/Src/nyan_os.c ****     }
-  83:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
-  84:Core/Src/nyan_os.c **** }
-  85:Core/Src/nyan_os.c **** 
-  86:Core/Src/nyan_os.c **** NyanReturn NyanPrint(volatile NyanOS *nos, char* data, size_t len)
-  87:Core/Src/nyan_os.c **** {
- 109              		.loc 1 87 1 is_stmt 1 view -0
- 110              		.cfi_startproc
- 111              		@ args = 0, pretend = 0, frame = 0
- 112              		@ frame_needed = 0, uses_anonymous_args = 0
-  88:Core/Src/nyan_os.c ****     if (!nos || !data) {
- 113              		.loc 1 88 5 view .LVU32
- 114              		.loc 1 88 8 is_stmt 0 view .LVU33
- 115 0000 0029     		cmp	r1, #0
- 116 0002 18BF     		it	ne
- 117 0004 0028     		cmpne	r0, #0
- 118 0006 32D0     		beq	.L6
-  87:Core/Src/nyan_os.c ****     if (!nos || !data) {
- 119              		.loc 1 87 1 view .LVU34
- 120 0008 70B5     		push	{r4, r5, r6, lr}
- 121              	.LCFI1:
- 122              		.cfi_def_cfa_offset 16
- 123              		.cfi_offset 4, -16
- 124              		.cfi_offset 5, -12
- 125              		.cfi_offset 6, -8
- 126              		.cfi_offset 14, -4
- 127 000a 1546     		mov	r5, r2
- 128 000c 0446     		mov	r4, r0
- 129 000e 0E46     		mov	r6, r1
-  89:Core/Src/nyan_os.c ****         // Handle null pointers being passed in
-  90:Core/Src/nyan_os.c ****         return NOS_FAILURE;
-  91:Core/Src/nyan_os.c ****     }
-  92:Core/Src/nyan_os.c **** 
-  93:Core/Src/nyan_os.c ****     if (nos->tx_buffer.p_array == NULL) {
- 130              		.loc 1 93 5 is_stmt 1 view .LVU35
- 131              		.loc 1 93 23 is_stmt 0 view .LVU36
- 132 0010 D0F89430 		ldr	r3, [r0, #148]
- 133              		.loc 1 93 8 view .LVU37
- 134 0014 CBB1     		cbz	r3, .L13
- 135              	.LBB2:
-  94:Core/Src/nyan_os.c ****         // Since the pointer is null we need to create a new one to hold our new data!
-  95:Core/Src/nyan_os.c ****         nos->tx_buffer.p_array = (uint8_t *)malloc(len);
-ARM GAS  /tmp/ccVluowp.s 			page 5
+ 141              	.L5:
+ 142              		.cfi_def_cfa_offset 16
+ 143              		.cfi_offset 4, -16
+ 144              		.cfi_offset 5, -12
+ 145              		.cfi_offset 6, -8
+ 146              		.cfi_offset 14, -4
+ 114:Core/Src/nyan_os.c ****         }
+ 147              		.loc 1 114 20 view .LVU39
+ 148 0072 0020     		movs	r0, #0
+ 149 0074 E8E7     		b	.L2
+ 150              	.LVL14:
+ 151              	.L6:
+ 152              	.LBB3:
+ 123:Core/Src/nyan_os.c ****         }
+ 153              		.loc 1 123 20 view .LVU40
+ 154 0076 0020     		movs	r0, #0
+ 155              	.LVL15:
+ 123:Core/Src/nyan_os.c ****         }
+ 156              		.loc 1 123 20 view .LVU41
+ 157 0078 E6E7     		b	.L2
+ 158              	.LBE3:
+ 159              		.cfi_endproc
+ 160              	.LFE148:
+ 162              		.section	.text.NyanWelcomeDisplay,"ax",%progbits
+ 163              		.align	1
+ 164              		.global	NyanWelcomeDisplay
+ 165              		.syntax unified
+ 166              		.thumb
+ 167              		.thumb_func
+ 169              	NyanWelcomeDisplay:
+ 170              	.LVL16:
+ 171              	.LFB146:
+  48:Core/Src/nyan_os.c ****     if(nos->send_welcome_screen) {
+ 172              		.loc 1 48 1 is_stmt 1 view -0
+ 173              		.cfi_startproc
+ 174              		@ args = 0, pretend = 0, frame = 0
+ 175              		@ frame_needed = 0, uses_anonymous_args = 0
+  49:Core/Src/nyan_os.c ****         nos->send_welcome_screen = 0x00;
+ 176              		.loc 1 49 5 view .LVU43
+  49:Core/Src/nyan_os.c ****         nos->send_welcome_screen = 0x00;
+ 177              		.loc 1 49 11 is_stmt 0 view .LVU44
+ 178 0000 90F8C430 		ldrb	r3, [r0, #196]	@ zero_extendqisi2
+  49:Core/Src/nyan_os.c ****         nos->send_welcome_screen = 0x00;
+ 179              		.loc 1 49 7 view .LVU45
+ 180 0004 0BB9     		cbnz	r3, .L18
+  55:Core/Src/nyan_os.c **** };
+ 181              		.loc 1 55 5 is_stmt 1 view .LVU46
+  56:Core/Src/nyan_os.c **** 
+ 182              		.loc 1 56 1 is_stmt 0 view .LVU47
+ 183 0006 0120     		movs	r0, #1
+ 184              	.LVL17:
+  56:Core/Src/nyan_os.c **** 
+ 185              		.loc 1 56 1 view .LVU48
+ 186 0008 7047     		bx	lr
+ 187              	.LVL18:
+ 188              	.L18:
+  48:Core/Src/nyan_os.c ****     if(nos->send_welcome_screen) {
+ARM GAS  /tmp/cc70tQPM.s 			page 7
 
 
-  96:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
-  97:Core/Src/nyan_os.c ****             // Handle failed memory allocation
-  98:Core/Src/nyan_os.c ****             return NOS_FAILURE;
-  99:Core/Src/nyan_os.c ****         }
- 100:Core/Src/nyan_os.c ****         nos->tx_buffer.size = len;
- 101:Core/Src/nyan_os.c ****         memcpy(nos->tx_buffer.p_array, data, len); // Copy the data into the buffer
- 102:Core/Src/nyan_os.c ****     } else {
- 103:Core/Src/nyan_os.c ****         // The pointer is not null, so we realloc and then add the contents of data to it
- 104:Core/Src/nyan_os.c ****         uint8_t *new_buffer = (uint8_t *)realloc(nos->tx_buffer.p_array, nos->tx_buffer.size + len)
- 136              		.loc 1 104 9 is_stmt 1 view .LVU38
- 137              		.loc 1 104 64 is_stmt 0 view .LVU39
- 138 0016 D0F89400 		ldr	r0, [r0, #148]
- 139              	.LVL5:
- 140              		.loc 1 104 88 view .LVU40
- 141 001a D4F89810 		ldr	r1, [r4, #152]
- 142              	.LVL6:
- 143              		.loc 1 104 42 view .LVU41
- 144 001e 1144     		add	r1, r1, r2
- 145 0020 FFF7FEFF 		bl	realloc
- 146              	.LVL7:
- 105:Core/Src/nyan_os.c ****         if (new_buffer == NULL) {
- 147              		.loc 1 105 9 is_stmt 1 view .LVU42
- 148              		.loc 1 105 12 is_stmt 0 view .LVU43
- 149 0024 38B3     		cbz	r0, .L8
- 106:Core/Src/nyan_os.c ****             // Handle failed memory reallocation
- 107:Core/Src/nyan_os.c ****             return NOS_FAILURE;
- 108:Core/Src/nyan_os.c ****         }
- 109:Core/Src/nyan_os.c ****         nos->tx_buffer.p_array = new_buffer;
- 150              		.loc 1 109 9 is_stmt 1 view .LVU44
- 151              		.loc 1 109 32 is_stmt 0 view .LVU45
- 152 0026 C4F89400 		str	r0, [r4, #148]
- 110:Core/Src/nyan_os.c ****         memcpy(nos->tx_buffer.p_array + nos->tx_buffer.size, data, len); // Append the new data
- 153              		.loc 1 110 9 is_stmt 1 view .LVU46
- 154              		.loc 1 110 30 is_stmt 0 view .LVU47
- 155 002a D4F89400 		ldr	r0, [r4, #148]
- 156              	.LVL8:
- 157              		.loc 1 110 55 view .LVU48
- 158 002e D4F89830 		ldr	r3, [r4, #152]
- 159              		.loc 1 110 9 view .LVU49
- 160 0032 2A46     		mov	r2, r5
- 161 0034 3146     		mov	r1, r6
- 162 0036 1844     		add	r0, r0, r3
- 163 0038 FFF7FEFF 		bl	memcpy
- 164              	.LVL9:
- 111:Core/Src/nyan_os.c ****         nos->tx_buffer.size += len; // Increase the size to reflect the new total size
- 165              		.loc 1 111 9 is_stmt 1 view .LVU50
- 166              		.loc 1 111 29 is_stmt 0 view .LVU51
- 167 003c D4F89820 		ldr	r2, [r4, #152]
- 168 0040 1544     		add	r5, r5, r2
- 169              	.LVL10:
- 170              		.loc 1 111 29 view .LVU52
- 171 0042 C4F89850 		str	r5, [r4, #152]
- 172              	.LBE2:
- 112:Core/Src/nyan_os.c ****     }
- 113:Core/Src/nyan_os.c **** 
- 114:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
- 173              		.loc 1 114 12 view .LVU53
-ARM GAS  /tmp/ccVluowp.s 			page 6
+ 189              		.loc 1 48 1 view .LVU49
+ 190 000a 10B5     		push	{r4, lr}
+ 191              		.cfi_def_cfa_offset 8
+ 192              		.cfi_offset 4, -8
+ 193              		.cfi_offset 14, -4
+ 194 000c 0446     		mov	r4, r0
+  50:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
+ 195              		.loc 1 50 9 is_stmt 1 view .LVU50
+  50:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
+ 196              		.loc 1 50 34 is_stmt 0 view .LVU51
+ 197 000e 0023     		movs	r3, #0
+ 198 0010 80F8C430 		strb	r3, [r0, #196]
+  51:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+ 199              		.loc 1 51 9 is_stmt 1 view .LVU52
+ 200 0014 4222     		movs	r2, #66
+ 201 0016 0549     		ldr	r1, .L19
+ 202 0018 FFF7FEFF 		bl	NyanPrint
+ 203              	.LVL19:
+  52:Core/Src/nyan_os.c ****     }
+ 204              		.loc 1 52 9 view .LVU53
+ 205 001c 0F22     		movs	r2, #15
+ 206 001e 0449     		ldr	r1, .L19+4
+ 207 0020 2046     		mov	r0, r4
+ 208 0022 FFF7FEFF 		bl	NyanPrint
+ 209              	.LVL20:
+  55:Core/Src/nyan_os.c **** };
+ 210              		.loc 1 55 5 view .LVU54
+  56:Core/Src/nyan_os.c **** 
+ 211              		.loc 1 56 1 is_stmt 0 view .LVU55
+ 212 0026 0120     		movs	r0, #1
+ 213 0028 10BD     		pop	{r4, pc}
+ 214              	.LVL21:
+ 215              	.L20:
+  56:Core/Src/nyan_os.c **** 
+ 216              		.loc 1 56 1 view .LVU56
+ 217 002a 00BF     		.align	2
+ 218              	.L19:
+ 219 002c 00000000 		.word	nyan_keys_welcome_text
+ 220 0030 00000000 		.word	nyan_keys_path_text
+ 221              		.cfi_endproc
+ 222              	.LFE146:
+ 224              		.section	.text.NyanExeGetinfo,"ax",%progbits
+ 225              		.align	1
+ 226              		.global	NyanExeGetinfo
+ 227              		.syntax unified
+ 228              		.thumb
+ 229              		.thumb_func
+ 231              	NyanExeGetinfo:
+ 232              	.LVL22:
+ 233              	.LFB152:
+ 132:Core/Src/nyan_os.c **** 
+ 133:Core/Src/nyan_os.c **** NyanReturn NyanDecode(volatile NyanOS* nos)
+ 134:Core/Src/nyan_os.c **** {
+ 135:Core/Src/nyan_os.c ****     // First set the nos state to idle
+ 136:Core/Src/nyan_os.c ****     nos->exe = NYAN_EXE_IDLE;
+ 137:Core/Src/nyan_os.c ****     // Iterate over the available commands for a match to the input buffer
+ 138:Core/Src/nyan_os.c ****     for (uint8_t cmd_idx = 0; cmd_idx < _NYAN_NUM_COMMANDS; ++cmd_idx) {
+ARM GAS  /tmp/cc70tQPM.s 			page 8
 
 
- 174 0046 0120     		movs	r0, #1
- 175              	.L4:
- 115:Core/Src/nyan_os.c **** }
- 176              		.loc 1 115 1 view .LVU54
- 177 0048 70BD     		pop	{r4, r5, r6, pc}
- 178              	.LVL11:
- 179              	.L13:
-  95:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
- 180              		.loc 1 95 9 is_stmt 1 view .LVU55
-  95:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
- 181              		.loc 1 95 45 is_stmt 0 view .LVU56
- 182 004a 1046     		mov	r0, r2
- 183              	.LVL12:
-  95:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
- 184              		.loc 1 95 45 view .LVU57
- 185 004c FFF7FEFF 		bl	malloc
- 186              	.LVL13:
-  95:Core/Src/nyan_os.c ****         if (nos->tx_buffer.p_array == NULL) {
- 187              		.loc 1 95 32 view .LVU58
- 188 0050 C4F89400 		str	r0, [r4, #148]
-  96:Core/Src/nyan_os.c ****             // Handle failed memory allocation
- 189              		.loc 1 96 9 is_stmt 1 view .LVU59
-  96:Core/Src/nyan_os.c ****             // Handle failed memory allocation
- 190              		.loc 1 96 27 is_stmt 0 view .LVU60
- 191 0054 D4F89430 		ldr	r3, [r4, #148]
-  96:Core/Src/nyan_os.c ****             // Handle failed memory allocation
- 192              		.loc 1 96 12 view .LVU61
- 193 0058 5BB1     		cbz	r3, .L7
- 100:Core/Src/nyan_os.c ****         memcpy(nos->tx_buffer.p_array, data, len); // Copy the data into the buffer
- 194              		.loc 1 100 9 is_stmt 1 view .LVU62
- 100:Core/Src/nyan_os.c ****         memcpy(nos->tx_buffer.p_array, data, len); // Copy the data into the buffer
- 195              		.loc 1 100 29 is_stmt 0 view .LVU63
- 196 005a C4F89850 		str	r5, [r4, #152]
- 101:Core/Src/nyan_os.c ****     } else {
- 197              		.loc 1 101 9 is_stmt 1 view .LVU64
- 101:Core/Src/nyan_os.c ****     } else {
- 198              		.loc 1 101 30 is_stmt 0 view .LVU65
- 199 005e D4F89400 		ldr	r0, [r4, #148]
- 101:Core/Src/nyan_os.c ****     } else {
- 200              		.loc 1 101 9 view .LVU66
- 201 0062 2A46     		mov	r2, r5
- 202 0064 3146     		mov	r1, r6
- 203 0066 FFF7FEFF 		bl	memcpy
- 204              	.LVL14:
- 114:Core/Src/nyan_os.c **** }
- 205              		.loc 1 114 12 view .LVU67
- 206 006a 0120     		movs	r0, #1
- 207 006c ECE7     		b	.L4
- 208              	.LVL15:
- 209              	.L6:
- 210              	.LCFI2:
- 211              		.cfi_def_cfa_offset 0
- 212              		.cfi_restore 4
- 213              		.cfi_restore 5
- 214              		.cfi_restore 6
- 215              		.cfi_restore 14
-  90:Core/Src/nyan_os.c ****     }
-ARM GAS  /tmp/ccVluowp.s 			page 7
-
-
- 216              		.loc 1 90 16 view .LVU68
- 217 006e 0020     		movs	r0, #0
- 218              	.LVL16:
- 219              		.loc 1 115 1 view .LVU69
- 220 0070 7047     		bx	lr
- 221              	.LVL17:
- 222              	.L7:
- 223              	.LCFI3:
- 224              		.cfi_def_cfa_offset 16
- 225              		.cfi_offset 4, -16
- 226              		.cfi_offset 5, -12
- 227              		.cfi_offset 6, -8
- 228              		.cfi_offset 14, -4
-  98:Core/Src/nyan_os.c ****         }
- 229              		.loc 1 98 20 view .LVU70
- 230 0072 0020     		movs	r0, #0
- 231 0074 E8E7     		b	.L4
- 232              	.LVL18:
- 233              	.L8:
- 234              	.LBB3:
- 107:Core/Src/nyan_os.c ****         }
- 235              		.loc 1 107 20 view .LVU71
- 236 0076 0020     		movs	r0, #0
- 237              	.LVL19:
- 107:Core/Src/nyan_os.c ****         }
- 238              		.loc 1 107 20 view .LVU72
- 239 0078 E6E7     		b	.L4
- 240              	.LBE3:
- 241              		.cfi_endproc
- 242              	.LFE148:
- 244              		.section	.text.NyanWelcomeDisplay,"ax",%progbits
- 245              		.align	1
- 246              		.global	NyanWelcomeDisplay
- 247              		.syntax unified
- 248              		.thumb
- 249              		.thumb_func
- 251              	NyanWelcomeDisplay:
- 252              	.LVL20:
- 253              	.LFB146:
-  39:Core/Src/nyan_os.c ****     if(nos->send_welcome_screen) {
- 254              		.loc 1 39 53 is_stmt 1 view -0
- 255              		.cfi_startproc
- 256              		@ args = 0, pretend = 0, frame = 0
- 257              		@ frame_needed = 0, uses_anonymous_args = 0
-  40:Core/Src/nyan_os.c ****         nos->send_welcome_screen = 0x00;
- 258              		.loc 1 40 5 view .LVU74
-  40:Core/Src/nyan_os.c ****         nos->send_welcome_screen = 0x00;
- 259              		.loc 1 40 11 is_stmt 0 view .LVU75
- 260 0000 90F88F30 		ldrb	r3, [r0, #143]	@ zero_extendqisi2
-  40:Core/Src/nyan_os.c ****         nos->send_welcome_screen = 0x00;
- 261              		.loc 1 40 7 view .LVU76
- 262 0004 0BB9     		cbnz	r3, .L20
-  46:Core/Src/nyan_os.c **** };
- 263              		.loc 1 46 5 is_stmt 1 view .LVU77
-  47:Core/Src/nyan_os.c **** 
- 264              		.loc 1 47 1 is_stmt 0 view .LVU78
- 265 0006 0120     		movs	r0, #1
-ARM GAS  /tmp/ccVluowp.s 			page 8
-
-
- 266              	.LVL21:
-  47:Core/Src/nyan_os.c **** 
- 267              		.loc 1 47 1 view .LVU79
- 268 0008 7047     		bx	lr
- 269              	.LVL22:
- 270              	.L20:
-  39:Core/Src/nyan_os.c ****     if(nos->send_welcome_screen) {
- 271              		.loc 1 39 53 view .LVU80
- 272 000a 10B5     		push	{r4, lr}
- 273              	.LCFI4:
- 274              		.cfi_def_cfa_offset 8
- 275              		.cfi_offset 4, -8
- 276              		.cfi_offset 14, -4
- 277 000c 0446     		mov	r4, r0
-  41:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
- 278              		.loc 1 41 9 is_stmt 1 view .LVU81
-  41:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
- 279              		.loc 1 41 34 is_stmt 0 view .LVU82
- 280 000e 0023     		movs	r3, #0
- 281 0010 80F88F30 		strb	r3, [r0, #143]
-  42:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
- 282              		.loc 1 42 9 is_stmt 1 view .LVU83
- 283 0014 4222     		movs	r2, #66
- 284 0016 0549     		ldr	r1, .L21
- 285 0018 FFF7FEFF 		bl	NyanPrint
- 286              	.LVL23:
-  43:Core/Src/nyan_os.c ****     }
- 287              		.loc 1 43 9 view .LVU84
- 288 001c 0F22     		movs	r2, #15
- 289 001e 0449     		ldr	r1, .L21+4
- 290 0020 2046     		mov	r0, r4
- 291 0022 FFF7FEFF 		bl	NyanPrint
- 292              	.LVL24:
-  46:Core/Src/nyan_os.c **** };
- 293              		.loc 1 46 5 view .LVU85
-  47:Core/Src/nyan_os.c **** 
- 294              		.loc 1 47 1 is_stmt 0 view .LVU86
- 295 0026 0120     		movs	r0, #1
- 296 0028 10BD     		pop	{r4, pc}
- 297              	.LVL25:
- 298              	.L22:
-  47:Core/Src/nyan_os.c **** 
- 299              		.loc 1 47 1 view .LVU87
- 300 002a 00BF     		.align	2
- 301              	.L21:
- 302 002c 00000000 		.word	.LANCHOR0
- 303 0030 00000000 		.word	.LANCHOR1
- 304              		.cfi_endproc
- 305              	.LFE146:
- 307              		.section	.text.FreeNyanString,"ax",%progbits
- 308              		.align	1
- 309              		.global	FreeNyanString
- 310              		.syntax unified
- 311              		.thumb
- 312              		.thumb_func
- 314              	FreeNyanString:
- 315              	.LVL26:
-ARM GAS  /tmp/ccVluowp.s 			page 9
-
-
- 316              	.LFB149:
- 116:Core/Src/nyan_os.c **** 
- 117:Core/Src/nyan_os.c **** void FreeNyanString(NyanString* nyanString) {
- 317              		.loc 1 117 45 is_stmt 1 view -0
- 318              		.cfi_startproc
- 319              		@ args = 0, pretend = 0, frame = 0
- 320              		@ frame_needed = 0, uses_anonymous_args = 0
- 321              		.loc 1 117 45 is_stmt 0 view .LVU89
- 322 0000 10B5     		push	{r4, lr}
- 323              	.LCFI5:
- 324              		.cfi_def_cfa_offset 8
- 325              		.cfi_offset 4, -8
- 326              		.cfi_offset 14, -4
- 327 0002 0446     		mov	r4, r0
- 118:Core/Src/nyan_os.c ****     // Clear the memory contents
- 119:Core/Src/nyan_os.c ****     for (uint32_t i = 0; i < nyanString->size; ++i) {
- 328              		.loc 1 119 5 is_stmt 1 view .LVU90
- 329              	.LBB4:
- 330              		.loc 1 119 10 view .LVU91
- 331              	.LVL27:
- 332              		.loc 1 119 19 is_stmt 0 view .LVU92
- 333 0004 0023     		movs	r3, #0
- 334              		.loc 1 119 5 view .LVU93
- 335 0006 03E0     		b	.L24
- 336              	.LVL28:
- 337              	.L25:
- 120:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
- 338              		.loc 1 120 9 is_stmt 1 discriminator 3 view .LVU94
- 339              		.loc 1 120 19 is_stmt 0 discriminator 3 view .LVU95
- 340 0008 2268     		ldr	r2, [r4]
- 341              		.loc 1 120 32 discriminator 3 view .LVU96
- 342 000a 0021     		movs	r1, #0
- 343 000c D154     		strb	r1, [r2, r3]
- 119:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
- 344              		.loc 1 119 48 is_stmt 1 discriminator 3 view .LVU97
- 345 000e 0133     		adds	r3, r3, #1
- 346              	.LVL29:
- 347              	.L24:
- 119:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
- 348              		.loc 1 119 26 discriminator 1 view .LVU98
- 119:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
- 349              		.loc 1 119 40 is_stmt 0 discriminator 1 view .LVU99
- 350 0010 6268     		ldr	r2, [r4, #4]
- 119:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
- 351              		.loc 1 119 5 discriminator 1 view .LVU100
- 352 0012 9A42     		cmp	r2, r3
- 353 0014 F8D8     		bhi	.L25
- 354              	.LBE4:
- 121:Core/Src/nyan_os.c ****     }
- 122:Core/Src/nyan_os.c ****     // Free up the pointer and memory
- 123:Core/Src/nyan_os.c ****     free(nyanString->p_array);
- 355              		.loc 1 123 5 is_stmt 1 view .LVU101
- 356 0016 2068     		ldr	r0, [r4]
- 357              	.LVL30:
- 358              		.loc 1 123 5 is_stmt 0 view .LVU102
- 359 0018 FFF7FEFF 		bl	free
- 360              	.LVL31:
-ARM GAS  /tmp/ccVluowp.s 			page 10
-
-
- 124:Core/Src/nyan_os.c ****     nyanString->p_array = NULL;
- 361              		.loc 1 124 5 is_stmt 1 view .LVU103
- 362              		.loc 1 124 25 is_stmt 0 view .LVU104
- 363 001c 0023     		movs	r3, #0
- 364 001e 2360     		str	r3, [r4]
- 125:Core/Src/nyan_os.c ****     nyanString->size = 0;
- 365              		.loc 1 125 5 is_stmt 1 view .LVU105
- 366              		.loc 1 125 22 is_stmt 0 view .LVU106
- 367 0020 6360     		str	r3, [r4, #4]
- 126:Core/Src/nyan_os.c **** }
- 368              		.loc 1 126 1 view .LVU107
- 369 0022 10BD     		pop	{r4, pc}
- 370              		.loc 1 126 1 view .LVU108
- 371              		.cfi_endproc
- 372              	.LFE149:
- 374              		.section	.text.NyanDecode,"ax",%progbits
- 375              		.align	1
- 376              		.global	NyanDecode
- 377              		.syntax unified
- 378              		.thumb
- 379              		.thumb_func
- 381              	NyanDecode:
- 382              	.LVL32:
- 383              	.LFB150:
- 127:Core/Src/nyan_os.c **** 
- 128:Core/Src/nyan_os.c **** NyanReturn NyanDecode(volatile NyanOS* nos) {
- 384              		.loc 1 128 45 is_stmt 1 view -0
- 385              		.cfi_startproc
- 386              		@ args = 0, pretend = 0, frame = 0
- 387              		@ frame_needed = 0, uses_anonymous_args = 0
- 388              		.loc 1 128 45 is_stmt 0 view .LVU110
- 389 0000 70B5     		push	{r4, r5, r6, lr}
- 390              	.LCFI6:
- 391              		.cfi_def_cfa_offset 16
- 392              		.cfi_offset 4, -16
- 393              		.cfi_offset 5, -12
- 394              		.cfi_offset 6, -8
- 395              		.cfi_offset 14, -4
- 396 0002 0546     		mov	r5, r0
- 129:Core/Src/nyan_os.c ****     uint8_t decode_position = 0;
- 397              		.loc 1 129 5 is_stmt 1 view .LVU111
- 398              	.LVL33:
- 130:Core/Src/nyan_os.c ****     // First set the nos state to idle
- 131:Core/Src/nyan_os.c ****     nos->exe = NYAN_EXE_IDLE;
- 399              		.loc 1 131 5 view .LVU112
- 400              		.loc 1 131 14 is_stmt 0 view .LVU113
- 401 0004 0323     		movs	r3, #3
- 402 0006 8371     		strb	r3, [r0, #6]
- 132:Core/Src/nyan_os.c ****     // Iterate over the available commands for a match to the input buffer
- 133:Core/Src/nyan_os.c ****     for (uint8_t cmd_idx = 0; cmd_idx < _NYAN_NUM_COMMANDS; ++cmd_idx) {
- 403              		.loc 1 133 5 is_stmt 1 view .LVU114
- 404              	.LBB5:
- 405              		.loc 1 133 10 view .LVU115
- 406              	.LVL34:
- 407              		.loc 1 133 18 is_stmt 0 view .LVU116
- 408 0008 0024     		movs	r4, #0
- 409              		.loc 1 133 5 view .LVU117
-ARM GAS  /tmp/ccVluowp.s 			page 11
-
-
- 410 000a 03E0     		b	.L28
- 411              	.LVL35:
- 412              	.L29:
- 413              	.LBB6:
- 134:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
- 135:Core/Src/nyan_os.c ****         // Make sure we compare only the relevant part of the buffer1
- 136:Core/Src/nyan_os.c ****         if (_NYAN_CMD_BUF_LEN >= command_len && memcmp((const char*)nos->command_buffer, nyan_comma
- 137:Core/Src/nyan_os.c ****             // We have found a match, set the current evaluation cursor to the command length, args
- 138:Core/Src/nyan_os.c ****             decode_position = command_len;
- 139:Core/Src/nyan_os.c ****             nos->exe = (NyanExe)cmd_idx;
- 140:Core/Src/nyan_os.c ****             break;
- 141:Core/Src/nyan_os.c ****         } else {
- 142:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_COMMAND_NOT_SUPPORTED;
- 414              		.loc 1 142 13 is_stmt 1 discriminator 2 view .LVU118
- 415              		.loc 1 142 22 is_stmt 0 discriminator 2 view .LVU119
- 416 000c 0223     		movs	r3, #2
- 417 000e AB71     		strb	r3, [r5, #6]
- 418              	.LBE6:
- 133:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
- 419              		.loc 1 133 61 is_stmt 1 discriminator 2 view .LVU120
- 420 0010 0134     		adds	r4, r4, #1
- 421              	.LVL36:
- 133:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
- 422              		.loc 1 133 61 is_stmt 0 discriminator 2 view .LVU121
- 423 0012 E4B2     		uxtb	r4, r4
- 424              	.LVL37:
- 425              	.L28:
- 133:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
- 426              		.loc 1 133 31 is_stmt 1 discriminator 1 view .LVU122
- 133:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
- 427              		.loc 1 133 5 is_stmt 0 discriminator 1 view .LVU123
- 428 0014 012C     		cmp	r4, #1
- 429 0016 0FD8     		bhi	.L30
- 430              	.LBB7:
- 134:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
- 431              		.loc 1 134 9 is_stmt 1 view .LVU124
- 134:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
- 432              		.loc 1 134 30 is_stmt 0 view .LVU125
- 433 0018 084B     		ldr	r3, .L33
- 434 001a 53F82460 		ldr	r6, [r3, r4, lsl #2]
- 435 001e 3046     		mov	r0, r6
- 436 0020 FFF7FEFF 		bl	strlen
- 437              	.LVL38:
- 438 0024 0246     		mov	r2, r0
- 136:Core/Src/nyan_os.c ****             // We have found a match, set the current evaluation cursor to the command length, args
- 439              		.loc 1 136 9 is_stmt 1 view .LVU126
- 136:Core/Src/nyan_os.c ****             // We have found a match, set the current evaluation cursor to the command length, args
- 440              		.loc 1 136 12 is_stmt 0 view .LVU127
- 441 0026 8028     		cmp	r0, #128
- 442 0028 F0D8     		bhi	.L29
- 136:Core/Src/nyan_os.c ****             // We have found a match, set the current evaluation cursor to the command length, args
- 443              		.loc 1 136 49 discriminator 1 view .LVU128
- 444 002a 3146     		mov	r1, r6
- 445 002c E81D     		adds	r0, r5, #7
- 446 002e FFF7FEFF 		bl	memcmp
- 447              	.LVL39:
- 136:Core/Src/nyan_os.c ****             // We have found a match, set the current evaluation cursor to the command length, args
-ARM GAS  /tmp/ccVluowp.s 			page 12
-
-
- 448              		.loc 1 136 46 discriminator 1 view .LVU129
- 449 0032 0028     		cmp	r0, #0
- 450 0034 EAD1     		bne	.L29
- 138:Core/Src/nyan_os.c ****             nos->exe = (NyanExe)cmd_idx;
- 451              		.loc 1 138 13 is_stmt 1 view .LVU130
- 452              	.LVL40:
- 139:Core/Src/nyan_os.c ****             break;
- 453              		.loc 1 139 13 view .LVU131
- 139:Core/Src/nyan_os.c ****             break;
- 454              		.loc 1 139 22 is_stmt 0 view .LVU132
- 455 0036 AC71     		strb	r4, [r5, #6]
- 140:Core/Src/nyan_os.c ****         } else {
- 456              		.loc 1 140 13 is_stmt 1 view .LVU133
- 457              	.L30:
- 140:Core/Src/nyan_os.c ****         } else {
- 458              		.loc 1 140 13 is_stmt 0 view .LVU134
- 459              	.LBE7:
- 460              	.LBE5:
- 143:Core/Src/nyan_os.c ****         }
- 144:Core/Src/nyan_os.c ****     }
- 145:Core/Src/nyan_os.c **** 
- 146:Core/Src/nyan_os.c ****     // If no command is matched, return some indication (e.g., NULL or a specific error string)
- 147:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
- 461              		.loc 1 147 5 is_stmt 1 view .LVU135
- 148:Core/Src/nyan_os.c **** }
- 462              		.loc 1 148 1 is_stmt 0 view .LVU136
- 463 0038 0120     		movs	r0, #1
- 464 003a 70BD     		pop	{r4, r5, r6, pc}
- 465              	.LVL41:
- 466              	.L34:
- 467              		.loc 1 148 1 view .LVU137
- 468              		.align	2
- 469              	.L33:
- 470 003c 00000000 		.word	.LANCHOR2
- 471              		.cfi_endproc
- 472              	.LFE150:
- 474              		.section	.rodata.NyanAddInputBuffer.str1.4,"aMS",%progbits,1
- 475              		.align	2
- 476              	.LC0:
- 477 0000 08200800 		.ascii	"\010 \010\000"
- 478              		.section	.text.NyanAddInputBuffer,"ax",%progbits
- 479              		.align	1
- 480              		.global	NyanAddInputBuffer
- 481              		.syntax unified
- 482              		.thumb
- 483              		.thumb_func
- 485              	NyanAddInputBuffer:
- 486              	.LVL42:
- 487              	.LFB147:
-  50:Core/Src/nyan_os.c ****     const char del_char = 0x7F;
- 488              		.loc 1 50 1 is_stmt 1 view -0
- 489              		.cfi_startproc
- 490              		@ args = 0, pretend = 0, frame = 8
- 491              		@ frame_needed = 0, uses_anonymous_args = 0
-  51:Core/Src/nyan_os.c ****     const char backspace_char = 0x08;
- 492              		.loc 1 51 5 view .LVU139
-  52:Core/Src/nyan_os.c ****     const char carriage_return = '\r';
-ARM GAS  /tmp/ccVluowp.s 			page 13
-
-
- 493              		.loc 1 52 5 view .LVU140
-  53:Core/Src/nyan_os.c ****     const char line_feed = '\n';
- 494              		.loc 1 53 5 view .LVU141
-  54:Core/Src/nyan_os.c ****     // 0. Check which state we are in.
- 495              		.loc 1 54 5 view .LVU142
-  56:Core/Src/nyan_os.c ****         case READY: {
- 496              		.loc 1 56 5 view .LVU143
-  56:Core/Src/nyan_os.c ****         case READY: {
- 497              		.loc 1 56 15 is_stmt 0 view .LVU144
- 498 0000 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
- 499 0002 DBB2     		uxtb	r3, r3
-  56:Core/Src/nyan_os.c ****         case READY: {
- 500              		.loc 1 56 5 view .LVU145
- 501 0004 012B     		cmp	r3, #1
- 502 0006 50D0     		beq	.L47
-  83:Core/Src/nyan_os.c **** }
- 503              		.loc 1 83 5 is_stmt 1 view .LVU146
-  84:Core/Src/nyan_os.c **** 
- 504              		.loc 1 84 1 is_stmt 0 view .LVU147
- 505 0008 0120     		movs	r0, #1
- 506              	.LVL43:
-  84:Core/Src/nyan_os.c **** 
- 507              		.loc 1 84 1 view .LVU148
- 508 000a 7047     		bx	lr
- 509              	.LVL44:
- 510              	.L48:
- 511              	.LCFI7:
- 512              		.cfi_def_cfa_offset 32
- 513              		.cfi_offset 4, -20
- 514              		.cfi_offset 5, -16
- 515              		.cfi_offset 6, -12
- 516              		.cfi_offset 7, -8
- 517              		.cfi_offset 14, -4
- 518              	.LBB8:
- 519              	.LBB9:
-  61:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&backspace_seq[0], sizeof(backspace_seq));
- 520              		.loc 1 61 21 is_stmt 1 view .LVU149
-  61:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&backspace_seq[0], sizeof(backspace_seq));
- 521              		.loc 1 61 29 is_stmt 0 view .LVU150
- 522 000c 2A4B     		ldr	r3, .L50
- 523 000e 1B68     		ldr	r3, [r3]
- 524 0010 ADF80430 		strh	r3, [sp, #4]	@ movhi
- 525 0014 1B0C     		lsrs	r3, r3, #16
- 526 0016 8DF80630 		strb	r3, [sp, #6]
-  62:Core/Src/nyan_os.c ****                     --nos->command_buffer_pos;
- 527              		.loc 1 62 21 is_stmt 1 view .LVU151
- 528 001a 0322     		movs	r2, #3
- 529 001c 01A9     		add	r1, sp, #4
- 530 001e 2846     		mov	r0, r5
- 531 0020 FFF7FEFF 		bl	NyanPrint
- 532              	.LVL45:
-  63:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
- 533              		.loc 1 63 21 view .LVU152
-  63:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
- 534              		.loc 1 63 26 is_stmt 0 view .LVU153
- 535 0024 95F88730 		ldrb	r3, [r5, #135]	@ zero_extendqisi2
-  63:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
-ARM GAS  /tmp/ccVluowp.s 			page 14
-
-
- 536              		.loc 1 63 21 view .LVU154
- 537 0028 013B     		subs	r3, r3, #1
- 538 002a DBB2     		uxtb	r3, r3
- 539 002c 85F88730 		strb	r3, [r5, #135]
- 540              	.L39:
-  63:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
- 541              		.loc 1 63 21 view .LVU155
- 542              	.LBE9:
-  58:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
- 543              		.loc 1 58 47 is_stmt 1 discriminator 2 view .LVU156
- 544 0030 0134     		adds	r4, r4, #1
- 545              	.LVL46:
- 546              	.L36:
-  58:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
- 547              		.loc 1 58 35 discriminator 1 view .LVU157
-  58:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
- 548              		.loc 1 58 41 is_stmt 0 discriminator 1 view .LVU158
- 549 0032 3B68     		ldr	r3, [r7]
-  58:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
- 550              		.loc 1 58 13 discriminator 1 view .LVU159
- 551 0034 A342     		cmp	r3, r4
- 552 0036 35D9     		bls	.L37
-  59:Core/Src/nyan_os.c ****                     // Handle backspace
- 553              		.loc 1 59 17 is_stmt 1 view .LVU160
-  59:Core/Src/nyan_os.c ****                     // Handle backspace
- 554              		.loc 1 59 25 is_stmt 0 view .LVU161
- 555 0038 3219     		adds	r2, r6, r4
- 556 003a 335D     		ldrb	r3, [r6, r4]	@ zero_extendqisi2
-  59:Core/Src/nyan_os.c ****                     // Handle backspace
- 557              		.loc 1 59 19 view .LVU162
- 558 003c 7F2B     		cmp	r3, #127
- 559 003e 18BF     		it	ne
- 560 0040 082B     		cmpne	r3, #8
- 561 0042 03D1     		bne	.L38
-  59:Core/Src/nyan_os.c ****                     // Handle backspace
- 562              		.loc 1 59 82 discriminator 1 view .LVU163
- 563 0044 95F88710 		ldrb	r1, [r5, #135]	@ zero_extendqisi2
-  59:Core/Src/nyan_os.c ****                     // Handle backspace
- 564              		.loc 1 59 76 discriminator 1 view .LVU164
- 565 0048 0029     		cmp	r1, #0
- 566 004a DFD1     		bne	.L48
- 567              	.L38:
-  64:Core/Src/nyan_os.c ****                     // Handle the action of executing a command by pressing enter
- 568              		.loc 1 64 24 is_stmt 1 view .LVU165
-  64:Core/Src/nyan_os.c ****                     // Handle the action of executing a command by pressing enter
- 569              		.loc 1 64 26 is_stmt 0 view .LVU166
- 570 004c 0D2B     		cmp	r3, #13
- 571 004e 18BF     		it	ne
- 572 0050 0A2B     		cmpne	r3, #10
- 573 0052 17D0     		beq	.L49
-  71:Core/Src/nyan_os.c ****                     // Handle out of command buffer space on next char
- 574              		.loc 1 71 24 is_stmt 1 view .LVU167
-  71:Core/Src/nyan_os.c ****                     // Handle out of command buffer space on next char
- 575              		.loc 1 71 30 is_stmt 0 view .LVU168
- 576 0054 95F88700 		ldrb	r0, [r5, #135]	@ zero_extendqisi2
- 577 0058 C0B2     		uxtb	r0, r0
-  71:Core/Src/nyan_os.c ****                     // Handle out of command buffer space on next char
-ARM GAS  /tmp/ccVluowp.s 			page 15
-
-
- 578              		.loc 1 71 26 view .LVU169
- 579 005a 7E28     		cmp	r0, #126
- 580 005c E8D8     		bhi	.L39
-  73:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
- 581              		.loc 1 73 24 is_stmt 1 view .LVU170
-  73:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
- 582              		.loc 1 73 45 is_stmt 0 view .LVU171
- 583 005e 203B     		subs	r3, r3, #32
- 584 0060 DBB2     		uxtb	r3, r3
-  73:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
- 585              		.loc 1 73 26 view .LVU172
- 586 0062 5E2B     		cmp	r3, #94
- 587 0064 E4D8     		bhi	.L39
-  74:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)pbuf, (size_t)*Len);
- 588              		.loc 1 74 21 is_stmt 1 view .LVU173
-  74:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)pbuf, (size_t)*Len);
- 589              		.loc 1 74 44 is_stmt 0 view .LVU174
- 590 0066 95F88730 		ldrb	r3, [r5, #135]	@ zero_extendqisi2
-  74:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)pbuf, (size_t)*Len);
- 591              		.loc 1 74 64 view .LVU175
- 592 006a 591C     		adds	r1, r3, #1
- 593 006c C9B2     		uxtb	r1, r1
- 594 006e 85F88710 		strb	r1, [r5, #135]
-  74:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)pbuf, (size_t)*Len);
- 595              		.loc 1 74 74 view .LVU176
- 596 0072 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
-  74:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)pbuf, (size_t)*Len);
- 597              		.loc 1 74 68 view .LVU177
- 598 0074 2B44     		add	r3, r3, r5
- 599 0076 DA71     		strb	r2, [r3, #7]
-  75:Core/Src/nyan_os.c ****                 }
- 600              		.loc 1 75 21 is_stmt 1 view .LVU178
- 601 0078 3A68     		ldr	r2, [r7]
- 602 007a 3146     		mov	r1, r6
- 603 007c 2846     		mov	r0, r5
- 604 007e FFF7FEFF 		bl	NyanPrint
- 605              	.LVL47:
- 606 0082 D5E7     		b	.L39
- 607              	.L49:
-  66:Core/Src/nyan_os.c ****                     NyanDecode(nos);
- 608              		.loc 1 66 21 view .LVU179
-  66:Core/Src/nyan_os.c ****                     NyanDecode(nos);
- 609              		.loc 1 66 45 is_stmt 0 view .LVU180
- 610 0084 0024     		movs	r4, #0
- 611              	.LVL48:
-  66:Core/Src/nyan_os.c ****                     NyanDecode(nos);
- 612              		.loc 1 66 45 view .LVU181
- 613 0086 85F88740 		strb	r4, [r5, #135]
-  67:Core/Src/nyan_os.c ****                     memset((void*)nos->command_buffer, 0, sizeof(nos->command_buffer));
- 614              		.loc 1 67 21 is_stmt 1 view .LVU182
- 615 008a 2846     		mov	r0, r5
- 616 008c FFF7FEFF 		bl	NyanDecode
- 617              	.LVL49:
-  68:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));       
- 618              		.loc 1 68 21 view .LVU183
- 619 0090 8022     		movs	r2, #128
- 620 0092 2146     		mov	r1, r4
-ARM GAS  /tmp/ccVluowp.s 			page 16
-
-
- 621 0094 E81D     		adds	r0, r5, #7
- 622 0096 FFF7FEFF 		bl	memset
- 623              	.LVL50:
-  69:Core/Src/nyan_os.c ****                     break;
- 624              		.loc 1 69 21 view .LVU184
- 625 009a 0322     		movs	r2, #3
- 626 009c 0749     		ldr	r1, .L50+4
- 627 009e 2846     		mov	r0, r5
- 628 00a0 FFF7FEFF 		bl	NyanPrint
- 629              	.LVL51:
-  70:Core/Src/nyan_os.c ****                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
- 630              		.loc 1 70 21 view .LVU185
- 631              	.L37:
-  70:Core/Src/nyan_os.c ****                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
- 632              		.loc 1 70 21 is_stmt 0 view .LVU186
- 633              	.LBE8:
-  83:Core/Src/nyan_os.c **** }
- 634              		.loc 1 83 5 is_stmt 1 view .LVU187
-  84:Core/Src/nyan_os.c **** 
- 635              		.loc 1 84 1 is_stmt 0 view .LVU188
- 636 00a4 0120     		movs	r0, #1
- 637 00a6 03B0     		add	sp, sp, #12
- 638              	.LCFI8:
- 639              		.cfi_def_cfa_offset 20
- 640              		@ sp needed
- 641 00a8 F0BD     		pop	{r4, r5, r6, r7, pc}
- 642              	.LVL52:
- 643              	.L47:
- 644              	.LCFI9:
- 645              		.cfi_def_cfa_offset 0
- 646              		.cfi_restore 4
- 647              		.cfi_restore 5
- 648              		.cfi_restore 6
- 649              		.cfi_restore 7
- 650              		.cfi_restore 14
-  50:Core/Src/nyan_os.c ****     const char del_char = 0x7F;
- 651              		.loc 1 50 1 view .LVU189
- 652 00aa F0B5     		push	{r4, r5, r6, r7, lr}
- 653              	.LCFI10:
- 654              		.cfi_def_cfa_offset 20
- 655              		.cfi_offset 4, -20
- 656              		.cfi_offset 5, -16
- 657              		.cfi_offset 6, -12
- 658              		.cfi_offset 7, -8
- 659              		.cfi_offset 14, -4
- 660 00ac 83B0     		sub	sp, sp, #12
- 661              	.LCFI11:
- 662              		.cfi_def_cfa_offset 32
- 663 00ae 0546     		mov	r5, r0
- 664 00b0 0E46     		mov	r6, r1
- 665 00b2 1746     		mov	r7, r2
- 666              	.LBB10:
-  58:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
- 667              		.loc 1 58 26 view .LVU190
- 668 00b4 0024     		movs	r4, #0
- 669 00b6 BCE7     		b	.L36
- 670              	.L51:
-ARM GAS  /tmp/ccVluowp.s 			page 17
-
-
- 671              		.align	2
- 672              	.L50:
- 673 00b8 00000000 		.word	.LC0
- 674 00bc 00000000 		.word	.LANCHOR3
- 675              	.LBE10:
- 676              		.cfi_endproc
- 677              	.LFE147:
- 679              		.section	.text.NyanExeGetinfo,"ax",%progbits
- 680              		.align	1
- 681              		.global	NyanExeGetinfo
- 682              		.syntax unified
- 683              		.thumb
- 684              		.thumb_func
- 686              	NyanExeGetinfo:
- 687              	.LVL53:
- 688              	.LFB152:
- 149:Core/Src/nyan_os.c **** 
- 150:Core/Src/nyan_os.c **** NyanReturn NyanExecute(volatile NyanOS* nos) {
- 151:Core/Src/nyan_os.c ****     switch(nos->exe) {
- 152:Core/Src/nyan_os.c ****         case NYAN_EXE_GET_INFO :
- 153:Core/Src/nyan_os.c ****             NyanExeGetinfo(nos);
- 154:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
- 155:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
- 156:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 157:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 158:Core/Src/nyan_os.c ****         case NYAN_EXE_FLASH_BITSTREAM :
- 159:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 160:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 161:Core/Src/nyan_os.c ****         case NYAN_EXE_IDLE :
+ 139:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
+ 140:Core/Src/nyan_os.c ****         // Make sure we compare only the relevant part of the buffer1
+ 141:Core/Src/nyan_os.c ****         if (_NYAN_CMD_BUF_LEN >= command_len && memcmp((const char*)nos->command_buffer, nyan_comma
+ 142:Core/Src/nyan_os.c ****             NyanDecodeArgs(nos);
+ 143:Core/Src/nyan_os.c ****             // We have found a match, set the current evaluation cursor to the command length, args
+ 144:Core/Src/nyan_os.c ****             nos->exe = (NyanExe)cmd_idx;
+ 145:Core/Src/nyan_os.c ****             break;
+ 146:Core/Src/nyan_os.c ****         } else {
+ 147:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_COMMAND_NOT_SUPPORTED;
+ 148:Core/Src/nyan_os.c ****         }
+ 149:Core/Src/nyan_os.c ****     }
+ 150:Core/Src/nyan_os.c **** 
+ 151:Core/Src/nyan_os.c ****     // If no command is matched, return some indication (e.g., NULL or a specific error string)
+ 152:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+ 153:Core/Src/nyan_os.c **** }
+ 154:Core/Src/nyan_os.c **** 
+ 155:Core/Src/nyan_os.c **** NyanReturn NyanExecute(volatile NyanOS* nos) {
+ 156:Core/Src/nyan_os.c ****     switch(nos->exe) {
+ 157:Core/Src/nyan_os.c ****         case NYAN_EXE_GET_INFO :
+ 158:Core/Src/nyan_os.c ****             NyanExeGetinfo(nos);
+ 159:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+ 160:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+ 161:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
  162:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 163:Core/Src/nyan_os.c ****         case NYAN_EXE_COMMAND_NOT_SUPPORTED :
- 164:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_unknown_command[0], sizeof(nyan_keys_unknown_command))
- 165:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+ 163:Core/Src/nyan_os.c ****         case NYAN_EXE_SET_OWNER:
+ 164:Core/Src/nyan_os.c ****             NyanExeSetOwner(nos);
+ 165:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_set_owner_success[0], sizeof(nyan_keys_set_owner_succe
  166:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
  167:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
  168:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 169:Core/Src/nyan_os.c ****         default:
- 170:Core/Src/nyan_os.c ****             // The execution state is out of bounds correct this.
+ 169:Core/Src/nyan_os.c ****         case NYAN_EXE_WRITE_BITSTREAM :
+ 170:Core/Src/nyan_os.c ****             NyanExeWriteFpgaBitstream(nos);
+ 171:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+ 172:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
+ 173:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 174:Core/Src/nyan_os.c ****         case NYAN_EXE_IDLE :
+ 175:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 176:Core/Src/nyan_os.c ****         case NYAN_EXE_COMMAND_NOT_SUPPORTED :
+ 177:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_unknown_command[0], sizeof(nyan_keys_unknown_command))
+ 178:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+ 179:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+ 180:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
+ 181:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 182:Core/Src/nyan_os.c ****         default:
+ 183:Core/Src/nyan_os.c ****             // The execution state is out of bounds correct this.
+ 184:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
+ 185:Core/Src/nyan_os.c ****             return NOS_FAILURE;
+ 186:Core/Src/nyan_os.c ****     }
+ 187:Core/Src/nyan_os.c **** }
+ 188:Core/Src/nyan_os.c **** 
+ 189:Core/Src/nyan_os.c **** NyanReturn NyanDecodeArgs(volatile NyanOS* nos)
+ 190:Core/Src/nyan_os.c **** {
+ 191:Core/Src/nyan_os.c ****     if (!nos) {
+ 192:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 193:Core/Src/nyan_os.c ****     }
+ 194:Core/Src/nyan_os.c **** 
+ 195:Core/Src/nyan_os.c ****     // Destroy any previous allocated arguments
+ARM GAS  /tmp/cc70tQPM.s 			page 9
+
+
+ 196:Core/Src/nyan_os.c ****     FreeNyanCommandArgs(nos);
+ 197:Core/Src/nyan_os.c **** 
+ 198:Core/Src/nyan_os.c ****     nos->command_buffer[_NYAN_CMD_BUF_LEN] = '\0';
+ 199:Core/Src/nyan_os.c ****     const char *delimiter = " ";
+ 200:Core/Src/nyan_os.c ****     char *token = strtok((char *)nos->command_buffer, delimiter);
+ 201:Core/Src/nyan_os.c **** 
+ 202:Core/Src/nyan_os.c ****     int arg_count = 0;
+ 203:Core/Src/nyan_os.c ****     while (token != NULL) {
+ 204:Core/Src/nyan_os.c ****         if (arg_count < _NYAN_CMD_MAX_ARGS) {
+ 205:Core/Src/nyan_os.c ****             size_t tokenLength = strlen(token);
+ 206:Core/Src/nyan_os.c ****             nos->command_arg_buffer[arg_count] = malloc(tokenLength + 1); // Allocate memory for th
+ 207:Core/Src/nyan_os.c ****             if (nos->command_arg_buffer[arg_count] == NULL) {
+ 208:Core/Src/nyan_os.c ****                 // Free any previously allocated memory
+ 209:Core/Src/nyan_os.c ****                 for (int i = 0; i < arg_count; ++i) {
+ 210:Core/Src/nyan_os.c ****                     free(nos->command_arg_buffer[i]);
+ 211:Core/Src/nyan_os.c ****                 }
+ 212:Core/Src/nyan_os.c ****                 return NOS_FAILURE;
+ 213:Core/Src/nyan_os.c ****             }
+ 214:Core/Src/nyan_os.c ****             strcpy((char *)nos->command_arg_buffer[arg_count], token);
+ 215:Core/Src/nyan_os.c ****             arg_count++;
+ 216:Core/Src/nyan_os.c ****         }
+ 217:Core/Src/nyan_os.c ****         token = strtok(NULL, delimiter);
+ 218:Core/Src/nyan_os.c ****     }
+ 219:Core/Src/nyan_os.c **** 
+ 220:Core/Src/nyan_os.c ****     nos->command_buffer_num_args = arg_count;
+ 221:Core/Src/nyan_os.c **** 
+ 222:Core/Src/nyan_os.c ****     // Nullify the command buffer
+ 223:Core/Src/nyan_os.c ****     memset((void*)nos->command_buffer, 0, sizeof(nos->command_buffer));
+ 224:Core/Src/nyan_os.c **** 
+ 225:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+ 226:Core/Src/nyan_os.c **** }
+ 227:Core/Src/nyan_os.c **** 
+ 228:Core/Src/nyan_os.c **** NyanReturn NyanExeGetinfo(volatile NyanOS* nos)
+ 229:Core/Src/nyan_os.c **** {
+ 234              		.loc 1 229 1 is_stmt 1 view -0
+ 235              		.cfi_startproc
+ 236              		@ args = 0, pretend = 0, frame = 64
+ 237              		@ frame_needed = 0, uses_anonymous_args = 0
+ 238              		.loc 1 229 1 is_stmt 0 view .LVU58
+ 239 0000 10B5     		push	{r4, lr}
+ 240              		.cfi_def_cfa_offset 8
+ 241              		.cfi_offset 4, -8
+ 242              		.cfi_offset 14, -4
+ 243 0002 90B0     		sub	sp, sp, #64
+ 244              		.cfi_def_cfa_offset 72
+ 245 0004 0446     		mov	r4, r0
+ 230:Core/Src/nyan_os.c ****     // We need to fetch the owners name from the eeprom
+ 231:Core/Src/nyan_os.c ****     EepromRead(nos->eeprom, false, ADDR_BOARD_OWNER, SIZE_BOARD_OWNER);
+ 246              		.loc 1 231 5 is_stmt 1 view .LVU59
+ 247              		.loc 1 231 19 is_stmt 0 view .LVU60
+ 248 0006 0068     		ldr	r0, [r0]
+ 249              	.LVL23:
+ 250              		.loc 1 231 5 view .LVU61
+ 251 0008 4023     		movs	r3, #64
+ 252 000a 2022     		movs	r2, #32
+ 253 000c 0021     		movs	r1, #0
+ 254 000e FFF7FEFF 		bl	EepromRead
+ARM GAS  /tmp/cc70tQPM.s 			page 10
+
+
+ 255              	.LVL24:
+ 232:Core/Src/nyan_os.c **** 
+ 233:Core/Src/nyan_os.c ****     // This has to be polling until callbacks are improved
+ 234:Core/Src/nyan_os.c ****     while(nos->eeprom->rx_inflight){}
+ 256              		.loc 1 234 5 is_stmt 1 view .LVU62
+ 257              	.L22:
+ 258              		.loc 1 234 37 discriminator 1 view .LVU63
+ 259              		.loc 1 234 11 discriminator 1 view .LVU64
+ 260              		.loc 1 234 14 is_stmt 0 discriminator 1 view .LVU65
+ 261 0012 2368     		ldr	r3, [r4]
+ 262              		.loc 1 234 22 discriminator 1 view .LVU66
+ 263 0014 DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 264              		.loc 1 234 11 discriminator 1 view .LVU67
+ 265 0016 002B     		cmp	r3, #0
+ 266 0018 FBD1     		bne	.L22
+ 235:Core/Src/nyan_os.c **** 
+ 236:Core/Src/nyan_os.c ****     // Ensure data from EEPROM is null-terminated
+ 237:Core/Src/nyan_os.c ****     nos->eeprom->rx_buf[SIZE_BOARD_OWNER - 1] = '\0';
+ 267              		.loc 1 237 5 is_stmt 1 view .LVU68
+ 268              		.loc 1 237 8 is_stmt 0 view .LVU69
+ 269 001a 2368     		ldr	r3, [r4]
+ 270              		.loc 1 237 47 view .LVU70
+ 271 001c 0022     		movs	r2, #0
+ 272 001e 83F8C320 		strb	r2, [r3, #195]
+ 238:Core/Src/nyan_os.c **** 
+ 239:Core/Src/nyan_os.c ****     char owner[SIZE_BOARD_OWNER];
+ 273              		.loc 1 239 5 is_stmt 1 view .LVU71
+ 240:Core/Src/nyan_os.c ****     strncpy(owner, (const char *)nos->eeprom->rx_buf, SIZE_BOARD_OWNER);
+ 274              		.loc 1 240 5 view .LVU72
+ 275              		.loc 1 240 37 is_stmt 0 view .LVU73
+ 276 0022 2168     		ldr	r1, [r4]
+ 277              		.loc 1 240 5 view .LVU74
+ 278 0024 4022     		movs	r2, #64
+ 279 0026 8431     		adds	r1, r1, #132
+ 280 0028 6846     		mov	r0, sp
+ 281 002a FFF7FEFF 		bl	strncpy
+ 282              	.LVL25:
+ 241:Core/Src/nyan_os.c **** 
+ 242:Core/Src/nyan_os.c ****     NyanPrint(nos, (char*)&nyan_keys_getinfo[0], sizeof(nyan_keys_getinfo));
+ 283              		.loc 1 242 5 is_stmt 1 view .LVU75
+ 284 002e 3822     		movs	r2, #56
+ 285 0030 0C49     		ldr	r1, .L24
+ 286 0032 2046     		mov	r0, r4
+ 287 0034 FFF7FEFF 		bl	NyanPrint
+ 288              	.LVL26:
+ 243:Core/Src/nyan_os.c ****     NyanPrint(nos, (char*)&nyan_keys_getinfo_owner[0], sizeof(nyan_keys_getinfo_owner));
+ 289              		.loc 1 243 5 view .LVU76
+ 290 0038 0822     		movs	r2, #8
+ 291 003a 0B49     		ldr	r1, .L24+4
+ 292 003c 2046     		mov	r0, r4
+ 293 003e FFF7FEFF 		bl	NyanPrint
+ 294              	.LVL27:
+ 244:Core/Src/nyan_os.c ****     NyanPrint(nos, owner, strlen(owner));
+ 295              		.loc 1 244 5 view .LVU77
+ 296 0042 6846     		mov	r0, sp
+ 297 0044 FFF7FEFF 		bl	strlen
+ 298              	.LVL28:
+ARM GAS  /tmp/cc70tQPM.s 			page 11
+
+
+ 299 0048 0246     		mov	r2, r0
+ 300 004a 6946     		mov	r1, sp
+ 301 004c 2046     		mov	r0, r4
+ 302 004e FFF7FEFF 		bl	NyanPrint
+ 303              	.LVL29:
+ 245:Core/Src/nyan_os.c ****     NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+ 304              		.loc 1 245 5 view .LVU78
+ 305 0052 0322     		movs	r2, #3
+ 306 0054 0549     		ldr	r1, .L24+8
+ 307 0056 2046     		mov	r0, r4
+ 308 0058 FFF7FEFF 		bl	NyanPrint
+ 309              	.LVL30:
+ 246:Core/Src/nyan_os.c **** 
+ 247:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+ 310              		.loc 1 247 5 view .LVU79
+ 248:Core/Src/nyan_os.c **** }
+ 311              		.loc 1 248 1 is_stmt 0 view .LVU80
+ 312 005c 0120     		movs	r0, #1
+ 313 005e 10B0     		add	sp, sp, #64
+ 314              		.cfi_def_cfa_offset 8
+ 315              		@ sp needed
+ 316 0060 10BD     		pop	{r4, pc}
+ 317              	.LVL31:
+ 318              	.L25:
+ 319              		.loc 1 248 1 view .LVU81
+ 320 0062 00BF     		.align	2
+ 321              	.L24:
+ 322 0064 00000000 		.word	nyan_keys_getinfo
+ 323 0068 00000000 		.word	nyan_keys_getinfo_owner
+ 324 006c 00000000 		.word	nyan_keys_newline
+ 325              		.cfi_endproc
+ 326              	.LFE152:
+ 328              		.section	.text.NyanExeSetOwner,"ax",%progbits
+ 329              		.align	1
+ 330              		.global	NyanExeSetOwner
+ 331              		.syntax unified
+ 332              		.thumb
+ 333              		.thumb_func
+ 335              	NyanExeSetOwner:
+ 336              	.LVL32:
+ 337              	.LFB153:
+ 249:Core/Src/nyan_os.c **** 
+ 250:Core/Src/nyan_os.c **** NyanReturn NyanExeSetOwner(volatile NyanOS* nos) 
+ 251:Core/Src/nyan_os.c **** {
+ 338              		.loc 1 251 1 is_stmt 1 view -0
+ 339              		.cfi_startproc
+ 340              		@ args = 0, pretend = 0, frame = 0
+ 341              		@ frame_needed = 0, uses_anonymous_args = 0
+ 342              		.loc 1 251 1 is_stmt 0 view .LVU83
+ 343 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 344              		.cfi_def_cfa_offset 24
+ 345              		.cfi_offset 4, -24
+ 346              		.cfi_offset 5, -20
+ 347              		.cfi_offset 6, -16
+ 348              		.cfi_offset 7, -12
+ 349              		.cfi_offset 8, -8
+ 350              		.cfi_offset 14, -4
+ARM GAS  /tmp/cc70tQPM.s 			page 12
+
+
+ 252:Core/Src/nyan_os.c ****     if (!nos) {
+ 351              		.loc 1 252 5 is_stmt 1 view .LVU84
+ 352              		.loc 1 252 8 is_stmt 0 view .LVU85
+ 353 0004 0028     		cmp	r0, #0
+ 354 0006 78D0     		beq	.L39
+ 355 0008 0446     		mov	r4, r0
+ 253:Core/Src/nyan_os.c ****         return NOS_FAILURE; // Handle null pointer
+ 254:Core/Src/nyan_os.c ****     }
+ 255:Core/Src/nyan_os.c **** 
+ 256:Core/Src/nyan_os.c ****     if (nos->command_buffer_num_args < 2) {
+ 356              		.loc 1 256 5 is_stmt 1 view .LVU86
+ 357              		.loc 1 256 12 is_stmt 0 view .LVU87
+ 358 000a 90F88930 		ldrb	r3, [r0, #137]	@ zero_extendqisi2
+ 359 000e DBB2     		uxtb	r3, r3
+ 360              		.loc 1 256 8 view .LVU88
+ 361 0010 012B     		cmp	r3, #1
+ 362 0012 74D9     		bls	.L40
+ 363              	.LBB4:
+ 257:Core/Src/nyan_os.c ****         return NOS_FAILURE; // Not enough args
+ 258:Core/Src/nyan_os.c ****     }
+ 259:Core/Src/nyan_os.c **** 
+ 260:Core/Src/nyan_os.c ****     size_t total_chars = 0;
+ 261:Core/Src/nyan_os.c **** 
+ 262:Core/Src/nyan_os.c ****     // Calculate total length needed, including spaces between arguments
+ 263:Core/Src/nyan_os.c ****     for (int i = 1; i < nos->command_buffer_num_args && nos->command_arg_buffer[i] != NULL; i++) {
+ 364              		.loc 1 263 14 view .LVU89
+ 365 0014 0125     		movs	r5, #1
+ 366              	.LBE4:
+ 260:Core/Src/nyan_os.c **** 
+ 367              		.loc 1 260 12 view .LVU90
+ 368 0016 0026     		movs	r6, #0
+ 369 0018 09E0     		b	.L28
+ 370              	.LVL33:
+ 371              	.L30:
+ 372              	.LBB5:
+ 264:Core/Src/nyan_os.c ****         total_chars += strlen((char *)nos->command_arg_buffer[i]) + 1; // +1 for space or null term
+ 373              		.loc 1 264 9 is_stmt 1 discriminator 4 view .LVU91
+ 374              		.loc 1 264 62 is_stmt 0 discriminator 4 view .LVU92
+ 375 001a 05F12203 		add	r3, r5, #34
+ 376 001e 04EB8303 		add	r3, r4, r3, lsl #2
+ 377 0022 5868     		ldr	r0, [r3, #4]
+ 378              		.loc 1 264 24 discriminator 4 view .LVU93
+ 379 0024 FFF7FEFF 		bl	strlen
+ 380              	.LVL34:
+ 381              		.loc 1 264 67 discriminator 4 view .LVU94
+ 382 0028 0130     		adds	r0, r0, #1
+ 383              		.loc 1 264 21 discriminator 4 view .LVU95
+ 384 002a 0644     		add	r6, r6, r0
+ 385              	.LVL35:
+ 263:Core/Src/nyan_os.c ****         total_chars += strlen((char *)nos->command_arg_buffer[i]) + 1; // +1 for space or null term
+ 386              		.loc 1 263 94 is_stmt 1 discriminator 4 view .LVU96
+ 387 002c 0135     		adds	r5, r5, #1
+ 388              	.LVL36:
+ 389              	.L28:
+ 263:Core/Src/nyan_os.c ****         total_chars += strlen((char *)nos->command_arg_buffer[i]) + 1; // +1 for space or null term
+ 390              		.loc 1 263 54 discriminator 1 view .LVU97
+ 263:Core/Src/nyan_os.c ****         total_chars += strlen((char *)nos->command_arg_buffer[i]) + 1; // +1 for space or null term
+ARM GAS  /tmp/cc70tQPM.s 			page 13
+
+
+ 391              		.loc 1 263 28 is_stmt 0 discriminator 1 view .LVU98
+ 392 002e 94F88930 		ldrb	r3, [r4, #137]	@ zero_extendqisi2
+ 393 0032 DBB2     		uxtb	r3, r3
+ 263:Core/Src/nyan_os.c ****         total_chars += strlen((char *)nos->command_arg_buffer[i]) + 1; // +1 for space or null term
+ 394              		.loc 1 263 54 discriminator 1 view .LVU99
+ 395 0034 AB42     		cmp	r3, r5
+ 396 0036 06DD     		ble	.L29
+ 263:Core/Src/nyan_os.c ****         total_chars += strlen((char *)nos->command_arg_buffer[i]) + 1; // +1 for space or null term
+ 397              		.loc 1 263 80 discriminator 3 view .LVU100
+ 398 0038 05F12203 		add	r3, r5, #34
+ 399 003c 04EB8303 		add	r3, r4, r3, lsl #2
+ 400 0040 5B68     		ldr	r3, [r3, #4]
+ 263:Core/Src/nyan_os.c ****         total_chars += strlen((char *)nos->command_arg_buffer[i]) + 1; // +1 for space or null term
+ 401              		.loc 1 263 54 discriminator 3 view .LVU101
+ 402 0042 002B     		cmp	r3, #0
+ 403 0044 E9D1     		bne	.L30
+ 404              	.L29:
+ 263:Core/Src/nyan_os.c ****         total_chars += strlen((char *)nos->command_arg_buffer[i]) + 1; // +1 for space or null term
+ 405              		.loc 1 263 54 discriminator 3 view .LVU102
+ 406              	.LBE5:
+ 265:Core/Src/nyan_os.c ****     }
+ 266:Core/Src/nyan_os.c **** 
+ 267:Core/Src/nyan_os.c ****     // Since the size cant exceed 63 chars with null terminator 
+ 268:Core/Src/nyan_os.c ****     if (total_chars > SIZE_BOARD_OWNER - nos->command_buffer_num_args - 1  || total_chars == 0) {
+ 407              		.loc 1 268 5 is_stmt 1 view .LVU103
+ 408              		.loc 1 268 45 is_stmt 0 view .LVU104
+ 409 0046 94F88930 		ldrb	r3, [r4, #137]	@ zero_extendqisi2
+ 410              		.loc 1 268 71 view .LVU105
+ 411 004a C3F13F03 		rsb	r3, r3, #63
+ 412              		.loc 1 268 8 view .LVU106
+ 413 004e B342     		cmp	r3, r6
+ 414 0050 59D3     		bcc	.L41
+ 415              		.loc 1 268 76 discriminator 1 view .LVU107
+ 416 0052 0EB9     		cbnz	r6, .L46
+ 269:Core/Src/nyan_os.c ****         return NOS_FAILURE; // Would overflow memory boundaries 
+ 417              		.loc 1 269 16 view .LVU108
+ 418 0054 0026     		movs	r6, #0
+ 419              	.LVL37:
+ 420              		.loc 1 269 16 view .LVU109
+ 421 0056 53E0     		b	.L27
+ 422              	.LVL38:
+ 423              	.L46:
+ 270:Core/Src/nyan_os.c ****     }
+ 271:Core/Src/nyan_os.c **** 
+ 272:Core/Src/nyan_os.c ****     // Allocate memory for the new owner name
+ 273:Core/Src/nyan_os.c ****     char* owners_name = (char*)malloc(SIZE_BOARD_OWNER);
+ 424              		.loc 1 273 5 is_stmt 1 view .LVU110
+ 425              		.loc 1 273 32 is_stmt 0 view .LVU111
+ 426 0058 4020     		movs	r0, #64
+ 427 005a FFF7FEFF 		bl	malloc
+ 428              	.LVL39:
+ 274:Core/Src/nyan_os.c ****     if (!owners_name) {
+ 429              		.loc 1 274 5 is_stmt 1 view .LVU112
+ 430              		.loc 1 274 8 is_stmt 0 view .LVU113
+ 431 005e 0546     		mov	r5, r0
+ 432              	.LVL40:
+ 433              		.loc 1 274 8 view .LVU114
+ARM GAS  /tmp/cc70tQPM.s 			page 14
+
+
+ 434 0060 0028     		cmp	r0, #0
+ 435 0062 52D0     		beq	.L43
+ 436              	.LBB6:
+ 275:Core/Src/nyan_os.c ****         return NOS_FAILURE; // Handle allocation failure
+ 276:Core/Src/nyan_os.c ****     }
+ 277:Core/Src/nyan_os.c **** 
+ 278:Core/Src/nyan_os.c ****     // Zero out the SIZE_BOARD_OWNER bytes
+ 279:Core/Src/nyan_os.c ****     for (int i = 0; i < SIZE_BOARD_OWNER; ++i) {
+ 437              		.loc 1 279 14 view .LVU115
+ 438 0064 0023     		movs	r3, #0
+ 439 0066 02E0     		b	.L31
+ 440              	.LVL41:
+ 441              	.L32:
+ 280:Core/Src/nyan_os.c ****         owners_name[i] = '\0';
+ 442              		.loc 1 280 9 is_stmt 1 discriminator 3 view .LVU116
+ 443              		.loc 1 280 24 is_stmt 0 discriminator 3 view .LVU117
+ 444 0068 0022     		movs	r2, #0
+ 445 006a EA54     		strb	r2, [r5, r3]
+ 279:Core/Src/nyan_os.c ****         owners_name[i] = '\0';
+ 446              		.loc 1 279 43 is_stmt 1 discriminator 3 view .LVU118
+ 447 006c 0133     		adds	r3, r3, #1
+ 448              	.LVL42:
+ 449              	.L31:
+ 279:Core/Src/nyan_os.c ****         owners_name[i] = '\0';
+ 450              		.loc 1 279 23 discriminator 1 view .LVU119
+ 451 006e 3F2B     		cmp	r3, #63
+ 452 0070 FADD     		ble	.L32
+ 453              	.LBE6:
+ 281:Core/Src/nyan_os.c ****     }
+ 282:Core/Src/nyan_os.c **** 
+ 283:Core/Src/nyan_os.c ****     // Concatenate arguments with spaces
+ 284:Core/Src/nyan_os.c ****     char* current_pos = owners_name;
+ 454              		.loc 1 284 11 is_stmt 0 view .LVU120
+ 455 0072 A846     		mov	r8, r5
+ 456              	.LBB7:
+ 285:Core/Src/nyan_os.c ****     for (int i = 1; i < nos->command_buffer_num_args && nos->command_arg_buffer[i] != NULL; i++) {
+ 457              		.loc 1 285 14 view .LVU121
+ 458 0074 0126     		movs	r6, #1
+ 459              	.LVL43:
+ 460              		.loc 1 285 14 view .LVU122
+ 461 0076 00E0     		b	.L33
+ 462              	.LVL44:
+ 463              	.L34:
+ 464              		.loc 1 285 94 is_stmt 1 discriminator 2 view .LVU123
+ 465 0078 0136     		adds	r6, r6, #1
+ 466              	.LVL45:
+ 467              	.L33:
+ 468              		.loc 1 285 54 discriminator 1 view .LVU124
+ 469              		.loc 1 285 28 is_stmt 0 discriminator 1 view .LVU125
+ 470 007a 94F88930 		ldrb	r3, [r4, #137]	@ zero_extendqisi2
+ 471 007e DBB2     		uxtb	r3, r3
+ 472              		.loc 1 285 54 discriminator 1 view .LVU126
+ 473 0080 B342     		cmp	r3, r6
+ 474 0082 21DD     		ble	.L35
+ 475              		.loc 1 285 80 discriminator 3 view .LVU127
+ 476 0084 06F12203 		add	r3, r6, #34
+ 477 0088 04EB8303 		add	r3, r4, r3, lsl #2
+ARM GAS  /tmp/cc70tQPM.s 			page 15
+
+
+ 478 008c 5B68     		ldr	r3, [r3, #4]
+ 479              		.loc 1 285 54 discriminator 3 view .LVU128
+ 480 008e DBB1     		cbz	r3, .L35
+ 286:Core/Src/nyan_os.c ****         strcpy(current_pos, (char *)nos->command_arg_buffer[i]);
+ 481              		.loc 1 286 9 is_stmt 1 view .LVU129
+ 482              		.loc 1 286 60 is_stmt 0 view .LVU130
+ 483 0090 06F12207 		add	r7, r6, #34
+ 484 0094 04EB8707 		add	r7, r4, r7, lsl #2
+ 485 0098 7968     		ldr	r1, [r7, #4]
+ 486              		.loc 1 286 9 view .LVU131
+ 487 009a 4046     		mov	r0, r8
+ 488 009c FFF7FEFF 		bl	strcpy
+ 489              	.LVL46:
+ 287:Core/Src/nyan_os.c ****         current_pos += strlen((char *)nos->command_arg_buffer[i]);
+ 490              		.loc 1 287 9 is_stmt 1 view .LVU132
+ 491              		.loc 1 287 62 is_stmt 0 view .LVU133
+ 492 00a0 7868     		ldr	r0, [r7, #4]
+ 493              		.loc 1 287 24 view .LVU134
+ 494 00a2 FFF7FEFF 		bl	strlen
+ 495              	.LVL47:
+ 496              		.loc 1 287 21 view .LVU135
+ 497 00a6 8044     		add	r8, r8, r0
+ 498              	.LVL48:
+ 288:Core/Src/nyan_os.c **** 
+ 289:Core/Src/nyan_os.c ****         // Add a space after each argument, except the last one
+ 290:Core/Src/nyan_os.c ****         if (i < nos->command_buffer_num_args - 1 && nos->command_arg_buffer[i + 1] != NULL) {
+ 499              		.loc 1 290 9 is_stmt 1 view .LVU136
+ 500              		.loc 1 290 20 is_stmt 0 view .LVU137
+ 501 00a8 94F88930 		ldrb	r3, [r4, #137]	@ zero_extendqisi2
+ 502              		.loc 1 290 46 view .LVU138
+ 503 00ac 013B     		subs	r3, r3, #1
+ 504              		.loc 1 290 12 view .LVU139
+ 505 00ae B342     		cmp	r3, r6
+ 506 00b0 E2DD     		ble	.L34
+ 507              		.loc 1 290 76 discriminator 1 view .LVU140
+ 508 00b2 06F12303 		add	r3, r6, #35
+ 509 00b6 04EB8303 		add	r3, r4, r3, lsl #2
+ 510 00ba 5B68     		ldr	r3, [r3, #4]
+ 511              		.loc 1 290 50 discriminator 1 view .LVU141
+ 512 00bc 002B     		cmp	r3, #0
+ 513 00be DBD0     		beq	.L34
+ 291:Core/Src/nyan_os.c ****             *current_pos = ' ';
+ 514              		.loc 1 291 13 is_stmt 1 view .LVU142
+ 515              		.loc 1 291 26 is_stmt 0 view .LVU143
+ 516 00c0 2023     		movs	r3, #32
+ 517 00c2 08F8013B 		strb	r3, [r8], #1
+ 518              	.LVL49:
+ 292:Core/Src/nyan_os.c ****             current_pos++;
+ 519              		.loc 1 292 13 is_stmt 1 view .LVU144
+ 520              		.loc 1 292 13 is_stmt 0 view .LVU145
+ 521 00c6 D7E7     		b	.L34
+ 522              	.L35:
+ 523              		.loc 1 292 13 view .LVU146
+ 524              	.LBE7:
+ 293:Core/Src/nyan_os.c ****         }
+ 294:Core/Src/nyan_os.c ****     }
+ 295:Core/Src/nyan_os.c **** 
+ARM GAS  /tmp/cc70tQPM.s 			page 16
+
+
+ 296:Core/Src/nyan_os.c ****     // First lets clear out the TX buff
+ 297:Core/Src/nyan_os.c ****     if(EepromFlushTxBuff(nos->eeprom) != EEPROM_SUCCESS){
+ 525              		.loc 1 297 5 is_stmt 1 view .LVU147
+ 526              		.loc 1 297 29 is_stmt 0 view .LVU148
+ 527 00c8 2068     		ldr	r0, [r4]
+ 528              		.loc 1 297 8 view .LVU149
+ 529 00ca FFF7FEFF 		bl	EepromFlushTxBuff
+ 530              	.LVL50:
+ 531 00ce 0646     		mov	r6, r0
+ 532              	.LVL51:
+ 533              		.loc 1 297 7 view .LVU150
+ 534 00d0 0128     		cmp	r0, #1
+ 535 00d2 1CD1     		bne	.L44
+ 536              	.LBB8:
+ 298:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 299:Core/Src/nyan_os.c ****     }
+ 300:Core/Src/nyan_os.c **** 
+ 301:Core/Src/nyan_os.c ****     // Second lets copy our new buffer over to the EEPROM driver
+ 302:Core/Src/nyan_os.c ****     for (int i = 0; i < SIZE_BOARD_OWNER; ++i){
+ 537              		.loc 1 302 14 view .LVU151
+ 538 00d4 0023     		movs	r3, #0
+ 539              	.L37:
+ 540              	.LVL52:
+ 541              		.loc 1 302 23 is_stmt 1 discriminator 1 view .LVU152
+ 542 00d6 3F2B     		cmp	r3, #63
+ 543 00d8 05DC     		bgt	.L47
+ 303:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i]  = owners_name[i];
+ 544              		.loc 1 303 9 discriminator 3 view .LVU153
+ 545              		.loc 1 303 12 is_stmt 0 discriminator 3 view .LVU154
+ 546 00da 2268     		ldr	r2, [r4]
+ 547              		.loc 1 303 46 discriminator 3 view .LVU155
+ 548 00dc E95C     		ldrb	r1, [r5, r3]	@ zero_extendqisi2
+ 549              		.loc 1 303 33 discriminator 3 view .LVU156
+ 550 00de 1A44     		add	r2, r2, r3
+ 551 00e0 1171     		strb	r1, [r2, #4]
+ 302:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i]  = owners_name[i];
+ 552              		.loc 1 302 43 is_stmt 1 discriminator 3 view .LVU157
+ 553 00e2 0133     		adds	r3, r3, #1
+ 554              	.LVL53:
+ 302:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i]  = owners_name[i];
+ 555              		.loc 1 302 43 is_stmt 0 discriminator 3 view .LVU158
+ 556 00e4 F7E7     		b	.L37
+ 557              	.L47:
+ 302:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i]  = owners_name[i];
+ 558              		.loc 1 302 43 discriminator 3 view .LVU159
+ 559              	.LBE8:
+ 304:Core/Src/nyan_os.c ****     }
+ 305:Core/Src/nyan_os.c **** 
+ 306:Core/Src/nyan_os.c ****     // Free up the allocated memory
+ 307:Core/Src/nyan_os.c ****     free(owners_name);
+ 560              		.loc 1 307 5 is_stmt 1 view .LVU160
+ 561 00e6 2846     		mov	r0, r5
+ 562 00e8 FFF7FEFF 		bl	free
+ 563              	.LVL54:
+ 308:Core/Src/nyan_os.c **** 
+ 309:Core/Src/nyan_os.c ****     // Write the name to the eeprom, the delay exists to ensure the write, later the callback can b
+ 310:Core/Src/nyan_os.c ****     EepromWrite(nos->eeprom, false, ADDR_BOARD_OWNER, SIZE_BOARD_OWNER);
+ARM GAS  /tmp/cc70tQPM.s 			page 17
+
+
+ 564              		.loc 1 310 5 view .LVU161
+ 565              		.loc 1 310 20 is_stmt 0 view .LVU162
+ 566 00ec 2068     		ldr	r0, [r4]
+ 567              		.loc 1 310 5 view .LVU163
+ 568 00ee 4023     		movs	r3, #64
+ 569 00f0 2022     		movs	r2, #32
+ 570 00f2 0021     		movs	r1, #0
+ 571 00f4 FFF7FEFF 		bl	EepromWrite
+ 572              	.LVL55:
+ 311:Core/Src/nyan_os.c **** 
+ 312:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+ 573              		.loc 1 312 5 is_stmt 1 view .LVU164
+ 574              		.loc 1 312 12 is_stmt 0 view .LVU165
+ 575 00f8 02E0     		b	.L27
+ 576              	.LVL56:
+ 577              	.L39:
+ 253:Core/Src/nyan_os.c ****     }
+ 578              		.loc 1 253 16 view .LVU166
+ 579 00fa 0026     		movs	r6, #0
+ 580 00fc 00E0     		b	.L27
+ 581              	.L40:
+ 257:Core/Src/nyan_os.c ****     }
+ 582              		.loc 1 257 16 view .LVU167
+ 583 00fe 0026     		movs	r6, #0
+ 584              	.LVL57:
+ 585              	.L27:
+ 313:Core/Src/nyan_os.c **** }
+ 586              		.loc 1 313 1 view .LVU168
+ 587 0100 3046     		mov	r0, r6
+ 588 0102 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 589              	.LVL58:
+ 590              	.L41:
+ 269:Core/Src/nyan_os.c ****     }
+ 591              		.loc 1 269 16 view .LVU169
+ 592 0106 0026     		movs	r6, #0
+ 593              	.LVL59:
+ 269:Core/Src/nyan_os.c ****     }
+ 594              		.loc 1 269 16 view .LVU170
+ 595 0108 FAE7     		b	.L27
+ 596              	.LVL60:
+ 597              	.L43:
+ 275:Core/Src/nyan_os.c ****     }
+ 598              		.loc 1 275 16 view .LVU171
+ 599 010a 0026     		movs	r6, #0
+ 600              	.LVL61:
+ 275:Core/Src/nyan_os.c ****     }
+ 601              		.loc 1 275 16 view .LVU172
+ 602 010c F8E7     		b	.L27
+ 603              	.LVL62:
+ 604              	.L44:
+ 298:Core/Src/nyan_os.c ****     }
+ 605              		.loc 1 298 16 view .LVU173
+ 606 010e 0026     		movs	r6, #0
+ 607 0110 F6E7     		b	.L27
+ 608              		.cfi_endproc
+ 609              	.LFE153:
+ 611              		.section	.text.NyanExeWriteFpgaBitstream,"ax",%progbits
+ARM GAS  /tmp/cc70tQPM.s 			page 18
+
+
+ 612              		.align	1
+ 613              		.global	NyanExeWriteFpgaBitstream
+ 614              		.syntax unified
+ 615              		.thumb
+ 616              		.thumb_func
+ 618              	NyanExeWriteFpgaBitstream:
+ 619              	.LVL63:
+ 620              	.LFB154:
+ 314:Core/Src/nyan_os.c **** 
+ 315:Core/Src/nyan_os.c **** NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos) {
+ 621              		.loc 1 315 60 is_stmt 1 view -0
+ 622              		.cfi_startproc
+ 623              		@ args = 0, pretend = 0, frame = 16
+ 624              		@ frame_needed = 0, uses_anonymous_args = 0
+ 625              		.loc 1 315 60 is_stmt 0 view .LVU175
+ 626 0000 70B5     		push	{r4, r5, r6, lr}
+ 627              		.cfi_def_cfa_offset 16
+ 628              		.cfi_offset 4, -16
+ 629              		.cfi_offset 5, -12
+ 630              		.cfi_offset 6, -8
+ 631              		.cfi_offset 14, -4
+ 632 0002 84B0     		sub	sp, sp, #16
+ 633              		.cfi_def_cfa_offset 32
+ 634 0004 0446     		mov	r4, r0
+ 316:Core/Src/nyan_os.c ****     nos->bytes_array_size = 0;
+ 635              		.loc 1 316 5 is_stmt 1 view .LVU176
+ 636              		.loc 1 316 27 is_stmt 0 view .LVU177
+ 637 0006 0023     		movs	r3, #0
+ 638 0008 C0F8C830 		str	r3, [r0, #200]
+ 317:Core/Src/nyan_os.c ****     // Now we need to convert the arg 1 into an int - skip arg 0 because that is the command.
+ 318:Core/Src/nyan_os.c ****     nos->bytes_array_size = atoi((char *)nos->command_arg_buffer[1]);
+ 639              		.loc 1 318 5 is_stmt 1 view .LVU178
+ 640              		.loc 1 318 65 is_stmt 0 view .LVU179
+ 641 000c D0F89000 		ldr	r0, [r0, #144]
+ 642              	.LVL64:
+ 643              		.loc 1 318 29 view .LVU180
+ 644 0010 FFF7FEFF 		bl	atoi
+ 645              	.LVL65:
+ 646              		.loc 1 318 27 view .LVU181
+ 647 0014 C4F8C800 		str	r0, [r4, #200]
+ 319:Core/Src/nyan_os.c ****     // Safety the size of the buffer to ensure that it doesn't exceed the size of a block 
+ 320:Core/Src/nyan_os.c ****     if(nos->bytes_array_size  > 0xFFFF) {
+ 648              		.loc 1 320 5 is_stmt 1 view .LVU182
+ 649              		.loc 1 320 11 is_stmt 0 view .LVU183
+ 650 0018 D4F8C830 		ldr	r3, [r4, #200]
+ 651              		.loc 1 320 7 view .LVU184
+ 652 001c B3F5803F 		cmp	r3, #65536
+ 653 0020 18D2     		bcs	.L62
+ 321:Core/Src/nyan_os.c ****         //Print Error, Clear buffer, Set ready state. 
+ 322:Core/Src/nyan_os.c ****         nos->bytes_array_size = 0;
+ 323:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size[0], sizeof(nyan_keys_write_bits
+ 324:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 325:Core/Src/nyan_os.c ****     }
+ 326:Core/Src/nyan_os.c ****     // Write the length of the bitstream we are accepting to the EEPROM - 16 bytes
+ 327:Core/Src/nyan_os.c ****     unsigned int size_array[4] = { 0x00, 0x00, 0x00, nos->bytes_array_size };
+ 654              		.loc 1 327 5 is_stmt 1 view .LVU185
+ 655              		.loc 1 327 18 is_stmt 0 view .LVU186
+ARM GAS  /tmp/cc70tQPM.s 			page 19
+
+
+ 656 0022 0023     		movs	r3, #0
+ 657 0024 0093     		str	r3, [sp]
+ 658 0026 0193     		str	r3, [sp, #4]
+ 659 0028 0293     		str	r3, [sp, #8]
+ 660              		.loc 1 327 57 view .LVU187
+ 661 002a D4F8C830 		ldr	r3, [r4, #200]
+ 662              		.loc 1 327 18 view .LVU188
+ 663 002e 0393     		str	r3, [sp, #12]
+ 328:Core/Src/nyan_os.c ****     if(nos->eeprom->tx_inflight) {
+ 664              		.loc 1 328 5 is_stmt 1 view .LVU189
+ 665              		.loc 1 328 11 is_stmt 0 view .LVU190
+ 666 0030 2368     		ldr	r3, [r4]
+ 667              		.loc 1 328 19 view .LVU191
+ 668 0032 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 669              		.loc 1 328 7 view .LVU192
+ 670 0034 C3B9     		cbnz	r3, .L63
+ 671              	.LBB9:
+ 329:Core/Src/nyan_os.c ****         //Print Error, Clear buffer, Set ready state. 
+ 330:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size_tx_busy[0], sizeof(nyan_keys_wr
+ 331:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 332:Core/Src/nyan_os.c ****     }
+ 333:Core/Src/nyan_os.c ****     // Copy the data to the EEPROM buffer for writing
+ 334:Core/Src/nyan_os.c ****     for(short i = 0; i < sizeof(size_array); ++i) {
+ 672              		.loc 1 334 15 view .LVU193
+ 673 0036 0022     		movs	r2, #0
+ 674              	.L51:
+ 675              	.LVL66:
+ 676              		.loc 1 334 24 is_stmt 1 discriminator 1 view .LVU194
+ 677 0038 93B2     		uxth	r3, r2
+ 678 003a 0F2B     		cmp	r3, #15
+ 679 003c 1BD8     		bhi	.L64
+ 335:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i] = ((uint8_t*)size_array)[i];
+ 680              		.loc 1 335 9 discriminator 3 view .LVU195
+ 681              		.loc 1 335 12 is_stmt 0 discriminator 3 view .LVU196
+ 682 003e 2168     		ldr	r1, [r4]
+ 683              		.loc 1 335 56 discriminator 3 view .LVU197
+ 684 0040 02F11000 		add	r0, r2, #16
+ 685 0044 6844     		add	r0, sp, r0
+ 686 0046 10F8100C 		ldrb	r0, [r0, #-16]	@ zero_extendqisi2
+ 687              		.loc 1 335 32 discriminator 3 view .LVU198
+ 688 004a 0A44     		add	r2, r2, r1
+ 689              	.LVL67:
+ 690              		.loc 1 335 32 discriminator 3 view .LVU199
+ 691 004c 1071     		strb	r0, [r2, #4]
+ 334:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i] = ((uint8_t*)size_array)[i];
+ 692              		.loc 1 334 46 is_stmt 1 discriminator 3 view .LVU200
+ 693 004e 0133     		adds	r3, r3, #1
+ 694              	.LVL68:
+ 334:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i] = ((uint8_t*)size_array)[i];
+ 695              		.loc 1 334 46 is_stmt 0 discriminator 3 view .LVU201
+ 696 0050 1AB2     		sxth	r2, r3
+ 697              	.LVL69:
+ 334:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i] = ((uint8_t*)size_array)[i];
+ 698              		.loc 1 334 46 discriminator 3 view .LVU202
+ 699 0052 F1E7     		b	.L51
+ 700              	.LVL70:
+ 701              	.L62:
+ARM GAS  /tmp/cc70tQPM.s 			page 20
+
+
+ 334:Core/Src/nyan_os.c ****         nos->eeprom->tx_buf[i] = ((uint8_t*)size_array)[i];
+ 702              		.loc 1 334 46 discriminator 3 view .LVU203
+ 703              	.LBE9:
+ 322:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size[0], sizeof(nyan_keys_write_bits
+ 704              		.loc 1 322 9 is_stmt 1 view .LVU204
+ 322:Core/Src/nyan_os.c ****         NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size[0], sizeof(nyan_keys_write_bits
+ 705              		.loc 1 322 31 is_stmt 0 view .LVU205
+ 706 0054 0025     		movs	r5, #0
+ 707 0056 C4F8C850 		str	r5, [r4, #200]
+ 323:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 708              		.loc 1 323 9 is_stmt 1 view .LVU206
+ 709 005a 4822     		movs	r2, #72
+ 710 005c 2C49     		ldr	r1, .L65
+ 711 005e 2046     		mov	r0, r4
+ 712 0060 FFF7FEFF 		bl	NyanPrint
+ 713              	.LVL71:
+ 324:Core/Src/nyan_os.c ****     }
+ 714              		.loc 1 324 9 view .LVU207
+ 324:Core/Src/nyan_os.c ****     }
+ 715              		.loc 1 324 16 is_stmt 0 view .LVU208
+ 716 0064 2846     		mov	r0, r5
+ 717 0066 4DE0     		b	.L50
+ 718              	.L63:
+ 330:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 719              		.loc 1 330 9 is_stmt 1 view .LVU209
+ 720 0068 3722     		movs	r2, #55
+ 721 006a 2A49     		ldr	r1, .L65+4
+ 722 006c 2046     		mov	r0, r4
+ 723 006e FFF7FEFF 		bl	NyanPrint
+ 724              	.LVL72:
+ 331:Core/Src/nyan_os.c ****     }
+ 725              		.loc 1 331 9 view .LVU210
+ 331:Core/Src/nyan_os.c ****     }
+ 726              		.loc 1 331 16 is_stmt 0 view .LVU211
+ 727 0072 0020     		movs	r0, #0
+ 728 0074 46E0     		b	.L50
+ 729              	.LVL73:
+ 730              	.L64:
+ 336:Core/Src/nyan_os.c ****     }
+ 337:Core/Src/nyan_os.c ****     // Write the data to the eeprom - wait for the write to complete since this is DMA and order ma
+ 338:Core/Src/nyan_os.c ****     EepromWrite(nos->eeprom, true, ADDR_BOARD_OWNER, SIZE_BOARD_OWNER);
+ 731              		.loc 1 338 5 is_stmt 1 view .LVU212
+ 732              		.loc 1 338 20 is_stmt 0 view .LVU213
+ 733 0076 2068     		ldr	r0, [r4]
+ 734              		.loc 1 338 5 view .LVU214
+ 735 0078 4023     		movs	r3, #64
+ 736 007a 2022     		movs	r2, #32
+ 737              	.LVL74:
+ 738              		.loc 1 338 5 view .LVU215
+ 739 007c 0121     		movs	r1, #1
+ 740 007e FFF7FEFF 		bl	EepromWrite
+ 741              	.LVL75:
+ 339:Core/Src/nyan_os.c ****     // Print the ready to accept bytes confirmation message
+ 340:Core/Src/nyan_os.c ****     NyanPrint(nos, (char*)&nyan_keys_write_bitstream_info_start[0], sizeof(nyan_keys_write_bitstrea
+ 742              		.loc 1 340 5 is_stmt 1 view .LVU216
+ 743 0082 0822     		movs	r2, #8
+ 744 0084 2449     		ldr	r1, .L65+8
+ARM GAS  /tmp/cc70tQPM.s 			page 21
+
+
+ 745 0086 2046     		mov	r0, r4
+ 746 0088 FFF7FEFF 		bl	NyanPrint
+ 747              	.LVL76:
+ 341:Core/Src/nyan_os.c ****     // Lets allocate some memory to save this bitstream we are importing
+ 342:Core/Src/nyan_os.c ****     nos->bytes_array = (uint8_t*)malloc(nos->bytes_array_size * sizeof(uint8_t));
+ 748              		.loc 1 342 5 view .LVU217
+ 749              		.loc 1 342 44 is_stmt 0 view .LVU218
+ 750 008c D4F8C800 		ldr	r0, [r4, #200]
+ 751              		.loc 1 342 34 view .LVU219
+ 752 0090 FFF7FEFF 		bl	malloc
+ 753              	.LVL77:
+ 754              		.loc 1 342 22 view .LVU220
+ 755 0094 C4F8D000 		str	r0, [r4, #208]
+ 343:Core/Src/nyan_os.c ****     if(nos->bytes_array_size == 0)
+ 756              		.loc 1 343 5 is_stmt 1 view .LVU221
+ 757              		.loc 1 343 11 is_stmt 0 view .LVU222
+ 758 0098 D4F8C830 		ldr	r3, [r4, #200]
+ 759              		.loc 1 343 7 view .LVU223
+ 760 009c A3B3     		cbz	r3, .L59
+ 344:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 345:Core/Src/nyan_os.c ****     // Flush the input buffer to prepare for the FPGA bitstream - This is safe because we have crea
+ 346:Core/Src/nyan_os.c ****     nos->state = DIRECT_BUFFER_ACCESS;
+ 761              		.loc 1 346 5 is_stmt 1 view .LVU224
+ 762              		.loc 1 346 16 is_stmt 0 view .LVU225
+ 763 009e 0223     		movs	r3, #2
+ 764 00a0 2371     		strb	r3, [r4, #4]
+ 347:Core/Src/nyan_os.c **** 
+ 348:Core/Src/nyan_os.c ****     while(nos->bytes_received != nos->bytes_array_size){
+ 765              		.loc 1 348 5 is_stmt 1 view .LVU226
+ 766              	.L53:
+ 349:Core/Src/nyan_os.c ****         // During this period we just loop until the byte array is full
+ 350:Core/Src/nyan_os.c ****         // The user can exit this loop by just filling the buffer up for now.
+ 351:Core/Src/nyan_os.c ****         // Enabling am abort sequence would be a next step
+ 352:Core/Src/nyan_os.c ****     }
+ 767              		.loc 1 352 5 discriminator 1 view .LVU227
+ 348:Core/Src/nyan_os.c ****         // During this period we just loop until the byte array is full
+ 768              		.loc 1 348 31 discriminator 1 view .LVU228
+ 348:Core/Src/nyan_os.c ****         // During this period we just loop until the byte array is full
+ 769              		.loc 1 348 14 is_stmt 0 discriminator 1 view .LVU229
+ 770 00a2 D4F8CC20 		ldr	r2, [r4, #204]
+ 348:Core/Src/nyan_os.c ****         // During this period we just loop until the byte array is full
+ 771              		.loc 1 348 37 discriminator 1 view .LVU230
+ 772 00a6 D4F8C830 		ldr	r3, [r4, #200]
+ 348:Core/Src/nyan_os.c ****         // During this period we just loop until the byte array is full
+ 773              		.loc 1 348 31 discriminator 1 view .LVU231
+ 774 00aa 9A42     		cmp	r2, r3
+ 775 00ac F9D1     		bne	.L53
+ 353:Core/Src/nyan_os.c **** 
+ 354:Core/Src/nyan_os.c ****     // Calculate the number iterations 
+ 355:Core/Src/nyan_os.c ****     unsigned int r = nos->bytes_array_size%EEPROM_DRIVER_TX_BUF_SZ;
+ 776              		.loc 1 355 5 is_stmt 1 view .LVU232
+ 777              		.loc 1 355 25 is_stmt 0 view .LVU233
+ 778 00ae D4F8C830 		ldr	r3, [r4, #200]
+ 779              	.LVL78:
+ 356:Core/Src/nyan_os.c ****     unsigned int q = nos->bytes_array_size/EEPROM_DRIVER_TX_BUF_SZ;
+ 780              		.loc 1 356 5 is_stmt 1 view .LVU234
+ 781              		.loc 1 356 25 is_stmt 0 view .LVU235
+ARM GAS  /tmp/cc70tQPM.s 			page 22
+
+
+ 782 00b2 D4F8C860 		ldr	r6, [r4, #200]
+ 783              		.loc 1 356 18 view .LVU236
+ 784 00b6 F609     		lsrs	r6, r6, #7
+ 785              	.LVL79:
+ 357:Core/Src/nyan_os.c ****     if(r > 0)
+ 786              		.loc 1 357 5 is_stmt 1 view .LVU237
+ 787              		.loc 1 357 7 is_stmt 0 view .LVU238
+ 788 00b8 13F07F0F 		tst	r3, #127
+ 789 00bc 00D0     		beq	.L54
+ 358:Core/Src/nyan_os.c ****         ++q;
+ 790              		.loc 1 358 9 is_stmt 1 view .LVU239
+ 791 00be 0136     		adds	r6, r6, #1
+ 792              	.LVL80:
+ 793              	.L54:
+ 359:Core/Src/nyan_os.c ****     if (q == 0)
+ 794              		.loc 1 359 5 view .LVU240
+ 795              		.loc 1 359 8 is_stmt 0 view .LVU241
+ 796 00c0 26B3     		cbz	r6, .L60
+ 797              	.LBB10:
+ 360:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 361:Core/Src/nyan_os.c ****     // Fill and iterate over pages in the eeprom, write, wait ...
+ 362:Core/Src/nyan_os.c ****     for(unsigned short page = 0; page < q; ++page) {
+ 798              		.loc 1 362 24 view .LVU242
+ 799 00c2 0025     		movs	r5, #0
+ 800 00c4 0FE0     		b	.L55
+ 801              	.LVL81:
+ 802              	.L57:
+ 363:Core/Src/nyan_os.c ****         // Flush the transmit buffer
+ 364:Core/Src/nyan_os.c ****         EepromFlushTxBuff(nos->eeprom);
+ 803              		.loc 1 364 9 is_stmt 1 view .LVU243
+ 804              		.loc 1 364 30 is_stmt 0 view .LVU244
+ 805 00c6 2068     		ldr	r0, [r4]
+ 806              		.loc 1 364 9 view .LVU245
+ 807 00c8 FFF7FEFF 		bl	EepromFlushTxBuff
+ 808              	.LVL82:
+ 365:Core/Src/nyan_os.c ****         for(int byte = 0; byte > EEPROM_DRIVER_TX_BUF_SZ; byte++){
+ 809              		.loc 1 365 9 is_stmt 1 view .LVU246
+ 810              	.LBE10:
+ 811              		.loc 1 365 13 view .LVU247
+ 812              		.loc 1 365 32 view .LVU248
+ 813              	.LBB11:
+ 366:Core/Src/nyan_os.c ****             nos->eeprom->tx_buf[byte] = nos->bytes_array[EEPROM_DRIVER_TX_BUF_SZ * page + byte];
+ 367:Core/Src/nyan_os.c ****         }
+ 368:Core/Src/nyan_os.c ****         EepromWrite(nos->eeprom, false, ADDR_FPGA_BITSTREAM + EEPROM_DRIVER_TX_BUF_SZ * page, 128);
+ 814              		.loc 1 368 9 view .LVU249
+ 815              		.loc 1 368 24 is_stmt 0 view .LVU250
+ 816 00cc 2068     		ldr	r0, [r4]
+ 817              		.loc 1 368 9 view .LVU251
+ 818 00ce EA01     		lsls	r2, r5, #7
+ 819 00d0 8023     		movs	r3, #128
+ 820 00d2 12B2     		sxth	r2, r2
+ 821 00d4 0021     		movs	r1, #0
+ 822 00d6 FFF7FEFF 		bl	EepromWrite
+ 823              	.LVL83:
+ 369:Core/Src/nyan_os.c ****         while(nos->eeprom->tx_inflight){
+ 824              		.loc 1 369 9 is_stmt 1 view .LVU252
+ 825              	.L56:
+ARM GAS  /tmp/cc70tQPM.s 			page 23
+
+
+ 370:Core/Src/nyan_os.c ****             // Wait while the TX is in flight as to avoid bogus writes;
+ 371:Core/Src/nyan_os.c ****         }
+ 826              		.loc 1 371 9 discriminator 1 view .LVU253
+ 369:Core/Src/nyan_os.c ****         while(nos->eeprom->tx_inflight){
+ 827              		.loc 1 369 15 discriminator 1 view .LVU254
+ 369:Core/Src/nyan_os.c ****         while(nos->eeprom->tx_inflight){
+ 828              		.loc 1 369 18 is_stmt 0 discriminator 1 view .LVU255
+ 829 00da 2368     		ldr	r3, [r4]
+ 369:Core/Src/nyan_os.c ****         while(nos->eeprom->tx_inflight){
+ 830              		.loc 1 369 26 discriminator 1 view .LVU256
+ 831 00dc 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 369:Core/Src/nyan_os.c ****         while(nos->eeprom->tx_inflight){
+ 832              		.loc 1 369 15 discriminator 1 view .LVU257
+ 833 00de 002B     		cmp	r3, #0
+ 834 00e0 FBD1     		bne	.L56
+ 362:Core/Src/nyan_os.c ****         // Flush the transmit buffer
+ 835              		.loc 1 362 44 is_stmt 1 discriminator 2 view .LVU258
+ 836 00e2 0135     		adds	r5, r5, #1
+ 837              	.LVL84:
+ 362:Core/Src/nyan_os.c ****         // Flush the transmit buffer
+ 838              		.loc 1 362 44 is_stmt 0 discriminator 2 view .LVU259
+ 839 00e4 ADB2     		uxth	r5, r5
+ 840              	.LVL85:
+ 841              	.L55:
+ 362:Core/Src/nyan_os.c ****         // Flush the transmit buffer
+ 842              		.loc 1 362 39 is_stmt 1 discriminator 1 view .LVU260
+ 843 00e6 B542     		cmp	r5, r6
+ 844 00e8 EDD3     		bcc	.L57
+ 845              	.LBE11:
+ 372:Core/Src/nyan_os.c ****     }
+ 373:Core/Src/nyan_os.c ****     // Perform function cleanup maintenance
+ 374:Core/Src/nyan_os.c ****     nos->bytes_array_size = 0;
+ 846              		.loc 1 374 5 view .LVU261
+ 847              		.loc 1 374 27 is_stmt 0 view .LVU262
+ 848 00ea 0025     		movs	r5, #0
+ 849              	.LVL86:
+ 850              		.loc 1 374 27 view .LVU263
+ 851 00ec C4F8C850 		str	r5, [r4, #200]
+ 375:Core/Src/nyan_os.c ****     nos->bytes_received = 0;
+ 852              		.loc 1 375 5 is_stmt 1 view .LVU264
+ 853              		.loc 1 375 25 is_stmt 0 view .LVU265
+ 854 00f0 C4F8CC50 		str	r5, [r4, #204]
+ 376:Core/Src/nyan_os.c ****     free(nos->bytes_array);
+ 855              		.loc 1 376 5 is_stmt 1 view .LVU266
+ 856              		.loc 1 376 13 is_stmt 0 view .LVU267
+ 857 00f4 D4F8D000 		ldr	r0, [r4, #208]
+ 858              		.loc 1 376 5 view .LVU268
+ 859 00f8 FFF7FEFF 		bl	free
+ 860              	.LVL87:
+ 377:Core/Src/nyan_os.c ****     nos->bytes_array = NULL;
+ 861              		.loc 1 377 5 is_stmt 1 view .LVU269
+ 862              		.loc 1 377 22 is_stmt 0 view .LVU270
+ 863 00fc C4F8D050 		str	r5, [r4, #208]
+ 378:Core/Src/nyan_os.c ****     nos->state = READY;
+ 864              		.loc 1 378 5 is_stmt 1 view .LVU271
+ 865              		.loc 1 378 16 is_stmt 0 view .LVU272
+ 866 0100 0120     		movs	r0, #1
+ARM GAS  /tmp/cc70tQPM.s 			page 24
+
+
+ 867 0102 2071     		strb	r0, [r4, #4]
+ 379:Core/Src/nyan_os.c ****     //NyanPrint(nos, (char*)&nyan_keys_write_bitstream_info_success[0], sizeof(nyan_keys_write_bits
+ 380:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+ 868              		.loc 1 380 5 is_stmt 1 view .LVU273
+ 869              	.LVL88:
+ 870              	.L50:
+ 381:Core/Src/nyan_os.c **** }
+ 871              		.loc 1 381 1 is_stmt 0 view .LVU274
+ 872 0104 04B0     		add	sp, sp, #16
+ 873              		.cfi_remember_state
+ 874              		.cfi_def_cfa_offset 16
+ 875              		@ sp needed
+ 876 0106 70BD     		pop	{r4, r5, r6, pc}
+ 877              	.LVL89:
+ 878              	.L59:
+ 879              		.cfi_restore_state
+ 344:Core/Src/nyan_os.c ****     // Flush the input buffer to prepare for the FPGA bitstream - This is safe because we have crea
+ 880              		.loc 1 344 16 view .LVU275
+ 881 0108 0020     		movs	r0, #0
+ 882 010a FBE7     		b	.L50
+ 883              	.LVL90:
+ 884              	.L60:
+ 360:Core/Src/nyan_os.c ****     // Fill and iterate over pages in the eeprom, write, wait ...
+ 885              		.loc 1 360 16 view .LVU276
+ 886 010c 0020     		movs	r0, #0
+ 887 010e F9E7     		b	.L50
+ 888              	.L66:
+ 889              		.align	2
+ 890              	.L65:
+ 891 0110 00000000 		.word	nyan_keys_write_bitstream_error_size
+ 892 0114 00000000 		.word	nyan_keys_write_bitstream_error_size_tx_busy
+ 893 0118 00000000 		.word	nyan_keys_write_bitstream_info_start
+ 894              		.cfi_endproc
+ 895              	.LFE154:
+ 897              		.section	.text.NyanExecute,"ax",%progbits
+ 898              		.align	1
+ 899              		.global	NyanExecute
+ 900              		.syntax unified
+ 901              		.thumb
+ 902              		.thumb_func
+ 904              	NyanExecute:
+ 905              	.LVL91:
+ 906              	.LFB150:
+ 155:Core/Src/nyan_os.c ****     switch(nos->exe) {
+ 907              		.loc 1 155 46 is_stmt 1 view -0
+ 908              		.cfi_startproc
+ 909              		@ args = 0, pretend = 0, frame = 0
+ 910              		@ frame_needed = 0, uses_anonymous_args = 0
+ 155:Core/Src/nyan_os.c ****     switch(nos->exe) {
+ 911              		.loc 1 155 46 is_stmt 0 view .LVU278
+ 912 0000 38B5     		push	{r3, r4, r5, lr}
+ 913              		.cfi_def_cfa_offset 16
+ 914              		.cfi_offset 3, -16
+ 915              		.cfi_offset 4, -12
+ 916              		.cfi_offset 5, -8
+ 917              		.cfi_offset 14, -4
+ 918 0002 0546     		mov	r5, r0
+ARM GAS  /tmp/cc70tQPM.s 			page 25
+
+
+ 156:Core/Src/nyan_os.c ****         case NYAN_EXE_GET_INFO :
+ 919              		.loc 1 156 5 is_stmt 1 view .LVU279
+ 156:Core/Src/nyan_os.c ****         case NYAN_EXE_GET_INFO :
+ 920              		.loc 1 156 15 is_stmt 0 view .LVU280
+ 921 0004 8479     		ldrb	r4, [r0, #6]	@ zero_extendqisi2
+ 922 0006 E4B2     		uxtb	r4, r4
+ 156:Core/Src/nyan_os.c ****         case NYAN_EXE_GET_INFO :
+ 923              		.loc 1 156 5 view .LVU281
+ 924 0008 042C     		cmp	r4, #4
+ 925 000a 40D8     		bhi	.L68
+ 926 000c DFE804F0 		tbb	[pc, r4]
+ 927              	.L70:
+ 928 0010 03       		.byte	(.L74-.L70)/2
+ 929 0011 23       		.byte	(.L73-.L70)/2
+ 930 0012 13       		.byte	(.L72-.L70)/2
+ 931 0013 2D       		.byte	(.L71-.L70)/2
+ 932 0014 43       		.byte	(.L75-.L70)/2
+ 933 0015 00       		.p2align 1
+ 934              	.L74:
+ 158:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+ 935              		.loc 1 158 13 is_stmt 1 view .LVU282
+ 936 0016 FFF7FEFF 		bl	NyanExeGetinfo
+ 937              	.LVL92:
+ 159:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+ 938              		.loc 1 159 13 view .LVU283
+ 939 001a 0322     		movs	r2, #3
+ 940 001c 1F49     		ldr	r1, .L77
+ 941 001e 2846     		mov	r0, r5
+ 942 0020 FFF7FEFF 		bl	NyanPrint
+ 943              	.LVL93:
+ 160:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
+ 944              		.loc 1 160 13 view .LVU284
+ 945 0024 0F22     		movs	r2, #15
+ 946 0026 1E49     		ldr	r1, .L77+4
+ 947 0028 2846     		mov	r0, r5
+ 948 002a FFF7FEFF 		bl	NyanPrint
+ 949              	.LVL94:
+ 161:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 950              		.loc 1 161 13 view .LVU285
+ 161:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 951              		.loc 1 161 22 is_stmt 0 view .LVU286
+ 952 002e 0423     		movs	r3, #4
+ 953 0030 AB71     		strb	r3, [r5, #6]
+ 162:Core/Src/nyan_os.c ****         case NYAN_EXE_SET_OWNER:
+ 954              		.loc 1 162 13 is_stmt 1 view .LVU287
+ 162:Core/Src/nyan_os.c ****         case NYAN_EXE_SET_OWNER:
+ 955              		.loc 1 162 20 is_stmt 0 view .LVU288
+ 956 0032 0124     		movs	r4, #1
+ 957 0034 30E0     		b	.L69
+ 958              	.LVL95:
+ 959              	.L72:
+ 164:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_set_owner_success[0], sizeof(nyan_keys_set_owner_succe
+ 960              		.loc 1 164 13 is_stmt 1 view .LVU289
+ 961 0036 FFF7FEFF 		bl	NyanExeSetOwner
+ 962              	.LVL96:
+ 165:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+ 963              		.loc 1 165 13 view .LVU290
+ARM GAS  /tmp/cc70tQPM.s 			page 26
+
+
+ 964 003a 2C22     		movs	r2, #44
+ 965 003c 1949     		ldr	r1, .L77+8
+ 966 003e 2846     		mov	r0, r5
+ 967 0040 FFF7FEFF 		bl	NyanPrint
+ 968              	.LVL97:
+ 166:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
+ 969              		.loc 1 166 13 view .LVU291
+ 970 0044 0F22     		movs	r2, #15
+ 971 0046 1649     		ldr	r1, .L77+4
+ 972 0048 2846     		mov	r0, r5
+ 973 004a FFF7FEFF 		bl	NyanPrint
+ 974              	.LVL98:
+ 167:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 975              		.loc 1 167 13 view .LVU292
+ 167:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 976              		.loc 1 167 22 is_stmt 0 view .LVU293
+ 977 004e 0423     		movs	r3, #4
+ 978 0050 AB71     		strb	r3, [r5, #6]
+ 168:Core/Src/nyan_os.c ****         case NYAN_EXE_WRITE_BITSTREAM :
+ 979              		.loc 1 168 13 is_stmt 1 view .LVU294
+ 168:Core/Src/nyan_os.c ****         case NYAN_EXE_WRITE_BITSTREAM :
+ 980              		.loc 1 168 20 is_stmt 0 view .LVU295
+ 981 0052 0124     		movs	r4, #1
+ 982 0054 20E0     		b	.L69
+ 983              	.LVL99:
+ 984              	.L73:
+ 170:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+ 985              		.loc 1 170 13 is_stmt 1 view .LVU296
+ 986 0056 FFF7FEFF 		bl	NyanExeWriteFpgaBitstream
+ 987              	.LVL100:
  171:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 172:Core/Src/nyan_os.c ****             return NOS_FAILURE;
- 173:Core/Src/nyan_os.c ****     }
- 174:Core/Src/nyan_os.c **** }
- 175:Core/Src/nyan_os.c **** 
- 176:Core/Src/nyan_os.c **** NyanReturn NyanExeGetinfo(volatile NyanOS* nos) {
- 689              		.loc 1 176 49 is_stmt 1 view -0
- 690              		.cfi_startproc
- 691              		@ args = 0, pretend = 0, frame = 0
- 692              		@ frame_needed = 0, uses_anonymous_args = 0
- 693              		.loc 1 176 49 is_stmt 0 view .LVU192
- 694 0000 08B5     		push	{r3, lr}
- 695              	.LCFI12:
- 696              		.cfi_def_cfa_offset 8
- 697              		.cfi_offset 3, -8
- 698              		.cfi_offset 14, -4
- 177:Core/Src/nyan_os.c ****     NyanPrint(nos, (char*)&nyan_keys_getinfo[0], sizeof(nyan_keys_getinfo));
- 699              		.loc 1 177 5 is_stmt 1 view .LVU193
- 700 0002 3822     		movs	r2, #56
-ARM GAS  /tmp/ccVluowp.s 			page 18
+ 988              		.loc 1 171 13 view .LVU297
+ 989 005a 0F22     		movs	r2, #15
+ 990 005c 1049     		ldr	r1, .L77+4
+ 991 005e 2846     		mov	r0, r5
+ 992 0060 FFF7FEFF 		bl	NyanPrint
+ 993              	.LVL101:
+ 172:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 994              		.loc 1 172 13 view .LVU298
+ 172:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 995              		.loc 1 172 22 is_stmt 0 view .LVU299
+ 996 0064 0423     		movs	r3, #4
+ 997 0066 AB71     		strb	r3, [r5, #6]
+ 173:Core/Src/nyan_os.c ****         case NYAN_EXE_IDLE :
+ 998              		.loc 1 173 13 is_stmt 1 view .LVU300
+ 173:Core/Src/nyan_os.c ****         case NYAN_EXE_IDLE :
+ 999              		.loc 1 173 20 is_stmt 0 view .LVU301
+ 1000 0068 16E0     		b	.L69
+ 1001              	.LVL102:
+ 1002              	.L71:
+ 177:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+ 1003              		.loc 1 177 13 is_stmt 1 view .LVU302
+ 1004 006a 2022     		movs	r2, #32
+ 1005 006c 0E49     		ldr	r1, .L77+12
+ 1006 006e FFF7FEFF 		bl	NyanPrint
+ 1007              	.LVL103:
+ 178:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+ARM GAS  /tmp/cc70tQPM.s 			page 27
 
 
- 701 0004 0149     		ldr	r1, .L54
- 702 0006 FFF7FEFF 		bl	NyanPrint
- 703              	.LVL54:
- 178:Core/Src/nyan_os.c **** }...
- 704              		.loc 1 178 1 is_stmt 0 view .LVU194
- 705 000a 08BD     		pop	{r3, pc}
- 706              	.L55:
- 707              		.align	2
- 708              	.L54:
- 709 000c 00000000 		.word	.LANCHOR4
- 710              		.cfi_endproc
- 711              	.LFE152:
- 713              		.section	.text.NyanExecute,"ax",%progbits
- 714              		.align	1
- 715              		.global	NyanExecute
- 716              		.syntax unified
- 717              		.thumb
- 718              		.thumb_func
- 720              	NyanExecute:
- 721              	.LVL55:
- 722              	.LFB151:
- 150:Core/Src/nyan_os.c **** NyanReturn NyanExecute(volatile NyanOS* nos) {
- 723              		.loc 1 150 46 is_stmt 1 view -0
- 724              		.cfi_startproc
- 725              		@ args = 0, pretend = 0, frame = 0
- 726              		@ frame_needed = 0, uses_anonymous_args = 0
- 150:Core/Src/nyan_os.c **** NyanReturn NyanExecute(volatile NyanOS* nos) {
- 727              		.loc 1 150 46 is_stmt 0 view .LVU196
- 728 0000 10B5     		push	{r4, lr}
- 729              	.LCFI13:
- 730              		.cfi_def_cfa_offset 8
- 731              		.cfi_offset 4, -8
- 732              		.cfi_offset 14, -4
- 733 0002 0446     		mov	r4, r0
- 151:Core/Src/nyan_os.c ****     switch(nos->exe) {
- 734              		.loc 1 151 5 is_stmt 1 view .LVU197
- 151:Core/Src/nyan_os.c ****     switch(nos->exe) {
- 735              		.loc 1 151 15 is_stmt 0 view .LVU198
- 736 0004 8379     		ldrb	r3, [r0, #6]	@ zero_extendqisi2
- 737 0006 D8B2     		uxtb	r0, r3
- 738              	.LVL56:
- 151:Core/Src/nyan_os.c ****     switch(nos->exe) {
- 739              		.loc 1 151 5 view .LVU199
- 740 0008 0328     		cmp	r0, #3
- 741 000a 2AD8     		bhi	.L57
- 742 000c DFE800F0 		tbb	[pc, r0]
- 743              	.L59:
- 744 0010 02       		.byte	(.L62-.L59)/2
- 745 0011 13       		.byte	(.L61-.L59)/2
- 746 0012 16       		.byte	(.L60-.L59)/2
- 747 0013 2D       		.byte	(.L63-.L59)/2
- 748              		.p2align 1
- 749              	.L62:
- 153:Core/Src/nyan_os.c ****             NyanExeGetinfo(nos);
- 750              		.loc 1 153 13 is_stmt 1 view .LVU200
- 751 0014 2046     		mov	r0, r4
- 752 0016 FFF7FEFF 		bl	NyanExeGetinfo
-ARM GAS  /tmp/ccVluowp.s 			page 19
+ 1008              		.loc 1 178 13 view .LVU303
+ 1009 0072 0322     		movs	r2, #3
+ 1010 0074 0949     		ldr	r1, .L77
+ 1011 0076 2846     		mov	r0, r5
+ 1012 0078 FFF7FEFF 		bl	NyanPrint
+ 1013              	.LVL104:
+ 179:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
+ 1014              		.loc 1 179 13 view .LVU304
+ 1015 007c 0F22     		movs	r2, #15
+ 1016 007e 0849     		ldr	r1, .L77+4
+ 1017 0080 2846     		mov	r0, r5
+ 1018 0082 FFF7FEFF 		bl	NyanPrint
+ 1019              	.LVL105:
+ 180:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 1020              		.loc 1 180 13 view .LVU305
+ 180:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
+ 1021              		.loc 1 180 22 is_stmt 0 view .LVU306
+ 1022 0086 0423     		movs	r3, #4
+ 1023 0088 AB71     		strb	r3, [r5, #6]
+ 181:Core/Src/nyan_os.c ****         default:
+ 1024              		.loc 1 181 13 is_stmt 1 view .LVU307
+ 181:Core/Src/nyan_os.c ****         default:
+ 1025              		.loc 1 181 20 is_stmt 0 view .LVU308
+ 1026 008a 0124     		movs	r4, #1
+ 1027 008c 04E0     		b	.L69
+ 1028              	.LVL106:
+ 1029              	.L68:
+ 184:Core/Src/nyan_os.c ****             return NOS_FAILURE;
+ 1030              		.loc 1 184 13 is_stmt 1 view .LVU309
+ 184:Core/Src/nyan_os.c ****             return NOS_FAILURE;
+ 1031              		.loc 1 184 22 is_stmt 0 view .LVU310
+ 1032 008e 0423     		movs	r3, #4
+ 1033 0090 8371     		strb	r3, [r0, #6]
+ 185:Core/Src/nyan_os.c ****     }
+ 1034              		.loc 1 185 13 is_stmt 1 view .LVU311
+ 185:Core/Src/nyan_os.c ****     }
+ 1035              		.loc 1 185 20 is_stmt 0 view .LVU312
+ 1036 0092 0024     		movs	r4, #0
+ 1037 0094 00E0     		b	.L69
+ 1038              	.L75:
+ 156:Core/Src/nyan_os.c ****         case NYAN_EXE_GET_INFO :
+ 1039              		.loc 1 156 5 view .LVU313
+ 1040 0096 0124     		movs	r4, #1
+ 1041              	.LVL107:
+ 1042              	.L69:
+ 187:Core/Src/nyan_os.c **** 
+ 1043              		.loc 1 187 1 view .LVU314
+ 1044 0098 2046     		mov	r0, r4
+ 1045 009a 38BD     		pop	{r3, r4, r5, pc}
+ 1046              	.LVL108:
+ 1047              	.L78:
+ 187:Core/Src/nyan_os.c **** 
+ 1048              		.loc 1 187 1 view .LVU315
+ 1049              		.align	2
+ 1050              	.L77:
+ 1051 009c 00000000 		.word	nyan_keys_newline
+ 1052 00a0 00000000 		.word	nyan_keys_path_text
+ARM GAS  /tmp/cc70tQPM.s 			page 28
 
 
- 753              	.LVL57:
- 154:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
- 754              		.loc 1 154 13 view .LVU201
- 755 001a 0322     		movs	r2, #3
- 756 001c 1449     		ldr	r1, .L65
- 757 001e 2046     		mov	r0, r4
- 758 0020 FFF7FEFF 		bl	NyanPrint
- 759              	.LVL58:
- 155:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
- 760              		.loc 1 155 13 view .LVU202
- 761 0024 0F22     		movs	r2, #15
- 762 0026 1349     		ldr	r1, .L65+4
- 763 0028 2046     		mov	r0, r4
- 764 002a FFF7FEFF 		bl	NyanPrint
- 765              	.LVL59:
- 156:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 766              		.loc 1 156 13 view .LVU203
- 156:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 767              		.loc 1 156 22 is_stmt 0 view .LVU204
- 768 002e 0323     		movs	r3, #3
- 769 0030 A371     		strb	r3, [r4, #6]
- 157:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 770              		.loc 1 157 13 is_stmt 1 view .LVU205
- 157:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 771              		.loc 1 157 20 is_stmt 0 view .LVU206
- 772 0032 0120     		movs	r0, #1
- 773 0034 1AE0     		b	.L58
- 774              	.L61:
- 159:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 775              		.loc 1 159 13 is_stmt 1 view .LVU207
- 159:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 776              		.loc 1 159 22 is_stmt 0 view .LVU208
- 777 0036 0323     		movs	r3, #3
- 778 0038 A371     		strb	r3, [r4, #6]
- 160:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 779              		.loc 1 160 13 is_stmt 1 view .LVU209
- 160:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 780              		.loc 1 160 20 is_stmt 0 view .LVU210
- 781 003a 17E0     		b	.L58
- 782              	.L60:
- 164:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_unknown_command[0], sizeof(nyan_keys_unknown_command))
- 783              		.loc 1 164 13 is_stmt 1 view .LVU211
- 784 003c 2022     		movs	r2, #32
- 785 003e 0E49     		ldr	r1, .L65+8
- 786 0040 2046     		mov	r0, r4
- 787 0042 FFF7FEFF 		bl	NyanPrint
- 788              	.LVL60:
- 165:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
- 789              		.loc 1 165 13 view .LVU212
- 790 0046 0322     		movs	r2, #3
- 791 0048 0949     		ldr	r1, .L65
- 792 004a 2046     		mov	r0, r4
- 793 004c FFF7FEFF 		bl	NyanPrint
- 794              	.LVL61:
- 166:Core/Src/nyan_os.c ****             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
- 795              		.loc 1 166 13 view .LVU213
- 796 0050 0F22     		movs	r2, #15
-ARM GAS  /tmp/ccVluowp.s 			page 20
+ 1053 00a4 00000000 		.word	nyan_keys_set_owner_success
+ 1054 00a8 00000000 		.word	nyan_keys_unknown_command
+ 1055              		.cfi_endproc
+ 1056              	.LFE150:
+ 1058              		.section	.text.FreeNyanCommandArgs,"ax",%progbits
+ 1059              		.align	1
+ 1060              		.global	FreeNyanCommandArgs
+ 1061              		.syntax unified
+ 1062              		.thumb
+ 1063              		.thumb_func
+ 1065              	FreeNyanCommandArgs:
+ 1066              	.LVL109:
+ 1067              	.LFB155:
+ 382:Core/Src/nyan_os.c **** 
+ 383:Core/Src/nyan_os.c **** void FreeNyanCommandArgs(volatile NyanOS* nos)
+ 384:Core/Src/nyan_os.c **** {
+ 1068              		.loc 1 384 1 is_stmt 1 view -0
+ 1069              		.cfi_startproc
+ 1070              		@ args = 0, pretend = 0, frame = 0
+ 1071              		@ frame_needed = 0, uses_anonymous_args = 0
+ 385:Core/Src/nyan_os.c ****     if (!nos) {
+ 1072              		.loc 1 385 5 view .LVU317
+ 1073              		.loc 1 385 8 is_stmt 0 view .LVU318
+ 1074 0000 C0B1     		cbz	r0, .L85
+ 384:Core/Src/nyan_os.c ****     if (!nos) {
+ 1075              		.loc 1 384 1 view .LVU319
+ 1076 0002 70B5     		push	{r4, r5, r6, lr}
+ 1077              		.cfi_def_cfa_offset 16
+ 1078              		.cfi_offset 4, -16
+ 1079              		.cfi_offset 5, -12
+ 1080              		.cfi_offset 6, -8
+ 1081              		.cfi_offset 14, -4
+ 1082 0004 0646     		mov	r6, r0
+ 1083              	.LBB12:
+ 386:Core/Src/nyan_os.c ****         return;
+ 387:Core/Src/nyan_os.c ****     }
+ 388:Core/Src/nyan_os.c **** 
+ 389:Core/Src/nyan_os.c ****     for (int i = 0; i < _NYAN_CMD_MAX_ARGS; i++) {
+ 1084              		.loc 1 389 14 view .LVU320
+ 1085 0006 0024     		movs	r4, #0
+ 1086 0008 00E0     		b	.L81
+ 1087              	.LVL110:
+ 1088              	.L82:
+ 1089              		.loc 1 389 46 is_stmt 1 discriminator 2 view .LVU321
+ 1090 000a 0134     		adds	r4, r4, #1
+ 1091              	.LVL111:
+ 1092              	.L81:
+ 1093              		.loc 1 389 23 discriminator 1 view .LVU322
+ 1094 000c 092C     		cmp	r4, #9
+ 1095 000e 10DC     		bgt	.L88
+ 390:Core/Src/nyan_os.c ****         if (nos->command_arg_buffer[i] != NULL) {
+ 1096              		.loc 1 390 9 view .LVU323
+ 1097              		.loc 1 390 36 is_stmt 0 view .LVU324
+ 1098 0010 04F12203 		add	r3, r4, #34
+ 1099 0014 06EB8303 		add	r3, r6, r3, lsl #2
+ 1100 0018 5B68     		ldr	r3, [r3, #4]
+ 1101              		.loc 1 390 12 view .LVU325
+ARM GAS  /tmp/cc70tQPM.s 			page 29
 
 
- 797 0052 0849     		ldr	r1, .L65+4
- 798 0054 2046     		mov	r0, r4
- 799 0056 FFF7FEFF 		bl	NyanPrint
- 800              	.LVL62:
- 167:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 801              		.loc 1 167 13 view .LVU214
- 167:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 802              		.loc 1 167 22 is_stmt 0 view .LVU215
- 803 005a 0323     		movs	r3, #3
- 804 005c A371     		strb	r3, [r4, #6]
- 168:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 805              		.loc 1 168 13 is_stmt 1 view .LVU216
- 168:Core/Src/nyan_os.c ****             return NOS_SUCCESS;
- 806              		.loc 1 168 20 is_stmt 0 view .LVU217
- 807 005e 0120     		movs	r0, #1
- 808 0060 04E0     		b	.L58
- 809              	.L57:
- 171:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 810              		.loc 1 171 13 is_stmt 1 view .LVU218
- 171:Core/Src/nyan_os.c ****             nos->exe = NYAN_EXE_IDLE;
- 811              		.loc 1 171 22 is_stmt 0 view .LVU219
- 812 0062 0323     		movs	r3, #3
- 813 0064 A371     		strb	r3, [r4, #6]
- 172:Core/Src/nyan_os.c ****             return NOS_FAILURE;
- 814              		.loc 1 172 13 is_stmt 1 view .LVU220
- 172:Core/Src/nyan_os.c ****             return NOS_FAILURE;
- 815              		.loc 1 172 20 is_stmt 0 view .LVU221
- 816 0066 0020     		movs	r0, #0
- 817 0068 00E0     		b	.L58
- 818              	.L63:
- 151:Core/Src/nyan_os.c ****     switch(nos->exe) {
- 819              		.loc 1 151 5 view .LVU222
- 820 006a 0120     		movs	r0, #1
- 821              	.L58:
- 174:Core/Src/nyan_os.c **** }
- 822              		.loc 1 174 1 view .LVU223
- 823 006c 10BD     		pop	{r4, pc}
- 824              	.LVL63:
- 825              	.L66:
- 174:Core/Src/nyan_os.c **** }
- 826              		.loc 1 174 1 view .LVU224
- 827 006e 00BF     		.align	2
- 828              	.L65:
- 829 0070 00000000 		.word	.LANCHOR3
- 830 0074 00000000 		.word	.LANCHOR1
- 831 0078 00000000 		.word	.LANCHOR5
- 832              		.cfi_endproc
- 833              	.LFE151:
- 835              		.section	.rodata.str1.4,"aMS",%progbits,1
- 836              		.align	2
- 837              	.LC1:
- 838 0000 67657469 		.ascii	"getinfo\000"
- 838      6E666F00 
- 839              		.align	2
- 840              	.LC2:
- 841 0008 666C6173 		.ascii	"flash\000"
- 841      6800
-ARM GAS  /tmp/ccVluowp.s 			page 21
+ 1102 001a 002B     		cmp	r3, #0
+ 1103 001c F5D0     		beq	.L82
+ 391:Core/Src/nyan_os.c ****             free(nos->command_arg_buffer[i]); 
+ 1104              		.loc 1 391 13 is_stmt 1 view .LVU326
+ 1105              		.loc 1 391 41 is_stmt 0 view .LVU327
+ 1106 001e 04F12205 		add	r5, r4, #34
+ 1107 0022 06EB8505 		add	r5, r6, r5, lsl #2
+ 1108 0026 6868     		ldr	r0, [r5, #4]
+ 1109              		.loc 1 391 13 view .LVU328
+ 1110 0028 FFF7FEFF 		bl	free
+ 1111              	.LVL112:
+ 392:Core/Src/nyan_os.c ****             nos->command_arg_buffer[i] = NULL;
+ 1112              		.loc 1 392 13 is_stmt 1 view .LVU329
+ 1113              		.loc 1 392 40 is_stmt 0 view .LVU330
+ 1114 002c 0023     		movs	r3, #0
+ 1115 002e 6B60     		str	r3, [r5, #4]
+ 1116 0030 EBE7     		b	.L82
+ 1117              	.L88:
+ 1118              		.loc 1 392 40 view .LVU331
+ 1119              	.LBE12:
+ 393:Core/Src/nyan_os.c ****         }
+ 394:Core/Src/nyan_os.c ****     }
+ 395:Core/Src/nyan_os.c **** }
+ 1120              		.loc 1 395 1 view .LVU332
+ 1121 0032 70BD     		pop	{r4, r5, r6, pc}
+ 1122              	.LVL113:
+ 1123              	.L85:
+ 1124              		.cfi_def_cfa_offset 0
+ 1125              		.cfi_restore 4
+ 1126              		.cfi_restore 5
+ 1127              		.cfi_restore 6
+ 1128              		.cfi_restore 14
+ 1129              		.loc 1 395 1 view .LVU333
+ 1130 0034 7047     		bx	lr
+ 1131              		.cfi_endproc
+ 1132              	.LFE155:
+ 1134              		.section	.rodata.NyanDecodeArgs.str1.4,"aMS",%progbits,1
+ 1135              		.align	2
+ 1136              	.LC0:
+ 1137 0000 2000     		.ascii	" \000"
+ 1138              		.section	.text.NyanDecodeArgs,"ax",%progbits
+ 1139              		.align	1
+ 1140              		.global	NyanDecodeArgs
+ 1141              		.syntax unified
+ 1142              		.thumb
+ 1143              		.thumb_func
+ 1145              	NyanDecodeArgs:
+ 1146              	.LVL114:
+ 1147              	.LFB151:
+ 190:Core/Src/nyan_os.c ****     if (!nos) {
+ 1148              		.loc 1 190 1 is_stmt 1 view -0
+ 1149              		.cfi_startproc
+ 1150              		@ args = 0, pretend = 0, frame = 0
+ 1151              		@ frame_needed = 0, uses_anonymous_args = 0
+ 191:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ 1152              		.loc 1 191 5 view .LVU335
+ 191:Core/Src/nyan_os.c ****         return NOS_FAILURE;
+ARM GAS  /tmp/cc70tQPM.s 			page 30
 
 
- 842              		.section	.data.nyan_keys_getinfo,"aw"
- 843              		.align	2
- 844              		.set	.LANCHOR4,. + 0
- 847              	nyan_keys_getinfo:
- 848 0000 56657273 		.ascii	"Version: 0.01\015\012Author: Portland.HODL\015\012B"
- 848      696F6E3A 
- 848      20302E30 
- 848      310D0A41 
- 848      7574686F 
- 849 0027 75696C74 		.ascii	"uilt: 07/11/23\015\012\000"
- 849      3A203037 
- 849      2F31312F 
- 849      32330D0A 
- 849      00
- 850              		.section	.data.nyan_keys_newline,"aw"
- 851              		.align	2
- 852              		.set	.LANCHOR3,. + 0
- 855              	nyan_keys_newline:
- 856 0000 0D0A00   		.ascii	"\015\012\000"
- 857              		.section	.data.nyan_keys_path_text,"aw"
- 858              		.align	2
- 859              		.set	.LANCHOR1,. + 0
- 862              	nyan_keys_path_text:
- 863 0000 4E79616E 		.ascii	"NyanOS \360\237\220\261 > \000"
- 863      4F5320F0 
- 863      9F90B120 
- 863      3E2000
- 864              		.section	.data.nyan_keys_unknown_command,"aw"
- 865              		.align	2
- 866              		.set	.LANCHOR5,. + 0
- 869              	nyan_keys_unknown_command:
- 870 0000 436F6D6D 		.ascii	"Command not supported by NyanOS\000"
- 870      616E6420 
- 870      6E6F7420 
- 870      73757070 
- 870      6F727465 
- 871              		.section	.data.nyan_keys_welcome_text,"aw"
- 872              		.align	2
- 873              		.set	.LANCHOR0,. + 0
- 876              	nyan_keys_welcome_text:
- 877 0000 4E79616E 		.ascii	"Nyan Keys Operating System (NOS) V0.01\015\012Made "
- 877      204B6579 
- 877      73204F70 
- 877      65726174 
- 877      696E6720 
- 878 002d 62792050 		.ascii	"by Portland.HODL\015\012\015\012\000"
- 878      6F72746C 
- 878      616E642E 
- 878      484F444C 
- 878      0D0A0D0A 
- 879              		.section	.rodata.nyan_commands,"a"
- 880              		.align	2
- 881              		.set	.LANCHOR2,. + 0
- 884              	nyan_commands:
- 885 0000 00000000 		.word	.LC1
- 886 0004 08000000 		.word	.LC2
- 887              		.text
-ARM GAS  /tmp/ccVluowp.s 			page 22
+ 1153              		.loc 1 191 8 is_stmt 0 view .LVU336
+ 1154 0000 0028     		cmp	r0, #0
+ 1155 0002 45D0     		beq	.L97
+ 190:Core/Src/nyan_os.c ****     if (!nos) {
+ 1156              		.loc 1 190 1 view .LVU337
+ 1157 0004 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 1158              		.cfi_def_cfa_offset 24
+ 1159              		.cfi_offset 3, -24
+ 1160              		.cfi_offset 4, -20
+ 1161              		.cfi_offset 5, -16
+ 1162              		.cfi_offset 6, -12
+ 1163              		.cfi_offset 7, -8
+ 1164              		.cfi_offset 14, -4
+ 1165 0006 0646     		mov	r6, r0
+ 196:Core/Src/nyan_os.c **** 
+ 1166              		.loc 1 196 5 is_stmt 1 view .LVU338
+ 1167 0008 FFF7FEFF 		bl	FreeNyanCommandArgs
+ 1168              	.LVL115:
+ 198:Core/Src/nyan_os.c ****     const char *delimiter = " ";
+ 1169              		.loc 1 198 5 view .LVU339
+ 198:Core/Src/nyan_os.c ****     const char *delimiter = " ";
+ 1170              		.loc 1 198 44 is_stmt 0 view .LVU340
+ 1171 000c 0025     		movs	r5, #0
+ 1172 000e 86F88750 		strb	r5, [r6, #135]
+ 199:Core/Src/nyan_os.c ****     char *token = strtok((char *)nos->command_buffer, delimiter);
+ 1173              		.loc 1 199 5 is_stmt 1 view .LVU341
+ 1174              	.LVL116:
+ 200:Core/Src/nyan_os.c **** 
+ 1175              		.loc 1 200 5 view .LVU342
+ 200:Core/Src/nyan_os.c **** 
+ 1176              		.loc 1 200 34 is_stmt 0 view .LVU343
+ 1177 0012 F71D     		adds	r7, r6, #7
+ 200:Core/Src/nyan_os.c **** 
+ 1178              		.loc 1 200 19 view .LVU344
+ 1179 0014 1F49     		ldr	r1, .L106
+ 1180 0016 3846     		mov	r0, r7
+ 1181 0018 FFF7FEFF 		bl	strtok
+ 1182              	.LVL117:
+ 1183 001c 0446     		mov	r4, r0
+ 1184              	.LVL118:
+ 202:Core/Src/nyan_os.c ****     while (token != NULL) {
+ 1185              		.loc 1 202 5 is_stmt 1 view .LVU345
+ 203:Core/Src/nyan_os.c ****         if (arg_count < _NYAN_CMD_MAX_ARGS) {
+ 1186              		.loc 1 203 5 view .LVU346
+ 203:Core/Src/nyan_os.c ****         if (arg_count < _NYAN_CMD_MAX_ARGS) {
+ 1187              		.loc 1 203 11 is_stmt 0 view .LVU347
+ 1188 001e 12E0     		b	.L91
+ 1189              	.LVL119:
+ 1190              	.L95:
+ 1191              	.LBB13:
+ 1192              	.LBB14:
+ 210:Core/Src/nyan_os.c ****                 }
+ 1193              		.loc 1 210 21 is_stmt 1 discriminator 3 view .LVU348
+ 210:Core/Src/nyan_os.c ****                 }
+ 1194              		.loc 1 210 49 is_stmt 0 discriminator 3 view .LVU349
+ 1195 0020 04F12203 		add	r3, r4, #34
+ 1196 0024 06EB8303 		add	r3, r6, r3, lsl #2
+ARM GAS  /tmp/cc70tQPM.s 			page 31
 
 
- 888              	.Letext0:
- 889              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
- 890              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h"
- 891              		.file 4 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
- 892              		.file 5 "Core/Inc/24xx_eeprom.h"
- 893              		.file 6 "Core/Inc/nyan_os.h"
- 894              		.file 7 "Core/Inc/nyan_strings.h"
- 895              		.file 8 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/string.h"
- 896              		.file 9 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
- 897              		.file 10 "<built-in>"
-ARM GAS  /tmp/ccVluowp.s 			page 23
+ 1197 0028 5868     		ldr	r0, [r3, #4]
+ 210:Core/Src/nyan_os.c ****                 }
+ 1198              		.loc 1 210 21 discriminator 3 view .LVU350
+ 1199 002a FFF7FEFF 		bl	free
+ 1200              	.LVL120:
+ 209:Core/Src/nyan_os.c ****                     free(nos->command_arg_buffer[i]);
+ 1201              		.loc 1 209 48 is_stmt 1 discriminator 3 view .LVU351
+ 1202 002e 0134     		adds	r4, r4, #1
+ 1203              	.LVL121:
+ 1204              	.L93:
+ 209:Core/Src/nyan_os.c ****                     free(nos->command_arg_buffer[i]);
+ 1205              		.loc 1 209 35 discriminator 1 view .LVU352
+ 1206 0030 A542     		cmp	r5, r4
+ 1207 0032 F5DC     		bgt	.L95
+ 209:Core/Src/nyan_os.c ****                     free(nos->command_arg_buffer[i]);
+ 1208              		.loc 1 209 35 is_stmt 0 discriminator 1 view .LVU353
+ 1209              	.LBE14:
+ 212:Core/Src/nyan_os.c ****             }
+ 1210              		.loc 1 212 24 view .LVU354
+ 1211 0034 0020     		movs	r0, #0
+ 1212 0036 2AE0     		b	.L90
+ 1213              	.LVL122:
+ 1214              	.L105:
+ 1215              	.LBB15:
+ 209:Core/Src/nyan_os.c ****                     free(nos->command_arg_buffer[i]);
+ 1216              		.loc 1 209 26 view .LVU355
+ 1217 0038 0024     		movs	r4, #0
+ 1218              	.LVL123:
+ 209:Core/Src/nyan_os.c ****                     free(nos->command_arg_buffer[i]);
+ 1219              		.loc 1 209 26 view .LVU356
+ 1220 003a F9E7     		b	.L93
+ 1221              	.LVL124:
+ 1222              	.L92:
+ 209:Core/Src/nyan_os.c ****                     free(nos->command_arg_buffer[i]);
+ 1223              		.loc 1 209 26 view .LVU357
+ 1224              	.LBE15:
+ 1225              	.LBE13:
+ 217:Core/Src/nyan_os.c ****     }
+ 1226              		.loc 1 217 9 is_stmt 1 view .LVU358
+ 217:Core/Src/nyan_os.c ****     }
+ 1227              		.loc 1 217 17 is_stmt 0 view .LVU359
+ 1228 003c 1549     		ldr	r1, .L106
+ 1229 003e 0020     		movs	r0, #0
+ 1230 0040 FFF7FEFF 		bl	strtok
+ 1231              	.LVL125:
+ 1232 0044 0446     		mov	r4, r0
+ 1233              	.LVL126:
+ 1234              	.L91:
+ 203:Core/Src/nyan_os.c ****         if (arg_count < _NYAN_CMD_MAX_ARGS) {
+ 1235              		.loc 1 203 18 is_stmt 1 view .LVU360
+ 1236 0046 CCB1     		cbz	r4, .L104
+ 204:Core/Src/nyan_os.c ****             size_t tokenLength = strlen(token);
+ 1237              		.loc 1 204 9 view .LVU361
+ 204:Core/Src/nyan_os.c ****             size_t tokenLength = strlen(token);
+ 1238              		.loc 1 204 12 is_stmt 0 view .LVU362
+ 1239 0048 092D     		cmp	r5, #9
+ 1240 004a F7DC     		bgt	.L92
+ARM GAS  /tmp/cc70tQPM.s 			page 32
+
+
+ 1241              	.LBB16:
+ 205:Core/Src/nyan_os.c ****             nos->command_arg_buffer[arg_count] = malloc(tokenLength + 1); // Allocate memory for th
+ 1242              		.loc 1 205 13 is_stmt 1 view .LVU363
+ 205:Core/Src/nyan_os.c ****             nos->command_arg_buffer[arg_count] = malloc(tokenLength + 1); // Allocate memory for th
+ 1243              		.loc 1 205 34 is_stmt 0 view .LVU364
+ 1244 004c 2046     		mov	r0, r4
+ 205:Core/Src/nyan_os.c ****             nos->command_arg_buffer[arg_count] = malloc(tokenLength + 1); // Allocate memory for th
+ 1245              		.loc 1 205 34 view .LVU365
+ 1246 004e FFF7FEFF 		bl	strlen
+ 1247              	.LVL127:
+ 206:Core/Src/nyan_os.c ****             if (nos->command_arg_buffer[arg_count] == NULL) {
+ 1248              		.loc 1 206 13 is_stmt 1 view .LVU366
+ 206:Core/Src/nyan_os.c ****             if (nos->command_arg_buffer[arg_count] == NULL) {
+ 1249              		.loc 1 206 50 is_stmt 0 view .LVU367
+ 1250 0052 0130     		adds	r0, r0, #1
+ 1251              	.LVL128:
+ 206:Core/Src/nyan_os.c ****             if (nos->command_arg_buffer[arg_count] == NULL) {
+ 1252              		.loc 1 206 50 view .LVU368
+ 1253 0054 FFF7FEFF 		bl	malloc
+ 1254              	.LVL129:
+ 206:Core/Src/nyan_os.c ****             if (nos->command_arg_buffer[arg_count] == NULL) {
+ 1255              		.loc 1 206 48 view .LVU369
+ 1256 0058 05F12203 		add	r3, r5, #34
+ 1257 005c 06EB8303 		add	r3, r6, r3, lsl #2
+ 1258 0060 5860     		str	r0, [r3, #4]
+ 207:Core/Src/nyan_os.c ****                 // Free any previously allocated memory
+ 1259              		.loc 1 207 13 is_stmt 1 view .LVU370
+ 207:Core/Src/nyan_os.c ****                 // Free any previously allocated memory
+ 1260              		.loc 1 207 40 is_stmt 0 view .LVU371
+ 1261 0062 5B68     		ldr	r3, [r3, #4]
+ 207:Core/Src/nyan_os.c ****                 // Free any previously allocated memory
+ 1262              		.loc 1 207 16 view .LVU372
+ 1263 0064 002B     		cmp	r3, #0
+ 1264 0066 E7D0     		beq	.L105
+ 214:Core/Src/nyan_os.c ****             arg_count++;
+ 1265              		.loc 1 214 13 is_stmt 1 view .LVU373
+ 214:Core/Src/nyan_os.c ****             arg_count++;
+ 1266              		.loc 1 214 51 is_stmt 0 view .LVU374
+ 1267 0068 05F12203 		add	r3, r5, #34
+ 1268 006c 06EB8303 		add	r3, r6, r3, lsl #2
+ 1269 0070 5868     		ldr	r0, [r3, #4]
+ 214:Core/Src/nyan_os.c ****             arg_count++;
+ 1270              		.loc 1 214 13 view .LVU375
+ 1271 0072 2146     		mov	r1, r4
+ 1272 0074 FFF7FEFF 		bl	strcpy
+ 1273              	.LVL130:
+ 215:Core/Src/nyan_os.c ****         }
+ 1274              		.loc 1 215 13 is_stmt 1 view .LVU376
+ 215:Core/Src/nyan_os.c ****         }
+ 1275              		.loc 1 215 22 is_stmt 0 view .LVU377
+ 1276 0078 0135     		adds	r5, r5, #1
+ 1277              	.LVL131:
+ 215:Core/Src/nyan_os.c ****         }
+ 1278              		.loc 1 215 22 view .LVU378
+ 1279 007a DFE7     		b	.L92
+ 1280              	.LVL132:
+ 1281              	.L104:
+ARM GAS  /tmp/cc70tQPM.s 			page 33
+
+
+ 215:Core/Src/nyan_os.c ****         }
+ 1282              		.loc 1 215 22 view .LVU379
+ 1283              	.LBE16:
+ 220:Core/Src/nyan_os.c **** 
+ 1284              		.loc 1 220 5 is_stmt 1 view .LVU380
+ 220:Core/Src/nyan_os.c **** 
+ 1285              		.loc 1 220 34 is_stmt 0 view .LVU381
+ 1286 007c EDB2     		uxtb	r5, r5
+ 1287              	.LVL133:
+ 220:Core/Src/nyan_os.c **** 
+ 1288              		.loc 1 220 34 view .LVU382
+ 1289 007e 86F88950 		strb	r5, [r6, #137]
+ 223:Core/Src/nyan_os.c **** 
+ 1290              		.loc 1 223 5 is_stmt 1 view .LVU383
+ 1291 0082 8122     		movs	r2, #129
+ 1292 0084 0021     		movs	r1, #0
+ 1293 0086 3846     		mov	r0, r7
+ 1294              	.LVL134:
+ 223:Core/Src/nyan_os.c **** 
+ 1295              		.loc 1 223 5 is_stmt 0 view .LVU384
+ 1296 0088 FFF7FEFF 		bl	memset
+ 1297              	.LVL135:
+ 225:Core/Src/nyan_os.c **** }
+ 1298              		.loc 1 225 5 is_stmt 1 view .LVU385
+ 225:Core/Src/nyan_os.c **** }
+ 1299              		.loc 1 225 12 is_stmt 0 view .LVU386
+ 1300 008c 0120     		movs	r0, #1
+ 1301              	.LVL136:
+ 1302              	.L90:
+ 226:Core/Src/nyan_os.c **** 
+ 1303              		.loc 1 226 1 view .LVU387
+ 1304 008e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 1305              	.LVL137:
+ 1306              	.L97:
+ 1307              		.cfi_def_cfa_offset 0
+ 1308              		.cfi_restore 3
+ 1309              		.cfi_restore 4
+ 1310              		.cfi_restore 5
+ 1311              		.cfi_restore 6
+ 1312              		.cfi_restore 7
+ 1313              		.cfi_restore 14
+ 192:Core/Src/nyan_os.c ****     }
+ 1314              		.loc 1 192 16 view .LVU388
+ 1315 0090 0020     		movs	r0, #0
+ 1316              	.LVL138:
+ 226:Core/Src/nyan_os.c **** 
+ 1317              		.loc 1 226 1 view .LVU389
+ 1318 0092 7047     		bx	lr
+ 1319              	.L107:
+ 1320              		.align	2
+ 1321              	.L106:
+ 1322 0094 00000000 		.word	.LC0
+ 1323              		.cfi_endproc
+ 1324              	.LFE151:
+ 1326              		.section	.text.NyanDecode,"ax",%progbits
+ 1327              		.align	1
+ 1328              		.global	NyanDecode
+ARM GAS  /tmp/cc70tQPM.s 			page 34
+
+
+ 1329              		.syntax unified
+ 1330              		.thumb
+ 1331              		.thumb_func
+ 1333              	NyanDecode:
+ 1334              	.LVL139:
+ 1335              	.LFB149:
+ 134:Core/Src/nyan_os.c ****     // First set the nos state to idle
+ 1336              		.loc 1 134 1 is_stmt 1 view -0
+ 1337              		.cfi_startproc
+ 1338              		@ args = 0, pretend = 0, frame = 0
+ 1339              		@ frame_needed = 0, uses_anonymous_args = 0
+ 134:Core/Src/nyan_os.c ****     // First set the nos state to idle
+ 1340              		.loc 1 134 1 is_stmt 0 view .LVU391
+ 1341 0000 70B5     		push	{r4, r5, r6, lr}
+ 1342              		.cfi_def_cfa_offset 16
+ 1343              		.cfi_offset 4, -16
+ 1344              		.cfi_offset 5, -12
+ 1345              		.cfi_offset 6, -8
+ 1346              		.cfi_offset 14, -4
+ 1347 0002 0546     		mov	r5, r0
+ 136:Core/Src/nyan_os.c ****     // Iterate over the available commands for a match to the input buffer
+ 1348              		.loc 1 136 5 is_stmt 1 view .LVU392
+ 136:Core/Src/nyan_os.c ****     // Iterate over the available commands for a match to the input buffer
+ 1349              		.loc 1 136 14 is_stmt 0 view .LVU393
+ 1350 0004 0423     		movs	r3, #4
+ 1351 0006 8371     		strb	r3, [r0, #6]
+ 138:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
+ 1352              		.loc 1 138 5 is_stmt 1 view .LVU394
+ 1353              	.LBB17:
+ 138:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
+ 1354              		.loc 1 138 10 view .LVU395
+ 1355              	.LVL140:
+ 138:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
+ 1356              		.loc 1 138 18 is_stmt 0 view .LVU396
+ 1357 0008 0024     		movs	r4, #0
+ 138:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
+ 1358              		.loc 1 138 5 view .LVU397
+ 1359 000a 03E0     		b	.L109
+ 1360              	.LVL141:
+ 1361              	.L110:
+ 1362              	.LBB18:
+ 147:Core/Src/nyan_os.c ****         }
+ 1363              		.loc 1 147 13 is_stmt 1 discriminator 2 view .LVU398
+ 147:Core/Src/nyan_os.c ****         }
+ 1364              		.loc 1 147 22 is_stmt 0 discriminator 2 view .LVU399
+ 1365 000c 0323     		movs	r3, #3
+ 1366 000e AB71     		strb	r3, [r5, #6]
+ 1367              	.LBE18:
+ 138:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
+ 1368              		.loc 1 138 61 is_stmt 1 discriminator 2 view .LVU400
+ 1369 0010 0134     		adds	r4, r4, #1
+ 1370              	.LVL142:
+ 138:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
+ 1371              		.loc 1 138 61 is_stmt 0 discriminator 2 view .LVU401
+ 1372 0012 E4B2     		uxtb	r4, r4
+ 1373              	.LVL143:
+ 1374              	.L109:
+ARM GAS  /tmp/cc70tQPM.s 			page 35
+
+
+ 138:Core/Src/nyan_os.c ****         size_t command_len = strlen(nyan_commands[cmd_idx]);
+ 1375              		.loc 1 138 39 is_stmt 1 discriminator 1 view .LVU402
+ 1376 0014 022C     		cmp	r4, #2
+ 1377 0016 12D8     		bhi	.L111
+ 1378              	.LBB19:
+ 139:Core/Src/nyan_os.c ****         // Make sure we compare only the relevant part of the buffer1
+ 1379              		.loc 1 139 9 view .LVU403
+ 139:Core/Src/nyan_os.c ****         // Make sure we compare only the relevant part of the buffer1
+ 1380              		.loc 1 139 50 is_stmt 0 view .LVU404
+ 1381 0018 0A4B     		ldr	r3, .L114
+ 1382 001a 53F82460 		ldr	r6, [r3, r4, lsl #2]
+ 139:Core/Src/nyan_os.c ****         // Make sure we compare only the relevant part of the buffer1
+ 1383              		.loc 1 139 30 view .LVU405
+ 1384 001e 3046     		mov	r0, r6
+ 1385 0020 FFF7FEFF 		bl	strlen
+ 1386              	.LVL144:
+ 1387 0024 0246     		mov	r2, r0
+ 1388              	.LVL145:
+ 141:Core/Src/nyan_os.c ****             NyanDecodeArgs(nos);
+ 1389              		.loc 1 141 9 is_stmt 1 view .LVU406
+ 141:Core/Src/nyan_os.c ****             NyanDecodeArgs(nos);
+ 1390              		.loc 1 141 12 is_stmt 0 view .LVU407
+ 1391 0026 8028     		cmp	r0, #128
+ 1392 0028 F0D8     		bhi	.L110
+ 141:Core/Src/nyan_os.c ****             NyanDecodeArgs(nos);
+ 1393              		.loc 1 141 49 discriminator 1 view .LVU408
+ 1394 002a 3146     		mov	r1, r6
+ 1395 002c E81D     		adds	r0, r5, #7
+ 1396              	.LVL146:
+ 141:Core/Src/nyan_os.c ****             NyanDecodeArgs(nos);
+ 1397              		.loc 1 141 49 discriminator 1 view .LVU409
+ 1398 002e FFF7FEFF 		bl	memcmp
+ 1399              	.LVL147:
+ 141:Core/Src/nyan_os.c ****             NyanDecodeArgs(nos);
+ 1400              		.loc 1 141 46 discriminator 1 view .LVU410
+ 1401 0032 0028     		cmp	r0, #0
+ 1402 0034 EAD1     		bne	.L110
+ 142:Core/Src/nyan_os.c ****             // We have found a match, set the current evaluation cursor to the command length, args
+ 1403              		.loc 1 142 13 is_stmt 1 view .LVU411
+ 1404 0036 2846     		mov	r0, r5
+ 1405 0038 FFF7FEFF 		bl	NyanDecodeArgs
+ 1406              	.LVL148:
+ 144:Core/Src/nyan_os.c ****             break;
+ 1407              		.loc 1 144 13 view .LVU412
+ 144:Core/Src/nyan_os.c ****             break;
+ 1408              		.loc 1 144 22 is_stmt 0 view .LVU413
+ 1409 003c AC71     		strb	r4, [r5, #6]
+ 145:Core/Src/nyan_os.c ****         } else {
+ 1410              		.loc 1 145 13 is_stmt 1 view .LVU414
+ 1411              	.LVL149:
+ 1412              	.L111:
+ 145:Core/Src/nyan_os.c ****         } else {
+ 1413              		.loc 1 145 13 is_stmt 0 view .LVU415
+ 1414              	.LBE19:
+ 1415              	.LBE17:
+ 152:Core/Src/nyan_os.c **** }
+ 1416              		.loc 1 152 5 is_stmt 1 view .LVU416
+ARM GAS  /tmp/cc70tQPM.s 			page 36
+
+
+ 153:Core/Src/nyan_os.c **** 
+ 1417              		.loc 1 153 1 is_stmt 0 view .LVU417
+ 1418 003e 0120     		movs	r0, #1
+ 1419 0040 70BD     		pop	{r4, r5, r6, pc}
+ 1420              	.LVL150:
+ 1421              	.L115:
+ 153:Core/Src/nyan_os.c **** 
+ 1422              		.loc 1 153 1 view .LVU418
+ 1423 0042 00BF     		.align	2
+ 1424              	.L114:
+ 1425 0044 00000000 		.word	nyan_commands
+ 1426              		.cfi_endproc
+ 1427              	.LFE149:
+ 1429              		.section	.text.FreeNyanString,"ax",%progbits
+ 1430              		.align	1
+ 1431              		.global	FreeNyanString
+ 1432              		.syntax unified
+ 1433              		.thumb
+ 1434              		.thumb_func
+ 1436              	FreeNyanString:
+ 1437              	.LVL151:
+ 1438              	.LFB156:
+ 396:Core/Src/nyan_os.c **** 
+ 397:Core/Src/nyan_os.c **** void FreeNyanString(NyanString* nyanString)
+ 398:Core/Src/nyan_os.c **** {
+ 1439              		.loc 1 398 1 is_stmt 1 view -0
+ 1440              		.cfi_startproc
+ 1441              		@ args = 0, pretend = 0, frame = 0
+ 1442              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1443              		.loc 1 398 1 is_stmt 0 view .LVU420
+ 1444 0000 10B5     		push	{r4, lr}
+ 1445              		.cfi_def_cfa_offset 8
+ 1446              		.cfi_offset 4, -8
+ 1447              		.cfi_offset 14, -4
+ 1448 0002 0446     		mov	r4, r0
+ 399:Core/Src/nyan_os.c ****     // Clear the memory contents
+ 400:Core/Src/nyan_os.c ****     for (uint32_t i = 0; i < nyanString->size; ++i) {
+ 1449              		.loc 1 400 5 is_stmt 1 view .LVU421
+ 1450              	.LBB20:
+ 1451              		.loc 1 400 10 view .LVU422
+ 1452              	.LVL152:
+ 1453              		.loc 1 400 19 is_stmt 0 view .LVU423
+ 1454 0004 0023     		movs	r3, #0
+ 1455              		.loc 1 400 5 view .LVU424
+ 1456 0006 03E0     		b	.L117
+ 1457              	.LVL153:
+ 1458              	.L118:
+ 401:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
+ 1459              		.loc 1 401 9 is_stmt 1 discriminator 3 view .LVU425
+ 1460              		.loc 1 401 19 is_stmt 0 discriminator 3 view .LVU426
+ 1461 0008 2268     		ldr	r2, [r4]
+ 1462              		.loc 1 401 32 discriminator 3 view .LVU427
+ 1463 000a 0021     		movs	r1, #0
+ 1464 000c D154     		strb	r1, [r2, r3]
+ 400:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
+ 1465              		.loc 1 400 48 is_stmt 1 discriminator 3 view .LVU428
+ 1466 000e 0133     		adds	r3, r3, #1
+ARM GAS  /tmp/cc70tQPM.s 			page 37
+
+
+ 1467              	.LVL154:
+ 1468              	.L117:
+ 400:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
+ 1469              		.loc 1 400 28 discriminator 1 view .LVU429
+ 400:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
+ 1470              		.loc 1 400 40 is_stmt 0 discriminator 1 view .LVU430
+ 1471 0010 6268     		ldr	r2, [r4, #4]
+ 400:Core/Src/nyan_os.c ****         nyanString->p_array[i] = 0x00;
+ 1472              		.loc 1 400 28 discriminator 1 view .LVU431
+ 1473 0012 9A42     		cmp	r2, r3
+ 1474 0014 F8D8     		bhi	.L118
+ 1475              	.LBE20:
+ 402:Core/Src/nyan_os.c ****     }
+ 403:Core/Src/nyan_os.c ****     // Free up the pointer and memory
+ 404:Core/Src/nyan_os.c ****     free(nyanString->p_array);
+ 1476              		.loc 1 404 5 is_stmt 1 view .LVU432
+ 1477 0016 2068     		ldr	r0, [r4]
+ 1478              	.LVL155:
+ 1479              		.loc 1 404 5 is_stmt 0 view .LVU433
+ 1480 0018 FFF7FEFF 		bl	free
+ 1481              	.LVL156:
+ 405:Core/Src/nyan_os.c ****     nyanString->p_array = NULL;
+ 1482              		.loc 1 405 5 is_stmt 1 view .LVU434
+ 1483              		.loc 1 405 25 is_stmt 0 view .LVU435
+ 1484 001c 0023     		movs	r3, #0
+ 1485 001e 2360     		str	r3, [r4]
+ 406:Core/Src/nyan_os.c ****     nyanString->size = 0;
+ 1486              		.loc 1 406 5 is_stmt 1 view .LVU436
+ 1487              		.loc 1 406 22 is_stmt 0 view .LVU437
+ 1488 0020 6360     		str	r3, [r4, #4]
+ 407:Core/Src/nyan_os.c **** }
+ 1489              		.loc 1 407 1 view .LVU438
+ 1490 0022 10BD     		pop	{r4, pc}
+ 1491              		.loc 1 407 1 view .LVU439
+ 1492              		.cfi_endproc
+ 1493              	.LFE156:
+ 1495              		.section	.text.ClearNyanCommandBuffer,"ax",%progbits
+ 1496              		.align	1
+ 1497              		.global	ClearNyanCommandBuffer
+ 1498              		.syntax unified
+ 1499              		.thumb
+ 1500              		.thumb_func
+ 1502              	ClearNyanCommandBuffer:
+ 1503              	.LVL157:
+ 1504              	.LFB157:
+ 408:Core/Src/nyan_os.c **** 
+ 409:Core/Src/nyan_os.c **** void ClearNyanCommandBuffer(volatile NyanOS* nos){
+ 1505              		.loc 1 409 50 is_stmt 1 view -0
+ 1506              		.cfi_startproc
+ 1507              		@ args = 0, pretend = 0, frame = 0
+ 1508              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1509              		.loc 1 409 50 is_stmt 0 view .LVU441
+ 1510 0000 08B5     		push	{r3, lr}
+ 1511              		.cfi_def_cfa_offset 8
+ 1512              		.cfi_offset 3, -8
+ 1513              		.cfi_offset 14, -4
+ 410:Core/Src/nyan_os.c ****     nos->command_buffer_pos = 0;
+ARM GAS  /tmp/cc70tQPM.s 			page 38
+
+
+ 1514              		.loc 1 410 5 is_stmt 1 view .LVU442
+ 1515              		.loc 1 410 29 is_stmt 0 view .LVU443
+ 1516 0002 0021     		movs	r1, #0
+ 1517 0004 80F88810 		strb	r1, [r0, #136]
+ 411:Core/Src/nyan_os.c ****     memset((void*)nos->command_buffer, 0, sizeof(nos->command_buffer));
+ 1518              		.loc 1 411 5 is_stmt 1 view .LVU444
+ 1519 0008 8122     		movs	r2, #129
+ 1520 000a 0730     		adds	r0, r0, #7
+ 1521              	.LVL158:
+ 1522              		.loc 1 411 5 is_stmt 0 view .LVU445
+ 1523 000c FFF7FEFF 		bl	memset
+ 1524              	.LVL159:
+ 412:Core/Src/nyan_os.c **** };...
+ 1525              		.loc 1 412 1 view .LVU446
+ 1526 0010 08BD     		pop	{r3, pc}
+ 1527              		.cfi_endproc
+ 1528              	.LFE157:
+ 1530              		.section	.text.NyanOsInit,"ax",%progbits
+ 1531              		.align	1
+ 1532              		.global	NyanOsInit
+ 1533              		.syntax unified
+ 1534              		.thumb
+ 1535              		.thumb_func
+ 1537              	NyanOsInit:
+ 1538              	.LVL160:
+ 1539              	.LFB145:
+  18:Core/Src/nyan_os.c **** {
+ 1540              		.loc 1 18 1 is_stmt 1 view -0
+ 1541              		.cfi_startproc
+ 1542              		@ args = 0, pretend = 0, frame = 0
+ 1543              		@ frame_needed = 0, uses_anonymous_args = 0
+  18:Core/Src/nyan_os.c **** {
+ 1544              		.loc 1 18 1 is_stmt 0 view .LVU448
+ 1545 0000 38B5     		push	{r3, r4, r5, lr}
+ 1546              		.cfi_def_cfa_offset 16
+ 1547              		.cfi_offset 3, -16
+ 1548              		.cfi_offset 4, -12
+ 1549              		.cfi_offset 5, -8
+ 1550              		.cfi_offset 14, -4
+ 1551 0002 0546     		mov	r5, r0
+  20:Core/Src/nyan_os.c ****     nos->state = READY;
+ 1552              		.loc 1 20 5 is_stmt 1 view .LVU449
+  20:Core/Src/nyan_os.c ****     nos->state = READY;
+ 1553              		.loc 1 20 16 is_stmt 0 view .LVU450
+ 1554 0004 0123     		movs	r3, #1
+ 1555 0006 0371     		strb	r3, [r0, #4]
+  21:Core/Src/nyan_os.c ****     nos->next_state = READY;
+ 1556              		.loc 1 21 5 is_stmt 1 view .LVU451
+  21:Core/Src/nyan_os.c ****     nos->next_state = READY;
+ 1557              		.loc 1 21 21 is_stmt 0 view .LVU452
+ 1558 0008 4371     		strb	r3, [r0, #5]
+  22:Core/Src/nyan_os.c ****     nos->exe = NYAN_EXE_IDLE;
+ 1559              		.loc 1 22 5 is_stmt 1 view .LVU453
+  22:Core/Src/nyan_os.c ****     nos->exe = NYAN_EXE_IDLE;
+ 1560              		.loc 1 22 14 is_stmt 0 view .LVU454
+ 1561 000a 0423     		movs	r3, #4
+ 1562 000c 8371     		strb	r3, [r0, #6]
+ARM GAS  /tmp/cc70tQPM.s 			page 39
+
+
+  23:Core/Src/nyan_os.c ****     nos->exe_char = _NYAN_EXE_CHAR;
+ 1563              		.loc 1 23 5 is_stmt 1 view .LVU455
+  23:Core/Src/nyan_os.c ****     nos->exe_char = _NYAN_EXE_CHAR;
+ 1564              		.loc 1 23 19 is_stmt 0 view .LVU456
+ 1565 000e 0A23     		movs	r3, #10
+ 1566 0010 80F8B930 		strb	r3, [r0, #185]
+  24:Core/Src/nyan_os.c ****     nos->command_buffer_num_args = 0;
+ 1567              		.loc 1 24 5 is_stmt 1 view .LVU457
+  24:Core/Src/nyan_os.c ****     nos->command_buffer_num_args = 0;
+ 1568              		.loc 1 24 34 is_stmt 0 view .LVU458
+ 1569 0014 0024     		movs	r4, #0
+ 1570 0016 80F88940 		strb	r4, [r0, #137]
+  25:Core/Src/nyan_os.c ****     nos->command_buffer_pos = 0;
+ 1571              		.loc 1 25 5 is_stmt 1 view .LVU459
+  25:Core/Src/nyan_os.c ****     nos->command_buffer_pos = 0;
+ 1572              		.loc 1 25 29 is_stmt 0 view .LVU460
+ 1573 001a 80F88840 		strb	r4, [r0, #136]
+  26:Core/Src/nyan_os.c ****     nos->data_buffer_pos = 0;
+ 1574              		.loc 1 26 5 is_stmt 1 view .LVU461
+  26:Core/Src/nyan_os.c ****     nos->data_buffer_pos = 0;
+ 1575              		.loc 1 26 26 is_stmt 0 view .LVU462
+ 1576 001e 80F8B840 		strb	r4, [r0, #184]
+  27:Core/Src/nyan_os.c ****     nos->cdc_ch = 0;
+ 1577              		.loc 1 27 5 is_stmt 1 view .LVU463
+  27:Core/Src/nyan_os.c ****     nos->cdc_ch = 0;
+ 1578              		.loc 1 27 17 is_stmt 0 view .LVU464
+ 1579 0022 80F8BA40 		strb	r4, [r0, #186]
+  28:Core/Src/nyan_os.c ****     nos->send_welcome_screen = 0;
+ 1580              		.loc 1 28 5 is_stmt 1 view .LVU465
+  28:Core/Src/nyan_os.c ****     nos->send_welcome_screen = 0;
+ 1581              		.loc 1 28 30 is_stmt 0 view .LVU466
+ 1582 0026 80F8C440 		strb	r4, [r0, #196]
+  29:Core/Src/nyan_os.c ****     nos->eeprom = eeprom;
+ 1583              		.loc 1 29 5 is_stmt 1 view .LVU467
+  29:Core/Src/nyan_os.c ****     nos->eeprom = eeprom;
+ 1584              		.loc 1 29 17 is_stmt 0 view .LVU468
+ 1585 002a 0160     		str	r1, [r0]
+  30:Core/Src/nyan_os.c ****     nos->eeprom->tx_inflight = false;
+ 1586              		.loc 1 30 5 is_stmt 1 view .LVU469
+  30:Core/Src/nyan_os.c ****     nos->eeprom->tx_inflight = false;
+ 1587              		.loc 1 30 8 is_stmt 0 view .LVU470
+ 1588 002c 0368     		ldr	r3, [r0]
+  30:Core/Src/nyan_os.c ****     nos->eeprom->tx_inflight = false;
+ 1589              		.loc 1 30 30 view .LVU471
+ 1590 002e 9C70     		strb	r4, [r3, #2]
+  33:Core/Src/nyan_os.c ****     ClearNyanCommandBuffer(nos);
+ 1591              		.loc 1 33 5 is_stmt 1 view .LVU472
+ 1592 0030 FFF7FEFF 		bl	ClearNyanCommandBuffer
+ 1593              	.LVL161:
+  36:Core/Src/nyan_os.c ****     for (int i = 0; i < _NYAN_CMD_MAX_ARGS; ++i) {
+ 1594              		.loc 1 36 5 view .LVU473
+ 1595              	.LBB21:
+  36:Core/Src/nyan_os.c ****     for (int i = 0; i < _NYAN_CMD_MAX_ARGS; ++i) {
+ 1596              		.loc 1 36 10 view .LVU474
+  36:Core/Src/nyan_os.c ****     for (int i = 0; i < _NYAN_CMD_MAX_ARGS; ++i) {
+ 1597              		.loc 1 36 14 is_stmt 0 view .LVU475
+ 1598 0034 2346     		mov	r3, r4
+ARM GAS  /tmp/cc70tQPM.s 			page 40
+
+
+  36:Core/Src/nyan_os.c ****     for (int i = 0; i < _NYAN_CMD_MAX_ARGS; ++i) {
+ 1599              		.loc 1 36 5 view .LVU476
+ 1600 0036 06E0     		b	.L123
+ 1601              	.LVL162:
+ 1602              	.L124:
+  37:Core/Src/nyan_os.c ****         nos->command_arg_buffer[i] = NULL;
+ 1603              		.loc 1 37 9 is_stmt 1 discriminator 3 view .LVU477
+  37:Core/Src/nyan_os.c ****         nos->command_arg_buffer[i] = NULL;
+ 1604              		.loc 1 37 36 is_stmt 0 discriminator 3 view .LVU478
+ 1605 0038 03F12202 		add	r2, r3, #34
+ 1606 003c 05EB8202 		add	r2, r5, r2, lsl #2
+ 1607 0040 0021     		movs	r1, #0
+ 1608 0042 5160     		str	r1, [r2, #4]
+  36:Core/Src/nyan_os.c ****     for (int i = 0; i < _NYAN_CMD_MAX_ARGS; ++i) {
+ 1609              		.loc 1 36 45 is_stmt 1 discriminator 3 view .LVU479
+ 1610 0044 0133     		adds	r3, r3, #1
+ 1611              	.LVL163:
+ 1612              	.L123:
+  36:Core/Src/nyan_os.c ****     for (int i = 0; i < _NYAN_CMD_MAX_ARGS; ++i) {
+ 1613              		.loc 1 36 23 discriminator 1 view .LVU480
+ 1614 0046 092B     		cmp	r3, #9
+ 1615 0048 F6DD     		ble	.L124
+ 1616              	.LBE21:
+  41:Core/Src/nyan_os.c ****     nos->tx_buffer.p_array = NULL;
+ 1617              		.loc 1 41 5 view .LVU481
+  41:Core/Src/nyan_os.c ****     nos->tx_buffer.p_array = NULL;
+ 1618              		.loc 1 41 28 is_stmt 0 view .LVU482
+ 1619 004a 0023     		movs	r3, #0
+ 1620              	.LVL164:
+  41:Core/Src/nyan_os.c ****     nos->tx_buffer.p_array = NULL;
+ 1621              		.loc 1 41 28 view .LVU483
+ 1622 004c C5F8BC30 		str	r3, [r5, #188]
+  42:Core/Src/nyan_os.c ****     nos->tx_buffer.size = 0;
+ 1623              		.loc 1 42 5 is_stmt 1 view .LVU484
+  42:Core/Src/nyan_os.c ****     nos->tx_buffer.size = 0;
+ 1624              		.loc 1 42 25 is_stmt 0 view .LVU485
+ 1625 0050 C5F8C030 		str	r3, [r5, #192]
+  44:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+ 1626              		.loc 1 44 5 is_stmt 1 view .LVU486
+  45:Core/Src/nyan_os.c **** }
+ 1627              		.loc 1 45 1 is_stmt 0 view .LVU487
+ 1628 0054 0120     		movs	r0, #1
+ 1629 0056 38BD     		pop	{r3, r4, r5, pc}
+  45:Core/Src/nyan_os.c **** }
+ 1630              		.loc 1 45 1 view .LVU488
+ 1631              		.cfi_endproc
+ 1632              	.LFE145:
+ 1634              		.section	.rodata.NyanAddInputBuffer.str1.4,"aMS",%progbits,1
+ 1635              		.align	2
+ 1636              	.LC1:
+ 1637 0000 08200800 		.ascii	"\010 \010\000"
+ 1638              		.section	.text.NyanAddInputBuffer,"ax",%progbits
+ 1639              		.align	1
+ 1640              		.global	NyanAddInputBuffer
+ 1641              		.syntax unified
+ 1642              		.thumb
+ 1643              		.thumb_func
+ARM GAS  /tmp/cc70tQPM.s 			page 41
+
+
+ 1645              	NyanAddInputBuffer:
+ 1646              	.LVL165:
+ 1647              	.LFB147:
+  59:Core/Src/nyan_os.c **** {
+ 1648              		.loc 1 59 1 is_stmt 1 view -0
+ 1649              		.cfi_startproc
+ 1650              		@ args = 0, pretend = 0, frame = 8
+ 1651              		@ frame_needed = 0, uses_anonymous_args = 0
+  59:Core/Src/nyan_os.c **** {
+ 1652              		.loc 1 59 1 is_stmt 0 view .LVU490
+ 1653 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1654              		.cfi_def_cfa_offset 20
+ 1655              		.cfi_offset 4, -20
+ 1656              		.cfi_offset 5, -16
+ 1657              		.cfi_offset 6, -12
+ 1658              		.cfi_offset 7, -8
+ 1659              		.cfi_offset 14, -4
+ 1660 0002 83B0     		sub	sp, sp, #12
+ 1661              		.cfi_def_cfa_offset 32
+ 1662 0004 0446     		mov	r4, r0
+ 1663 0006 0E46     		mov	r6, r1
+ 1664 0008 1746     		mov	r7, r2
+  60:Core/Src/nyan_os.c ****     const char del_char = 0x7F;
+ 1665              		.loc 1 60 5 is_stmt 1 view .LVU491
+ 1666              	.LVL166:
+  61:Core/Src/nyan_os.c ****     const char backspace_char = 0x08;
+ 1667              		.loc 1 61 5 view .LVU492
+  62:Core/Src/nyan_os.c ****     const char carriage_return = '\r';
+ 1668              		.loc 1 62 5 view .LVU493
+  63:Core/Src/nyan_os.c ****     const char line_feed = '\n';
+ 1669              		.loc 1 63 5 view .LVU494
+  65:Core/Src/nyan_os.c ****     switch(nos->state){
+ 1670              		.loc 1 65 5 view .LVU495
+  65:Core/Src/nyan_os.c ****     switch(nos->state){
+ 1671              		.loc 1 65 15 is_stmt 0 view .LVU496
+ 1672 000a 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 1673 000c DBB2     		uxtb	r3, r3
+  65:Core/Src/nyan_os.c ****     switch(nos->state){
+ 1674              		.loc 1 65 5 view .LVU497
+ 1675 000e 012B     		cmp	r3, #1
+ 1676 0010 4FD0     		beq	.L136
+ 1677 0012 022B     		cmp	r3, #2
+ 1678 0014 63D0     		beq	.L137
+ 1679              	.LVL167:
+ 1680              	.L129:
+  99:Core/Src/nyan_os.c ****     return NOS_SUCCESS;
+ 1681              		.loc 1 99 5 is_stmt 1 view .LVU498
+ 100:Core/Src/nyan_os.c **** }
+ 1682              		.loc 1 100 1 is_stmt 0 view .LVU499
+ 1683 0016 0120     		movs	r0, #1
+ 1684 0018 03B0     		add	sp, sp, #12
+ 1685              		.cfi_remember_state
+ 1686              		.cfi_def_cfa_offset 20
+ 1687              		@ sp needed
+ 1688 001a F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1689              	.LVL168:
+ 1690              	.L139:
+ARM GAS  /tmp/cc70tQPM.s 			page 42
+
+
+ 1691              		.cfi_restore_state
+ 1692              	.LBB22:
+ 1693              	.LBB23:
+  70:Core/Src/nyan_os.c ****                     uint8_t backspace_seq[3] = {backspace_char, ' ', backspace_char};
+ 1694              		.loc 1 70 21 is_stmt 1 view .LVU500
+  70:Core/Src/nyan_os.c ****                     uint8_t backspace_seq[3] = {backspace_char, ' ', backspace_char};
+ 1695              		.loc 1 70 29 is_stmt 0 view .LVU501
+ 1696 001c 314B     		ldr	r3, .L141
+ 1697 001e 1B68     		ldr	r3, [r3]
+ 1698 0020 ADF80430 		strh	r3, [sp, #4]	@ movhi
+ 1699 0024 1B0C     		lsrs	r3, r3, #16
+ 1700 0026 8DF80630 		strb	r3, [sp, #6]
+  71:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&backspace_seq[0], sizeof(backspace_seq));
+ 1701              		.loc 1 71 21 is_stmt 1 view .LVU502
+ 1702 002a 0322     		movs	r2, #3
+ 1703 002c 01A9     		add	r1, sp, #4
+ 1704 002e 2046     		mov	r0, r4
+ 1705 0030 FFF7FEFF 		bl	NyanPrint
+ 1706              	.LVL169:
+  72:Core/Src/nyan_os.c ****                     --nos->command_buffer_pos;
+ 1707              		.loc 1 72 21 view .LVU503
+  72:Core/Src/nyan_os.c ****                     --nos->command_buffer_pos;
+ 1708              		.loc 1 72 26 is_stmt 0 view .LVU504
+ 1709 0034 94F88830 		ldrb	r3, [r4, #136]	@ zero_extendqisi2
+  72:Core/Src/nyan_os.c ****                     --nos->command_buffer_pos;
+ 1710              		.loc 1 72 21 view .LVU505
+ 1711 0038 013B     		subs	r3, r3, #1
+ 1712 003a DBB2     		uxtb	r3, r3
+ 1713 003c 84F88830 		strb	r3, [r4, #136]
+ 1714              	.L131:
+  72:Core/Src/nyan_os.c ****                     --nos->command_buffer_pos;
+ 1715              		.loc 1 72 21 view .LVU506
+ 1716              	.LBE23:
+  67:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+ 1717              		.loc 1 67 47 is_stmt 1 discriminator 2 view .LVU507
+ 1718 0040 0135     		adds	r5, r5, #1
+ 1719              	.LVL170:
+ 1720              	.L127:
+  67:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+ 1721              		.loc 1 67 39 discriminator 1 view .LVU508
+  67:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+ 1722              		.loc 1 67 41 is_stmt 0 discriminator 1 view .LVU509
+ 1723 0042 3B68     		ldr	r3, [r7]
+  67:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+ 1724              		.loc 1 67 39 discriminator 1 view .LVU510
+ 1725 0044 AB42     		cmp	r3, r5
+ 1726 0046 E6D9     		bls	.L129
+  68:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
+ 1727              		.loc 1 68 17 is_stmt 1 view .LVU511
+  68:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
+ 1728              		.loc 1 68 25 is_stmt 0 view .LVU512
+ 1729 0048 7119     		adds	r1, r6, r5
+ 1730 004a 735D     		ldrb	r3, [r6, r5]	@ zero_extendqisi2
+  68:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
+ 1731              		.loc 1 68 19 view .LVU513
+ 1732 004c 7F2B     		cmp	r3, #127
+ 1733 004e 18BF     		it	ne
+ARM GAS  /tmp/cc70tQPM.s 			page 43
+
+
+ 1734 0050 082B     		cmpne	r3, #8
+ 1735 0052 03D1     		bne	.L130
+  68:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
+ 1736              		.loc 1 68 82 discriminator 1 view .LVU514
+ 1737 0054 94F88820 		ldrb	r2, [r4, #136]	@ zero_extendqisi2
+  68:Core/Src/nyan_os.c ****                 if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_p
+ 1738              		.loc 1 68 76 discriminator 1 view .LVU515
+ 1739 0058 002A     		cmp	r2, #0
+ 1740 005a DFD1     		bne	.L139
+ 1741              	.L130:
+  73:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
+ 1742              		.loc 1 73 24 is_stmt 1 view .LVU516
+  73:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
+ 1743              		.loc 1 73 26 is_stmt 0 view .LVU517
+ 1744 005c 0D2B     		cmp	r3, #13
+ 1745 005e 18BF     		it	ne
+ 1746 0060 0A2B     		cmpne	r3, #10
+ 1747 0062 17D0     		beq	.L140
+  80:Core/Src/nyan_os.c ****                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
+ 1748              		.loc 1 80 24 is_stmt 1 view .LVU518
+  80:Core/Src/nyan_os.c ****                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
+ 1749              		.loc 1 80 30 is_stmt 0 view .LVU519
+ 1750 0064 94F88820 		ldrb	r2, [r4, #136]	@ zero_extendqisi2
+ 1751 0068 D2B2     		uxtb	r2, r2
+  80:Core/Src/nyan_os.c ****                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
+ 1752              		.loc 1 80 26 view .LVU520
+ 1753 006a 7E2A     		cmp	r2, #126
+ 1754 006c E8D8     		bhi	.L131
+  82:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] >= 0x20 && pbuf[idx] <= 0x7E) {
+ 1755              		.loc 1 82 24 is_stmt 1 view .LVU521
+  82:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] >= 0x20 && pbuf[idx] <= 0x7E) {
+ 1756              		.loc 1 82 45 is_stmt 0 view .LVU522
+ 1757 006e 203B     		subs	r3, r3, #32
+ 1758 0070 DBB2     		uxtb	r3, r3
+  82:Core/Src/nyan_os.c ****                 } else if(pbuf[idx] >= 0x20 && pbuf[idx] <= 0x7E) {
+ 1759              		.loc 1 82 26 view .LVU523
+ 1760 0072 5E2B     		cmp	r3, #94
+ 1761 0074 E4D8     		bhi	.L131
+  83:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
+ 1762              		.loc 1 83 21 is_stmt 1 view .LVU524
+  83:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
+ 1763              		.loc 1 83 44 is_stmt 0 view .LVU525
+ 1764 0076 94F88830 		ldrb	r3, [r4, #136]	@ zero_extendqisi2
+  83:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
+ 1765              		.loc 1 83 64 view .LVU526
+ 1766 007a 5A1C     		adds	r2, r3, #1
+ 1767 007c D2B2     		uxtb	r2, r2
+ 1768 007e 84F88820 		strb	r2, [r4, #136]
+  83:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
+ 1769              		.loc 1 83 74 view .LVU527
+ 1770 0082 0A78     		ldrb	r2, [r1]	@ zero_extendqisi2
+  83:Core/Src/nyan_os.c ****                     nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
+ 1771              		.loc 1 83 68 view .LVU528
+ 1772 0084 2344     		add	r3, r3, r4
+ 1773 0086 DA71     		strb	r2, [r3, #7]
+  84:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)pbuf, (size_t)*Len);
+ 1774              		.loc 1 84 21 is_stmt 1 view .LVU529
+ARM GAS  /tmp/cc70tQPM.s 			page 44
+
+
+ 1775 0088 3A68     		ldr	r2, [r7]
+ 1776 008a 3146     		mov	r1, r6
+ 1777 008c 2046     		mov	r0, r4
+ 1778 008e FFF7FEFF 		bl	NyanPrint
+ 1779              	.LVL171:
+ 1780 0092 D5E7     		b	.L131
+ 1781              	.L140:
+  75:Core/Src/nyan_os.c ****                     nos->command_buffer_pos = 0;
+ 1782              		.loc 1 75 21 view .LVU530
+  75:Core/Src/nyan_os.c ****                     nos->command_buffer_pos = 0;
+ 1783              		.loc 1 75 45 is_stmt 0 view .LVU531
+ 1784 0094 0023     		movs	r3, #0
+ 1785 0096 84F88830 		strb	r3, [r4, #136]
+  76:Core/Src/nyan_os.c ****                     NyanDecode(nos);
+ 1786              		.loc 1 76 21 is_stmt 1 view .LVU532
+ 1787 009a 2046     		mov	r0, r4
+ 1788 009c FFF7FEFF 		bl	NyanDecode
+ 1789              	.LVL172:
+  77:Core/Src/nyan_os.c ****                     ClearNyanCommandBuffer(nos);
+ 1790              		.loc 1 77 21 view .LVU533
+ 1791 00a0 2046     		mov	r0, r4
+ 1792 00a2 FFF7FEFF 		bl	ClearNyanCommandBuffer
+ 1793              	.LVL173:
+  78:Core/Src/nyan_os.c ****                     NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+ 1794              		.loc 1 78 21 view .LVU534
+ 1795 00a6 0322     		movs	r2, #3
+ 1796 00a8 0F49     		ldr	r1, .L141+4
+ 1797 00aa 2046     		mov	r0, r4
+ 1798 00ac FFF7FEFF 		bl	NyanPrint
+ 1799              	.LVL174:
+  79:Core/Src/nyan_os.c ****                     break;
+ 1800              		.loc 1 79 21 view .LVU535
+ 1801 00b0 B1E7     		b	.L129
+ 1802              	.LVL175:
+ 1803              	.L136:
+  79:Core/Src/nyan_os.c ****                     break;
+ 1804              		.loc 1 79 21 is_stmt 0 view .LVU536
+ 1805              	.LBE22:
+  65:Core/Src/nyan_os.c ****     switch(nos->state){
+ 1806              		.loc 1 65 5 view .LVU537
+ 1807 00b2 0025     		movs	r5, #0
+ 1808 00b4 C5E7     		b	.L127
+ 1809              	.LVL176:
+ 1810              	.L134:
+ 1811              	.LBB24:
+  91:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+ 1812              		.loc 1 91 47 is_stmt 1 discriminator 2 view .LVU538
+ 1813 00b6 0133     		adds	r3, r3, #1
+ 1814              	.LVL177:
+ 1815              	.L128:
+  91:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+ 1816              		.loc 1 91 39 discriminator 1 view .LVU539
+  91:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+ 1817              		.loc 1 91 41 is_stmt 0 discriminator 1 view .LVU540
+ 1818 00b8 3A68     		ldr	r2, [r7]
+  91:Core/Src/nyan_os.c ****             for(uint32_t idx = 0; idx < *Len; ++idx) {
+ 1819              		.loc 1 91 39 discriminator 1 view .LVU541
+ARM GAS  /tmp/cc70tQPM.s 			page 45
+
+
+ 1820 00ba 9A42     		cmp	r2, r3
+ 1821 00bc ABD9     		bls	.L129
+  92:Core/Src/nyan_os.c ****                 if(nos->bytes_received < nos->bytes_array_size)
+ 1822              		.loc 1 92 17 is_stmt 1 view .LVU542
+  92:Core/Src/nyan_os.c ****                 if(nos->bytes_received < nos->bytes_array_size)
+ 1823              		.loc 1 92 23 is_stmt 0 view .LVU543
+ 1824 00be D4F8CC10 		ldr	r1, [r4, #204]
+  92:Core/Src/nyan_os.c ****                 if(nos->bytes_received < nos->bytes_array_size)
+ 1825              		.loc 1 92 45 view .LVU544
+ 1826 00c2 D4F8C820 		ldr	r2, [r4, #200]
+  92:Core/Src/nyan_os.c ****                 if(nos->bytes_received < nos->bytes_array_size)
+ 1827              		.loc 1 92 19 view .LVU545
+ 1828 00c6 9142     		cmp	r1, r2
+ 1829 00c8 F5D2     		bcs	.L134
+  93:Core/Src/nyan_os.c ****                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+ 1830              		.loc 1 93 21 is_stmt 1 view .LVU546
+  93:Core/Src/nyan_os.c ****                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+ 1831              		.loc 1 93 24 is_stmt 0 view .LVU547
+ 1832 00ca D4F8D010 		ldr	r1, [r4, #208]
+  93:Core/Src/nyan_os.c ****                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+ 1833              		.loc 1 93 41 view .LVU548
+ 1834 00ce D4F8CC20 		ldr	r2, [r4, #204]
+  93:Core/Src/nyan_os.c ****                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+ 1835              		.loc 1 93 57 view .LVU549
+ 1836 00d2 501C     		adds	r0, r2, #1
+ 1837 00d4 C4F8CC00 		str	r0, [r4, #204]
+  93:Core/Src/nyan_os.c ****                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+ 1838              		.loc 1 93 67 view .LVU550
+ 1839 00d8 F05C     		ldrb	r0, [r6, r3]	@ zero_extendqisi2
+  93:Core/Src/nyan_os.c ****                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+ 1840              		.loc 1 93 61 view .LVU551
+ 1841 00da 8854     		strb	r0, [r1, r2]
+ 1842 00dc EBE7     		b	.L134
+ 1843              	.LVL178:
+ 1844              	.L137:
+  93:Core/Src/nyan_os.c ****                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+ 1845              		.loc 1 93 61 view .LVU552
+ 1846              	.LBE24:
+  65:Core/Src/nyan_os.c ****     switch(nos->state){
+ 1847              		.loc 1 65 5 view .LVU553
+ 1848 00de 0023     		movs	r3, #0
+ 1849 00e0 EAE7     		b	.L128
+ 1850              	.L142:
+ 1851 00e2 00BF     		.align	2
+ 1852              	.L141:
+ 1853 00e4 00000000 		.word	.LC1
+ 1854 00e8 00000000 		.word	nyan_keys_newline
+ 1855              		.cfi_endproc
+ 1856              	.LFE147:
+ 1858              		.section	.data.nyan_keys_write_bitstream_error_size_tx_busy,"aw"
+ 1859              		.align	2
+ 1862              	nyan_keys_write_bitstream_error_size_tx_busy:
+ 1863 0000 4661696C 		.ascii	"Failed to write bitstream length, TX buffer is busy"
+ 1863      65642074 
+ 1863      6F207772 
+ 1863      69746520 
+ 1863      62697473 
+ARM GAS  /tmp/cc70tQPM.s 			page 46
+
+
+ 1864 0033 2E0D0A00 		.ascii	".\015\012\000"
+ 1865              		.section	.data.nyan_keys_write_bitstream_error_size,"aw"
+ 1866              		.align	2
+ 1869              	nyan_keys_write_bitstream_error_size:
+ 1870 0000 4661696C 		.ascii	"Failed to parse bitstream length, size must be less"
+ 1870      65642074 
+ 1870      6F207061 
+ 1870      72736520 
+ 1870      62697473 
+ 1871 0033 20746861 		.ascii	" than 65535 bytes.\015\012\000"
+ 1871      6E203635 
+ 1871      35333520 
+ 1871      62797465 
+ 1871      732E0D0A 
+ 1872              		.section	.data.nyan_keys_write_bitstream_info_start,"aw"
+ 1873              		.align	2
+ 1876              	nyan_keys_write_bitstream_info_start:
+ 1877 0000 72656164 		.ascii	"ready\015\012\000"
+ 1877      790D0A00 
+ 1878              		.section	.data.nyan_keys_unknown_command,"aw"
+ 1879              		.align	2
+ 1882              	nyan_keys_unknown_command:
+ 1883 0000 436F6D6D 		.ascii	"Command not supported by NyanOS\000"
+ 1883      616E6420 
+ 1883      6E6F7420 
+ 1883      73757070 
+ 1883      6F727465 
+ 1884              		.section	.data.nyan_keys_set_owner_success,"aw"
+ 1885              		.align	2
+ 1888              	nyan_keys_set_owner_success:
+ 1889 0000 4E79616E 		.ascii	"Nyan Keys owner has been successfully set\015\012\000"
+ 1889      204B6579 
+ 1889      73206F77 
+ 1889      6E657220 
+ 1889      68617320 
+ 1890              		.section	.data.nyan_keys_getinfo_owner,"aw"
+ 1891              		.align	2
+ 1894              	nyan_keys_getinfo_owner:
+ 1895 0000 4F776E65 		.ascii	"Owner: \000"
+ 1895      723A2000 
+ 1896              		.section	.data.nyan_keys_getinfo,"aw"
+ 1897              		.align	2
+ 1900              	nyan_keys_getinfo:
+ 1901 0000 56657273 		.ascii	"Version: 0.01\015\012Author: Portland.HODL\015\012B"
+ 1901      696F6E3A 
+ 1901      20302E30 
+ 1901      310D0A41 
+ 1901      7574686F 
+ 1902 0027 75696C74 		.ascii	"uilt: 07/11/23\015\012\000"
+ 1902      3A203037 
+ 1902      2F31312F 
+ 1902      32330D0A 
+ 1902      00
+ 1903              		.section	.data.nyan_keys_path_text,"aw"
+ 1904              		.align	2
+ 1907              	nyan_keys_path_text:
+ 1908 0000 4E79616E 		.ascii	"NyanOS \360\237\220\261 > \000"
+ARM GAS  /tmp/cc70tQPM.s 			page 47
+
+
+ 1908      4F5320F0 
+ 1908      9F90B120 
+ 1908      3E2000
+ 1909              		.section	.data.nyan_keys_newline,"aw"
+ 1910              		.align	2
+ 1913              	nyan_keys_newline:
+ 1914 0000 0D0A00   		.ascii	"\015\012\000"
+ 1915              		.section	.data.nyan_keys_welcome_text,"aw"
+ 1916              		.align	2
+ 1919              	nyan_keys_welcome_text:
+ 1920 0000 4E79616E 		.ascii	"Nyan Keys Operating System (NOS) V0.01\015\012Made "
+ 1920      204B6579 
+ 1920      73204F70 
+ 1920      65726174 
+ 1920      696E6720 
+ 1921 002d 62792050 		.ascii	"by Portland.HODL\015\012\015\012\000"
+ 1921      6F72746C 
+ 1921      616E642E 
+ 1921      484F444C 
+ 1921      0D0A0D0A 
+ 1922              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 1923              		.align	2
+ 1924              	.LC2:
+ 1925 0000 67657469 		.ascii	"getinfo\000"
+ 1925      6E666F00 
+ 1926              		.align	2
+ 1927              	.LC3:
+ 1928 0008 77726974 		.ascii	"write-bitstream\000"
+ 1928      652D6269 
+ 1928      74737472 
+ 1928      65616D00 
+ 1929              		.align	2
+ 1930              	.LC4:
+ 1931 0018 7365742D 		.ascii	"set-owner\000"
+ 1931      6F776E65 
+ 1931      7200
+ 1932              		.section	.rodata.nyan_commands,"a"
+ 1933              		.align	2
+ 1936              	nyan_commands:
+ 1937 0000 00000000 		.word	.LC2
+ 1938 0004 08000000 		.word	.LC3
+ 1939 0008 18000000 		.word	.LC4
+ 1940              		.text
+ 1941              	.Letext0:
+ 1942              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 1943              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 1944              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 1945              		.file 5 "Core/Inc/24xx_eeprom.h"
+ 1946              		.file 6 "Core/Inc/nyan_os.h"
+ 1947              		.file 7 "Core/Inc/nyan_strings.h"
+ 1948              		.file 8 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 1949              		.file 9 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 1950              		.file 10 "<built-in>"
+ARM GAS  /tmp/cc70tQPM.s 			page 48
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 nyan_os.c
-     /tmp/ccVluowp.s:20     .text.NyanOsInit:0000000000000000 $t
-     /tmp/ccVluowp.s:26     .text.NyanOsInit:0000000000000000 NyanOsInit
-     /tmp/ccVluowp.s:100    .text.NyanPrint:0000000000000000 $t
-     /tmp/ccVluowp.s:106    .text.NyanPrint:0000000000000000 NyanPrint
-     /tmp/ccVluowp.s:245    .text.NyanWelcomeDisplay:0000000000000000 $t
-     /tmp/ccVluowp.s:251    .text.NyanWelcomeDisplay:0000000000000000 NyanWelcomeDisplay
-     /tmp/ccVluowp.s:302    .text.NyanWelcomeDisplay:000000000000002c $d
-     /tmp/ccVluowp.s:308    .text.FreeNyanString:0000000000000000 $t
-     /tmp/ccVluowp.s:314    .text.FreeNyanString:0000000000000000 FreeNyanString
-     /tmp/ccVluowp.s:375    .text.NyanDecode:0000000000000000 $t
-     /tmp/ccVluowp.s:381    .text.NyanDecode:0000000000000000 NyanDecode
-     /tmp/ccVluowp.s:470    .text.NyanDecode:000000000000003c $d
-     /tmp/ccVluowp.s:475    .rodata.NyanAddInputBuffer.str1.4:0000000000000000 $d
-     /tmp/ccVluowp.s:479    .text.NyanAddInputBuffer:0000000000000000 $t
-     /tmp/ccVluowp.s:485    .text.NyanAddInputBuffer:0000000000000000 NyanAddInputBuffer
-     /tmp/ccVluowp.s:673    .text.NyanAddInputBuffer:00000000000000b8 $d
-     /tmp/ccVluowp.s:680    .text.NyanExeGetinfo:0000000000000000 $t
-     /tmp/ccVluowp.s:686    .text.NyanExeGetinfo:0000000000000000 NyanExeGetinfo
-     /tmp/ccVluowp.s:709    .text.NyanExeGetinfo:000000000000000c $d
-     /tmp/ccVluowp.s:714    .text.NyanExecute:0000000000000000 $t
-     /tmp/ccVluowp.s:720    .text.NyanExecute:0000000000000000 NyanExecute
-     /tmp/ccVluowp.s:744    .text.NyanExecute:0000000000000010 $d
-     /tmp/ccVluowp.s:748    .text.NyanExecute:0000000000000014 $t
-     /tmp/ccVluowp.s:829    .text.NyanExecute:0000000000000070 $d
-     /tmp/ccVluowp.s:836    .rodata.str1.4:0000000000000000 $d
-     /tmp/ccVluowp.s:843    .data.nyan_keys_getinfo:0000000000000000 $d
-     /tmp/ccVluowp.s:847    .data.nyan_keys_getinfo:0000000000000000 nyan_keys_getinfo
-     /tmp/ccVluowp.s:851    .data.nyan_keys_newline:0000000000000000 $d
-     /tmp/ccVluowp.s:855    .data.nyan_keys_newline:0000000000000000 nyan_keys_newline
-     /tmp/ccVluowp.s:858    .data.nyan_keys_path_text:0000000000000000 $d
-     /tmp/ccVluowp.s:862    .data.nyan_keys_path_text:0000000000000000 nyan_keys_path_text
-     /tmp/ccVluowp.s:865    .data.nyan_keys_unknown_command:0000000000000000 $d
-     /tmp/ccVluowp.s:869    .data.nyan_keys_unknown_command:0000000000000000 nyan_keys_unknown_command
-     /tmp/ccVluowp.s:872    .data.nyan_keys_welcome_text:0000000000000000 $d
-     /tmp/ccVluowp.s:876    .data.nyan_keys_welcome_text:0000000000000000 nyan_keys_welcome_text
-     /tmp/ccVluowp.s:880    .rodata.nyan_commands:0000000000000000 $d
-     /tmp/ccVluowp.s:884    .rodata.nyan_commands:0000000000000000 nyan_commands
+                            *ABS*:00000000 nyan_os.c
+     /tmp/cc70tQPM.s:21     .text.NyanPrint:00000000 $t
+     /tmp/cc70tQPM.s:27     .text.NyanPrint:00000000 NyanPrint
+     /tmp/cc70tQPM.s:163    .text.NyanWelcomeDisplay:00000000 $t
+     /tmp/cc70tQPM.s:169    .text.NyanWelcomeDisplay:00000000 NyanWelcomeDisplay
+     /tmp/cc70tQPM.s:219    .text.NyanWelcomeDisplay:0000002c $d
+     /tmp/cc70tQPM.s:1919   .data.nyan_keys_welcome_text:00000000 nyan_keys_welcome_text
+     /tmp/cc70tQPM.s:1907   .data.nyan_keys_path_text:00000000 nyan_keys_path_text
+     /tmp/cc70tQPM.s:225    .text.NyanExeGetinfo:00000000 $t
+     /tmp/cc70tQPM.s:231    .text.NyanExeGetinfo:00000000 NyanExeGetinfo
+     /tmp/cc70tQPM.s:322    .text.NyanExeGetinfo:00000064 $d
+     /tmp/cc70tQPM.s:1900   .data.nyan_keys_getinfo:00000000 nyan_keys_getinfo
+     /tmp/cc70tQPM.s:1894   .data.nyan_keys_getinfo_owner:00000000 nyan_keys_getinfo_owner
+     /tmp/cc70tQPM.s:1913   .data.nyan_keys_newline:00000000 nyan_keys_newline
+     /tmp/cc70tQPM.s:329    .text.NyanExeSetOwner:00000000 $t
+     /tmp/cc70tQPM.s:335    .text.NyanExeSetOwner:00000000 NyanExeSetOwner
+     /tmp/cc70tQPM.s:612    .text.NyanExeWriteFpgaBitstream:00000000 $t
+     /tmp/cc70tQPM.s:618    .text.NyanExeWriteFpgaBitstream:00000000 NyanExeWriteFpgaBitstream
+     /tmp/cc70tQPM.s:891    .text.NyanExeWriteFpgaBitstream:00000110 $d
+     /tmp/cc70tQPM.s:1869   .data.nyan_keys_write_bitstream_error_size:00000000 nyan_keys_write_bitstream_error_size
+     /tmp/cc70tQPM.s:1862   .data.nyan_keys_write_bitstream_error_size_tx_busy:00000000 nyan_keys_write_bitstream_error_size_tx_busy
+     /tmp/cc70tQPM.s:1876   .data.nyan_keys_write_bitstream_info_start:00000000 nyan_keys_write_bitstream_info_start
+     /tmp/cc70tQPM.s:898    .text.NyanExecute:00000000 $t
+     /tmp/cc70tQPM.s:904    .text.NyanExecute:00000000 NyanExecute
+     /tmp/cc70tQPM.s:928    .text.NyanExecute:00000010 $d
+     /tmp/cc70tQPM.s:1051   .text.NyanExecute:0000009c $d
+     /tmp/cc70tQPM.s:1888   .data.nyan_keys_set_owner_success:00000000 nyan_keys_set_owner_success
+     /tmp/cc70tQPM.s:1882   .data.nyan_keys_unknown_command:00000000 nyan_keys_unknown_command
+     /tmp/cc70tQPM.s:1059   .text.FreeNyanCommandArgs:00000000 $t
+     /tmp/cc70tQPM.s:1065   .text.FreeNyanCommandArgs:00000000 FreeNyanCommandArgs
+     /tmp/cc70tQPM.s:1135   .rodata.NyanDecodeArgs.str1.4:00000000 $d
+     /tmp/cc70tQPM.s:1139   .text.NyanDecodeArgs:00000000 $t
+     /tmp/cc70tQPM.s:1145   .text.NyanDecodeArgs:00000000 NyanDecodeArgs
+     /tmp/cc70tQPM.s:1322   .text.NyanDecodeArgs:00000094 $d
+     /tmp/cc70tQPM.s:1327   .text.NyanDecode:00000000 $t
+     /tmp/cc70tQPM.s:1333   .text.NyanDecode:00000000 NyanDecode
+     /tmp/cc70tQPM.s:1425   .text.NyanDecode:00000044 $d
+     /tmp/cc70tQPM.s:1936   .rodata.nyan_commands:00000000 nyan_commands
+     /tmp/cc70tQPM.s:1430   .text.FreeNyanString:00000000 $t
+     /tmp/cc70tQPM.s:1436   .text.FreeNyanString:00000000 FreeNyanString
+     /tmp/cc70tQPM.s:1496   .text.ClearNyanCommandBuffer:00000000 $t
+     /tmp/cc70tQPM.s:1502   .text.ClearNyanCommandBuffer:00000000 ClearNyanCommandBuffer
+     /tmp/cc70tQPM.s:1531   .text.NyanOsInit:00000000 $t
+     /tmp/cc70tQPM.s:1537   .text.NyanOsInit:00000000 NyanOsInit
+     /tmp/cc70tQPM.s:1635   .rodata.NyanAddInputBuffer.str1.4:00000000 $d
+     /tmp/cc70tQPM.s:1639   .text.NyanAddInputBuffer:00000000 $t
+     /tmp/cc70tQPM.s:1645   .text.NyanAddInputBuffer:00000000 NyanAddInputBuffer
+     /tmp/cc70tQPM.s:1853   .text.NyanAddInputBuffer:000000e4 $d
+     /tmp/cc70tQPM.s:1859   .data.nyan_keys_write_bitstream_error_size_tx_busy:00000000 $d
+     /tmp/cc70tQPM.s:1866   .data.nyan_keys_write_bitstream_error_size:00000000 $d
+     /tmp/cc70tQPM.s:1873   .data.nyan_keys_write_bitstream_info_start:00000000 $d
+     /tmp/cc70tQPM.s:1879   .data.nyan_keys_unknown_command:00000000 $d
+     /tmp/cc70tQPM.s:1885   .data.nyan_keys_set_owner_success:00000000 $d
+     /tmp/cc70tQPM.s:1891   .data.nyan_keys_getinfo_owner:00000000 $d
+     /tmp/cc70tQPM.s:1897   .data.nyan_keys_getinfo:00000000 $d
+     /tmp/cc70tQPM.s:1904   .data.nyan_keys_path_text:00000000 $d
+ARM GAS  /tmp/cc70tQPM.s 			page 49
+
+
+     /tmp/cc70tQPM.s:1910   .data.nyan_keys_newline:00000000 $d
+     /tmp/cc70tQPM.s:1916   .data.nyan_keys_welcome_text:00000000 $d
+     /tmp/cc70tQPM.s:1923   .rodata.str1.4:00000000 $d
+     /tmp/cc70tQPM.s:1933   .rodata.nyan_commands:00000000 $d
+     /tmp/cc70tQPM.s:933    .text.NyanExecute:00000015 $d
+     /tmp/cc70tQPM.s:933    .text.NyanExecute:00000016 $t
 
 UNDEFINED SYMBOLS
-memset
 realloc
 memcpy
 malloc
-free
+EepromRead
+strncpy
 strlen
+strcpy
+EepromFlushTxBuff
+free
+EepromWrite
+atoi
+strtok
+memset
 memcmp

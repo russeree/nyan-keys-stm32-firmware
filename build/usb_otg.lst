@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cccq9npH.s 			page 1
+ARM GAS  /tmp/ccK02Z43.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
   28:Core/Src/usb_otg.c **** 
   29:Core/Src/usb_otg.c **** /* USB_OTG_HS init function */
   30:Core/Src/usb_otg.c **** 
-ARM GAS  /tmp/cccq9npH.s 			page 2
+ARM GAS  /tmp/ccK02Z43.s 			page 2
 
 
   31:Core/Src/usb_otg.c **** void MX_USB_OTG_HS_PCD_Init(void)
@@ -90,10 +90,10 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
   43              		.loc 1 42 38 is_stmt 0 view .LVU4
   44 0008 0923     		movs	r3, #9
   45 000a 4360     		str	r3, [r0, #4]
-  43:Core/Src/usb_otg.c ****   hpcd_USB_OTG_HS.Init.dma_enable = DISABLE;
+  43:Core/Src/usb_otg.c ****   hpcd_USB_OTG_HS.Init.dma_enable = ENABLE;
   46              		.loc 1 43 3 is_stmt 1 view .LVU5
   47              		.loc 1 43 35 is_stmt 0 view .LVU6
-  48 000c 0023     		movs	r3, #0
+  48 000c 0123     		movs	r3, #1
   49 000e 0361     		str	r3, [r0, #16]
   44:Core/Src/usb_otg.c ****   hpcd_USB_OTG_HS.Init.phy_itface = USB_OTG_HS_EMBEDDED_PHY;
   50              		.loc 1 44 3 is_stmt 1 view .LVU7
@@ -103,11 +103,11 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
   45:Core/Src/usb_otg.c ****   hpcd_USB_OTG_HS.Init.Sof_enable = ENABLE;
   54              		.loc 1 45 3 is_stmt 1 view .LVU9
   55              		.loc 1 45 35 is_stmt 0 view .LVU10
-  56 0014 0122     		movs	r2, #1
-  57 0016 C261     		str	r2, [r0, #28]
+  56 0014 C361     		str	r3, [r0, #28]
   46:Core/Src/usb_otg.c ****   hpcd_USB_OTG_HS.Init.low_power_enable = DISABLE;
-  58              		.loc 1 46 3 is_stmt 1 view .LVU11
-  59              		.loc 1 46 41 is_stmt 0 view .LVU12
+  57              		.loc 1 46 3 is_stmt 1 view .LVU11
+  58              		.loc 1 46 41 is_stmt 0 view .LVU12
+  59 0016 0023     		movs	r3, #0
   60 0018 0362     		str	r3, [r0, #32]
   47:Core/Src/usb_otg.c ****   hpcd_USB_OTG_HS.Init.lpm_enable = DISABLE;
   61              		.loc 1 47 3 is_stmt 1 view .LVU13
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
   65              		.loc 1 48 44 is_stmt 0 view .LVU16
   66 001c C362     		str	r3, [r0, #44]
   49:Core/Src/usb_otg.c ****   hpcd_USB_OTG_HS.Init.use_dedicated_ep1 = DISABLE;
-ARM GAS  /tmp/cccq9npH.s 			page 3
+ARM GAS  /tmp/ccK02Z43.s 			page 3
 
 
   67              		.loc 1 49 3 is_stmt 1 view .LVU17
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
  109              		@ frame_needed = 0, uses_anonymous_args = 0
  110              		.loc 1 62 1 is_stmt 0 view .LVU28
  111 0000 30B5     		push	{r4, r5, lr}
-ARM GAS  /tmp/cccq9npH.s 			page 4
+ARM GAS  /tmp/ccK02Z43.s 			page 4
 
 
  112              		.cfi_def_cfa_offset 12
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
   85:Core/Src/usb_otg.c ****     */
   86:Core/Src/usb_otg.c ****     GPIO_InitStruct.Pin = GPIO_PIN_14|GPIO_PIN_15;
   87:Core/Src/usb_otg.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-ARM GAS  /tmp/cccq9npH.s 			page 5
+ARM GAS  /tmp/ccK02Z43.s 			page 5
 
 
   88:Core/Src/usb_otg.c ****     GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -252,7 +252,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
   96:Core/Src/usb_otg.c ****     __HAL_RCC_USB_OTG_HS_ULPI_CLK_ENABLE();
   97:Core/Src/usb_otg.c **** 
   98:Core/Src/usb_otg.c ****     /* USB_OTG_HS interrupt Init */
-  99:Core/Src/usb_otg.c ****     HAL_NVIC_SetPriority(OTG_HS_IRQn, 0, 0);
+  99:Core/Src/usb_otg.c ****     HAL_NVIC_SetPriority(OTG_HS_IRQn, 1, 0);
  100:Core/Src/usb_otg.c ****     HAL_NVIC_EnableIRQ(OTG_HS_IRQn);
  101:Core/Src/usb_otg.c ****   /* USER CODE BEGIN USB_OTG_HS_MspInit 1 */
  102:Core/Src/usb_otg.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
  171 0036 214C     		ldr	r4, .L13+4
  172              	.LVL8:
   81:Core/Src/usb_otg.c ****     /**USB_OTG_HS GPIO Configuration
-ARM GAS  /tmp/cccq9npH.s 			page 6
+ARM GAS  /tmp/ccK02Z43.s 			page 6
 
 
  173              		.loc 1 81 5 is_stmt 0 view .LVU47
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
   94:Core/Src/usb_otg.c ****     __HAL_RCC_USB_OTG_HS_CLK_ENABLE();
  212              		.loc 1 94 5 view .LVU63
   94:Core/Src/usb_otg.c ****     __HAL_RCC_USB_OTG_HS_CLK_ENABLE();
-ARM GAS  /tmp/cccq9npH.s 			page 7
+ARM GAS  /tmp/ccK02Z43.s 			page 7
 
 
  213              		.loc 1 94 5 view .LVU64
@@ -418,13 +418,13 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
  253              	.LBE5:
   96:Core/Src/usb_otg.c **** 
  254              		.loc 1 96 5 view .LVU79
-ARM GAS  /tmp/cccq9npH.s 			page 8
+ARM GAS  /tmp/ccK02Z43.s 			page 8
 
 
   99:Core/Src/usb_otg.c ****     HAL_NVIC_EnableIRQ(OTG_HS_IRQn);
  255              		.loc 1 99 5 view .LVU80
  256 009e 2A46     		mov	r2, r5
- 257 00a0 2946     		mov	r1, r5
+ 257 00a0 0121     		movs	r1, #1
  258 00a2 4D20     		movs	r0, #77
  259 00a4 FFF7FEFF 		bl	HAL_NVIC_SetPriority
  260              	.LVL10:
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
  303 0002 0268     		ldr	r2, [r0]
  304              		.loc 1 110 5 view .LVU88
  305 0004 0D4B     		ldr	r3, .L19
-ARM GAS  /tmp/cccq9npH.s 			page 9
+ARM GAS  /tmp/ccK02Z43.s 			page 9
 
 
  306 0006 9A42     		cmp	r2, r3
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
  333              	.LVL18:
  127:Core/Src/usb_otg.c ****   /* USER CODE BEGIN USB_OTG_HS_MspDeInit 1 */
  334              		.loc 1 127 5 is_stmt 1 view .LVU95
-ARM GAS  /tmp/cccq9npH.s 			page 10
+ARM GAS  /tmp/ccK02Z43.s 			page 10
 
 
  335 0032 4D20     		movs	r0, #77
@@ -577,22 +577,22 @@ ARM GAS  /tmp/cccq9npH.s 			page 1
  367              		.file 12 "Core/Inc/usb_otg.h"
  368              		.file 13 "Core/Inc/main.h"
  369              		.file 14 "<built-in>"
-ARM GAS  /tmp/cccq9npH.s 			page 11
+ARM GAS  /tmp/ccK02Z43.s 			page 11
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usb_otg.c
-     /tmp/cccq9npH.s:21     .text.MX_USB_OTG_HS_PCD_Init:00000000 $t
-     /tmp/cccq9npH.s:27     .text.MX_USB_OTG_HS_PCD_Init:00000000 MX_USB_OTG_HS_PCD_Init
-     /tmp/cccq9npH.s:91     .text.MX_USB_OTG_HS_PCD_Init:00000030 $d
-     /tmp/cccq9npH.s:353    .bss.hpcd_USB_OTG_HS:00000000 hpcd_USB_OTG_HS
-     /tmp/cccq9npH.s:97     .text.HAL_PCD_MspInit:00000000 $t
-     /tmp/cccq9npH.s:103    .text.HAL_PCD_MspInit:00000000 HAL_PCD_MspInit
-     /tmp/cccq9npH.s:276    .text.HAL_PCD_MspInit:000000b8 $d
-     /tmp/cccq9npH.s:283    .text.HAL_PCD_MspDeInit:00000000 $t
-     /tmp/cccq9npH.s:289    .text.HAL_PCD_MspDeInit:00000000 HAL_PCD_MspDeInit
-     /tmp/cccq9npH.s:343    .text.HAL_PCD_MspDeInit:0000003c $d
-     /tmp/cccq9npH.s:350    .bss.hpcd_USB_OTG_HS:00000000 $d
+     /tmp/ccK02Z43.s:21     .text.MX_USB_OTG_HS_PCD_Init:00000000 $t
+     /tmp/ccK02Z43.s:27     .text.MX_USB_OTG_HS_PCD_Init:00000000 MX_USB_OTG_HS_PCD_Init
+     /tmp/ccK02Z43.s:91     .text.MX_USB_OTG_HS_PCD_Init:00000030 $d
+     /tmp/ccK02Z43.s:353    .bss.hpcd_USB_OTG_HS:00000000 hpcd_USB_OTG_HS
+     /tmp/ccK02Z43.s:97     .text.HAL_PCD_MspInit:00000000 $t
+     /tmp/ccK02Z43.s:103    .text.HAL_PCD_MspInit:00000000 HAL_PCD_MspInit
+     /tmp/ccK02Z43.s:276    .text.HAL_PCD_MspInit:000000b8 $d
+     /tmp/ccK02Z43.s:283    .text.HAL_PCD_MspDeInit:00000000 $t
+     /tmp/ccK02Z43.s:289    .text.HAL_PCD_MspDeInit:00000000 HAL_PCD_MspDeInit
+     /tmp/ccK02Z43.s:343    .text.HAL_PCD_MspDeInit:0000003c $d
+     /tmp/ccK02Z43.s:350    .bss.hpcd_USB_OTG_HS:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_PCD_Init

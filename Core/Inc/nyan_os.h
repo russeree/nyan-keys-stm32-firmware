@@ -1,10 +1,12 @@
-// nyan_os.h
 #ifndef NYAN_OS_H
 #define NYAN_OS_H
 
 #include <stdint.h>
+#include <main.h>
 #include "24xx_eeprom.h"
+#include "nyan_eeprom_map.h"
 
+#define _NYAN_CMD_MAX_ARGS 10
 #define _NYAN_CMD_BUF_LEN 128
 #define _NYAN_EXE_CHAR '\n'
 
@@ -12,7 +14,8 @@
 
 static const char* const nyan_commands[] = {
     "getinfo",
-    "flash"
+    "write-bitstream",
+    "set-owner"
 };
 
 typedef enum {
@@ -23,12 +26,13 @@ typedef enum {
 typedef enum {
     NOT_READY,
     READY,
-    FPGA_BITSTREAM_LOAD
+    DIRECT_BUFFER_ACCESS
 } NyanStates;
 
 typedef enum {
     NYAN_EXE_GET_INFO,
-    NYAN_EXE_FLASH_BITSTREAM,
+    NYAN_EXE_WRITE_BITSTREAM,
+    NYAN_EXE_SET_OWNER,
     NYAN_EXE_COMMAND_NOT_SUPPORTED,
     NYAN_EXE_IDLE
 } NyanExe;
@@ -38,90 +42,126 @@ typedef struct {
     size_t size;
 } NyanString;
 
+/**
+ * NyanOS has a pretty decent sized bug where the buffer to send over USB-CDC greater than 129 TX gets disabled 
+ */
 typedef struct {
-    // pointers to drivers
-    Eeprom24xx* eeprom; 
-    // state management Inputs
+    Eeprom24xx* eeprom;
     NyanStates state;
     NyanStates next_state;
-    // state management Execution
     NyanExe exe;
-    // os buffers
-    uint8_t command_buffer[_NYAN_CMD_BUF_LEN];
+    uint8_t command_buffer[_NYAN_CMD_BUF_LEN + 1];
     uint8_t command_buffer_pos;
+    uint8_t command_buffer_num_args;
+    uint8_t* command_arg_buffer[_NYAN_CMD_MAX_ARGS];
     uint8_t* data_buffer;
     uint8_t data_buffer_pos;
-    // constant to load
     char exe_char;
-    // usb cdc interface to use - Currently only supports a single endpoint
     uint8_t cdc_ch;
-    //Settings and preferences
-    uint8_t send_welcome_screen;
-    //OS Buffer
-    uint8_t tx_inflight;
+    bool tx_inflight;
     NyanString tx_buffer;
+    uint8_t send_welcome_screen;
+    // Write
+    uint32_t bytes_array_size;
+    uint32_t bytes_received;
+    uint8_t* bytes_array;
 } NyanOS;
 
 /**
- * Initializes the NyanOS state structure, NyanOS will not function without this call.
+ * @brief Initializes the NyanOS system.
+ * @param nos Pointer to the NyanOS struct.
+ * @param eeprom Pointer to the EEPROM driver struct.
+ * @return NyanReturn indicating success or failure.
  */
 NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom);
 
 /**
- * Handle needed state changes to Nyan
+ * @brief Decodes the currently buffered command in NyanOS.
+ * @param nos Pointer to the NyanOS struct.
+ * @return NyanReturn indicating success or failure.
  */
 NyanReturn NyanOsDecodeCommand(volatile NyanOS* nos);
 
 /**
- * Checks the input buffer for validity when applied to the command_buffer 
+ * @brief Adds data to the NyanOS input buffer.
+ * @param nos Pointer to the NyanOS struct.
+ * @param pbuf Pointer to the data buffer.
+ * @param Len Length of the data to be added.
+ * @return NyanReturn indicating success or failure.
  */
 NyanReturn NyanAddInputBuffer(volatile NyanOS* nos, uint8_t *pbuf, uint32_t *Len);
 
 /**
- * Displays the welcome message to the user on connection;
+ * @brief Displays a welcome message to the user.
+ * @param nos Pointer to the NyanOS struct.
+ * @return NyanReturn indicating success or failure.
  */
 NyanReturn NyanWelcomeDisplay(volatile NyanOS* nos);
 
 /**
- * printf() NyanOS Edition 
+ * @brief Print function for NyanOS, similar to printf.
+ * @param nos Pointer to the NyanOS struct.
+ * @param data Pointer to the data to be printed.
+ * @param len Length of the data to be printed.
+ * @return NyanReturn indicating success or failure.
  */
 NyanReturn NyanPrint(volatile NyanOS* nos, char* data, size_t len);
 
 /**
- * Free the contents of a NyanString
- */
-void FreeNyanString(NyanString* nyanString);
-
-/**
- * @brief Decodes, stages, and resets the current input buffer.
- * 
- * This function can be invoked at any time but is ideally called when the user presses the return carriage key.
- * It decodes the current input buffer into a command to be executed, with parameters stored locally. The
- * actual processing occurs in the main loop to ensure that the receive buffer is not occupied for an extended
- * period while processing the command, allowing interrupts and callbacks to take precedence.
- * 
- * @param nos A pointer to the volatile NyanOS struct instance which contains the input buffer and state
- *            information for decoding and processing the command.
- * @return NOS_SUCCESS if the command and parameters are successfully decoded; NOS_FAILURE otherwise.
+ * @brief Decodes, stages, and resets the current input buffer in NyanOS.
+ * @param nos Pointer to the NyanOS struct.
+ * @return NyanReturn indicating success or failure.
  */
 NyanReturn NyanDecode(volatile NyanOS* nos);
 
 /**
- * @brief Executes, cleans up, and presents a new prompt line to the end user.
- * 
- * This function should be called when NOS has a non NOS_EXE_IDLE state inside of the exe var.
- * 
- * @param nos A pointer to the volatile NyanOS struct instance which contains the exe request and state
- *            information for executing and processing the command.
- * @return NOS_SUCCESS if the command and parameters are successfully decoded; NOS_FAILURE otherwise.
+ * @brief Executes the current command in the NyanOS and resets the execution state.
+ * @param nos Pointer to the NyanOS struct.
+ * @return NyanReturn indicating success or failure.
  */
 NyanReturn NyanExecute(volatile NyanOS* nos);
 
 /**
- * @brief Prints to the CDC terminal the current info and stats of the NyanOS and Keyboard.
- * 
- * @return  NOS_SUCCESS regardless. 
+ * @brief Takes the first parameter and sets that as the owner of the Nyan Keys board.
+ */
+NyanReturn NyanExeSetOwner(volatile NyanOS* nos);
+
+/**
+ * @brief Store up to _NYAN_CMD_MAX_ARGS in the NyanOS class
+ */
+NyanReturn NyanDecodeArgs(volatile NyanOS* nos);
+
+/**
+ * @brief Prints current information and stats of the NyanOS and associated hardware.
+ * @param nos Pointer to the NyanOS struct.
+ * @return NyanReturn always returns NOS_SUCCESS.
  */
 NyanReturn NyanExeGetinfo(volatile NyanOS* nos);
+
+/**
+ * @brief Writes the name of argument 1 to the owners name address slot.
+ */
+NyanReturn NyanExeSetOwner(volatile NyanOS* nos);
+
+/**
+ * @brief Write an FPGA Bitstream to the EEPROM in 128 byte chunks 
+ */
+NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos);
+
+/**
+ * Clear and nullify the NyanOS command buffer
+ */
+void ClearNyanCommandBuffer(volatile NyanOS* nos);
+
+/**
+ * @brief Free the command args before creating new pointers
+ */
+void FreeNyanCommandArgs(volatile NyanOS* nos);
+
+/**
+ * @brief Frees the contents of a NyanString struct.
+ * @param nyanString Pointer to the NyanString to be freed.
+ */
+void FreeNyanString(NyanString* nyanString);
 
 #endif // NYAN_OS_H

@@ -31,7 +31,8 @@ build/nyan_os.o: Core/Src/nyan_os.c Core/Inc/main.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h \
- Core/Inc/nyan_os.h Core/Inc/24xx_eeprom.h Core/Inc/nyan_strings.h \
+ Core/Inc/24xx_eeprom.h Core/Inc/nyan_os.h Core/Inc/24xx_eeprom.h \
+ Core/Inc/nyan_eeprom_map.h Core/Inc/nyan_strings.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
@@ -76,8 +77,10 @@ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h:
+Core/Inc/24xx_eeprom.h:
 Core/Inc/nyan_os.h:
 Core/Inc/24xx_eeprom.h:
+Core/Inc/nyan_eeprom_map.h:
 Core/Inc/nyan_strings.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h:

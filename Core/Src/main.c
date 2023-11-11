@@ -56,6 +56,7 @@
 
 /* USER CODE BEGIN PV */
 double system_status_led_angle;
+
 volatile NyanOS nos;
 Eeprom24xx nos_eeprom;
 /* USER CODE END PV */
@@ -127,8 +128,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    const uint8_t name[] = "Programmed by Reese Russell";
-    EepromRead(&nos_eeprom, true, 0x0000, 800);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -230,8 +229,10 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
     if((nos.tx_buffer.p_array != NULL || nos.tx_buffer.size != 0) && nos.tx_inflight == 0) {
       CDC_Transmit(nos.cdc_ch, nos.tx_buffer.p_array, nos.tx_buffer.size);
     }
-    // Every 200ms check to see if the welcome display needs to be presented 
-    NyanWelcomeDisplay(&nos);
+    // Every 200ms check to see if the welcome display needs to be presented
+    if(nos.exe == NYAN_EXE_IDLE) {
+      NyanWelcomeDisplay(&nos);
+    }
     // Program Execution - Must be idle with no TXs inflight since we are modifying the ptr
     if(nos.exe != NYAN_EXE_IDLE && nos.tx_inflight == 0) {
       NyanExecute(&nos);
@@ -253,10 +254,12 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
-    // Flash Led 0 on error
+    // Turn on all LEDs on hard error
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
-    HAL_Delay(1000);
-    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED1_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED2_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED3_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED4_Pin, GPIO_PIN_SET);
   }
   /* USER CODE END Error_Handler_Debug */
 }
