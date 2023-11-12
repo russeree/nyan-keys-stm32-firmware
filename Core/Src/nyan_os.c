@@ -18,16 +18,15 @@ NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
 {
     // Set the operational state
     nos->state = READY;
-    nos->next_state = READY;
     nos->exe = NYAN_EXE_IDLE;
-    nos->exe_char = _NYAN_EXE_CHAR;
+
+    // Default init the OS vars
     nos->command_buffer_num_args = 0;
     nos->command_buffer_pos = 0;
-    nos->data_buffer_pos = 0;
-    nos->cdc_ch = 0;
-    nos->send_welcome_screen = 0;
+    nos->cdc_ch = _NYAN_CDC_CHANNEL;
+
+    // EEPROM Driver access
     nos->eeprom = eeprom;
-    nos->eeprom->tx_inflight = false;
 
     // Manual Setting of the memory because of the volatile qualifier.
     ClearNyanCommandBuffer(nos);
@@ -46,8 +45,9 @@ NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
 
 NyanReturn NyanWelcomeDisplay(volatile NyanOS *nos)
 {
-    if(nos->send_welcome_screen) {
+    if(nos->send_welcome_screen && nos->send_welcome_screen_guard == 0) {
         nos->send_welcome_screen = 0x00;
+        nos->send_welcome_screen_guard++;
         NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
         NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
     }
@@ -87,7 +87,7 @@ NyanReturn NyanAddInputBuffer(volatile NyanOS *nos, uint8_t *pbuf, uint32_t *Len
             break;
         }
         case DIRECT_BUFFER_ACCESS: {
-            // In this state all signals are written directly to the buffer until the buffer is full:
+            // In this state all signals are written directly to the buffer until the buffer is full
             for(uint32_t idx = 0; idx < *Len; ++idx) {
                 if(nos->bytes_received < nos->bytes_array_size)
                     nos->bytes_array[nos->bytes_received++] = pbuf[idx];

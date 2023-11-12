@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cctblsE4.s 			page 1
+ARM GAS  /tmp/ccCJbkUc.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
   27:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   [..]
   28:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****       The RNG HAL driver can be used as follows:
   29:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
-ARM GAS  /tmp/cctblsE4.s 			page 2
+ARM GAS  /tmp/ccCJbkUc.s 			page 2
 
 
   30:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****       (#) Enable the RNG controller clock using __HAL_RCC_RNG_CLK_ENABLE() macro
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
   84:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****     or HAL_RNG_Init() function.
   85:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
   86:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****     [..]
-ARM GAS  /tmp/cctblsE4.s 			page 3
+ARM GAS  /tmp/ccCJbkUc.s 			page 3
 
 
   87:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****     When The compilation define USE_HAL_RNG_REGISTER_CALLBACKS is set to 0 or
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  141:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****       (+) DeInitialize the RNG peripheral
  142:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****       (+) Initialize the RNG MSP
  143:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****       (+) DeInitialize RNG MSP
-ARM GAS  /tmp/cctblsE4.s 			page 4
+ARM GAS  /tmp/ccCJbkUc.s 			page 4
 
 
  144:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  198:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   __HAL_RNG_ENABLE(hrng);
  199:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
  200:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   /* Initialize the RNG state */
-ARM GAS  /tmp/cctblsE4.s 			page 5
+ARM GAS  /tmp/ccCJbkUc.s 			page 5
 
 
  201:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   hrng->State = HAL_RNG_STATE_READY;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  255:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
  256:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** /**
  257:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   * @brief  Initializes the RNG MSP.
-ARM GAS  /tmp/cctblsE4.s 			page 6
+ARM GAS  /tmp/ccCJbkUc.s 			page 6
 
 
  258:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   * @param  hrng pointer to a RNG_HandleTypeDef structure that contains
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
   67 0006 4379     		ldrb	r3, [r0, #5]	@ zero_extendqisi2
  183:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   {
   68              		.loc 1 183 6 view .LVU10
-ARM GAS  /tmp/cctblsE4.s 			page 7
+ARM GAS  /tmp/ccCJbkUc.s 			page 7
 
 
   69 0008 5BB1     		cbz	r3, .L10
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  109              	.LVL6:
  208:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
  110              		.loc 1 208 1 view .LVU25
-ARM GAS  /tmp/cctblsE4.s 			page 8
+ARM GAS  /tmp/ccCJbkUc.s 			page 8
 
 
  111 002c 7047     		bx	lr
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  151              		.loc 1 219 6 is_stmt 0 view .LVU31
  152 0000 90B1     		cbz	r0, .L14
  217:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   /* Check the RNG handle allocation */
-ARM GAS  /tmp/cctblsE4.s 			page 9
+ARM GAS  /tmp/ccCJbkUc.s 			page 9
 
 
  153              		.loc 1 217 1 view .LVU32
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  254:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
  194              		.loc 1 254 1 view .LVU46
  195 002a 7047     		bx	lr
-ARM GAS  /tmp/cctblsE4.s 			page 10
+ARM GAS  /tmp/ccCJbkUc.s 			page 10
 
 
  196              		.cfi_endproc
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  328:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
  329:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****       default :
  330:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****         /* Update the error code */
-ARM GAS  /tmp/cctblsE4.s 			page 11
+ARM GAS  /tmp/ccCJbkUc.s 			page 11
 
 
  331:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****         hrng->ErrorCode = HAL_RNG_ERROR_INVALID_CALLBACK;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  385:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   /* Process locked */
  386:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   __HAL_LOCK(hrng);
  387:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
-ARM GAS  /tmp/cctblsE4.s 			page 12
+ARM GAS  /tmp/ccCJbkUc.s 			page 12
 
 
  388:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   if (HAL_RNG_STATE_READY == hrng->State)
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  442:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   return status;
  443:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** }
  444:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
-ARM GAS  /tmp/cctblsE4.s 			page 13
+ARM GAS  /tmp/ccCJbkUc.s 			page 13
 
 
  445:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** /**
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  499:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   else
  500:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   {
  501:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****     /* Update the error code */
-ARM GAS  /tmp/cctblsE4.s 			page 14
+ARM GAS  /tmp/ccCJbkUc.s 			page 14
 
 
  502:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****     hrng->ErrorCode = HAL_RNG_ERROR_INVALID_CALLBACK;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  211              		@ args = 0, pretend = 0, frame = 0
  212              		@ frame_needed = 0, uses_anonymous_args = 0
  213              		.loc 1 553 1 is_stmt 0 view .LVU48
-ARM GAS  /tmp/cctblsE4.s 			page 15
+ARM GAS  /tmp/ccCJbkUc.s 			page 15
 
 
  214 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  579:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****           /* Process Unlocked */
  580:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****           __HAL_UNLOCK(hrng);
  581:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****           return HAL_ERROR;
-ARM GAS  /tmp/cctblsE4.s 			page 16
+ARM GAS  /tmp/ccCJbkUc.s 			page 16
 
 
  582:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****         }
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  272 002a FFF7FEFF 		bl	HAL_GetTick
  273              	.LVL18:
  567:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
-ARM GAS  /tmp/cctblsE4.s 			page 17
+ARM GAS  /tmp/ccCJbkUc.s 			page 17
 
 
  274              		.loc 1 567 17 view .LVU71
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  311              		.loc 1 580 11 view .LVU88
  312 0056 0023     		movs	r3, #0
  313 0058 2371     		strb	r3, [r4, #4]
-ARM GAS  /tmp/cctblsE4.s 			page 18
+ARM GAS  /tmp/ccCJbkUc.s 			page 18
 
 
  580:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****           return HAL_ERROR;
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  609:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   */
  610:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** HAL_StatusTypeDef HAL_RNG_GenerateRandomNumber_IT(RNG_HandleTypeDef *hrng)
  611:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** {
-ARM GAS  /tmp/cctblsE4.s 			page 19
+ARM GAS  /tmp/ccCJbkUc.s 			page 19
 
 
  352              		.loc 1 611 1 is_stmt 1 view -0
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  385              		.loc 1 632 12 is_stmt 0 view .LVU116
  386 001a 0120     		movs	r0, #1
  387              	.LVL24:
-ARM GAS  /tmp/cctblsE4.s 			page 20
+ARM GAS  /tmp/ccCJbkUc.s 			page 20
 
 
  388              		.loc 1 632 12 view .LVU117
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  645:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** uint32_t HAL_RNG_GetRandomNumber(RNG_HandleTypeDef *hrng)
  646:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** {
  426              		.loc 1 646 1 is_stmt 1 view -0
-ARM GAS  /tmp/cctblsE4.s 			page 21
+ARM GAS  /tmp/ccCJbkUc.s 			page 21
 
 
  427              		.cfi_startproc
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  662:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   * @retval 32-bit random number
  663:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   */
  664:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** uint32_t HAL_RNG_GetRandomNumber_IT(RNG_HandleTypeDef *hrng)
-ARM GAS  /tmp/cctblsE4.s 			page 22
+ARM GAS  /tmp/ccCJbkUc.s 			page 22
 
 
  665:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** {
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  503              	.LVL35:
  682:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** }
  504              		.loc 1 682 1 view .LVU149
-ARM GAS  /tmp/cctblsE4.s 			page 23
+ARM GAS  /tmp/ccCJbkUc.s 			page 23
 
 
  505 001e 7047     		bx	lr
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  725:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   }
  726:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** 
  727:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   if (rngclockerror == 1U)
-ARM GAS  /tmp/cctblsE4.s 			page 24
+ARM GAS  /tmp/ccCJbkUc.s 			page 24
 
 
  728:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   {
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  520              		.cfi_startproc
  521              		@ args = 0, pretend = 0, frame = 0
  522              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cctblsE4.s 			page 25
+ARM GAS  /tmp/ccCJbkUc.s 			page 25
 
 
  523              		@ link register save eliminated.
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  556              		.align	1
  557              		.weak	HAL_RNG_ErrorCallback
  558              		.syntax unified
-ARM GAS  /tmp/cctblsE4.s 			page 26
+ARM GAS  /tmp/ccCJbkUc.s 			page 26
 
 
  559              		.thumb
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  710:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   {
  598              		.loc 1 710 3 view .LVU164
  710:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   {
-ARM GAS  /tmp/cctblsE4.s 			page 27
+ARM GAS  /tmp/ccCJbkUc.s 			page 27
 
 
  599              		.loc 1 710 7 is_stmt 0 view .LVU165
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  636 0032 11D0     		beq	.L44
  758:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****       /* Process Unlocked */
  637              		.loc 1 758 7 is_stmt 1 view .LVU183
-ARM GAS  /tmp/cctblsE4.s 			page 28
+ARM GAS  /tmp/ccCJbkUc.s 			page 28
 
 
  758:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****       /* Process Unlocked */
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  743:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   }
  676              		.loc 1 743 5 view .LVU200
  677              	.LVL47:
-ARM GAS  /tmp/cctblsE4.s 			page 29
+ARM GAS  /tmp/ccCJbkUc.s 			page 29
 
 
  678              	.L44:
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  843:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   *                the configuration information for RNG.
  844:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   * @retval HAL state
  845:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c ****   */
-ARM GAS  /tmp/cctblsE4.s 			page 30
+ARM GAS  /tmp/ccCJbkUc.s 			page 30
 
 
  846:Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c **** HAL_RNG_StateTypeDef HAL_RNG_GetState(RNG_HandleTypeDef *hrng)
@@ -1798,44 +1798,44 @@ ARM GAS  /tmp/cctblsE4.s 			page 1
  747              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
  748              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h"
  749              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
-ARM GAS  /tmp/cctblsE4.s 			page 31
+ARM GAS  /tmp/ccCJbkUc.s 			page 31
 
 
  750              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rng.h"
  751              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
-ARM GAS  /tmp/cctblsE4.s 			page 32
+ARM GAS  /tmp/ccCJbkUc.s 			page 32
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f7xx_hal_rng.c
-     /tmp/cctblsE4.s:21     .text.HAL_RNG_MspInit:00000000 $t
-     /tmp/cctblsE4.s:27     .text.HAL_RNG_MspInit:00000000 HAL_RNG_MspInit
-     /tmp/cctblsE4.s:42     .text.HAL_RNG_Init:00000000 $t
-     /tmp/cctblsE4.s:48     .text.HAL_RNG_Init:00000000 HAL_RNG_Init
-     /tmp/cctblsE4.s:116    .text.HAL_RNG_MspDeInit:00000000 $t
-     /tmp/cctblsE4.s:122    .text.HAL_RNG_MspDeInit:00000000 HAL_RNG_MspDeInit
-     /tmp/cctblsE4.s:137    .text.HAL_RNG_DeInit:00000000 $t
-     /tmp/cctblsE4.s:143    .text.HAL_RNG_DeInit:00000000 HAL_RNG_DeInit
-     /tmp/cctblsE4.s:200    .text.HAL_RNG_GenerateRandomNumber:00000000 $t
-     /tmp/cctblsE4.s:206    .text.HAL_RNG_GenerateRandomNumber:00000000 HAL_RNG_GenerateRandomNumber
-     /tmp/cctblsE4.s:343    .text.HAL_RNG_GenerateRandomNumber_IT:00000000 $t
-     /tmp/cctblsE4.s:349    .text.HAL_RNG_GenerateRandomNumber_IT:00000000 HAL_RNG_GenerateRandomNumber_IT
-     /tmp/cctblsE4.s:417    .text.HAL_RNG_GetRandomNumber:00000000 $t
-     /tmp/cctblsE4.s:423    .text.HAL_RNG_GetRandomNumber:00000000 HAL_RNG_GetRandomNumber
-     /tmp/cctblsE4.s:458    .text.HAL_RNG_GetRandomNumber_IT:00000000 $t
-     /tmp/cctblsE4.s:464    .text.HAL_RNG_GetRandomNumber_IT:00000000 HAL_RNG_GetRandomNumber_IT
-     /tmp/cctblsE4.s:510    .text.HAL_RNG_ReadLastRandomNumber:00000000 $t
-     /tmp/cctblsE4.s:516    .text.HAL_RNG_ReadLastRandomNumber:00000000 HAL_RNG_ReadLastRandomNumber
-     /tmp/cctblsE4.s:534    .text.HAL_RNG_ReadyDataCallback:00000000 $t
-     /tmp/cctblsE4.s:540    .text.HAL_RNG_ReadyDataCallback:00000000 HAL_RNG_ReadyDataCallback
-     /tmp/cctblsE4.s:556    .text.HAL_RNG_ErrorCallback:00000000 $t
-     /tmp/cctblsE4.s:562    .text.HAL_RNG_ErrorCallback:00000000 HAL_RNG_ErrorCallback
-     /tmp/cctblsE4.s:577    .text.HAL_RNG_IRQHandler:00000000 $t
-     /tmp/cctblsE4.s:583    .text.HAL_RNG_IRQHandler:00000000 HAL_RNG_IRQHandler
-     /tmp/cctblsE4.s:696    .text.HAL_RNG_GetState:00000000 $t
-     /tmp/cctblsE4.s:702    .text.HAL_RNG_GetState:00000000 HAL_RNG_GetState
-     /tmp/cctblsE4.s:720    .text.HAL_RNG_GetError:00000000 $t
-     /tmp/cctblsE4.s:726    .text.HAL_RNG_GetError:00000000 HAL_RNG_GetError
+     /tmp/ccCJbkUc.s:21     .text.HAL_RNG_MspInit:00000000 $t
+     /tmp/ccCJbkUc.s:27     .text.HAL_RNG_MspInit:00000000 HAL_RNG_MspInit
+     /tmp/ccCJbkUc.s:42     .text.HAL_RNG_Init:00000000 $t
+     /tmp/ccCJbkUc.s:48     .text.HAL_RNG_Init:00000000 HAL_RNG_Init
+     /tmp/ccCJbkUc.s:116    .text.HAL_RNG_MspDeInit:00000000 $t
+     /tmp/ccCJbkUc.s:122    .text.HAL_RNG_MspDeInit:00000000 HAL_RNG_MspDeInit
+     /tmp/ccCJbkUc.s:137    .text.HAL_RNG_DeInit:00000000 $t
+     /tmp/ccCJbkUc.s:143    .text.HAL_RNG_DeInit:00000000 HAL_RNG_DeInit
+     /tmp/ccCJbkUc.s:200    .text.HAL_RNG_GenerateRandomNumber:00000000 $t
+     /tmp/ccCJbkUc.s:206    .text.HAL_RNG_GenerateRandomNumber:00000000 HAL_RNG_GenerateRandomNumber
+     /tmp/ccCJbkUc.s:343    .text.HAL_RNG_GenerateRandomNumber_IT:00000000 $t
+     /tmp/ccCJbkUc.s:349    .text.HAL_RNG_GenerateRandomNumber_IT:00000000 HAL_RNG_GenerateRandomNumber_IT
+     /tmp/ccCJbkUc.s:417    .text.HAL_RNG_GetRandomNumber:00000000 $t
+     /tmp/ccCJbkUc.s:423    .text.HAL_RNG_GetRandomNumber:00000000 HAL_RNG_GetRandomNumber
+     /tmp/ccCJbkUc.s:458    .text.HAL_RNG_GetRandomNumber_IT:00000000 $t
+     /tmp/ccCJbkUc.s:464    .text.HAL_RNG_GetRandomNumber_IT:00000000 HAL_RNG_GetRandomNumber_IT
+     /tmp/ccCJbkUc.s:510    .text.HAL_RNG_ReadLastRandomNumber:00000000 $t
+     /tmp/ccCJbkUc.s:516    .text.HAL_RNG_ReadLastRandomNumber:00000000 HAL_RNG_ReadLastRandomNumber
+     /tmp/ccCJbkUc.s:534    .text.HAL_RNG_ReadyDataCallback:00000000 $t
+     /tmp/ccCJbkUc.s:540    .text.HAL_RNG_ReadyDataCallback:00000000 HAL_RNG_ReadyDataCallback
+     /tmp/ccCJbkUc.s:556    .text.HAL_RNG_ErrorCallback:00000000 $t
+     /tmp/ccCJbkUc.s:562    .text.HAL_RNG_ErrorCallback:00000000 HAL_RNG_ErrorCallback
+     /tmp/ccCJbkUc.s:577    .text.HAL_RNG_IRQHandler:00000000 $t
+     /tmp/ccCJbkUc.s:583    .text.HAL_RNG_IRQHandler:00000000 HAL_RNG_IRQHandler
+     /tmp/ccCJbkUc.s:696    .text.HAL_RNG_GetState:00000000 $t
+     /tmp/ccCJbkUc.s:702    .text.HAL_RNG_GetState:00000000 HAL_RNG_GetState
+     /tmp/ccCJbkUc.s:720    .text.HAL_RNG_GetError:00000000 $t
+     /tmp/ccCJbkUc.s:726    .text.HAL_RNG_GetError:00000000 HAL_RNG_GetError
 
 UNDEFINED SYMBOLS
 HAL_GetTick

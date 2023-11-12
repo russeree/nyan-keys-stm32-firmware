@@ -92,8 +92,8 @@ extern Eeprom24xx nos_eeprom;
 
 /* USER CODE BEGIN PRIVATE_VARIABLES */
 
-#define APP_RX_DATA_SIZE 128
-#define APP_TX_DATA_SIZE 128
+#define APP_RX_DATA_SIZE 512
+#define APP_TX_DATA_SIZE 512
 
 /** RX buffer for USB */
 uint8_t RX_Buffer[NUMBER_OF_CDC][APP_RX_DATA_SIZE];
@@ -261,7 +261,7 @@ static int8_t CDC_Control(uint8_t cdc_ch, uint8_t cmd, uint8_t *pbuf, uint16_t l
     if (pbuf[0] & 0x01) { // Check if DTR bit is set
       // Initialize the NyanOS for this session - Invalidates all other sessions
       NyanOsInit(&nos, &nos_eeprom);
-      nos.send_welcome_screen = 1;
+      nos.send_welcome_screen = true;
     }
     break;
 
@@ -358,6 +358,7 @@ static int8_t CDC_TransmitCplt(uint8_t cdc_ch, uint8_t *Buf, uint32_t *Len, uint
   */
 uint8_t CDC_Transmit(uint8_t cdc_ch, uint8_t *Buf, uint16_t Len)
 {
+  // Take a semaphore and lock up the TX buffer from sends until the CDC_TransmitCplt occours
   nos.tx_inflight = 1;
   uint8_t result = USBD_OK;
   /* USER CODE BEGIN 7 */

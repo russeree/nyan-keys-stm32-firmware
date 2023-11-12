@@ -317,7 +317,6 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE END TIM6_DAC_IRQn 0 */
   HAL_TIM_IRQHandler(&htim6);
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
-  system_status_led_angle += SYSTEM_STATUS_DEGREE_INCREMENT;
   /* USER CODE END TIM6_DAC_IRQn 1 */
 }
 

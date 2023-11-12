@@ -6,6 +6,8 @@
 #include "24xx_eeprom.h"
 #include "nyan_eeprom_map.h"
 
+#define _NYAN_WELCOME_GUARD_TIME 4 //Currently a multiple of TIM7 Period (.777 seconds)
+#define _NYAN_CDC_CHANNEL 0
 #define _NYAN_CMD_MAX_ARGS 10
 #define _NYAN_CMD_BUF_LEN 128
 #define _NYAN_EXE_CHAR '\n'
@@ -46,25 +48,26 @@ typedef struct {
  * NyanOS has a pretty decent sized bug where the buffer to send over USB-CDC greater than 129 TX gets disabled 
  */
 typedef struct {
+    bool send_welcome_screen; // This inits to false; Don't reset in init sequence.
+    uint8_t send_welcome_screen_guard; // Guards against double welcome screens with a longer timer value.
+    char exe_char;
     Eeprom24xx* eeprom;
     NyanStates state;
-    NyanStates next_state;
     NyanExe exe;
     uint8_t command_buffer[_NYAN_CMD_BUF_LEN + 1];
     uint8_t command_buffer_pos;
     uint8_t command_buffer_num_args;
+    uint8_t cdc_ch;
+    // USB CDC Transmission Buffer
+    bool tx_inflight; // This inits to false; Don't reset in init sequence.
+    NyanString tx_buffer;
+    // DIRECT_BUFFER_ACCESS USB CDC Rx Buffer
+    uint32_t bytes_received;
+    uint32_t bytes_array_size;
+    uint8_t* bytes_array;
+    // Allocated buffers
     uint8_t* command_arg_buffer[_NYAN_CMD_MAX_ARGS];
     uint8_t* data_buffer;
-    uint8_t data_buffer_pos;
-    char exe_char;
-    uint8_t cdc_ch;
-    bool tx_inflight;
-    NyanString tx_buffer;
-    uint8_t send_welcome_screen;
-    // Write
-    uint32_t bytes_array_size;
-    uint32_t bytes_received;
-    uint8_t* bytes_array;
 } NyanOS;
 
 /**
