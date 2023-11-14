@@ -31,7 +31,7 @@ build/24xx_eeprom.o: Core/Src/24xx_eeprom.c Core/Inc/i2c.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h \
- Core/Inc/24xx_eeprom.h
+ Core/Inc/nyan_eeprom_map.h Core/Inc/24xx_eeprom.h
 Core/Inc/i2c.h:
 Core/Inc/main.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
@@ -68,4 +68,5 @@ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h:
+Core/Inc/nyan_eeprom_map.h:
 Core/Inc/24xx_eeprom.h:

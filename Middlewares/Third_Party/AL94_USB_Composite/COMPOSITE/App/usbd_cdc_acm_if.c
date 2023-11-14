@@ -92,8 +92,8 @@ extern Eeprom24xx nos_eeprom;
 
 /* USER CODE BEGIN PRIVATE_VARIABLES */
 
-#define APP_RX_DATA_SIZE 512
-#define APP_TX_DATA_SIZE 512
+#define APP_RX_DATA_SIZE _NYAN_CDC_RX_BUF_SZ
+#define APP_TX_DATA_SIZE 1024
 
 /** RX buffer for USB */
 uint8_t RX_Buffer[NUMBER_OF_CDC][APP_RX_DATA_SIZE];
@@ -340,7 +340,8 @@ static int8_t CDC_Receive(uint8_t cdc_ch, uint8_t *Buf, uint32_t *Len)
   */
 static int8_t CDC_TransmitCplt(uint8_t cdc_ch, uint8_t *Buf, uint32_t *Len, uint8_t epnum)
 {
-  FreeNyanString(&nos.tx_buffer);
+  if(!nos.tx_bulk_transfer_in_progress)
+    FreeNyanString(&nos.tx_buffer);
   nos.tx_inflight = 0;
   return (USBD_OK);
 }

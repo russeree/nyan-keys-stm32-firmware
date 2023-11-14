@@ -6,10 +6,13 @@
 #include "24xx_eeprom.h"
 #include "nyan_eeprom_map.h"
 
-#define _NYAN_WELCOME_GUARD_TIME 4 //Currently a multiple of TIM7 Period (.777 seconds)
+#define _NYAN_WELCOME_GUARD_TIME 30 //Currently a multiple of TIM7 Period (.777 seconds)
 #define _NYAN_CDC_CHANNEL 0
+#define _NYAN_CDC_RX_BUF_SZ 512
+#define _NYAN_CDC_TX_MAX_LEN 128
 #define _NYAN_CMD_MAX_ARGS 10
 #define _NYAN_CMD_BUF_LEN 128
+
 #define _NYAN_EXE_CHAR '\n'
 
 #define _NYAN_NUM_COMMANDS (sizeof(nyan_commands) / sizeof(nyan_commands[0]))
@@ -54,14 +57,21 @@ typedef struct {
     Eeprom24xx* eeprom;
     NyanStates state;
     NyanExe exe;
+    bool exe_in_progress;
     uint8_t command_buffer[_NYAN_CMD_BUF_LEN + 1];
     uint8_t command_buffer_pos;
     uint8_t command_buffer_num_args;
     uint8_t cdc_ch;
     // USB CDC Transmission Buffer
     bool tx_inflight; // This inits to false; Don't reset in init sequence.
+    bool tx_bulk_transfer_in_progress;
+    uint8_t tx_chunks_solid; // Complete _NYAN_CDC_TX_MAX_LEN sized chunks
+    uint8_t tx_chunks_partial_bytes; // Number of bytes of a partial chunk that exist. 
+    uint8_t tx_chunk;
     NyanString tx_buffer;
-    // DIRECT_BUFFER_ACCESS USB CDC Rx Buffer
+    // DIRECT_BUFFER_ACCESS USB CDC Rx Buffer - Some of these vars need to be renamed
+    uint8_t rx_buffer[_NYAN_CDC_RX_BUF_SZ];
+    uint8_t rx_buffer_sz;
     uint32_t bytes_received;
     uint32_t bytes_array_size;
     uint8_t* bytes_array;
@@ -110,6 +120,13 @@ NyanReturn NyanWelcomeDisplay(volatile NyanOS* nos);
  */
 NyanReturn NyanPrint(volatile NyanOS* nos, char* data, size_t len);
 
+/**
+ * NyanOS Long 128+ character buffer printing support.
+ * @param nos Pointer to the NyanOS struct.
+ * @return NyanReturn indicating success or failure.
+ */
+
+NyanReturn NyanCdcTX(volatile NyanOS* nos);
 /**
  * @brief Decodes, stages, and resets the current input buffer in NyanOS.
  * @param nos Pointer to the NyanOS struct.

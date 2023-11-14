@@ -1,0 +1,171 @@
+ARM GAS  /tmp/ccUbuDUb.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"lattice_ice_hx.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/lattice_ice_hx.c"
+  20              		.section	.text.FPGAGetBitstreamCompressedSize,"ax",%progbits
+  21              		.align	1
+  22              		.global	FPGAGetBitstreamCompressedSize
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	FPGAGetBitstreamCompressedSize:
+  28              	.LVL0:
+  29              	.LFB142:
+   1:Core/Src/lattice_ice_hx.c **** /**
+   2:Core/Src/lattice_ice_hx.c ****  * Lattice ICE40HX NyanOS - Nyan Keys Driver
+   3:Core/Src/lattice_ice_hx.c ****  * @author Reese Russell
+   4:Core/Src/lattice_ice_hx.c ****  */
+   5:Core/Src/lattice_ice_hx.c **** 
+   6:Core/Src/lattice_ice_hx.c **** #include "lattice_ice_hx.h"
+   7:Core/Src/lattice_ice_hx.c **** 
+   8:Core/Src/lattice_ice_hx.c **** FPGAReturn FPGAInit(LatticeIceHX* fpga)
+   9:Core/Src/lattice_ice_hx.c **** {
+  10:Core/Src/lattice_ice_hx.c ****     fpga->configured = false;
+  11:Core/Src/lattice_ice_hx.c ****     FPGAGetBitstreamCompressedSize(fpga);
+  12:Core/Src/lattice_ice_hx.c ****     
+  13:Core/Src/lattice_ice_hx.c ****     return FPGA_SUCCESS;
+  14:Core/Src/lattice_ice_hx.c **** }
+  15:Core/Src/lattice_ice_hx.c **** 
+  16:Core/Src/lattice_ice_hx.c **** FPGAReturn FPGAGetBitstreamCompressedSize(LatticeIceHX* fpga)
+  17:Core/Src/lattice_ice_hx.c **** {
+  30              		.loc 1 17 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 17 1 is_stmt 0 view .LVU1
+  35 0000 10B5     		push	{r4, lr}
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 4, -8
+  38              		.cfi_offset 14, -4
+  39 0002 0446     		mov	r4, r0
+  18:Core/Src/lattice_ice_hx.c ****     // We need to fetch the owners name from the eeprom - !!!FIXME!!! Polled
+  19:Core/Src/lattice_ice_hx.c ****     EepromRead(&nos_eeprom, false, ADDR_FPGA_BITSTREAM_LEN, SIZE_FPGA_BITSTREAM_LEN);
+ARM GAS  /tmp/ccUbuDUb.s 			page 2
+
+
+  40              		.loc 1 19 5 is_stmt 1 view .LVU2
+  41 0004 1023     		movs	r3, #16
+  42 0006 B022     		movs	r2, #176
+  43 0008 0021     		movs	r1, #0
+  44 000a 0648     		ldr	r0, .L4
+  45              	.LVL1:
+  46              		.loc 1 19 5 is_stmt 0 view .LVU3
+  47 000c FFF7FEFF 		bl	EepromRead
+  48              	.LVL2:
+  20:Core/Src/lattice_ice_hx.c ****     while(nos_eeprom.rx_inflight){}
+  49              		.loc 1 20 5 is_stmt 1 view .LVU4
+  50              	.L2:
+  51              		.loc 1 20 35 discriminator 1 view .LVU5
+  52              		.loc 1 20 11 discriminator 1 view .LVU6
+  53              		.loc 1 20 21 is_stmt 0 discriminator 1 view .LVU7
+  54 0010 044B     		ldr	r3, .L4
+  55 0012 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+  56              		.loc 1 20 11 discriminator 1 view .LVU8
+  57 0014 002B     		cmp	r3, #0
+  58 0016 FBD1     		bne	.L2
+  21:Core/Src/lattice_ice_hx.c ****     // Cast the eeprom as a pointer of shorts
+  22:Core/Src/lattice_ice_hx.c ****     uint16_t *rx_buf = (uint16_t *)nos_eeprom.rx_buf;
+  59              		.loc 1 22 5 is_stmt 1 view .LVU9
+  60              	.LVL3:
+  23:Core/Src/lattice_ice_hx.c ****     fpga->bitstream_compressed_size = rx_buf[SIZE_FPGA_BITSTREAM_LEN/2 -2];
+  61              		.loc 1 23 5 view .LVU10
+  62              		.loc 1 23 45 is_stmt 0 view .LVU11
+  63 0018 024B     		ldr	r3, .L4
+  64 001a B3F99130 		ldrsh	r3, [r3, #145]	@ unaligned
+  65              		.loc 1 23 37 view .LVU12
+  66 001e 6380     		strh	r3, [r4, #2]	@ movhi
+  24:Core/Src/lattice_ice_hx.c **** 
+  25:Core/Src/lattice_ice_hx.c ****     return FPGA_SUCCESS;
+  67              		.loc 1 25 5 is_stmt 1 view .LVU13
+  26:Core/Src/lattice_ice_hx.c **** }...
+  68              		.loc 1 26 1 is_stmt 0 view .LVU14
+  69 0020 0120     		movs	r0, #1
+  70 0022 10BD     		pop	{r4, pc}
+  71              	.LVL4:
+  72              	.L5:
+  73              		.loc 1 26 1 view .LVU15
+  74              		.align	2
+  75              	.L4:
+  76 0024 00000000 		.word	nos_eeprom
+  77              		.cfi_endproc
+  78              	.LFE142:
+  80              		.section	.text.FPGAInit,"ax",%progbits
+  81              		.align	1
+  82              		.global	FPGAInit
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  87              	FPGAInit:
+  88              	.LVL5:
+  89              	.LFB141:
+   9:Core/Src/lattice_ice_hx.c **** {
+  90              		.loc 1 9 1 is_stmt 1 view -0
+ARM GAS  /tmp/ccUbuDUb.s 			page 3
+
+
+  91              		.cfi_startproc
+  92              		@ args = 0, pretend = 0, frame = 0
+  93              		@ frame_needed = 0, uses_anonymous_args = 0
+   9:Core/Src/lattice_ice_hx.c **** {
+  94              		.loc 1 9 1 is_stmt 0 view .LVU17
+  95 0000 08B5     		push	{r3, lr}
+  96              		.cfi_def_cfa_offset 8
+  97              		.cfi_offset 3, -8
+  98              		.cfi_offset 14, -4
+  10:Core/Src/lattice_ice_hx.c ****     fpga->configured = false;
+  99              		.loc 1 10 5 is_stmt 1 view .LVU18
+  10:Core/Src/lattice_ice_hx.c ****     fpga->configured = false;
+ 100              		.loc 1 10 22 is_stmt 0 view .LVU19
+ 101 0002 0022     		movs	r2, #0
+ 102 0004 0270     		strb	r2, [r0]
+  11:Core/Src/lattice_ice_hx.c ****     FPGAGetBitstreamCompressedSize(fpga);
+ 103              		.loc 1 11 5 is_stmt 1 view .LVU20
+ 104 0006 FFF7FEFF 		bl	FPGAGetBitstreamCompressedSize
+ 105              	.LVL6:
+  13:Core/Src/lattice_ice_hx.c ****     return FPGA_SUCCESS;
+ 106              		.loc 1 13 5 view .LVU21
+  14:Core/Src/lattice_ice_hx.c **** }
+ 107              		.loc 1 14 1 is_stmt 0 view .LVU22
+ 108 000a 0120     		movs	r0, #1
+ 109 000c 08BD     		pop	{r3, pc}
+ 110              		.cfi_endproc
+ 111              	.LFE141:
+ 113              		.text
+ 114              	.Letext0:
+ 115              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 116              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 117              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 118              		.file 5 "Core/Inc/24xx_eeprom.h"
+ 119              		.file 6 "Core/Inc/lattice_ice_hx.h"
+ARM GAS  /tmp/ccUbuDUb.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 lattice_ice_hx.c
+     /tmp/ccUbuDUb.s:21     .text.FPGAGetBitstreamCompressedSize:00000000 $t
+     /tmp/ccUbuDUb.s:27     .text.FPGAGetBitstreamCompressedSize:00000000 FPGAGetBitstreamCompressedSize
+     /tmp/ccUbuDUb.s:76     .text.FPGAGetBitstreamCompressedSize:00000024 $d
+     /tmp/ccUbuDUb.s:81     .text.FPGAInit:00000000 $t
+     /tmp/ccUbuDUb.s:87     .text.FPGAInit:00000000 FPGAInit
+
+UNDEFINED SYMBOLS
+EepromRead
+nos_eeprom

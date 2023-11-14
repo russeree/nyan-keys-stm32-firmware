@@ -31,6 +31,7 @@
 #include "usb_device.h"
 #include "usbd_cdc_acm_if.h"
 #include "24xx_eeprom.h"
+#include "lattice_ice_hx.h"
 #include "nyan_os.h"
 #include "nyan_leds.h"
 #include "nyan_strings.h"
@@ -59,6 +60,7 @@ double system_status_led_angle;
 
 volatile NyanOS nos;
 Eeprom24xx nos_eeprom;
+LatticeIceHX nos_fpga;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -122,6 +124,8 @@ int main(void)
   HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
   // USB composite device creation
   MX_USB_DEVICE_Init();
+  // FPGA Bitstream Loading
+  FPGAInit(&nos_fpga);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -204,6 +208,8 @@ void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *I2cHandle)
   switch (error)
   {
     case HAL_I2C_ERROR_AF :
+      nos_eeprom.tx_failed = true;
+      break;
     default:
       Error_Handler();
   }
@@ -237,15 +243,14 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
     __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_1, (unsigned int)cc_val);
   }
   if (htim->Instance == TIM8) {
-    if((nos.tx_buffer.p_array != NULL || nos.tx_buffer.size != 0) && nos.tx_inflight == 0) {
-      CDC_Transmit(nos.cdc_ch, nos.tx_buffer.p_array, nos.tx_buffer.size);
-    }
+    // Clear the CDC TX buffer with Nyan large print support
+    NyanCdcTX(&nos);
     // Every 200ms check to see if the welcome display needs to be presented
     if(nos.exe == NYAN_EXE_IDLE) {
       NyanWelcomeDisplay(&nos);
     }
     // Program Execution - Must be idle with no TXs inflight since we are modifying the ptr
-    if(nos.exe != NYAN_EXE_IDLE && nos.tx_inflight == 0) {
+    if(nos.exe != NYAN_EXE_IDLE && nos.tx_inflight == 0 && nos.exe_in_progress == 0) {
       NyanExecute(&nos);
     }
     // Turn off the RX CDC LED

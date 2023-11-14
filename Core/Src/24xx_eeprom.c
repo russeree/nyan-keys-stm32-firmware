@@ -53,7 +53,7 @@ EepromReturn EepromWrite(Eeprom24xx* eeprom, bool b0, short eeprom_address, size
         // Place the TX inflight to prevent causing DMA collisions
         eeprom->tx_inflight = true;
         if (HAL_I2C_Mem_Write_DMA(&hi2c1,EepromCreateControlByte(eeprom, false, b0), eeprom_address, I2C_MEMADD_SIZE_16BIT, &eeprom->tx_buf[0], len) != HAL_OK)
-            Error_Handler();
+            return EEPROM_FAILURE;
         // Reset the position since we just placed all of the data on the buffer to be sent.
     }
 

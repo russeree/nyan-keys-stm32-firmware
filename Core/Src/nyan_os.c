@@ -4,6 +4,7 @@
  * MIT License
  */
 
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h> 
 #include <string.h>
@@ -11,7 +12,9 @@
 #include "main.h"
 #include "24xx_eeprom.h"
 #include "nyan_os.h"
+#include "nyan_sha256.h"
 #include "nyan_strings.h"
+#include "tim.h"
 #include "usbd_cdc_acm_if.h"
 
 NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
@@ -23,6 +26,10 @@ NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
     // Default init the OS vars
     nos->command_buffer_num_args = 0;
     nos->command_buffer_pos = 0;
+    nos->rx_buffer_sz = 0;
+    nos->tx_chunks_solid = 0;
+    nos->tx_chunks_partial_bytes = 0;
+    nos->tx_chunk = 0;
     nos->cdc_ch = _NYAN_CDC_CHANNEL;
 
     // EEPROM Driver access
@@ -45,11 +52,12 @@ NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
 
 NyanReturn NyanWelcomeDisplay(volatile NyanOS *nos)
 {
-    if(nos->send_welcome_screen && nos->send_welcome_screen_guard == 0) {
+    if(nos->send_welcome_screen) {
         nos->send_welcome_screen = 0x00;
-        nos->send_welcome_screen_guard++;
-        NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
-        NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+        if(nos->send_welcome_screen_guard++ == 0){
+            NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(nyan_keys_welcome_text));
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+        }
     }
 
     return NOS_SUCCESS;
@@ -61,36 +69,44 @@ NyanReturn NyanAddInputBuffer(volatile NyanOS *nos, uint8_t *pbuf, uint32_t *Len
     const char backspace_char = 0x08;
     const char carriage_return = '\r';
     const char line_feed = '\n';
-    // 0. Check which state we are in.
+
+    // Lets copy the RX Buffer so that it doesn't get freed by an interrupt !!!FIXME!!! This can be refactored out.
+    memset((void*)nos->rx_buffer, 0, sizeof(nos->rx_buffer));
+    nos->rx_buffer_sz = *Len;
+    for(uint32_t i = 0; i < *Len; ++i){
+        nos->rx_buffer[i] = pbuf[i];
+    }
+
+    // Check which state we are in.
     switch(nos->state){
         case READY: {
-            for(uint32_t idx = 0; idx < *Len; ++idx) {
-                if((pbuf[idx] == backspace_char ||  pbuf[idx] == del_char) && nos->command_buffer_pos > 0) {
+            for(uint32_t idx = 0; idx < nos->rx_buffer_sz; ++idx) {
+                if((nos->rx_buffer[idx] == backspace_char ||  nos->rx_buffer[idx] == del_char) && nos->command_buffer_pos > 0) {
                     // Handle backspace
                     uint8_t backspace_seq[3] = {backspace_char, ' ', backspace_char};
                     NyanPrint(nos, (char*)&backspace_seq[0], sizeof(backspace_seq));
+                    nos->command_buffer[nos->command_buffer_pos] = '\0';
                     --nos->command_buffer_pos;
-                } else if(pbuf[idx] == line_feed || pbuf[idx] == carriage_return) {
+                } else if(nos->rx_buffer[idx] == line_feed || nos->rx_buffer[idx] == carriage_return) {
                     // Handle the action of executing a command by pressing enter
-                    nos->command_buffer_pos = 0;
                     NyanDecode(nos);
                     ClearNyanCommandBuffer(nos);
                     NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
                     break;
                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
                     // Handle out of command buffer space on next char
-                } else if(pbuf[idx] >= 0x20 && pbuf[idx] <= 0x7E) {
-                    nos->command_buffer[nos->command_buffer_pos++] = pbuf[idx];
-                    NyanPrint(nos, (char*)pbuf, (size_t)*Len);
+                } else if(nos->rx_buffer[idx] >= 0x20 && nos->rx_buffer[idx] <= 0x7E) {
+                    nos->command_buffer[nos->command_buffer_pos++] = nos->rx_buffer[idx];
+                    NyanPrint(nos, (char*)nos->rx_buffer, (size_t)*Len);
                 }
             }
             break;
         }
         case DIRECT_BUFFER_ACCESS: {
             // In this state all signals are written directly to the buffer until the buffer is full
-            for(uint32_t idx = 0; idx < *Len; ++idx) {
+            for(uint32_t idx = 0; idx < nos->rx_buffer_sz; ++idx) {
                 if(nos->bytes_received < nos->bytes_array_size)
-                    nos->bytes_array[nos->bytes_received++] = pbuf[idx];
+                    nos->bytes_array[nos->bytes_received++] = nos->rx_buffer[idx];
             }
         }
         default: 
@@ -101,11 +117,12 @@ NyanReturn NyanAddInputBuffer(volatile NyanOS *nos, uint8_t *pbuf, uint32_t *Len
 
 NyanReturn NyanPrint(volatile NyanOS *nos, char* data, size_t len)
 {
-    if (!nos || !data) {
-        // Handle null pointers being passed in
+    if (!nos || !data)
         return NOS_FAILURE;
-    }
 
+    if (nos->tx_buffer.size + len > 2048) {
+            return NOS_FAILURE;
+    }
     if (nos->tx_buffer.p_array == NULL) {
         // Since the pointer is null we need to create a new one to hold our new data!
         nos->tx_buffer.p_array = (uint8_t *)malloc(len);
@@ -116,6 +133,7 @@ NyanReturn NyanPrint(volatile NyanOS *nos, char* data, size_t len)
         nos->tx_buffer.size = len;
         memcpy(nos->tx_buffer.p_array, data, len); // Copy the data into the buffer
     } else {
+        
         // The pointer is not null, so we realloc and then add the contents of data to it
         uint8_t *new_buffer = (uint8_t *)realloc(nos->tx_buffer.p_array, nos->tx_buffer.size + len);
         if (new_buffer == NULL) {
@@ -127,6 +145,55 @@ NyanReturn NyanPrint(volatile NyanOS *nos, char* data, size_t len)
         nos->tx_buffer.size += len; // Increase the size to reflect the new total size
     }
 
+    // Now calculate the chunks
+    nos->tx_chunks_solid = nos->tx_buffer.size / _NYAN_CDC_TX_MAX_LEN;
+    nos->tx_chunks_partial_bytes = nos->tx_buffer.size % _NYAN_CDC_TX_MAX_LEN;
+
+    return NOS_SUCCESS;
+}
+
+NyanReturn NyanCdcTX(volatile NyanOS* nos)
+{
+    // First we need to determine how many chunks we need to send
+    uint8_t total_chunks = nos->tx_chunks_solid;
+    uint8_t length = 0;
+    uint32_t address_offset = nos->tx_chunk * _NYAN_CDC_TX_MAX_LEN;
+
+    // If there are partial bytes we need to increment the send chunks by 1
+    if(nos->tx_chunks_partial_bytes) {
+        total_chunks++;
+    }
+
+    // If there are no chunks to send than just return a failure
+    if(total_chunks == 0) {
+        return NOS_FAILURE;
+    }
+    
+    // Do checks and transmit data;
+    if((nos->tx_buffer.p_array != NULL || nos->tx_buffer.size != 0) && nos->tx_inflight == 0) {
+        nos->tx_bulk_transfer_in_progress = false;
+        
+        // Lets begin to process the chunks
+        if(nos->tx_chunk == total_chunks - 1) { // This would be the processing of the last chunk
+            length = nos->tx_chunks_partial_bytes;
+            ++nos->tx_chunk;
+        } else if (nos->tx_chunk < total_chunks - 1) {
+            length = _NYAN_CDC_TX_MAX_LEN;
+            nos->tx_bulk_transfer_in_progress = true;
+            ++nos->tx_chunk;
+        }
+
+        // If we have reach the end reset everything
+        if (nos->tx_chunk > total_chunks - 1) {
+            // Set all of the counter values to 0; Once we have cleared the buffer.
+            nos->tx_chunks_solid = 0;
+            nos->tx_chunks_partial_bytes = 0;
+            nos->tx_chunk = 0;
+        }
+
+        CDC_Transmit(nos->cdc_ch, nos->tx_buffer.p_array + address_offset, length);
+    }
+    
     return NOS_SUCCESS;
 }
 
@@ -167,9 +234,13 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             nos->exe = NYAN_EXE_IDLE;
             return NOS_SUCCESS;
         case NYAN_EXE_WRITE_BITSTREAM :
+            HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
+            nos->exe_in_progress = true;
             NyanExeWriteFpgaBitstream(nos);
             NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(nyan_keys_path_text));
+            nos->exe_in_progress = false;
             nos->exe = NYAN_EXE_IDLE;
+            HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
             return NOS_SUCCESS;
         case NYAN_EXE_IDLE :
             return NOS_SUCCESS;
@@ -312,7 +383,14 @@ NyanReturn NyanExeSetOwner(volatile NyanOS* nos)
     return NOS_SUCCESS;
 }
 
-NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos) {
+NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos)
+{
+    // If we get here an are already in direct buffer access mode; FAIL
+    if(nos->state == DIRECT_BUFFER_ACCESS)
+        return NOS_FAILURE;
+    // Set the state to NYAN_EXE_IDLE to show that we have ack'd the command
+    nos->exe = NYAN_EXE_IDLE;
+
     nos->bytes_array_size = 0;
     // Now we need to convert the arg 1 into an int - skip arg 0 because that is the command.
     nos->bytes_array_size = atoi((char *)nos->command_arg_buffer[1]);
@@ -335,13 +413,21 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos) {
         nos->eeprom->tx_buf[i] = ((uint8_t*)size_array)[i];
     }
     // Write the data to the eeprom - wait for the write to complete since this is DMA and order matters
-    EepromWrite(nos->eeprom, true, ADDR_BOARD_OWNER, SIZE_BOARD_OWNER);
-    // Print the ready to accept bytes confirmation message
-    NyanPrint(nos, (char*)&nyan_keys_write_bitstream_info_start[0], sizeof(nyan_keys_write_bitstream_info_start));
+    EepromWrite(nos->eeprom, false, ADDR_FPGA_BITSTREAM_LEN, SIZE_FPGA_BITSTREAM_LEN);
+    while(nos->eeprom->tx_inflight){
+        // Wait while the TX is in flight as to avoid bogus writes;
+    }
+
+    // Print the ready to accept bytes confirmation message - This does nothing because it's executed in the same interrupt - Just delay for 10ms 
+    // NyanPrint(nos, (char*)&nyan_keys_write_bitstream_info_start[0], sizeof(nyan_keys_write_bitstream_info_start));
+
     // Lets allocate some memory to save this bitstream we are importing
     nos->bytes_array = (uint8_t*)malloc(nos->bytes_array_size * sizeof(uint8_t));
-    if(nos->bytes_array_size == 0)
+    if(nos->bytes_array == NULL) {
+        // Handle memory allocation failure
+        nos->state = READY; // or appropriate error state
         return NOS_FAILURE;
+    }
     // Flush the input buffer to prepare for the FPGA bitstream - This is safe because we have create a buffer
     nos->state = DIRECT_BUFFER_ACCESS;
 
@@ -351,23 +437,60 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos) {
         // Enabling am abort sequence would be a next step
     }
 
+    // Take a Sha256 Hash of the inputs for the user display
+    BYTE buf[SHA256_BLOCK_SIZE];
+    SHA256_CTX ctx;
+    
+    sha256_init(&ctx);
+    sha256_update(&ctx, nos->bytes_array, nos->bytes_array_size);
+    sha256_final(&ctx, buf);
+
+    // Print the sha256 output for the user to verify their bitstream
+    char hexString[SHA256_BLOCK_SIZE * 2 + 1];
+    for (int i = 0; i < SHA256_BLOCK_SIZE; i++) {
+        sprintf(&hexString[i * 2], "%02x", buf[i]);
+    }
+    hexString[SHA256_BLOCK_SIZE * 2] = '\0';
+    
+    NyanPrint(nos, (char*)&hexString[0], SHA256_BLOCK_SIZE * 2);
+    NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(nyan_keys_newline));
+
     // Calculate the number iterations 
-    unsigned int r = nos->bytes_array_size%EEPROM_DRIVER_TX_BUF_SZ;
-    unsigned int q = nos->bytes_array_size/EEPROM_DRIVER_TX_BUF_SZ;
+    unsigned int r = nos->bytes_array_size % EEPROM_DRIVER_TX_BUF_SZ;
+    unsigned int q = nos->bytes_array_size / EEPROM_DRIVER_TX_BUF_SZ;
     if(r > 0)
         ++q;
     if (q == 0)
         return NOS_FAILURE;
-    // Fill and iterate over pages in the eeprom, write, wait ...
+
+    // Fill and iterate over pages in the EEPROM, write, wait ...
     for(unsigned short page = 0; page < q; ++page) {
+        bool txSuccess = false;
+        bool txRetry = false;
         // Flush the transmit buffer
         EepromFlushTxBuff(nos->eeprom);
-        for(int byte = 0; byte > EEPROM_DRIVER_TX_BUF_SZ; byte++){
+        // Prepare the data for transmission
+        for(uint8_t byte = 0; byte < EEPROM_DRIVER_TX_BUF_SZ; ++byte) {
             nos->eeprom->tx_buf[byte] = nos->bytes_array[EEPROM_DRIVER_TX_BUF_SZ * page + byte];
         }
-        EepromWrite(nos->eeprom, false, ADDR_FPGA_BITSTREAM + EEPROM_DRIVER_TX_BUF_SZ * page, 128);
-        while(nos->eeprom->tx_inflight){
-            // Wait while the TX is in flight as to avoid bogus writes;
+        // Attempt to write the data to the EEPROM - Until the job is done.
+        while(!txSuccess) {
+            if(EepromWrite(nos->eeprom, true, (EEPROM_DRIVER_TX_BUF_SZ * page) + ADDR_FPGA_BITSTREAM, 128) != EEPROM_FAILURE) {
+                while(nos->eeprom->tx_inflight) {
+                    // Check for transmission success
+                    if(nos->eeprom->tx_failed) {
+                        nos->eeprom->tx_inflight = false;
+                        nos->eeprom->tx_failed = false;
+                        txRetry = true;
+                        break; // Break from the while loop on success
+                    }
+                    txRetry = false;
+                }
+                if(nos->eeprom->tx_inflight == 0 && txRetry == false) {
+                    txSuccess = true;
+                    txRetry = false;
+                }
+            }
         }
     }
     // Perform function cleanup maintenance
@@ -406,7 +529,8 @@ void FreeNyanString(NyanString* nyanString)
     nyanString->size = 0;
 }
 
-void ClearNyanCommandBuffer(volatile NyanOS* nos){
+void ClearNyanCommandBuffer(volatile NyanOS* nos)
+{
     nos->command_buffer_pos = 0;
     memset((void*)nos->command_buffer, 0, sizeof(nos->command_buffer));
 };

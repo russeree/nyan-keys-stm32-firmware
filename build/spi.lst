@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccNzEF0q.s 			page 1
+ARM GAS  /tmp/ccwulEDg.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
   28:Core/Src/spi.c **** SPI_HandleTypeDef hspi2;
   29:Core/Src/spi.c **** SPI_HandleTypeDef hspi4;
   30:Core/Src/spi.c **** 
-ARM GAS  /tmp/ccNzEF0q.s 			page 2
+ARM GAS  /tmp/ccwulEDg.s 			page 2
 
 
   31:Core/Src/spi.c **** /* SPI1 init function */
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
   64              		.loc 1 49 3 is_stmt 1 view .LVU15
   65              		.loc 1 49 32 is_stmt 0 view .LVU16
   66 0022 C361     		str	r3, [r0, #28]
-ARM GAS  /tmp/ccNzEF0q.s 			page 3
+ARM GAS  /tmp/ccwulEDg.s 			page 3
 
 
   50:Core/Src/spi.c ****   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  105 0044 00000000 		.word	hspi1
  106 0048 00300140 		.word	1073819648
  107              		.cfi_endproc
-ARM GAS  /tmp/ccNzEF0q.s 			page 4
+ARM GAS  /tmp/ccwulEDg.s 			page 4
 
 
  108              	.LFE141:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  147              		.loc 1 81 3 is_stmt 1 view .LVU46
  148              		.loc 1 81 23 is_stmt 0 view .LVU47
  149 001a 4361     		str	r3, [r0, #20]
-ARM GAS  /tmp/ccNzEF0q.s 			page 5
+ARM GAS  /tmp/ccwulEDg.s 			page 5
 
 
   82:Core/Src/spi.c ****   hspi2.Init.NSS = SPI_NSS_SOFT;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
   92:Core/Src/spi.c ****   }
  187              		.loc 1 92 5 is_stmt 1 view .LVU68
  188 003c FFF7FEFF 		bl	Error_Handler
-ARM GAS  /tmp/ccNzEF0q.s 			page 6
+ARM GAS  /tmp/ccwulEDg.s 			page 6
 
 
  189              	.LVL3:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  230              		.loc 1 113 3 is_stmt 1 view .LVU77
  231              		.loc 1 113 23 is_stmt 0 view .LVU78
  232 0012 4FF44072 		mov	r2, #768
-ARM GAS  /tmp/ccNzEF0q.s 			page 7
+ARM GAS  /tmp/ccwulEDg.s 			page 7
 
 
  233 0016 C260     		str	r2, [r0, #12]
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  127:Core/Src/spi.c ****   }
  128:Core/Src/spi.c ****   /* USER CODE BEGIN SPI4_Init 2 */
  129:Core/Src/spi.c **** 
-ARM GAS  /tmp/ccNzEF0q.s 			page 8
+ARM GAS  /tmp/ccwulEDg.s 			page 8
 
 
  130:Core/Src/spi.c ****   /* USER CODE END SPI4_Init 2 */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  138:Core/Src/spi.c ****   if(spiHandle->Instance==SPI1)
  321              		.loc 1 138 3 is_stmt 1 view .LVU109
  322              		.loc 1 138 15 is_stmt 0 view .LVU110
-ARM GAS  /tmp/ccNzEF0q.s 			page 9
+ARM GAS  /tmp/ccwulEDg.s 			page 9
 
 
  323 0010 0368     		ldr	r3, [r0]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  183:Core/Src/spi.c ****     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
  184:Core/Src/spi.c **** 
  185:Core/Src/spi.c ****     GPIO_InitStruct.Pin = GPIO_PIN_10;
-ARM GAS  /tmp/ccNzEF0q.s 			page 10
+ARM GAS  /tmp/ccwulEDg.s 			page 10
 
 
  186:Core/Src/spi.c ****     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  350              	.LBB2:
  144:Core/Src/spi.c **** 
  351              		.loc 1 144 5 view .LVU118
-ARM GAS  /tmp/ccNzEF0q.s 			page 11
+ARM GAS  /tmp/ccwulEDg.s 			page 11
 
 
  144:Core/Src/spi.c **** 
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  155:Core/Src/spi.c ****     GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
  390              		.loc 1 155 27 is_stmt 0 view .LVU135
  391 0056 0323     		movs	r3, #3
-ARM GAS  /tmp/ccNzEF0q.s 			page 12
+ARM GAS  /tmp/ccwulEDg.s 			page 12
 
 
  392 0058 0A93     		str	r3, [sp, #40]
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  432 0086 02F00402 		and	r2, r2, #4
  433 008a 0392     		str	r2, [sp, #12]
  171:Core/Src/spi.c ****     __HAL_RCC_GPIOB_CLK_ENABLE();
-ARM GAS  /tmp/ccNzEF0q.s 			page 13
+ARM GAS  /tmp/ccwulEDg.s 			page 13
 
 
  434              		.loc 1 171 5 view .LVU150
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  471 00b0 07A9     		add	r1, sp, #28
  472 00b2 1D48     		ldr	r0, .L27+20
  473              	.LVL12:
-ARM GAS  /tmp/ccNzEF0q.s 			page 14
+ARM GAS  /tmp/ccwulEDg.s 			page 14
 
 
  183:Core/Src/spi.c **** 
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  512 00de 02F40052 		and	r2, r2, #8192
  513 00e2 0592     		str	r2, [sp, #20]
  202:Core/Src/spi.c **** 
-ARM GAS  /tmp/ccNzEF0q.s 			page 15
+ARM GAS  /tmp/ccwulEDg.s 			page 15
 
 
  514              		.loc 1 202 5 view .LVU184
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  551 0108 07A9     		add	r1, sp, #28
  552 010a 0948     		ldr	r0, .L27+28
  553              	.LVL16:
-ARM GAS  /tmp/ccNzEF0q.s 			page 16
+ARM GAS  /tmp/ccwulEDg.s 			page 16
 
 
  215:Core/Src/spi.c **** 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  232:Core/Src/spi.c ****     __HAL_RCC_SPI1_CLK_DISABLE();
  233:Core/Src/spi.c **** 
  234:Core/Src/spi.c ****     /**SPI1 GPIO Configuration
-ARM GAS  /tmp/ccNzEF0q.s 			page 17
+ARM GAS  /tmp/ccwulEDg.s 			page 17
 
 
  235:Core/Src/spi.c ****     PA5     ------> SPI1_SCK
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  277:Core/Src/spi.c ****     PE6     ------> SPI4_MOSI
  278:Core/Src/spi.c ****     */
  279:Core/Src/spi.c ****     HAL_GPIO_DeInit(GPIOE, GPIO_PIN_2|GPIO_PIN_5|GPIO_PIN_6);
-ARM GAS  /tmp/ccNzEF0q.s 			page 18
+ARM GAS  /tmp/ccwulEDg.s 			page 18
 
 
  280:Core/Src/spi.c **** 
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  651 004e 02F58232 		add	r2, r2, #66560
  652 0052 536C     		ldr	r3, [r2, #68]
  653 0054 23F40053 		bic	r3, r3, #8192
-ARM GAS  /tmp/ccNzEF0q.s 			page 19
+ARM GAS  /tmp/ccwulEDg.s 			page 19
 
 
  654 0058 5364     		str	r3, [r2, #68]
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  701              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
  702              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
  703              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
-ARM GAS  /tmp/ccNzEF0q.s 			page 20
+ARM GAS  /tmp/ccwulEDg.s 			page 20
 
 
  704              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
@@ -1146,32 +1146,32 @@ ARM GAS  /tmp/ccNzEF0q.s 			page 1
  706              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
  707              		.file 9 "Core/Inc/spi.h"
  708              		.file 10 "Core/Inc/main.h"
-ARM GAS  /tmp/ccNzEF0q.s 			page 21
+ARM GAS  /tmp/ccwulEDg.s 			page 21
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 spi.c
-     /tmp/ccNzEF0q.s:21     .text.MX_SPI1_Init:00000000 $t
-     /tmp/ccNzEF0q.s:27     .text.MX_SPI1_Init:00000000 MX_SPI1_Init
-     /tmp/ccNzEF0q.s:105    .text.MX_SPI1_Init:00000044 $d
-     /tmp/ccNzEF0q.s:696    .bss.hspi1:00000000 hspi1
-     /tmp/ccNzEF0q.s:111    .text.MX_SPI2_Init:00000000 $t
-     /tmp/ccNzEF0q.s:117    .text.MX_SPI2_Init:00000000 MX_SPI2_Init
-     /tmp/ccNzEF0q.s:195    .text.MX_SPI2_Init:00000044 $d
-     /tmp/ccNzEF0q.s:689    .bss.hspi2:00000000 hspi2
-     /tmp/ccNzEF0q.s:201    .text.MX_SPI4_Init:00000000 $t
-     /tmp/ccNzEF0q.s:207    .text.MX_SPI4_Init:00000000 MX_SPI4_Init
-     /tmp/ccNzEF0q.s:285    .text.MX_SPI4_Init:00000044 $d
-     /tmp/ccNzEF0q.s:682    .bss.hspi4:00000000 hspi4
-     /tmp/ccNzEF0q.s:291    .text.HAL_SPI_MspInit:00000000 $t
-     /tmp/ccNzEF0q.s:297    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
-     /tmp/ccNzEF0q.s:562    .text.HAL_SPI_MspInit:00000114 $d
-     /tmp/ccNzEF0q.s:574    .text.HAL_SPI_MspDeInit:00000000 $t
-     /tmp/ccNzEF0q.s:580    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
-     /tmp/ccNzEF0q.s:667    .text.HAL_SPI_MspDeInit:00000064 $d
-     /tmp/ccNzEF0q.s:679    .bss.hspi4:00000000 $d
-     /tmp/ccNzEF0q.s:686    .bss.hspi2:00000000 $d
-     /tmp/ccNzEF0q.s:693    .bss.hspi1:00000000 $d
+     /tmp/ccwulEDg.s:21     .text.MX_SPI1_Init:00000000 $t
+     /tmp/ccwulEDg.s:27     .text.MX_SPI1_Init:00000000 MX_SPI1_Init
+     /tmp/ccwulEDg.s:105    .text.MX_SPI1_Init:00000044 $d
+     /tmp/ccwulEDg.s:696    .bss.hspi1:00000000 hspi1
+     /tmp/ccwulEDg.s:111    .text.MX_SPI2_Init:00000000 $t
+     /tmp/ccwulEDg.s:117    .text.MX_SPI2_Init:00000000 MX_SPI2_Init
+     /tmp/ccwulEDg.s:195    .text.MX_SPI2_Init:00000044 $d
+     /tmp/ccwulEDg.s:689    .bss.hspi2:00000000 hspi2
+     /tmp/ccwulEDg.s:201    .text.MX_SPI4_Init:00000000 $t
+     /tmp/ccwulEDg.s:207    .text.MX_SPI4_Init:00000000 MX_SPI4_Init
+     /tmp/ccwulEDg.s:285    .text.MX_SPI4_Init:00000044 $d
+     /tmp/ccwulEDg.s:682    .bss.hspi4:00000000 hspi4
+     /tmp/ccwulEDg.s:291    .text.HAL_SPI_MspInit:00000000 $t
+     /tmp/ccwulEDg.s:297    .text.HAL_SPI_MspInit:00000000 HAL_SPI_MspInit
+     /tmp/ccwulEDg.s:562    .text.HAL_SPI_MspInit:00000114 $d
+     /tmp/ccwulEDg.s:574    .text.HAL_SPI_MspDeInit:00000000 $t
+     /tmp/ccwulEDg.s:580    .text.HAL_SPI_MspDeInit:00000000 HAL_SPI_MspDeInit
+     /tmp/ccwulEDg.s:667    .text.HAL_SPI_MspDeInit:00000064 $d
+     /tmp/ccwulEDg.s:679    .bss.hspi4:00000000 $d
+     /tmp/ccwulEDg.s:686    .bss.hspi2:00000000 $d
+     /tmp/ccwulEDg.s:693    .bss.hspi1:00000000 $d
 
 UNDEFINED SYMBOLS
 HAL_SPI_Init

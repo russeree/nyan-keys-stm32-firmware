@@ -40,9 +40,11 @@ Core/Src/24xx_eeprom.c \
 Core/Src/dma.c \
 Core/Src/gpio.c \
 Core/Src/i2c.c \
+Core/Src/lattice_ice_hx.c \
 Core/Src/main.c \
 Core/Src/nyan_leds.c \
 Core/Src/nyan_os.c \
+Core/Src/nyan_sha256.c \
 Core/Src/rng.c \
 Core/Src/spi.c \
 Core/Src/stm32f7xx_hal_msp.c \

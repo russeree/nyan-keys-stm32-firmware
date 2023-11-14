@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccaV6V9u.s 			page 1
+ARM GAS  /tmp/cch5WsQE.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
   42              		.loc 1 14 5 is_stmt 1 view .LVU2
   43              		.loc 1 14 16 is_stmt 0 view .LVU3
   44 0004 0170     		strb	r1, [r0]
-ARM GAS  /tmp/ccaV6V9u.s 			page 2
+ARM GAS  /tmp/cch5WsQE.s 			page 2
 
 
   15:Core/Src/24xx_eeprom.c ****     eeprom->a1 = a1;
@@ -73,7 +73,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
   17:Core/Src/24xx_eeprom.c ****     eeprom->rx_inflight = false;
   52              		.loc 1 17 5 is_stmt 1 view .LVU8
   53              		.loc 1 17 25 is_stmt 0 view .LVU9
-  54 000c C570     		strb	r5, [r0, #3]
+  54 000c 0571     		strb	r5, [r0, #4]
   18:Core/Src/24xx_eeprom.c **** 
   19:Core/Src/24xx_eeprom.c ****     memset((void*)eeprom->tx_buf, 0, sizeof(eeprom->tx_buf));
   55              		.loc 1 19 5 is_stmt 1 view .LVU10
@@ -83,7 +83,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
   59 0010 2946     		mov	r1, r5
   60              	.LVL2:
   61              		.loc 1 19 5 view .LVU12
-  62 0012 0430     		adds	r0, r0, #4
+  62 0012 0530     		adds	r0, r0, #5
   63              	.LVL3:
   64              		.loc 1 19 5 view .LVU13
   65 0014 FFF7FEFF 		bl	memset
@@ -92,7 +92,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
   67              		.loc 1 20 5 is_stmt 1 view .LVU14
   68 0018 4FF48062 		mov	r2, #1024
   69 001c 2946     		mov	r1, r5
-  70 001e 04F18400 		add	r0, r4, #132
+  70 001e 04F18500 		add	r0, r4, #133
   71 0022 FFF7FEFF 		bl	memset
   72              	.LVL5:
   21:Core/Src/24xx_eeprom.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
   25:Core/Src/24xx_eeprom.c **** EepromReturn EepromFlushTxBuff(Eeprom24xx* eeprom)
   26:Core/Src/24xx_eeprom.c **** {
   91              		.loc 1 26 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccaV6V9u.s 			page 3
+ARM GAS  /tmp/cch5WsQE.s 			page 3
 
 
   92              		.cfi_startproc
@@ -133,7 +133,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
  100              		.loc 1 27 5 is_stmt 1 view .LVU20
  101 0002 8022     		movs	r2, #128
  102 0004 0021     		movs	r1, #0
- 103 0006 0430     		adds	r0, r0, #4
+ 103 0006 0530     		adds	r0, r0, #5
  104              	.LVL7:
  105              		.loc 1 27 5 is_stmt 0 view .LVU21
  106 0008 FFF7FEFF 		bl	memset
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
  137              		.loc 1 34 13 view .LVU29
  138 0004 A020     		movs	r0, #160
  139              	.LVL11:
-ARM GAS  /tmp/ccaV6V9u.s 			page 4
+ARM GAS  /tmp/cch5WsQE.s 			page 4
 
 
  140              	.L6:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
  183              	.LVL18:
   37:Core/Src/24xx_eeprom.c ****     if(eeprom->a0)
  184              		.loc 1 37 19 view .LVU49
-ARM GAS  /tmp/ccaV6V9u.s 			page 5
+ARM GAS  /tmp/cch5WsQE.s 			page 5
 
 
  185 0024 EFE7     		b	.L6
@@ -286,7 +286,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
   53:Core/Src/24xx_eeprom.c ****         // Place the TX inflight to prevent causing DMA collisions
   54:Core/Src/24xx_eeprom.c ****         eeprom->tx_inflight = true;
   55:Core/Src/24xx_eeprom.c ****         if (HAL_I2C_Mem_Write_DMA(&hi2c1,EepromCreateControlByte(eeprom, false, b0), eeprom_address
-  56:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  56:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
   57:Core/Src/24xx_eeprom.c ****         // Reset the position since we just placed all of the data on the buffer to be sent.
   58:Core/Src/24xx_eeprom.c ****     }
   59:Core/Src/24xx_eeprom.c **** 
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
  226              		.cfi_def_cfa_offset 16
  227              		@ sp needed
  228 000e 70BD     		pop	{r4, r5, r6, pc}
-ARM GAS  /tmp/ccaV6V9u.s 			page 6
+ARM GAS  /tmp/cch5WsQE.s 			page 6
 
 
  229              	.LVL22:
@@ -313,224 +313,220 @@ ARM GAS  /tmp/ccaV6V9u.s 			page 1
  236              		.loc 1 54 29 is_stmt 0 view .LVU59
  237 0014 0123     		movs	r3, #1
  238 0016 8370     		strb	r3, [r0, #2]
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  239              		.loc 1 55 9 is_stmt 1 view .LVU60
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  240              		.loc 1 55 42 is_stmt 0 view .LVU61
  241 0018 0A46     		mov	r2, r1
  242              	.LVL23:
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  243              		.loc 1 55 42 view .LVU62
  244 001a 0021     		movs	r1, #0
  245              	.LVL24:
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  246              		.loc 1 55 42 view .LVU63
  247 001c FFF7FEFF 		bl	EepromCreateControlByte
  248              	.LVL25:
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  249              		.loc 1 55 42 view .LVU64
  250 0020 0146     		mov	r1, r0
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  251              		.loc 1 55 13 view .LVU65
  252 0022 ADB2     		uxth	r5, r5
  253              	.LVL26:
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  254              		.loc 1 55 13 view .LVU66
  255 0024 0195     		str	r5, [sp, #4]
- 256 0026 0434     		adds	r4, r4, #4
+ 256 0026 0534     		adds	r4, r4, #5
  257              	.LVL27:
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  258              		.loc 1 55 13 view .LVU67
  259 0028 0094     		str	r4, [sp]
  260 002a 0223     		movs	r3, #2
  261 002c B2B2     		uxth	r2, r6
- 262 002e 0548     		ldr	r0, .L18
+ 262 002e 0448     		ldr	r0, .L17
  263 0030 FFF7FEFF 		bl	HAL_I2C_Mem_Write_DMA
  264              	.LVL28:
-  55:Core/Src/24xx_eeprom.c ****             Error_Handler();
+  55:Core/Src/24xx_eeprom.c ****             return EEPROM_FAILURE;
  265              		.loc 1 55 12 view .LVU68
- 266 0034 08B9     		cbnz	r0, .L17
+ 266 0034 08B9     		cbnz	r0, .L14
   60:Core/Src/24xx_eeprom.c **** }
  267              		.loc 1 60 12 view .LVU69
  268 0036 0120     		movs	r0, #1
  269 0038 E8E7     		b	.L12
- 270              	.L17:
+ 270              	.L14:
   56:Core/Src/24xx_eeprom.c ****         // Reset the position since we just placed all of the data on the buffer to be sent.
- 271              		.loc 1 56 13 is_stmt 1 view .LVU70
- 272 003a FFF7FEFF 		bl	Error_Handler
-ARM GAS  /tmp/ccaV6V9u.s 			page 7
+ 271              		.loc 1 56 20 view .LVU70
+ 272 003a 0020     		movs	r0, #0
+ARM GAS  /tmp/cch5WsQE.s 			page 7
 
 
- 273              	.LVL29:
-  60:Core/Src/24xx_eeprom.c **** }
- 274              		.loc 1 60 12 is_stmt 0 view .LVU71
- 275 003e 0120     		movs	r0, #1
- 276 0040 E4E7     		b	.L12
- 277              	.L19:
- 278 0042 00BF     		.align	2
- 279              	.L18:
- 280 0044 00000000 		.word	hi2c1
- 281              		.cfi_endproc
- 282              	.LFE144:
- 284              		.section	.text.EepromRead,"ax",%progbits
- 285              		.align	1
- 286              		.global	EepromRead
- 287              		.syntax unified
- 288              		.thumb
- 289              		.thumb_func
- 291              	EepromRead:
- 292              	.LVL30:
- 293              	.LFB145:
+ 273 003c E6E7     		b	.L12
+ 274              	.L18:
+ 275 003e 00BF     		.align	2
+ 276              	.L17:
+ 277 0040 00000000 		.word	hi2c1
+ 278              		.cfi_endproc
+ 279              	.LFE144:
+ 281              		.section	.text.EepromRead,"ax",%progbits
+ 282              		.align	1
+ 283              		.global	EepromRead
+ 284              		.syntax unified
+ 285              		.thumb
+ 286              		.thumb_func
+ 288              	EepromRead:
+ 289              	.LVL29:
+ 290              	.LFB145:
   62:Core/Src/24xx_eeprom.c **** 
   63:Core/Src/24xx_eeprom.c **** EepromReturn EepromRead(Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len)
   64:Core/Src/24xx_eeprom.c **** {
- 294              		.loc 1 64 1 is_stmt 1 view -0
- 295              		.cfi_startproc
- 296              		@ args = 0, pretend = 0, frame = 0
- 297              		@ frame_needed = 0, uses_anonymous_args = 0
- 298              		.loc 1 64 1 is_stmt 0 view .LVU73
- 299 0000 70B5     		push	{r4, r5, r6, lr}
- 300              		.cfi_def_cfa_offset 16
- 301              		.cfi_offset 4, -16
- 302              		.cfi_offset 5, -12
- 303              		.cfi_offset 6, -8
- 304              		.cfi_offset 14, -4
- 305 0002 82B0     		sub	sp, sp, #8
- 306              		.cfi_def_cfa_offset 24
- 307 0004 1D46     		mov	r5, r3
+ 291              		.loc 1 64 1 is_stmt 1 view -0
+ 292              		.cfi_startproc
+ 293              		@ args = 0, pretend = 0, frame = 0
+ 294              		@ frame_needed = 0, uses_anonymous_args = 0
+ 295              		.loc 1 64 1 is_stmt 0 view .LVU72
+ 296 0000 70B5     		push	{r4, r5, r6, lr}
+ 297              		.cfi_def_cfa_offset 16
+ 298              		.cfi_offset 4, -16
+ 299              		.cfi_offset 5, -12
+ 300              		.cfi_offset 6, -8
+ 301              		.cfi_offset 14, -4
+ 302 0002 82B0     		sub	sp, sp, #8
+ 303              		.cfi_def_cfa_offset 24
+ 304 0004 1D46     		mov	r5, r3
   65:Core/Src/24xx_eeprom.c ****     if(eeprom->rx_inflight)
- 308              		.loc 1 65 5 is_stmt 1 view .LVU74
- 309              		.loc 1 65 14 is_stmt 0 view .LVU75
- 310 0006 C378     		ldrb	r3, [r0, #3]	@ zero_extendqisi2
- 311              	.LVL31:
- 312              		.loc 1 65 7 view .LVU76
- 313 0008 EBB9     		cbnz	r3, .L22
- 314 000a 0446     		mov	r4, r0
- 315 000c 1646     		mov	r6, r2
+ 305              		.loc 1 65 5 is_stmt 1 view .LVU73
+ 306              		.loc 1 65 14 is_stmt 0 view .LVU74
+ 307 0006 0379     		ldrb	r3, [r0, #4]	@ zero_extendqisi2
+ 308              	.LVL30:
+ 309              		.loc 1 65 7 view .LVU75
+ 310 0008 EBB9     		cbnz	r3, .L21
+ 311 000a 0446     		mov	r4, r0
+ 312 000c 1646     		mov	r6, r2
   66:Core/Src/24xx_eeprom.c ****         return EEPROM_FAILURE;
   67:Core/Src/24xx_eeprom.c ****     if(len >= EEPROM_DRIVER_RX_BUF_SZ)
- 316              		.loc 1 67 5 is_stmt 1 view .LVU77
- 317              		.loc 1 67 7 is_stmt 0 view .LVU78
- 318 000e B5F5806F 		cmp	r5, #1024
- 319 0012 01D3     		bcc	.L26
+ 313              		.loc 1 67 5 is_stmt 1 view .LVU76
+ 314              		.loc 1 67 7 is_stmt 0 view .LVU77
+ 315 000e B5F5806F 		cmp	r5, #1024
+ 316 0012 01D3     		bcc	.L25
   68:Core/Src/24xx_eeprom.c ****         return EEPROM_FAILURE;
+ 317              		.loc 1 68 16 view .LVU78
+ 318 0014 0020     		movs	r0, #0
+ 319              	.LVL31:
  320              		.loc 1 68 16 view .LVU79
- 321 0014 0020     		movs	r0, #0
+ 321 0016 17E0     		b	.L20
  322              	.LVL32:
- 323              		.loc 1 68 16 view .LVU80
-ARM GAS  /tmp/ccaV6V9u.s 			page 8
-
-
- 324 0016 17E0     		b	.L21
- 325              	.LVL33:
- 326              	.L26:
+ 323              	.L25:
   69:Core/Src/24xx_eeprom.c ****     else {
+ARM GAS  /tmp/cch5WsQE.s 			page 8
+
+
   70:Core/Src/24xx_eeprom.c ****         eeprom->rx_inflight = true;
- 327              		.loc 1 70 9 is_stmt 1 view .LVU81
- 328              		.loc 1 70 29 is_stmt 0 view .LVU82
- 329 0018 0123     		movs	r3, #1
- 330 001a C370     		strb	r3, [r0, #3]
+ 324              		.loc 1 70 9 is_stmt 1 view .LVU80
+ 325              		.loc 1 70 29 is_stmt 0 view .LVU81
+ 326 0018 0123     		movs	r3, #1
+ 327 001a 0371     		strb	r3, [r0, #4]
   71:Core/Src/24xx_eeprom.c ****         if(HAL_I2C_Mem_Read_DMA(&hi2c1,EepromCreateControlByte(eeprom, true, b0), eeprom_address, I
- 331              		.loc 1 71 9 is_stmt 1 view .LVU83
- 332              		.loc 1 71 40 is_stmt 0 view .LVU84
- 333 001c 0A46     		mov	r2, r1
+ 328              		.loc 1 71 9 is_stmt 1 view .LVU82
+ 329              		.loc 1 71 40 is_stmt 0 view .LVU83
+ 330 001c 0A46     		mov	r2, r1
+ 331              	.LVL33:
+ 332              		.loc 1 71 40 view .LVU84
+ 333 001e 1946     		mov	r1, r3
  334              	.LVL34:
  335              		.loc 1 71 40 view .LVU85
- 336 001e 1946     		mov	r1, r3
+ 336 0020 FFF7FEFF 		bl	EepromCreateControlByte
  337              	.LVL35:
  338              		.loc 1 71 40 view .LVU86
- 339 0020 FFF7FEFF 		bl	EepromCreateControlByte
- 340              	.LVL36:
- 341              		.loc 1 71 40 view .LVU87
- 342 0024 0146     		mov	r1, r0
+ 339 0024 0146     		mov	r1, r0
+ 340              		.loc 1 71 12 view .LVU87
+ 341 0026 ADB2     		uxth	r5, r5
+ 342              	.LVL36:
  343              		.loc 1 71 12 view .LVU88
- 344 0026 ADB2     		uxth	r5, r5
- 345              	.LVL37:
- 346              		.loc 1 71 12 view .LVU89
- 347 0028 0195     		str	r5, [sp, #4]
- 348 002a 8434     		adds	r4, r4, #132
- 349              	.LVL38:
- 350              		.loc 1 71 12 view .LVU90
- 351 002c 0094     		str	r4, [sp]
- 352 002e 0223     		movs	r3, #2
- 353 0030 B2B2     		uxth	r2, r6
- 354 0032 0648     		ldr	r0, .L28
- 355 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read_DMA
- 356              	.LVL39:
- 357              		.loc 1 71 11 view .LVU91
- 358 0038 08B9     		cbnz	r0, .L27
+ 344 0028 0195     		str	r5, [sp, #4]
+ 345 002a 8534     		adds	r4, r4, #133
+ 346              	.LVL37:
+ 347              		.loc 1 71 12 view .LVU89
+ 348 002c 0094     		str	r4, [sp]
+ 349 002e 0223     		movs	r3, #2
+ 350 0030 B2B2     		uxth	r2, r6
+ 351 0032 0648     		ldr	r0, .L27
+ 352 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read_DMA
+ 353              	.LVL38:
+ 354              		.loc 1 71 11 view .LVU90
+ 355 0038 08B9     		cbnz	r0, .L26
   72:Core/Src/24xx_eeprom.c ****             Error_Handler();
   73:Core/Src/24xx_eeprom.c ****     }
   74:Core/Src/24xx_eeprom.c **** 
   75:Core/Src/24xx_eeprom.c ****     return EEPROM_SUCCESS;
- 359              		.loc 1 75 12 view .LVU92
- 360 003a 0120     		movs	r0, #1
- 361 003c 04E0     		b	.L21
- 362              	.L27:
+ 356              		.loc 1 75 12 view .LVU91
+ 357 003a 0120     		movs	r0, #1
+ 358 003c 04E0     		b	.L20
+ 359              	.L26:
   72:Core/Src/24xx_eeprom.c ****             Error_Handler();
- 363              		.loc 1 72 13 is_stmt 1 view .LVU93
- 364 003e FFF7FEFF 		bl	Error_Handler
- 365              	.LVL40:
- 366              		.loc 1 75 12 is_stmt 0 view .LVU94
- 367 0042 0120     		movs	r0, #1
- 368 0044 00E0     		b	.L21
- 369              	.LVL41:
- 370              	.L22:
+ 360              		.loc 1 72 13 is_stmt 1 view .LVU92
+ 361 003e FFF7FEFF 		bl	Error_Handler
+ 362              	.LVL39:
+ 363              		.loc 1 75 12 is_stmt 0 view .LVU93
+ 364 0042 0120     		movs	r0, #1
+ 365 0044 00E0     		b	.L20
+ 366              	.LVL40:
+ 367              	.L21:
   66:Core/Src/24xx_eeprom.c ****     if(len >= EEPROM_DRIVER_RX_BUF_SZ)
- 371              		.loc 1 66 16 view .LVU95
-ARM GAS  /tmp/ccaV6V9u.s 			page 9
-
-
- 372 0046 0020     		movs	r0, #0
- 373              	.LVL42:
- 374              	.L21:
+ 368              		.loc 1 66 16 view .LVU94
+ 369 0046 0020     		movs	r0, #0
+ 370              	.LVL41:
+ 371              	.L20:
   76:Core/Src/24xx_eeprom.c **** }...
- 375              		.loc 1 76 1 view .LVU96
- 376 0048 02B0     		add	sp, sp, #8
- 377              		.cfi_def_cfa_offset 16
- 378              		@ sp needed
- 379 004a 70BD     		pop	{r4, r5, r6, pc}
- 380              	.L29:
- 381              		.align	2
- 382              	.L28:
- 383 004c 00000000 		.word	hi2c1
- 384              		.cfi_endproc
- 385              	.LFE145:
- 387              		.text
- 388              	.Letext0:
- 389              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 390              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 391              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 392              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
- 393              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
- 394              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
- 395              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h"
- 396              		.file 9 "Core/Inc/24xx_eeprom.h"
- 397              		.file 10 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
- 398              		.file 11 "Core/Inc/i2c.h"
- 399              		.file 12 "Core/Inc/main.h"
- 400              		.file 13 "<built-in>"
-ARM GAS  /tmp/ccaV6V9u.s 			page 10
+ARM GAS  /tmp/cch5WsQE.s 			page 9
+
+
+ 372              		.loc 1 76 1 view .LVU95
+ 373 0048 02B0     		add	sp, sp, #8
+ 374              		.cfi_def_cfa_offset 16
+ 375              		@ sp needed
+ 376 004a 70BD     		pop	{r4, r5, r6, pc}
+ 377              	.L28:
+ 378              		.align	2
+ 379              	.L27:
+ 380 004c 00000000 		.word	hi2c1
+ 381              		.cfi_endproc
+ 382              	.LFE145:
+ 384              		.text
+ 385              	.Letext0:
+ 386              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 387              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 388              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 389              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
+ 390              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 391              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 392              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_i2c.h"
+ 393              		.file 9 "Core/Inc/24xx_eeprom.h"
+ 394              		.file 10 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
+ 395              		.file 11 "Core/Inc/i2c.h"
+ 396              		.file 12 "Core/Inc/main.h"
+ 397              		.file 13 "<built-in>"
+ARM GAS  /tmp/cch5WsQE.s 			page 10
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 24xx_eeprom.c
-     /tmp/ccaV6V9u.s:21     .text.EepromInit:00000000 $t
-     /tmp/ccaV6V9u.s:27     .text.EepromInit:00000000 EepromInit
-     /tmp/ccaV6V9u.s:82     .text.EepromFlushTxBuff:00000000 $t
-     /tmp/ccaV6V9u.s:88     .text.EepromFlushTxBuff:00000000 EepromFlushTxBuff
-     /tmp/ccaV6V9u.s:116    .text.EepromCreateControlByte:00000000 $t
-     /tmp/ccaV6V9u.s:122    .text.EepromCreateControlByte:00000000 EepromCreateControlByte
-     /tmp/ccaV6V9u.s:190    .text.EepromWrite:00000000 $t
-     /tmp/ccaV6V9u.s:196    .text.EepromWrite:00000000 EepromWrite
-     /tmp/ccaV6V9u.s:280    .text.EepromWrite:00000044 $d
-     /tmp/ccaV6V9u.s:285    .text.EepromRead:00000000 $t
-     /tmp/ccaV6V9u.s:291    .text.EepromRead:00000000 EepromRead
-     /tmp/ccaV6V9u.s:383    .text.EepromRead:0000004c $d
+     /tmp/cch5WsQE.s:21     .text.EepromInit:00000000 $t
+     /tmp/cch5WsQE.s:27     .text.EepromInit:00000000 EepromInit
+     /tmp/cch5WsQE.s:82     .text.EepromFlushTxBuff:00000000 $t
+     /tmp/cch5WsQE.s:88     .text.EepromFlushTxBuff:00000000 EepromFlushTxBuff
+     /tmp/cch5WsQE.s:116    .text.EepromCreateControlByte:00000000 $t
+     /tmp/cch5WsQE.s:122    .text.EepromCreateControlByte:00000000 EepromCreateControlByte
+     /tmp/cch5WsQE.s:190    .text.EepromWrite:00000000 $t
+     /tmp/cch5WsQE.s:196    .text.EepromWrite:00000000 EepromWrite
+     /tmp/cch5WsQE.s:277    .text.EepromWrite:00000040 $d
+     /tmp/cch5WsQE.s:282    .text.EepromRead:00000000 $t
+     /tmp/cch5WsQE.s:288    .text.EepromRead:00000000 EepromRead
+     /tmp/cch5WsQE.s:380    .text.EepromRead:0000004c $d
 
 UNDEFINED SYMBOLS
 memset
 HAL_I2C_Mem_Write_DMA
-Error_Handler
 hi2c1
 HAL_I2C_Mem_Read_DMA
+Error_Handler

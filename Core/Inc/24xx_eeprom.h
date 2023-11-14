@@ -34,6 +34,7 @@ typedef struct {
     bool a0;
     bool a1;
     bool tx_inflight;
+    bool tx_failed;
     bool rx_inflight; 
     uint8_t tx_buf[EEPROM_DRIVER_TX_BUF_SZ]; /**< Transmit buffer. */
     uint8_t rx_buf[EEPROM_DRIVER_RX_BUF_SZ]; /**< Receive buffer. */

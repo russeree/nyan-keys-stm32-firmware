@@ -71,7 +71,7 @@
 #else
 #define USBD_PID                      21156
 #endif
-#define USBD_PRODUCT_STRING           "Nyan Keys - FPGA Keyboard"
+#define USBD_PRODUCT_STRING           "STM32 COMPOSITE DEVICE"
 #define USBD_CONFIGURATION_STRING     "CONFIGURATION 0"
 #define USBD_INTERFACE_STRING         "COMPOSITE INTERFACE"
 
