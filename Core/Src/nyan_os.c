@@ -401,8 +401,8 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos)
         NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size[0], sizeof(nyan_keys_write_bitstream_error_size));
         return NOS_FAILURE;
     }
-    // Write the length of the bitstream we are accepting to the EEPROM - 16 bytes
-    unsigned int size_array[4] = { 0x00, 0x00, 0x00, nos->bytes_array_size };
+    // Write the length of the bitstream we are accepting to the EEPROM - 16 bytes - 
+    uint32_t size_array[4] = { 0x00, 0x00, 0x00, nos->bytes_array_size };
     if(nos->eeprom->tx_inflight) {
         //Print Error, Clear buffer, Set ready state. 
         NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size_tx_busy[0], sizeof(nyan_keys_write_bitstream_error_size_tx_busy));

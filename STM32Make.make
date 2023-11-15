@@ -40,6 +40,7 @@ Core/Src/24xx_eeprom.c \
 Core/Src/dma.c \
 Core/Src/gpio.c \
 Core/Src/i2c.c \
+Core/Src/iceuncompr.c \
 Core/Src/lattice_ice_hx.c \
 Core/Src/main.c \
 Core/Src/nyan_leds.c \

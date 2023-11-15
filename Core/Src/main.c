@@ -31,6 +31,7 @@
 #include "usb_device.h"
 #include "usbd_cdc_acm_if.h"
 #include "24xx_eeprom.h"
+#include "iceuncompr.h"
 #include "lattice_ice_hx.h"
 #include "nyan_os.h"
 #include "nyan_leds.h"
@@ -59,6 +60,7 @@
 double system_status_led_angle;
 
 volatile NyanOS nos;
+Iceuncompr ice_uncompr;
 Eeprom24xx nos_eeprom;
 LatticeIceHX nos_fpga;
 /* USER CODE END PV */
@@ -92,7 +94,6 @@ int main(void)
   system_status_led_angle = 0;
   EepromInit(&nos_eeprom, true, true);
   NyanOsInit(&nos, &nos_eeprom);
-
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -223,6 +224,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   if (htim->Instance == TIM6) {
     // Increment the power on pulsing LED angle [sin^2(x) + cos^2(x) = 1]
     system_status_led_angle += SYSTEM_STATUS_DEGREE_INCREMENT;
+    // Write the FPGA Config Status to LED0
+      if(HAL_GPIO_ReadPin (Nyan_FPGA_Config_Done_GPIO_Port, Nyan_FPGA_Config_Done_Pin))
+          HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
+      else
+          HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
   }
   if (htim->Instance == TIM7) {
     if(nos.send_welcome_screen_guard > 0) {
@@ -237,7 +243,7 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM1) {
     // Pulse the SystemStatus LED off
-    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED4_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(Nyan_Keys_LED4_GPIO_Port, Nyan_Keys_LED4_Pin, GPIO_PIN_RESET);
     // Now lets set the new capture compare register value.
     unsigned char cc_val = getSystemStatusOCRValue(system_status_led_angle);
     __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_1, (unsigned int)cc_val);
@@ -254,7 +260,7 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
       NyanExecute(&nos);
     }
     // Turn off the RX CDC LED
-    HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED3_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(Nyan_Keys_LED3_GPIO_Port, Nyan_Keys_LED3_Pin, GPIO_PIN_RESET);
   }
 }
 /* USER CODE END 4 */

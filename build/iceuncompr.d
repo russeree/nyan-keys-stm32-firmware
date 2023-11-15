@@ -1,5 +1,6 @@
-build/lattice_ice_hx.o: Core/Src/lattice_ice_hx.c Core/Inc/spi.h \
- Core/Inc/main.h Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
+build/iceuncompr.o: Core/Src/iceuncompr.c Core/Inc/iceuncompr.h \
+ Core/Inc/spi.h Core/Inc/main.h \
+ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  Core/Inc/stm32f7xx_hal_conf.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h \
@@ -31,9 +32,8 @@ build/lattice_ice_hx.o: Core/Src/lattice_ice_hx.c Core/Inc/spi.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h \
- Core/Inc/nyan_eeprom_map.h Core/Inc/24xx_eeprom.h Core/Inc/iceuncompr.h \
- Core/Inc/spi.h Core/Inc/lattice_ice_hx.h Core/Inc/main.h \
- Core/Inc/24xx_eeprom.h Core/Inc/iceuncompr.h
+ Core/Inc/nyan_eeprom_map.h
+Core/Inc/iceuncompr.h:
 Core/Inc/spi.h:
 Core/Inc/main.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
@@ -71,10 +71,3 @@ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h:
 Core/Inc/nyan_eeprom_map.h:
-Core/Inc/24xx_eeprom.h:
-Core/Inc/iceuncompr.h:
-Core/Inc/spi.h:
-Core/Inc/lattice_ice_hx.h:
-Core/Inc/main.h:
-Core/Inc/24xx_eeprom.h:
-Core/Inc/iceuncompr.h:

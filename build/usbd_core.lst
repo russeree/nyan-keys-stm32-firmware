@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccPZKUfC.s 			page 1
+ARM GAS  /tmp/ccvbDz7F.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
   27:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** 
   28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** /** @defgroup USBD_CORE
   29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   * @brief usbd core module
-ARM GAS  /tmp/ccPZKUfC.s 			page 2
+ARM GAS  /tmp/ccvbDz7F.s 			page 2
 
 
   30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   * @{
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
   84:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   * @param  pdev: device instance
   85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   * @param  pdesc: Descriptor structure address
   86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   * @param  id: Low level core index
-ARM GAS  /tmp/ccPZKUfC.s 			page 3
+ARM GAS  /tmp/ccvbDz7F.s 			page 3
 
 
   87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   * @retval None
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
   59              	.L3:
  111:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   }
  112:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** 
-ARM GAS  /tmp/ccPZKUfC.s 			page 4
+ARM GAS  /tmp/ccvbDz7F.s 			page 4
 
 
  113:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   /* Set Device initial State */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  128:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   */
  129:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** USBD_StatusTypeDef USBD_DeInit(USBD_HandleTypeDef *pdev)
  130:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** {
-ARM GAS  /tmp/ccPZKUfC.s 			page 5
+ARM GAS  /tmp/ccvbDz7F.s 			page 5
 
 
  100              		.loc 1 130 1 is_stmt 1 view -0
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  137              		.loc 1 147 3 is_stmt 1 view .LVU40
  138              		.loc 1 147 15 is_stmt 0 view .LVU41
  139 0022 0023     		movs	r3, #0
-ARM GAS  /tmp/ccPZKUfC.s 			page 6
+ARM GAS  /tmp/ccvbDz7F.s 			page 6
 
 
  140 0024 C4F8B432 		str	r3, [r4, #692]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  178              		.loc 1 165 3 is_stmt 1 view .LVU51
  179              		.loc 1 165 12 is_stmt 0 view .LVU52
  180 0004 0023     		movs	r3, #0
-ARM GAS  /tmp/ccPZKUfC.s 			page 7
+ARM GAS  /tmp/ccvbDz7F.s 			page 7
 
 
  181 0006 ADF80630 		strh	r3, [sp, #6]	@ movhi
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  191:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   return USBD_OK;
  192:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** }
  210              		.loc 1 192 1 view .LVU67
-ARM GAS  /tmp/ccPZKUfC.s 			page 8
+ARM GAS  /tmp/ccvbDz7F.s 			page 8
 
 
  211 0024 2846     		mov	r0, r5
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  257              	.LVL18:
  258              	.LFB148:
  193:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** 
-ARM GAS  /tmp/ccPZKUfC.s 			page 9
+ARM GAS  /tmp/ccvbDz7F.s 			page 9
 
 
  194:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** /**
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  295              		.cfi_offset 14, -4
  296 0002 0446     		mov	r4, r0
  214:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   /* Disconnect USB Device */
-ARM GAS  /tmp/ccPZKUfC.s 			page 10
+ARM GAS  /tmp/ccvbDz7F.s 			page 10
 
 
  215:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   (void)USBD_LL_Stop(pdev);
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  334              		.cfi_startproc
  335              		@ args = 0, pretend = 0, frame = 0
  336              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccPZKUfC.s 			page 11
+ARM GAS  /tmp/ccvbDz7F.s 			page 11
 
 
  337              		@ link register save eliminated.
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  253:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   {
  254:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****     /* Set configuration and Start the Class */
  255:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****     ret = (USBD_StatusTypeDef)pdev->pClass->Init(pdev, cfgidx);
-ARM GAS  /tmp/ccPZKUfC.s 			page 12
+ARM GAS  /tmp/ccvbDz7F.s 			page 12
 
 
  374              		.loc 1 255 5 is_stmt 1 view .LVU107
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  271:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   if (pdev->pClass != NULL)
  413              		.loc 1 271 3 is_stmt 1 view .LVU116
  414              		.loc 1 271 11 is_stmt 0 view .LVU117
-ARM GAS  /tmp/ccPZKUfC.s 			page 13
+ARM GAS  /tmp/ccvbDz7F.s 			page 13
 
 
  415 0002 D0F8B832 		ldr	r3, [r0, #696]
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  454              		.loc 1 288 3 is_stmt 1 view .LVU126
  289:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** 
  290:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   USBD_ParseSetupRequest(&pdev->request, psetup);
-ARM GAS  /tmp/ccPZKUfC.s 			page 14
+ARM GAS  /tmp/ccvbDz7F.s 			page 14
 
 
  455              		.loc 1 290 3 view .LVU127
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  487              		.loc 1 312 7 is_stmt 1 view .LVU139
  488 0038 03E0     		b	.L35
  489              	.LVL36:
-ARM GAS  /tmp/ccPZKUfC.s 			page 15
+ARM GAS  /tmp/ccvbDz7F.s 			page 15
 
 
  490              	.L37:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  533              	.LVL42:
  534              	.LFB154:
  317:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** 
-ARM GAS  /tmp/ccPZKUfC.s 			page 16
+ARM GAS  /tmp/ccvbDz7F.s 			page 16
 
 
  318:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** /**
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  344:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       else
  345:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       {
  346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****         if (pdev->dev_state == USBD_STATE_CONFIGURED)
-ARM GAS  /tmp/ccPZKUfC.s 			page 17
+ARM GAS  /tmp/ccvbDz7F.s 			page 17
 
 
  347:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****         {
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  573 0016 D0F85C11 		ldr	r1, [r0, #348]
  574              	.LVL47:
  338:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       {
-ARM GAS  /tmp/ccPZKUfC.s 			page 18
+ARM GAS  /tmp/ccvbDz7F.s 			page 18
 
 
  575              		.loc 1 338 32 view .LVU165
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  616              	.LVL53:
  617              	.L49:
  348:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****           {
-ARM GAS  /tmp/ccPZKUfC.s 			page 19
+ARM GAS  /tmp/ccvbDz7F.s 			page 19
 
 
  618              		.loc 1 348 11 is_stmt 1 view .LVU179
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  656 0070 9847     		blx	r3
  657              	.LVL58:
  379:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****         {
-ARM GAS  /tmp/ccPZKUfC.s 			page 20
+ARM GAS  /tmp/ccvbDz7F.s 			page 20
 
 
  658              		.loc 1 379 9 is_stmt 1 view .LVU196
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  697 0006 0029     		cmp	r1, #0
  698 0008 4AD1     		bne	.L52
  699 000a 1346     		mov	r3, r2
-ARM GAS  /tmp/ccPZKUfC.s 			page 21
+ARM GAS  /tmp/ccvbDz7F.s 			page 21
 
 
  404:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   {
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** #if 0
  448:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       if ((pdev->ep0_state == USBD_EP0_STATUS_IN) ||
  449:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****           (pdev->ep0_state == USBD_EP0_IDLE))
-ARM GAS  /tmp/ccPZKUfC.s 			page 22
+ARM GAS  /tmp/ccvbDz7F.s 			page 22
 
 
  450:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       {
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  409:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       {
  732              		.loc 1 409 10 view .LVU218
  733 0024 8A42     		cmp	r2, r1
-ARM GAS  /tmp/ccPZKUfC.s 			page 23
+ARM GAS  /tmp/ccvbDz7F.s 			page 23
 
 
  734 0026 0ED8     		bhi	.L64
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  416:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       }
  774              		.loc 1 416 15 is_stmt 0 view .LVU233
  775 0050 0023     		movs	r3, #0
-ARM GAS  /tmp/ccPZKUfC.s 			page 24
+ARM GAS  /tmp/ccvbDz7F.s 			page 24
 
 
  776 0052 1A46     		mov	r2, r3
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  817              		.loc 1 435 21 is_stmt 0 view .LVU246
  818 0086 D4F8B832 		ldr	r3, [r4, #696]
  435:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****             {
-ARM GAS  /tmp/ccPZKUfC.s 			page 25
+ARM GAS  /tmp/ccvbDz7F.s 			page 25
 
 
  819              		.loc 1 435 29 view .LVU247
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  466:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       {
  859              		.loc 1 466 23 view .LVU262
  860 00b2 5B69     		ldr	r3, [r3, #20]
-ARM GAS  /tmp/ccPZKUfC.s 			page 26
+ARM GAS  /tmp/ccvbDz7F.s 			page 26
 
 
  466:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****       {
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  898              		.loc 1 492 19 is_stmt 0 view .LVU273
  899 0006 0023     		movs	r3, #0
  900 0008 C0F89432 		str	r3, [r0, #660]
-ARM GAS  /tmp/ccPZKUfC.s 			page 27
+ARM GAS  /tmp/ccvbDz7F.s 			page 27
 
 
  493:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   pdev->dev_config = 0U;
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  508:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   pdev->ep_out[0x00U & 0xFU].is_used = 1U;
  939              		.loc 1 508 3 is_stmt 1 view .LVU289
  940              		.loc 1 508 38 is_stmt 0 view .LVU290
-ARM GAS  /tmp/ccPZKUfC.s 			page 28
+ARM GAS  /tmp/ccvbDz7F.s 			page 28
 
 
  941 0030 0126     		movs	r6, #1
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  984              		.syntax unified
  985              		.thumb
  986              		.thumb_func
-ARM GAS  /tmp/ccPZKUfC.s 			page 29
+ARM GAS  /tmp/ccvbDz7F.s 			page 29
 
 
  988              	USBD_LL_SetSpeed:
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  1020              		@ args = 0, pretend = 0, frame = 0
  1021              		@ frame_needed = 0, uses_anonymous_args = 0
  1022              		@ link register save eliminated.
-ARM GAS  /tmp/ccPZKUfC.s 			page 30
+ARM GAS  /tmp/ccvbDz7F.s 			page 30
 
 
  544:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   pdev->dev_old_state = pdev->dev_state;
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  1063 0008 01D0     		beq	.L80
  1064              	.L79:
  560:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   {
-ARM GAS  /tmp/ccPZKUfC.s 			page 31
+ARM GAS  /tmp/ccvbDz7F.s 			page 31
 
 
  561:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****     pdev->dev_state = pdev->dev_old_state;
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  575:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   if (pdev->pClass == NULL)
  1102              		.loc 1 575 1 view .LVU333
  1103 0006 08B5     		push	{r3, lr}
-ARM GAS  /tmp/ccPZKUfC.s 			page 32
+ARM GAS  /tmp/ccvbDz7F.s 			page 32
 
 
  1104              		.cfi_def_cfa_offset 8
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  1138              		.cfi_restore 14
  578:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   }
  1139              		.loc 1 578 12 view .LVU345
-ARM GAS  /tmp/ccPZKUfC.s 			page 33
+ARM GAS  /tmp/ccvbDz7F.s 			page 33
 
 
  1140 0020 0320     		movs	r0, #3
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  603:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****     return USBD_FAIL;
  604:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   }
  605:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** 
-ARM GAS  /tmp/ccPZKUfC.s 			page 34
+ARM GAS  /tmp/ccvbDz7F.s 			page 34
 
 
  606:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   if (pdev->dev_state == USBD_STATE_CONFIGURED)
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  1218              	.LVL115:
  1219              	.L95:
  1220              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccPZKUfC.s 			page 35
+ARM GAS  /tmp/ccvbDz7F.s 			page 35
 
 
  1221              		.cfi_offset 3, -8
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  1258 000c DBB2     		uxtb	r3, r3
  1259              		.loc 1 631 6 view .LVU376
  1260 000e 032B     		cmp	r3, #3
-ARM GAS  /tmp/ccPZKUfC.s 			page 36
+ARM GAS  /tmp/ccvbDz7F.s 			page 36
 
 
  1261 0010 01D0     		beq	.L110
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  1298 0024 0020     		movs	r0, #0
  1299              	.LVL124:
  639:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** }
-ARM GAS  /tmp/ccPZKUfC.s 			page 37
+ARM GAS  /tmp/ccvbDz7F.s 			page 37
 
 
  1300              		.loc 1 639 10 view .LVU388
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  659:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   * @param  pdev: device instance
  660:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   * @retval status
  661:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c ****   */
-ARM GAS  /tmp/ccPZKUfC.s 			page 38
+ARM GAS  /tmp/ccvbDz7F.s 			page 38
 
 
  662:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Src/usbd_core.c **** USBD_StatusTypeDef USBD_LL_DevDisconnected(USBD_HandleTypeDef *pdev)
@@ -2273,51 +2273,51 @@ ARM GAS  /tmp/ccPZKUfC.s 			page 1
  1378              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
  1379              		.file 6 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h"
  1380              		.file 7 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h"
-ARM GAS  /tmp/ccPZKUfC.s 			page 39
+ARM GAS  /tmp/ccvbDz7F.s 			page 39
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 usbd_core.c
-     /tmp/ccPZKUfC.s:21     .text.USBD_Init:00000000 $t
-     /tmp/ccPZKUfC.s:27     .text.USBD_Init:00000000 USBD_Init
-     /tmp/ccPZKUfC.s:91     .text.USBD_DeInit:00000000 $t
-     /tmp/ccPZKUfC.s:97     .text.USBD_DeInit:00000000 USBD_DeInit
-     /tmp/ccPZKUfC.s:157    .text.USBD_RegisterClass:00000000 $t
-     /tmp/ccPZKUfC.s:163    .text.USBD_RegisterClass:00000000 USBD_RegisterClass
-     /tmp/ccPZKUfC.s:250    .text.USBD_Start:00000000 $t
-     /tmp/ccPZKUfC.s:256    .text.USBD_Start:00000000 USBD_Start
-     /tmp/ccPZKUfC.s:278    .text.USBD_Stop:00000000 $t
-     /tmp/ccPZKUfC.s:284    .text.USBD_Stop:00000000 USBD_Stop
-     /tmp/ccPZKUfC.s:324    .text.USBD_RunTestMode:00000000 $t
-     /tmp/ccPZKUfC.s:330    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
-     /tmp/ccPZKUfC.s:349    .text.USBD_SetClassConfig:00000000 $t
-     /tmp/ccPZKUfC.s:355    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
-     /tmp/ccPZKUfC.s:395    .text.USBD_ClrClassConfig:00000000 $t
-     /tmp/ccPZKUfC.s:401    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
-     /tmp/ccPZKUfC.s:433    .text.USBD_LL_SetupStage:00000000 $t
-     /tmp/ccPZKUfC.s:439    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
-     /tmp/ccPZKUfC.s:526    .text.USBD_LL_DataOutStage:00000000 $t
-     /tmp/ccPZKUfC.s:532    .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
-     /tmp/ccPZKUfC.s:671    .text.USBD_LL_DataInStage:00000000 $t
-     /tmp/ccPZKUfC.s:677    .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
-     /tmp/ccPZKUfC.s:880    .text.USBD_LL_Reset:00000000 $t
-     /tmp/ccPZKUfC.s:886    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
-     /tmp/ccPZKUfC.s:982    .text.USBD_LL_SetSpeed:00000000 $t
-     /tmp/ccPZKUfC.s:988    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
-     /tmp/ccPZKUfC.s:1009   .text.USBD_LL_Suspend:00000000 $t
-     /tmp/ccPZKUfC.s:1015   .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
-     /tmp/ccPZKUfC.s:1043   .text.USBD_LL_Resume:00000000 $t
-     /tmp/ccPZKUfC.s:1049   .text.USBD_LL_Resume:00000000 USBD_LL_Resume
-     /tmp/ccPZKUfC.s:1084   .text.USBD_LL_SOF:00000000 $t
-     /tmp/ccPZKUfC.s:1090   .text.USBD_LL_SOF:00000000 USBD_LL_SOF
-     /tmp/ccPZKUfC.s:1158   .text.USBD_LL_IsoINIncomplete:00000000 $t
-     /tmp/ccPZKUfC.s:1164   .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
-     /tmp/ccPZKUfC.s:1232   .text.USBD_LL_IsoOUTIncomplete:00000000 $t
-     /tmp/ccPZKUfC.s:1238   .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
-     /tmp/ccPZKUfC.s:1306   .text.USBD_LL_DevConnected:00000000 $t
-     /tmp/ccPZKUfC.s:1312   .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
-     /tmp/ccPZKUfC.s:1331   .text.USBD_LL_DevDisconnected:00000000 $t
-     /tmp/ccPZKUfC.s:1337   .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
+     /tmp/ccvbDz7F.s:21     .text.USBD_Init:00000000 $t
+     /tmp/ccvbDz7F.s:27     .text.USBD_Init:00000000 USBD_Init
+     /tmp/ccvbDz7F.s:91     .text.USBD_DeInit:00000000 $t
+     /tmp/ccvbDz7F.s:97     .text.USBD_DeInit:00000000 USBD_DeInit
+     /tmp/ccvbDz7F.s:157    .text.USBD_RegisterClass:00000000 $t
+     /tmp/ccvbDz7F.s:163    .text.USBD_RegisterClass:00000000 USBD_RegisterClass
+     /tmp/ccvbDz7F.s:250    .text.USBD_Start:00000000 $t
+     /tmp/ccvbDz7F.s:256    .text.USBD_Start:00000000 USBD_Start
+     /tmp/ccvbDz7F.s:278    .text.USBD_Stop:00000000 $t
+     /tmp/ccvbDz7F.s:284    .text.USBD_Stop:00000000 USBD_Stop
+     /tmp/ccvbDz7F.s:324    .text.USBD_RunTestMode:00000000 $t
+     /tmp/ccvbDz7F.s:330    .text.USBD_RunTestMode:00000000 USBD_RunTestMode
+     /tmp/ccvbDz7F.s:349    .text.USBD_SetClassConfig:00000000 $t
+     /tmp/ccvbDz7F.s:355    .text.USBD_SetClassConfig:00000000 USBD_SetClassConfig
+     /tmp/ccvbDz7F.s:395    .text.USBD_ClrClassConfig:00000000 $t
+     /tmp/ccvbDz7F.s:401    .text.USBD_ClrClassConfig:00000000 USBD_ClrClassConfig
+     /tmp/ccvbDz7F.s:433    .text.USBD_LL_SetupStage:00000000 $t
+     /tmp/ccvbDz7F.s:439    .text.USBD_LL_SetupStage:00000000 USBD_LL_SetupStage
+     /tmp/ccvbDz7F.s:526    .text.USBD_LL_DataOutStage:00000000 $t
+     /tmp/ccvbDz7F.s:532    .text.USBD_LL_DataOutStage:00000000 USBD_LL_DataOutStage
+     /tmp/ccvbDz7F.s:671    .text.USBD_LL_DataInStage:00000000 $t
+     /tmp/ccvbDz7F.s:677    .text.USBD_LL_DataInStage:00000000 USBD_LL_DataInStage
+     /tmp/ccvbDz7F.s:880    .text.USBD_LL_Reset:00000000 $t
+     /tmp/ccvbDz7F.s:886    .text.USBD_LL_Reset:00000000 USBD_LL_Reset
+     /tmp/ccvbDz7F.s:982    .text.USBD_LL_SetSpeed:00000000 $t
+     /tmp/ccvbDz7F.s:988    .text.USBD_LL_SetSpeed:00000000 USBD_LL_SetSpeed
+     /tmp/ccvbDz7F.s:1009   .text.USBD_LL_Suspend:00000000 $t
+     /tmp/ccvbDz7F.s:1015   .text.USBD_LL_Suspend:00000000 USBD_LL_Suspend
+     /tmp/ccvbDz7F.s:1043   .text.USBD_LL_Resume:00000000 $t
+     /tmp/ccvbDz7F.s:1049   .text.USBD_LL_Resume:00000000 USBD_LL_Resume
+     /tmp/ccvbDz7F.s:1084   .text.USBD_LL_SOF:00000000 $t
+     /tmp/ccvbDz7F.s:1090   .text.USBD_LL_SOF:00000000 USBD_LL_SOF
+     /tmp/ccvbDz7F.s:1158   .text.USBD_LL_IsoINIncomplete:00000000 $t
+     /tmp/ccvbDz7F.s:1164   .text.USBD_LL_IsoINIncomplete:00000000 USBD_LL_IsoINIncomplete
+     /tmp/ccvbDz7F.s:1232   .text.USBD_LL_IsoOUTIncomplete:00000000 $t
+     /tmp/ccvbDz7F.s:1238   .text.USBD_LL_IsoOUTIncomplete:00000000 USBD_LL_IsoOUTIncomplete
+     /tmp/ccvbDz7F.s:1306   .text.USBD_LL_DevConnected:00000000 $t
+     /tmp/ccvbDz7F.s:1312   .text.USBD_LL_DevConnected:00000000 USBD_LL_DevConnected
+     /tmp/ccvbDz7F.s:1331   .text.USBD_LL_DevDisconnected:00000000 $t
+     /tmp/ccvbDz7F.s:1337   .text.USBD_LL_DevDisconnected:00000000 USBD_LL_DevDisconnected
 
 UNDEFINED SYMBOLS
 USBD_LL_Init
@@ -2333,7 +2333,7 @@ USBD_CtlSendStatus
 USBD_CtlContinueRx
 USBD_CtlReceiveStatus
 USBD_CtlContinueSendData
-ARM GAS  /tmp/ccPZKUfC.s 			page 40
+ARM GAS  /tmp/ccvbDz7F.s 			page 40
 
 
 USBD_LL_PrepareReceive
