@@ -30,7 +30,7 @@ typedef struct {
     uint32_t read_bitcounter;  ///< Counter for bits read from the input buffer.
     uint32_t read_buffer;      ///< Buffer for storing the currently read bits.
     uint32_t write_bitcounter; ///< Counter for bits written to the output buffer.
-    uint8_t write_buffer;     ///< Buffer for storing the currently written bits.
+    uint8_t write_buffer;      ///< Buffer for storing the currently written bits.
     uint32_t write_position;   ///< Current position in the output buffer.
 } Iceuncompr;
 

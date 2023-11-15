@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cckAKvFG.s 			page 1
+ARM GAS  /tmp/cckyB5LZ.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,15 +19,15 @@ ARM GAS  /tmp/cckAKvFG.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.file 1 "Core/Src/stm32f7xx_hal_msp.c"
-  20              		.section	.text.HAL_MspInit,"ax",%progbits
-  21              		.align	1
-  22              		.global	HAL_MspInit
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	HAL_MspInit:
-  28              	.LFB141:
+  19              		.section	.text.HAL_MspInit,"ax",%progbits
+  20              		.align	1
+  21              		.global	HAL_MspInit
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	HAL_MspInit:
+  27              	.LFB141:
+  28              		.file 1 "Core/Src/stm32f7xx_hal_msp.c"
    1:Core/Src/stm32f7xx_hal_msp.c **** /* USER CODE BEGIN Header */
    2:Core/Src/stm32f7xx_hal_msp.c **** /**
    3:Core/Src/stm32f7xx_hal_msp.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cckAKvFG.s 			page 1
   28:Core/Src/stm32f7xx_hal_msp.c **** /* Private typedef -----------------------------------------------------------*/
   29:Core/Src/stm32f7xx_hal_msp.c **** /* USER CODE BEGIN TD */
   30:Core/Src/stm32f7xx_hal_msp.c **** 
-ARM GAS  /tmp/cckAKvFG.s 			page 2
+ARM GAS  /tmp/cckyB5LZ.s 			page 2
 
 
   31:Core/Src/stm32f7xx_hal_msp.c **** /* USER CODE END TD */
@@ -102,47 +102,48 @@ ARM GAS  /tmp/cckAKvFG.s 			page 1
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33              		@ link register save eliminated.
   34 0000 82B0     		sub	sp, sp, #8
-  35              		.cfi_def_cfa_offset 8
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 8
   66:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 0 */
   67:Core/Src/stm32f7xx_hal_msp.c **** 
   68:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE END MspInit 0 */
   69:Core/Src/stm32f7xx_hal_msp.c **** 
   70:Core/Src/stm32f7xx_hal_msp.c ****   __HAL_RCC_PWR_CLK_ENABLE();
-  36              		.loc 1 70 3 view .LVU1
-  37              	.LBB2:
-  38              		.loc 1 70 3 view .LVU2
-  39              		.loc 1 70 3 view .LVU3
-  40 0002 0A4B     		ldr	r3, .L3
-  41 0004 1A6C     		ldr	r2, [r3, #64]
-  42 0006 42F08052 		orr	r2, r2, #268435456
-  43 000a 1A64     		str	r2, [r3, #64]
-  44              		.loc 1 70 3 view .LVU4
-  45 000c 1A6C     		ldr	r2, [r3, #64]
-ARM GAS  /tmp/cckAKvFG.s 			page 3
+  37              		.loc 1 70 3 view .LVU1
+  38              	.LBB2:
+  39              		.loc 1 70 3 view .LVU2
+  40              		.loc 1 70 3 view .LVU3
+  41 0002 0A4B     		ldr	r3, .L3
+  42 0004 1A6C     		ldr	r2, [r3, #64]
+  43 0006 42F08052 		orr	r2, r2, #268435456
+  44 000a 1A64     		str	r2, [r3, #64]
+  45              		.loc 1 70 3 view .LVU4
+ARM GAS  /tmp/cckyB5LZ.s 			page 3
 
 
-  46 000e 02F08052 		and	r2, r2, #268435456
-  47 0012 0092     		str	r2, [sp]
-  48              		.loc 1 70 3 view .LVU5
-  49 0014 009A     		ldr	r2, [sp]
-  50              	.LBE2:
-  51              		.loc 1 70 3 view .LVU6
+  46 000c 1A6C     		ldr	r2, [r3, #64]
+  47 000e 02F08052 		and	r2, r2, #268435456
+  48 0012 0092     		str	r2, [sp]
+  49              		.loc 1 70 3 view .LVU5
+  50 0014 009A     		ldr	r2, [sp]
+  51              	.LBE2:
+  52              		.loc 1 70 3 view .LVU6
   71:Core/Src/stm32f7xx_hal_msp.c ****   __HAL_RCC_SYSCFG_CLK_ENABLE();
-  52              		.loc 1 71 3 view .LVU7
-  53              	.LBB3:
-  54              		.loc 1 71 3 view .LVU8
-  55              		.loc 1 71 3 view .LVU9
-  56 0016 5A6C     		ldr	r2, [r3, #68]
-  57 0018 42F48042 		orr	r2, r2, #16384
-  58 001c 5A64     		str	r2, [r3, #68]
-  59              		.loc 1 71 3 view .LVU10
-  60 001e 5B6C     		ldr	r3, [r3, #68]
-  61 0020 03F48043 		and	r3, r3, #16384
-  62 0024 0193     		str	r3, [sp, #4]
-  63              		.loc 1 71 3 view .LVU11
-  64 0026 019B     		ldr	r3, [sp, #4]
-  65              	.LBE3:
-  66              		.loc 1 71 3 view .LVU12
+  53              		.loc 1 71 3 view .LVU7
+  54              	.LBB3:
+  55              		.loc 1 71 3 view .LVU8
+  56              		.loc 1 71 3 view .LVU9
+  57 0016 5A6C     		ldr	r2, [r3, #68]
+  58 0018 42F48042 		orr	r2, r2, #16384
+  59 001c 5A64     		str	r2, [r3, #68]
+  60              		.loc 1 71 3 view .LVU10
+  61 001e 5B6C     		ldr	r3, [r3, #68]
+  62 0020 03F48043 		and	r3, r3, #16384
+  63 0024 0193     		str	r3, [sp, #4]
+  64              		.loc 1 71 3 view .LVU11
+  65 0026 019B     		ldr	r3, [sp, #4]
+  66              	.LBE3:
+  67              		.loc 1 71 3 view .LVU12
   72:Core/Src/stm32f7xx_hal_msp.c **** 
   73:Core/Src/stm32f7xx_hal_msp.c ****   /* System interrupt init*/
   74:Core/Src/stm32f7xx_hal_msp.c **** 
@@ -150,29 +151,30 @@ ARM GAS  /tmp/cckAKvFG.s 			page 1
   76:Core/Src/stm32f7xx_hal_msp.c **** 
   77:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE END MspInit 1 */
   78:Core/Src/stm32f7xx_hal_msp.c **** }
-  67              		.loc 1 78 1 is_stmt 0 view .LVU13
-  68 0028 02B0     		add	sp, sp, #8
-  69              		.cfi_def_cfa_offset 0
-  70              		@ sp needed
-  71 002a 7047     		bx	lr
-  72              	.L4:
-  73              		.align	2
-  74              	.L3:
-  75 002c 00380240 		.word	1073887232
-  76              		.cfi_endproc
-  77              	.LFE141:
-  79              		.text
-  80              	.Letext0:
-  81              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
-  82              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
-  83              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
-ARM GAS  /tmp/cckAKvFG.s 			page 4
+  68              		.loc 1 78 1 is_stmt 0 view .LVU13
+  69 0028 02B0     		add	sp, sp, #8
+  70              	.LCFI1:
+  71              		.cfi_def_cfa_offset 0
+  72              		@ sp needed
+  73 002a 7047     		bx	lr
+  74              	.L4:
+  75              		.align	2
+  76              	.L3:
+  77 002c 00380240 		.word	1073887232
+  78              		.cfi_endproc
+  79              	.LFE141:
+  81              		.text
+  82              	.Letext0:
+  83              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+  84              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+  85              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
+ARM GAS  /tmp/cckyB5LZ.s 			page 4
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 stm32f7xx_hal_msp.c
-     /tmp/cckAKvFG.s:21     .text.HAL_MspInit:00000000 $t
-     /tmp/cckAKvFG.s:27     .text.HAL_MspInit:00000000 HAL_MspInit
-     /tmp/cckAKvFG.s:75     .text.HAL_MspInit:0000002c $d
+                            *ABS*:0000000000000000 stm32f7xx_hal_msp.c
+     /tmp/cckyB5LZ.s:20     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/cckyB5LZ.s:26     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/cckyB5LZ.s:77     .text.HAL_MspInit:000000000000002c $d
 
 NO UNDEFINED SYMBOLS

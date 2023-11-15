@@ -85,6 +85,12 @@ int main(void)
   /* USER CODE BEGIN 1 */
   /* USER CODE END 1 */
 
+  /* Enable I-Cache---------------------------------------------------------*/
+  SCB_EnableICache();
+
+  /* Enable D-Cache---------------------------------------------------------*/
+  SCB_EnableDCache();
+
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
@@ -122,6 +128,7 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim7);
   HAL_TIM_Base_Start_IT(&htim6);
   HAL_TIM_OC_Start_IT(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_OC_Start_IT(&htim1, TIM_CHANNEL_2);
   HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
   // USB composite device creation
   MX_USB_DEVICE_Init();
@@ -220,15 +227,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM1) {
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED4_Pin, GPIO_PIN_SET);
+    if(HAL_GPIO_ReadPin (Nyan_FPGA_Config_Done_GPIO_Port, Nyan_FPGA_Config_Done_Pin))
+      HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
+    else
+      HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
   }
   if (htim->Instance == TIM6) {
     // Increment the power on pulsing LED angle [sin^2(x) + cos^2(x) = 1]
     system_status_led_angle += SYSTEM_STATUS_DEGREE_INCREMENT;
-    // Write the FPGA Config Status to LED0
-      if(HAL_GPIO_ReadPin (Nyan_FPGA_Config_Done_GPIO_Port, Nyan_FPGA_Config_Done_Pin))
-          HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
-      else
-          HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
   }
   if (htim->Instance == TIM7) {
     if(nos.send_welcome_screen_guard > 0) {
@@ -242,11 +248,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM1) {
-    // Pulse the SystemStatus LED off
-    HAL_GPIO_WritePin(Nyan_Keys_LED4_GPIO_Port, Nyan_Keys_LED4_Pin, GPIO_PIN_RESET);
-    // Now lets set the new capture compare register value.
-    unsigned char cc_val = getSystemStatusOCRValue(system_status_led_angle);
-    __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_1, (unsigned int)cc_val);
+    if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {
+      // Pulse the SystemStatus LED off
+      HAL_GPIO_WritePin(Nyan_Keys_LED4_GPIO_Port, Nyan_Keys_LED4_Pin, GPIO_PIN_RESET);
+      // Now lets set the new capture compare register value.
+      unsigned char cc_val = getSystemStatusOCRValue(system_status_led_angle);
+      __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_1, (unsigned int)cc_val);
+    }
+    if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2) {
+      HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
+    }
   }
   if (htim->Instance == TIM8) {
     // Clear the CDC TX buffer with Nyan large print support

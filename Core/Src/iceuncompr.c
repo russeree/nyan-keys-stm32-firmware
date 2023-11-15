@@ -110,6 +110,7 @@ bool WriteUncomprBitstream(Iceuncompr *ice, uint8_t *input_data, uint32_t size)
 {
     // Create a filehandle to work with for bitstream decompression.
     ice->input_data_fh = fmemopen(input_data, size, "rb");
+    // Flush the contents of the buffer
     if(!ice->input_data_fh)
         return false;
     

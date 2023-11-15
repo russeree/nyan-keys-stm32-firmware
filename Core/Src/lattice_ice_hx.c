@@ -12,7 +12,7 @@
 
 FPGAReturn FPGAInit(LatticeIceHX* fpga)
 {
-    // This needs to be 
+    // This needs to be optimized, the current time to program is close to 5 seconds.
     fpga->configured = false;
     FPGAGetBitstreamCompressedSize(fpga);
     FPGAGetBitstreamData(fpga);
@@ -33,7 +33,7 @@ FPGAReturn FPGAInit(LatticeIceHX* fpga)
     // We must free up the compressed memory used by the bitstream
     free(fpga->p_bitstream_compressed);
     fpga->p_bitstream_compressed = NULL;
-    
+
     return FPGA_SUCCESS;
 }
 
