@@ -43,6 +43,7 @@ Core/Src/i2c.c \
 Core/Src/iceuncompr.c \
 Core/Src/lattice_ice_hx.c \
 Core/Src/main.c \
+Core/Src/nyan_keys.c \
 Core/Src/nyan_leds.c \
 Core/Src/nyan_os.c \
 Core/Src/nyan_sha256.c \

@@ -36,6 +36,7 @@
 #include "nyan_os.h"
 #include "nyan_leds.h"
 #include "nyan_strings.h"
+#include "nyan_keys.h"
 
 /* USER CODE END Includes */
 
@@ -63,6 +64,7 @@ volatile NyanOS nos;
 Iceuncompr ice_uncompr;
 Eeprom24xx nos_eeprom;
 LatticeIceHX nos_fpga;
+NyanKeys nyan_keys;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -134,12 +136,20 @@ int main(void)
   MX_USB_DEVICE_Init();
   // FPGA Bitstream Loading
   FPGAInit(&nos_fpga);
+  // Load up the fast cat IP for access to your keys; happy typing.
+  NyanKeysInit(&nyan_keys);
+  // Deinit the SPI4 interface until we need it again and replace it with GPIO inputs
+  HAL_SPI_DeInit(&hspi4);
+  NYAN_SPI4_GPIO_Init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    if(nos_fpga.configured)
+      NyanGetKeys(&nyan_keys);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -200,6 +210,11 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+  nyan_keys.key_read_inflight = false;
+}
+
 void HAL_I2C_MemTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 {
   nos_eeprom.tx_inflight = false;
@@ -227,10 +242,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   if (htim->Instance == TIM1) {
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED4_Pin, GPIO_PIN_SET);
-    if(HAL_GPIO_ReadPin (Nyan_FPGA_Config_Done_GPIO_Port, Nyan_FPGA_Config_Done_Pin))
+    nos_fpga.configured = HAL_GPIO_ReadPin(Nyan_FPGA_Config_Done_GPIO_Port, Nyan_FPGA_Config_Done_Pin);
+    // FPGA configuration done indicator
+    if(nos_fpga.configured)
       HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
     else
       HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
+    // Nyan Keys FPGA IP running indicator
+    if(HAL_GPIO_ReadPin(NYAN_SPI_GPIO_1_Port, NYAN_SPI_GPIO_1_Pin))
+      HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED1_Pin, GPIO_PIN_SET);
+    else
+      HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED1_Pin, GPIO_PIN_RESET);
   }
   if (htim->Instance == TIM6) {
     // Increment the power on pulsing LED angle [sin^2(x) + cos^2(x) = 1]
@@ -254,9 +276,11 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
       // Now lets set the new capture compare register value.
       unsigned char cc_val = getSystemStatusOCRValue(system_status_led_angle);
       __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_1, (unsigned int)cc_val);
+      __HAL_TIM_SET_COMPARE(htim, TIM_CHANNEL_2, (unsigned int)cc_val);
     }
     if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2) {
       HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(Nyan_Keys_LED1_GPIO_Port, Nyan_Keys_LED1_Pin, GPIO_PIN_RESET);
     }
   }
   if (htim->Instance == TIM8) {

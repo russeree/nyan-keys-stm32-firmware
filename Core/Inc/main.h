@@ -64,6 +64,8 @@ void Error_Handler(void);
 #define FPGA_config_nrst_GPIO_Port GPIOE
 #define Nyan_FPGA_Config_Done_Pin GPIO_PIN_13
 #define Nyan_FPGA_Config_Done_GPIO_Port GPIOC
+#define Keys_Slave_Select_Pin GPIO_PIN_0
+#define Keys_Slave_Select_GPIO_Port GPIOC
 #define Nyan_Keys_LED0_Pin GPIO_PIN_0
 #define Nyan_Keys_LED0_GPIO_Port GPIOD
 #define Nyan_Keys_LED1_Pin GPIO_PIN_1
@@ -76,6 +78,12 @@ void Error_Handler(void);
 #define Nyan_Keys_LED4_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */
+#define NYAN_SPI_GPIO_0_Pin GPIO_PIN_3
+#define NYAN_SPI_GPIO_0_Port GPIOE
+#define NYAN_SPI_GPIO_1_Pin GPIO_PIN_5
+#define NYAN_SPI_GPIO_1_Port GPIOE
+#define NYAN_SPI_GPIO_2_Pin GPIO_PIN_6
+#define NYAN_SPI_GPIO_2_Port GPIOE
 
 /* USER CODE END Private defines */
 

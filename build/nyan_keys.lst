@@ -1,0 +1,195 @@
+ARM GAS  /tmp/ccorZD8K.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"nyan_keys.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/nyan_keys.c"
+  20              		.section	.text.NyanKeysInit,"ax",%progbits
+  21              		.align	1
+  22              		.global	NyanKeysInit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	NyanKeysInit:
+  28              	.LVL0:
+  29              	.LFB141:
+   1:Core/Src/nyan_keys.c **** /**
+   2:Core/Src/nyan_keys.c ****  * NyanKeys FPGA IP Driver (SPI2)
+   3:Core/Src/nyan_keys.c ****  * @author Reese Russell
+   4:Core/Src/nyan_keys.c ****  */
+   5:Core/Src/nyan_keys.c **** 
+   6:Core/Src/nyan_keys.c **** #include <stdlib.h>
+   7:Core/Src/nyan_keys.c **** 
+   8:Core/Src/nyan_keys.c **** #include "spi.h"
+   9:Core/Src/nyan_keys.c **** #include "nyan_keys.h"
+  10:Core/Src/nyan_keys.c **** 
+  11:Core/Src/nyan_keys.c **** static uint8_t keys_registers_addresses[] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x00};
+  12:Core/Src/nyan_keys.c **** 
+  13:Core/Src/nyan_keys.c **** NyanKeysReturn NyanKeysInit(NyanKeys *keys)
+  14:Core/Src/nyan_keys.c **** {
+  30              		.loc 1 14 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 14 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 3, -8
+  38              		.cfi_offset 14, -4
+  15:Core/Src/nyan_keys.c ****     keys->key_read_inflight = false;
+  39              		.loc 1 15 5 is_stmt 1 view .LVU2
+  40              		.loc 1 15 29 is_stmt 0 view .LVU3
+  41 0002 0022     		movs	r2, #0
+  42 0004 0270     		strb	r2, [r0]
+  16:Core/Src/nyan_keys.c ****     HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_RESET);
+ARM GAS  /tmp/ccorZD8K.s 			page 2
+
+
+  43              		.loc 1 16 5 is_stmt 1 view .LVU4
+  44 0006 0121     		movs	r1, #1
+  45 0008 0248     		ldr	r0, .L3
+  46              	.LVL1:
+  47              		.loc 1 16 5 is_stmt 0 view .LVU5
+  48 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  49              	.LVL2:
+  17:Core/Src/nyan_keys.c ****     return NYAN_KEYS_SUCCESS;
+  50              		.loc 1 17 5 is_stmt 1 view .LVU6
+  18:Core/Src/nyan_keys.c **** }
+  51              		.loc 1 18 1 is_stmt 0 view .LVU7
+  52 000e 0120     		movs	r0, #1
+  53 0010 08BD     		pop	{r3, pc}
+  54              	.L4:
+  55 0012 00BF     		.align	2
+  56              	.L3:
+  57 0014 00080240 		.word	1073874944
+  58              		.cfi_endproc
+  59              	.LFE141:
+  61              		.section	.text.NyanGetKeys,"ax",%progbits
+  62              		.align	1
+  63              		.global	NyanGetKeys
+  64              		.syntax unified
+  65              		.thumb
+  66              		.thumb_func
+  68              	NyanGetKeys:
+  69              	.LVL3:
+  70              	.LFB142:
+  19:Core/Src/nyan_keys.c **** 
+  20:Core/Src/nyan_keys.c **** NyanKeysReturn NyanGetKeys(NyanKeys *keys)
+  21:Core/Src/nyan_keys.c **** {
+  71              		.loc 1 21 1 is_stmt 1 view -0
+  72              		.cfi_startproc
+  73              		@ args = 0, pretend = 0, frame = 0
+  74              		@ frame_needed = 0, uses_anonymous_args = 0
+  22:Core/Src/nyan_keys.c ****     //Send out the DMA and we will get the results back from the FPGA 
+  23:Core/Src/nyan_keys.c ****     if(!keys->key_read_inflight) {
+  75              		.loc 1 23 5 view .LVU9
+  76              		.loc 1 23 13 is_stmt 0 view .LVU10
+  77 0000 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  78              		.loc 1 23 7 view .LVU11
+  79 0002 0BB1     		cbz	r3, .L11
+  24:Core/Src/nyan_keys.c ****         HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], &keys->key_states[0], siz
+  25:Core/Src/nyan_keys.c ****         keys->key_read_inflight = true;
+  26:Core/Src/nyan_keys.c ****     }
+  27:Core/Src/nyan_keys.c **** 
+  28:Core/Src/nyan_keys.c ****     return NYAN_KEYS_SUCCESS;
+  80              		.loc 1 28 5 is_stmt 1 view .LVU12
+  29:Core/Src/nyan_keys.c **** }...
+  81              		.loc 1 29 1 is_stmt 0 view .LVU13
+  82 0004 0120     		movs	r0, #1
+  83              	.LVL4:
+  84              		.loc 1 29 1 view .LVU14
+  85 0006 7047     		bx	lr
+  86              	.LVL5:
+  87              	.L11:
+  21:Core/Src/nyan_keys.c **** {
+ARM GAS  /tmp/ccorZD8K.s 			page 3
+
+
+  88              		.loc 1 21 1 view .LVU15
+  89 0008 10B5     		push	{r4, lr}
+  90              		.cfi_def_cfa_offset 8
+  91              		.cfi_offset 4, -8
+  92              		.cfi_offset 14, -4
+  93 000a 0446     		mov	r4, r0
+  24:Core/Src/nyan_keys.c ****         HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], &keys->key_states[0], siz
+  94              		.loc 1 24 9 is_stmt 1 view .LVU16
+  95 000c 0923     		movs	r3, #9
+  96 000e 421C     		adds	r2, r0, #1
+  97 0010 0349     		ldr	r1, .L12
+  98 0012 0448     		ldr	r0, .L12+4
+  99              	.LVL6:
+  24:Core/Src/nyan_keys.c ****         HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], &keys->key_states[0], siz
+ 100              		.loc 1 24 9 is_stmt 0 view .LVU17
+ 101 0014 FFF7FEFF 		bl	HAL_SPI_TransmitReceive_DMA
+ 102              	.LVL7:
+  25:Core/Src/nyan_keys.c ****         keys->key_read_inflight = true;
+ 103              		.loc 1 25 9 is_stmt 1 view .LVU18
+  25:Core/Src/nyan_keys.c ****         keys->key_read_inflight = true;
+ 104              		.loc 1 25 33 is_stmt 0 view .LVU19
+ 105 0018 0123     		movs	r3, #1
+ 106 001a 2370     		strb	r3, [r4]
+  28:Core/Src/nyan_keys.c ****     return NYAN_KEYS_SUCCESS;
+ 107              		.loc 1 28 5 is_stmt 1 view .LVU20
+ 108              		.loc 1 29 1 is_stmt 0 view .LVU21
+ 109 001c 0120     		movs	r0, #1
+ 110 001e 10BD     		pop	{r4, pc}
+ 111              	.LVL8:
+ 112              	.L13:
+ 113              		.loc 1 29 1 view .LVU22
+ 114              		.align	2
+ 115              	.L12:
+ 116 0020 00000000 		.word	keys_registers_addresses
+ 117 0024 00000000 		.word	hspi2
+ 118              		.cfi_endproc
+ 119              	.LFE142:
+ 121              		.section	.data.keys_registers_addresses,"aw"
+ 122              		.align	2
+ 125              	keys_registers_addresses:
+ 126 0000 00010203 		.ascii	"\000\001\002\003\004\005\006\007\000"
+ 126      04050607 
+ 126      00
+ 127              		.text
+ 128              	.Letext0:
+ 129              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 130              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 131              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
+ 132              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 133              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
+ 134              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 135              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
+ 136              		.file 9 "Core/Inc/nyan_keys.h"
+ 137              		.file 10 "Core/Inc/spi.h"
+ARM GAS  /tmp/ccorZD8K.s 			page 4
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 nyan_keys.c
+     /tmp/ccorZD8K.s:21     .text.NyanKeysInit:00000000 $t
+     /tmp/ccorZD8K.s:27     .text.NyanKeysInit:00000000 NyanKeysInit
+     /tmp/ccorZD8K.s:57     .text.NyanKeysInit:00000014 $d
+     /tmp/ccorZD8K.s:62     .text.NyanGetKeys:00000000 $t
+     /tmp/ccorZD8K.s:68     .text.NyanGetKeys:00000000 NyanGetKeys
+     /tmp/ccorZD8K.s:116    .text.NyanGetKeys:00000020 $d
+     /tmp/ccorZD8K.s:125    .data.keys_registers_addresses:00000000 keys_registers_addresses
+     /tmp/ccorZD8K.s:122    .data.keys_registers_addresses:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_SPI_TransmitReceive_DMA
+hspi2

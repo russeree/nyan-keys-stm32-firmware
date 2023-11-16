@@ -29,7 +29,12 @@ FPGAReturn FPGAInit(LatticeIceHX* fpga)
     HAL_GPIO_WritePin(SPI4_SS_GPIO_Port, SPI4_SS_Pin, GPIO_PIN_RESET);
     // Uncompress and write the bitstream - This happens all in one file to keep the ram footprint low.
     WriteUncomprBitstream(&ice_uncompr, fpga->p_bitstream_compressed, fpga->bitstream_compressed_size);
-    
+    while(!fpga->configured){
+    }
+    // Send over the remaining dummy bytes 49 of them at minim, we will send 80 to be safe.
+    for(uint8_t dummy_byte = 0; dummy_byte < 10; ++dummy_byte) {
+        HAL_SPI_Transmit(&hspi4, (uint8_t *)&lattice_dummy_bits, 1, 100);
+    }
     // We must free up the compressed memory used by the bitstream
     free(fpga->p_bitstream_compressed);
     fpga->p_bitstream_compressed = NULL;
@@ -44,7 +49,6 @@ FPGAReturn FPGAGetBitstreamData(LatticeIceHX* fpga)
         return FPGA_FAILURE;
     
     // Chunk loading and tracking
-    uint16_t processed_chunks = 0; 
     uint16_t chunks = fpga->bitstream_compressed_size / EEPROM_DRIVER_TX_BUF_SZ;
     chunks += fpga->bitstream_compressed_size % EEPROM_DRIVER_TX_BUF_SZ  == 0 ? 0 : 1;
     if(chunks == 0)

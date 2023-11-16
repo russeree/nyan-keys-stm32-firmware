@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cccr3MJh.s 			page 1
+ARM GAS  /tmp/ccojsERf.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,15 +19,15 @@ ARM GAS  /tmp/cccr3MJh.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.MX_DMA_Init,"ax",%progbits
-  20              		.align	1
-  21              		.global	MX_DMA_Init
-  22              		.syntax unified
-  23              		.thumb
-  24              		.thumb_func
-  26              	MX_DMA_Init:
-  27              	.LFB141:
-  28              		.file 1 "Core/Src/dma.c"
+  19              		.file 1 "Core/Src/dma.c"
+  20              		.section	.text.MX_DMA_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	MX_DMA_Init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	MX_DMA_Init:
+  28              	.LFB141:
    1:Core/Src/dma.c **** /* USER CODE BEGIN Header */
    2:Core/Src/dma.c **** /**
    3:Core/Src/dma.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cccr3MJh.s 			page 1
   28:Core/Src/dma.c **** /*----------------------------------------------------------------------------*/
   29:Core/Src/dma.c **** /* Configure DMA                                                              */
   30:Core/Src/dma.c **** /*----------------------------------------------------------------------------*/
-ARM GAS  /tmp/cccr3MJh.s 			page 2
+ARM GAS  /tmp/ccojsERf.s 			page 2
 
 
   31:Core/Src/dma.c **** 
@@ -76,90 +76,113 @@ ARM GAS  /tmp/cccr3MJh.s 			page 1
   31              		@ args = 0, pretend = 0, frame = 8
   32              		@ frame_needed = 0, uses_anonymous_args = 0
   33 0000 00B5     		push	{lr}
-  34              	.LCFI0:
-  35              		.cfi_def_cfa_offset 4
-  36              		.cfi_offset 14, -4
-  37 0002 83B0     		sub	sp, sp, #12
-  38              	.LCFI1:
-  39              		.cfi_def_cfa_offset 16
+  34              		.cfi_def_cfa_offset 4
+  35              		.cfi_offset 14, -4
+  36 0002 83B0     		sub	sp, sp, #12
+  37              		.cfi_def_cfa_offset 16
   41:Core/Src/dma.c **** 
   42:Core/Src/dma.c ****   /* DMA controller clock enable */
   43:Core/Src/dma.c ****   __HAL_RCC_DMA1_CLK_ENABLE();
-  40              		.loc 1 43 3 view .LVU1
-  41              	.LBB2:
-  42              		.loc 1 43 3 view .LVU2
-  43              		.loc 1 43 3 view .LVU3
-  44 0004 0E4B     		ldr	r3, .L3
-  45 0006 1A6B     		ldr	r2, [r3, #48]
-  46 0008 42F40012 		orr	r2, r2, #2097152
-  47 000c 1A63     		str	r2, [r3, #48]
-  48              		.loc 1 43 3 view .LVU4
-  49 000e 1B6B     		ldr	r3, [r3, #48]
-  50 0010 03F40013 		and	r3, r3, #2097152
-  51 0014 0193     		str	r3, [sp, #4]
-  52              		.loc 1 43 3 view .LVU5
-  53 0016 019B     		ldr	r3, [sp, #4]
-  54              	.LBE2:
-  55              		.loc 1 43 3 view .LVU6
+  38              		.loc 1 43 3 view .LVU1
+  39              	.LBB2:
+  40              		.loc 1 43 3 view .LVU2
+  41              		.loc 1 43 3 view .LVU3
+  42 0004 164B     		ldr	r3, .L3
+  43 0006 1A6B     		ldr	r2, [r3, #48]
+  44 0008 42F40012 		orr	r2, r2, #2097152
+  45 000c 1A63     		str	r2, [r3, #48]
+  46              		.loc 1 43 3 view .LVU4
+  47 000e 1B6B     		ldr	r3, [r3, #48]
+  48 0010 03F40013 		and	r3, r3, #2097152
+  49 0014 0193     		str	r3, [sp, #4]
+  50              		.loc 1 43 3 view .LVU5
+  51 0016 019B     		ldr	r3, [sp, #4]
+  52              	.LBE2:
+  53              		.loc 1 43 3 view .LVU6
   44:Core/Src/dma.c **** 
   45:Core/Src/dma.c ****   /* DMA interrupt init */
   46:Core/Src/dma.c ****   /* DMA1_Stream0_IRQn interrupt configuration */
   47:Core/Src/dma.c ****   HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 0, 0);
-  56              		.loc 1 47 3 view .LVU7
-  57 0018 0022     		movs	r2, #0
-  58 001a 1146     		mov	r1, r2
-  59 001c 0B20     		movs	r0, #11
-  60 001e FFF7FEFF 		bl	HAL_NVIC_SetPriority
-  61              	.LVL0:
+  54              		.loc 1 47 3 view .LVU7
+  55 0018 0022     		movs	r2, #0
+  56 001a 1146     		mov	r1, r2
+  57 001c 0B20     		movs	r0, #11
+  58 001e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  59              	.LVL0:
   48:Core/Src/dma.c ****   HAL_NVIC_EnableIRQ(DMA1_Stream0_IRQn);
-  62              		.loc 1 48 3 view .LVU8
-  63 0022 0B20     		movs	r0, #11
-  64 0024 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
-  65              	.LVL1:
-  49:Core/Src/dma.c ****   /* DMA1_Stream6_IRQn interrupt configuration */
-  50:Core/Src/dma.c ****   HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
-ARM GAS  /tmp/cccr3MJh.s 			page 3
+  60              		.loc 1 48 3 view .LVU8
+  61 0022 0B20     		movs	r0, #11
+  62 0024 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+  63              	.LVL1:
+  49:Core/Src/dma.c ****   /* DMA1_Stream3_IRQn interrupt configuration */
+  50:Core/Src/dma.c ****   HAL_NVIC_SetPriority(DMA1_Stream3_IRQn, 0, 0);
+  64              		.loc 1 50 3 view .LVU9
+  65 0028 0022     		movs	r2, #0
+ARM GAS  /tmp/ccojsERf.s 			page 3
 
 
-  66              		.loc 1 50 3 view .LVU9
-  67 0028 0022     		movs	r2, #0
-  68 002a 1146     		mov	r1, r2
-  69 002c 1120     		movs	r0, #17
-  70 002e FFF7FEFF 		bl	HAL_NVIC_SetPriority
-  71              	.LVL2:
-  51:Core/Src/dma.c ****   HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
-  72              		.loc 1 51 3 view .LVU10
-  73 0032 1120     		movs	r0, #17
-  74 0034 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
-  75              	.LVL3:
-  52:Core/Src/dma.c **** 
-  53:Core/Src/dma.c **** }
-  76              		.loc 1 53 1 is_stmt 0 view .LVU11
-  77 0038 03B0     		add	sp, sp, #12
-  78              	.LCFI2:
-  79              		.cfi_def_cfa_offset 4
-  80              		@ sp needed
-  81 003a 5DF804FB 		ldr	pc, [sp], #4
-  82              	.L4:
-  83 003e 00BF     		.align	2
-  84              	.L3:
-  85 0040 00380240 		.word	1073887232
-  86              		.cfi_endproc
-  87              	.LFE141:
-  89              		.text
-  90              	.Letext0:
-  91              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
-  92              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
-  93              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
-  94              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h"
-ARM GAS  /tmp/cccr3MJh.s 			page 4
+  66 002a 1146     		mov	r1, r2
+  67 002c 0E20     		movs	r0, #14
+  68 002e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  69              	.LVL2:
+  51:Core/Src/dma.c ****   HAL_NVIC_EnableIRQ(DMA1_Stream3_IRQn);
+  70              		.loc 1 51 3 view .LVU10
+  71 0032 0E20     		movs	r0, #14
+  72 0034 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+  73              	.LVL3:
+  52:Core/Src/dma.c ****   /* DMA1_Stream4_IRQn interrupt configuration */
+  53:Core/Src/dma.c ****   HAL_NVIC_SetPriority(DMA1_Stream4_IRQn, 0, 0);
+  74              		.loc 1 53 3 view .LVU11
+  75 0038 0022     		movs	r2, #0
+  76 003a 1146     		mov	r1, r2
+  77 003c 0F20     		movs	r0, #15
+  78 003e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  79              	.LVL4:
+  54:Core/Src/dma.c ****   HAL_NVIC_EnableIRQ(DMA1_Stream4_IRQn);
+  80              		.loc 1 54 3 view .LVU12
+  81 0042 0F20     		movs	r0, #15
+  82 0044 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+  83              	.LVL5:
+  55:Core/Src/dma.c ****   /* DMA1_Stream6_IRQn interrupt configuration */
+  56:Core/Src/dma.c ****   HAL_NVIC_SetPriority(DMA1_Stream6_IRQn, 0, 0);
+  84              		.loc 1 56 3 view .LVU13
+  85 0048 0022     		movs	r2, #0
+  86 004a 1146     		mov	r1, r2
+  87 004c 1120     		movs	r0, #17
+  88 004e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  89              	.LVL6:
+  57:Core/Src/dma.c ****   HAL_NVIC_EnableIRQ(DMA1_Stream6_IRQn);
+  90              		.loc 1 57 3 view .LVU14
+  91 0052 1120     		movs	r0, #17
+  92 0054 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+  93              	.LVL7:
+  58:Core/Src/dma.c **** 
+  59:Core/Src/dma.c **** }
+  94              		.loc 1 59 1 is_stmt 0 view .LVU15
+  95 0058 03B0     		add	sp, sp, #12
+  96              		.cfi_def_cfa_offset 4
+  97              		@ sp needed
+  98 005a 5DF804FB 		ldr	pc, [sp], #4
+  99              	.L4:
+ 100 005e 00BF     		.align	2
+ 101              	.L3:
+ 102 0060 00380240 		.word	1073887232
+ 103              		.cfi_endproc
+ 104              	.LFE141:
+ 106              		.text
+ 107              	.Letext0:
+ 108              		.file 2 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
+ 109              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 110              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 111              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h"
+ARM GAS  /tmp/ccojsERf.s 			page 4
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 dma.c
-     /tmp/cccr3MJh.s:20     .text.MX_DMA_Init:0000000000000000 $t
-     /tmp/cccr3MJh.s:26     .text.MX_DMA_Init:0000000000000000 MX_DMA_Init
-     /tmp/cccr3MJh.s:85     .text.MX_DMA_Init:0000000000000040 $d
+                            *ABS*:00000000 dma.c
+     /tmp/ccojsERf.s:21     .text.MX_DMA_Init:00000000 $t
+     /tmp/ccojsERf.s:27     .text.MX_DMA_Init:00000000 MX_DMA_Init
+     /tmp/ccojsERf.s:102    .text.MX_DMA_Init:00000060 $d
 
 UNDEFINED SYMBOLS
 HAL_NVIC_SetPriority

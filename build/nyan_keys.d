@@ -1,4 +1,4 @@
-build/main.o: Core/Src/main.c Core/Inc/main.h \
+build/nyan_keys.o: Core/Src/nyan_keys.c Core/Inc/spi.h Core/Inc/main.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  Core/Inc/stm32f7xx_hal_conf.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
@@ -31,23 +31,8 @@ build/main.o: Core/Src/main.c Core/Inc/main.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h \
- Core/Inc/nyan_eeprom_map.h Core/Inc/dma.h Core/Inc/main.h Core/Inc/i2c.h \
- Core/Inc/rng.h Core/Inc/spi.h Core/Inc/tim.h Core/Inc/usb_otg.h \
- Core/Inc/gpio.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usb_device.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
- Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h \
- Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h Core/Inc/24xx_eeprom.h \
- Core/Inc/iceuncompr.h Core/Inc/spi.h Core/Inc/lattice_ice_hx.h \
- Core/Inc/24xx_eeprom.h Core/Inc/iceuncompr.h Core/Inc/nyan_os.h \
- Core/Inc/nyan_leds.h Core/Inc/nyan_strings.h Core/Inc/nyan_keys.h
+ Core/Inc/nyan_eeprom_map.h Core/Inc/nyan_keys.h Core/Inc/main.h
+Core/Inc/spi.h:
 Core/Inc/main.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 Core/Inc/stm32f7xx_hal_conf.h:
@@ -84,32 +69,5 @@ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h:
 Core/Inc/nyan_eeprom_map.h:
-Core/Inc/dma.h:
-Core/Inc/main.h:
-Core/Inc/i2c.h:
-Core/Inc/rng.h:
-Core/Inc/spi.h:
-Core/Inc/tim.h:
-Core/Inc/usb_otg.h:
-Core/Inc/gpio.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usb_device.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
-Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h:
-Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h:
-Core/Inc/24xx_eeprom.h:
-Core/Inc/iceuncompr.h:
-Core/Inc/spi.h:
-Core/Inc/lattice_ice_hx.h:
-Core/Inc/24xx_eeprom.h:
-Core/Inc/iceuncompr.h:
-Core/Inc/nyan_os.h:
-Core/Inc/nyan_leds.h:
-Core/Inc/nyan_strings.h:
 Core/Inc/nyan_keys.h:
+Core/Inc/main.h:

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccPeQ5OR.s 			page 1
+ARM GAS  /tmp/cckoXYmN.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,15 +19,15 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.section	.text.USBD_HID_GetFSCfgDesc,"ax",%progbits
-  20              		.align	1
-  21              		.syntax unified
-  22              		.thumb
-  23              		.thumb_func
-  25              	USBD_HID_GetFSCfgDesc:
-  26              	.LVL0:
-  27              	.LFB148:
-  28              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyb
+  19              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyb
+  20              		.section	.text.USBD_HID_GetFSCfgDesc,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	USBD_HID_GetFSCfgDesc:
+  27              	.LVL0:
+  28              	.LFB148:
    1:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** /**
    2:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   ******************************************************************************
    3:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * @file    usbd_hid.c
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
   28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   *
   29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * <h2><center>&copy; Copyright (c) 2015 STMicroelectronics.
   30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * All rights reserved.</center></h2>
-ARM GAS  /tmp/ccPeQ5OR.s 			page 2
+ARM GAS  /tmp/cckoXYmN.s 			page 2
 
 
   31:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   *
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
   85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * @}
   86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   */
   87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
-ARM GAS  /tmp/ccPeQ5OR.s 			page 3
+ARM GAS  /tmp/cckoXYmN.s 			page 3
 
 
   88:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** /** @defgroup USBD_HID_Private_FunctionPrototypes
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  142:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** #else
  143:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0xA0, /* bmAttributes: Bus Powered according to user configuration */
  144:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** #endif
-ARM GAS  /tmp/ccPeQ5OR.s 			page 4
+ARM GAS  /tmp/cckoXYmN.s 			page 4
 
 
  145:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         USBD_MAX_POWER, /* MaxPower 100 mA: this current is used for detecting Vbus */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  199:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         /* 09 */
  200:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0x09,                       /* bLength: Interface Descriptor size */
  201:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         USB_DESC_TYPE_INTERFACE,    /* bDescriptorType: Interface descriptor type */
-ARM GAS  /tmp/ccPeQ5OR.s 			page 5
+ARM GAS  /tmp/cckoXYmN.s 			page 5
 
 
  202:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         _HID_KEYBOARD_ITF_NBR,      /* bInterfaceNumber: Number of Interface */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  256:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0x00,
  257:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0x40,
  258:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0x01,
-ARM GAS  /tmp/ccPeQ5OR.s 			page 6
+ARM GAS  /tmp/cckoXYmN.s 			page 6
 
 
  259:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0x00,
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  313:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0x81, 0x01,
  314:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0xC0, 0x06,
  315:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0x01, 0xFF,
-ARM GAS  /tmp/ccPeQ5OR.s 			page 7
+ARM GAS  /tmp/cckoXYmN.s 			page 7
 
 
  316:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         0x09, 0x01,
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  370:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   *         Initialize the HID interface
  371:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * @param  pdev: device instance
  372:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * @param  cfgidx: Configuration index
-ARM GAS  /tmp/ccPeQ5OR.s 			page 8
+ARM GAS  /tmp/cckoXYmN.s 			page 8
 
 
  373:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * @retval status
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  427:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
  428:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** #if (0)
  429:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     (void)USBD_free(pdev->pClassData_HID_Keyboard);
-ARM GAS  /tmp/ccPeQ5OR.s 			page 9
+ARM GAS  /tmp/cckoXYmN.s 			page 9
 
 
  430:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** #endif
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  484:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   case USB_REQ_TYPE_STANDARD:
  485:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     switch (req->bRequest)
  486:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
-ARM GAS  /tmp/ccPeQ5OR.s 			page 10
+ARM GAS  /tmp/cckoXYmN.s 			page 10
 
 
  487:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     case USB_REQ_GET_STATUS:
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  541:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
  542:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  543:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     case USB_REQ_CLEAR_FEATURE:
-ARM GAS  /tmp/ccPeQ5OR.s 			page 11
+ARM GAS  /tmp/cckoXYmN.s 			page 11
 
 
  544:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
@@ -650,7 +650,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
   44              	.L3:
   45              		.align	2
   46              	.L2:
-  47 0008 00000000 		.word	.LANCHOR0
+  47 0008 00000000 		.word	USBD_HID_KEYBOARD_CfgFSDesc
   48              		.cfi_endproc
   49              	.LFE148:
   51              		.section	.text.USBD_HID_GetHSCfgDesc,"ax",%progbits
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
   53              		.syntax unified
   54              		.thumb
   55              		.thumb_func
-ARM GAS  /tmp/ccPeQ5OR.s 			page 12
+ARM GAS  /tmp/cckoXYmN.s 			page 12
 
 
   57              	USBD_HID_GetHSCfgDesc:
@@ -696,7 +696,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
   75              	.L6:
   76              		.align	2
   77              	.L5:
-  78 0008 00000000 		.word	.LANCHOR1
+  78 0008 00000000 		.word	USBD_HID_KEYBOARD_CfgHSDesc
   79              		.cfi_endproc
   80              	.LFE149:
   82              		.section	.text.USBD_HID_GetOtherSpeedCfgDesc,"ax",%progbits
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  597:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** static uint8_t *USBD_HID_GetOtherSpeedCfgDesc(uint16_t *length)
  598:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** {
   91              		.loc 1 598 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccPeQ5OR.s 			page 13
+ARM GAS  /tmp/cckoXYmN.s 			page 13
 
 
   92              		.cfi_startproc
@@ -742,7 +742,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  106              	.L9:
  107              		.align	2
  108              	.L8:
- 109 0008 00000000 		.word	.LANCHOR0
+ 109 0008 00000000 		.word	USBD_HID_KEYBOARD_CfgFSDesc
  110              		.cfi_endproc
  111              	.LFE150:
  113              		.section	.text.USBD_HID_DataIn,"ax",%progbits
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  130 0000 D0F8D432 		ldr	r3, [r0, #724]
  131              		.loc 1 616 77 view .LVU22
  132 0004 0020     		movs	r0, #0
-ARM GAS  /tmp/ccPeQ5OR.s 			page 14
+ARM GAS  /tmp/cckoXYmN.s 			page 14
 
 
  133              	.LVL7:
@@ -831,14 +831,14 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  166              	.L13:
  167              		.align	2
  168              	.L12:
- 169 0008 00000000 		.word	.LANCHOR2
+ 169 0008 00000000 		.word	USBD_HID_DeviceQualifierDesc
  170              		.cfi_endproc
  171              	.LFE152:
  173              		.section	.text.USBD_HID_Setup,"ax",%progbits
  174              		.align	1
  175              		.syntax unified
  176              		.thumb
-ARM GAS  /tmp/ccPeQ5OR.s 			page 15
+ARM GAS  /tmp/cckoXYmN.s 			page 15
 
 
  177              		.thumb_func
@@ -853,689 +853,683 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  445:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   USBD_HID_Keyboard_HandleTypeDef *hhid = (USBD_HID_Keyboard_HandleTypeDef *)pdev->pClassData_HID_K
  186              		.loc 1 445 1 is_stmt 0 view .LVU33
  187 0000 70B5     		push	{r4, r5, r6, lr}
- 188              	.LCFI0:
- 189              		.cfi_def_cfa_offset 16
- 190              		.cfi_offset 4, -16
- 191              		.cfi_offset 5, -12
- 192              		.cfi_offset 6, -8
- 193              		.cfi_offset 14, -4
- 194 0002 82B0     		sub	sp, sp, #8
- 195              	.LCFI1:
- 196              		.cfi_def_cfa_offset 24
+ 188              		.cfi_def_cfa_offset 16
+ 189              		.cfi_offset 4, -16
+ 190              		.cfi_offset 5, -12
+ 191              		.cfi_offset 6, -8
+ 192              		.cfi_offset 14, -4
+ 193 0002 82B0     		sub	sp, sp, #8
+ 194              		.cfi_def_cfa_offset 24
  446:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   USBD_StatusTypeDef ret = USBD_OK;
- 197              		.loc 1 446 3 is_stmt 1 view .LVU34
+ 195              		.loc 1 446 3 is_stmt 1 view .LVU34
  446:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   USBD_StatusTypeDef ret = USBD_OK;
- 198              		.loc 1 446 36 is_stmt 0 view .LVU35
- 199 0004 D0F8D452 		ldr	r5, [r0, #724]
- 200              	.LVL11:
+ 196              		.loc 1 446 36 is_stmt 0 view .LVU35
+ 197 0004 D0F8D452 		ldr	r5, [r0, #724]
+ 198              	.LVL11:
  447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t len;
- 201              		.loc 1 447 3 is_stmt 1 view .LVU36
+ 199              		.loc 1 447 3 is_stmt 1 view .LVU36
  448:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint8_t *pbuf;
- 202              		.loc 1 448 3 view .LVU37
+ 200              		.loc 1 448 3 view .LVU37
  449:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t status_info = 0U;
- 203              		.loc 1 449 3 view .LVU38
+ 201              		.loc 1 449 3 view .LVU38
  450:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 204              		.loc 1 450 3 view .LVU39
+ 202              		.loc 1 450 3 view .LVU39
  450:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 205              		.loc 1 450 12 is_stmt 0 view .LVU40
- 206 0008 0023     		movs	r3, #0
- 207 000a ADF80630 		strh	r3, [sp, #6]	@ movhi
+ 203              		.loc 1 450 12 is_stmt 0 view .LVU40
+ 204 0008 0023     		movs	r3, #0
+ 205 000a ADF80630 		strh	r3, [sp, #6]	@ movhi
  452:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 208              		.loc 1 452 3 is_stmt 1 view .LVU41
+ 206              		.loc 1 452 3 is_stmt 1 view .LVU41
  452:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 209              		.loc 1 452 6 is_stmt 0 view .LVU42
- 210 000e 002D     		cmp	r5, #0
- 211 0010 00F08280 		beq	.L36
+ 207              		.loc 1 452 6 is_stmt 0 view .LVU42
+ 208 000e 002D     		cmp	r5, #0
+ 209 0010 00F08280 		beq	.L36
  457:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 212              		.loc 1 457 3 is_stmt 1 view .LVU43
+ 210              		.loc 1 457 3 is_stmt 1 view .LVU43
  457:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 213              		.loc 1 457 14 is_stmt 0 view .LVU44
- 214 0014 0C78     		ldrb	r4, [r1]	@ zero_extendqisi2
+ 211              		.loc 1 457 14 is_stmt 0 view .LVU44
+ 212 0014 0C78     		ldrb	r4, [r1]	@ zero_extendqisi2
  457:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 215              		.loc 1 457 3 view .LVU45
- 216 0016 14F06004 		ands	r4, r4, #96
- 217 001a 25D0     		beq	.L16
- 218 001c 202C     		cmp	r4, #32
- 219 001e 75D1     		bne	.L17
+ 213              		.loc 1 457 3 view .LVU45
+ 214 0016 14F06004 		ands	r4, r4, #96
+ 215 001a 25D0     		beq	.L16
+ 216 001c 202C     		cmp	r4, #32
+ 217 001e 75D1     		bne	.L17
  460:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
-ARM GAS  /tmp/ccPeQ5OR.s 			page 16
-
-
- 220              		.loc 1 460 5 is_stmt 1 view .LVU46
+ 218              		.loc 1 460 5 is_stmt 1 view .LVU46
  460:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
- 221              		.loc 1 460 16 is_stmt 0 view .LVU47
- 222 0020 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
- 223 0022 023B     		subs	r3, r3, #2
- 224 0024 092B     		cmp	r3, #9
- 225 0026 1BD8     		bhi	.L18
- 226 0028 DFE803F0 		tbb	[pc, r3]
- 227              	.L20:
- 228 002c 14       		.byte	(.L23-.L20)/2
- 229 002d 09       		.byte	(.L22-.L20)/2
- 230 002e 1A       		.byte	(.L18-.L20)/2
- 231 002f 1A       		.byte	(.L18-.L20)/2
- 232 0030 1A       		.byte	(.L18-.L20)/2
- 233 0031 1A       		.byte	(.L18-.L20)/2
- 234 0032 1A       		.byte	(.L18-.L20)/2
- 235 0033 1A       		.byte	(.L18-.L20)/2
- 236 0034 0F       		.byte	(.L21-.L20)/2
- 237 0035 05       		.byte	(.L19-.L20)/2
- 238              		.p2align 1
- 239              	.L19:
- 463:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 240              		.loc 1 463 7 is_stmt 1 view .LVU48
- 463:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 241              		.loc 1 463 24 is_stmt 0 view .LVU49
- 242 0036 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
- 463:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 243              		.loc 1 463 22 view .LVU50
- 244 0038 2B60     		str	r3, [r5]
- 464:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 245              		.loc 1 464 7 is_stmt 1 view .LVU51
- 447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t len;
- 246              		.loc 1 447 22 is_stmt 0 view .LVU52
- 247 003a 0024     		movs	r4, #0
- 464:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 248              		.loc 1 464 7 view .LVU53
- 249 003c 69E0     		b	.L15
- 250              	.L22:
- 467:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 251              		.loc 1 467 7 is_stmt 1 view .LVU54
- 467:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 252              		.loc 1 467 13 is_stmt 0 view .LVU55
- 253 003e 0122     		movs	r2, #1
- 254 0040 2946     		mov	r1, r5
- 255              	.LVL12:
- 467:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 256              		.loc 1 467 13 view .LVU56
- 257 0042 FFF7FEFF 		bl	USBD_CtlSendData
- 258              	.LVL13:
- 468:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 259              		.loc 1 468 7 is_stmt 1 view .LVU57
- 447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t len;
- 260              		.loc 1 447 22 is_stmt 0 view .LVU58
- 261 0046 0024     		movs	r4, #0
- 468:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 262              		.loc 1 468 7 view .LVU59
- 263 0048 63E0     		b	.L15
-ARM GAS  /tmp/ccPeQ5OR.s 			page 17
+ARM GAS  /tmp/cckoXYmN.s 			page 16
 
 
- 264              	.LVL14:
- 265              	.L21:
- 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 266              		.loc 1 471 7 is_stmt 1 view .LVU60
- 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 267              		.loc 1 471 38 is_stmt 0 view .LVU61
- 268 004a 4B88     		ldrh	r3, [r1, #2]
- 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 269              		.loc 1 471 25 view .LVU62
- 270 004c 1B0A     		lsrs	r3, r3, #8
- 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 271              		.loc 1 471 23 view .LVU63
- 272 004e 6B60     		str	r3, [r5, #4]
- 472:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 273              		.loc 1 472 7 is_stmt 1 view .LVU64
+ 219              		.loc 1 460 16 is_stmt 0 view .LVU47
+ 220 0020 4B78     		ldrb	r3, [r1, #1]	@ zero_extendqisi2
+ 221 0022 023B     		subs	r3, r3, #2
+ 222 0024 092B     		cmp	r3, #9
+ 223 0026 1BD8     		bhi	.L18
+ 224 0028 DFE803F0 		tbb	[pc, r3]
+ 225              	.L20:
+ 226 002c 14       		.byte	(.L23-.L20)/2
+ 227 002d 09       		.byte	(.L22-.L20)/2
+ 228 002e 1A       		.byte	(.L18-.L20)/2
+ 229 002f 1A       		.byte	(.L18-.L20)/2
+ 230 0030 1A       		.byte	(.L18-.L20)/2
+ 231 0031 1A       		.byte	(.L18-.L20)/2
+ 232 0032 1A       		.byte	(.L18-.L20)/2
+ 233 0033 1A       		.byte	(.L18-.L20)/2
+ 234 0034 0F       		.byte	(.L21-.L20)/2
+ 235 0035 05       		.byte	(.L19-.L20)/2
+ 236              		.p2align 1
+ 237              	.L19:
+ 463:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 238              		.loc 1 463 7 is_stmt 1 view .LVU48
+ 463:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 239              		.loc 1 463 24 is_stmt 0 view .LVU49
+ 240 0036 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ 463:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 241              		.loc 1 463 22 view .LVU50
+ 242 0038 2B60     		str	r3, [r5]
+ 464:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
+ 243              		.loc 1 464 7 is_stmt 1 view .LVU51
  447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t len;
- 274              		.loc 1 447 22 is_stmt 0 view .LVU65
- 275 0050 0024     		movs	r4, #0
- 472:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 276              		.loc 1 472 7 view .LVU66
- 277 0052 5EE0     		b	.L15
- 278              	.L23:
- 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 279              		.loc 1 475 7 is_stmt 1 view .LVU67
- 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 280              		.loc 1 475 13 is_stmt 0 view .LVU68
- 281 0054 0122     		movs	r2, #1
- 282 0056 291D     		adds	r1, r5, #4
- 283              	.LVL15:
- 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 284              		.loc 1 475 13 view .LVU69
- 285 0058 FFF7FEFF 		bl	USBD_CtlSendData
- 286              	.LVL16:
- 476:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 287              		.loc 1 476 7 is_stmt 1 view .LVU70
+ 244              		.loc 1 447 22 is_stmt 0 view .LVU52
+ 245 003a 0024     		movs	r4, #0
+ 464:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
+ 246              		.loc 1 464 7 view .LVU53
+ 247 003c 69E0     		b	.L15
+ 248              	.L22:
+ 467:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 249              		.loc 1 467 7 is_stmt 1 view .LVU54
+ 467:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 250              		.loc 1 467 13 is_stmt 0 view .LVU55
+ 251 003e 0122     		movs	r2, #1
+ 252 0040 2946     		mov	r1, r5
+ 253              	.LVL12:
+ 467:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 254              		.loc 1 467 13 view .LVU56
+ 255 0042 FFF7FEFF 		bl	USBD_CtlSendData
+ 256              	.LVL13:
+ 468:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
+ 257              		.loc 1 468 7 is_stmt 1 view .LVU57
  447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t len;
- 288              		.loc 1 447 22 is_stmt 0 view .LVU71
- 289 005c 0024     		movs	r4, #0
+ 258              		.loc 1 447 22 is_stmt 0 view .LVU58
+ 259 0046 0024     		movs	r4, #0
+ 468:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
+ 260              		.loc 1 468 7 view .LVU59
+ 261 0048 63E0     		b	.L15
+ 262              	.LVL14:
+ 263              	.L21:
+ARM GAS  /tmp/cckoXYmN.s 			page 17
+
+
+ 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 264              		.loc 1 471 7 is_stmt 1 view .LVU60
+ 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 265              		.loc 1 471 38 is_stmt 0 view .LVU61
+ 266 004a 4B88     		ldrh	r3, [r1, #2]
+ 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 267              		.loc 1 471 25 view .LVU62
+ 268 004c 1B0A     		lsrs	r3, r3, #8
+ 471:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 269              		.loc 1 471 23 view .LVU63
+ 270 004e 6B60     		str	r3, [r5, #4]
+ 472:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
+ 271              		.loc 1 472 7 is_stmt 1 view .LVU64
+ 447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t len;
+ 272              		.loc 1 447 22 is_stmt 0 view .LVU65
+ 273 0050 0024     		movs	r4, #0
+ 472:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
+ 274              		.loc 1 472 7 view .LVU66
+ 275 0052 5EE0     		b	.L15
+ 276              	.L23:
+ 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 277              		.loc 1 475 7 is_stmt 1 view .LVU67
+ 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 278              		.loc 1 475 13 is_stmt 0 view .LVU68
+ 279 0054 0122     		movs	r2, #1
+ 280 0056 291D     		adds	r1, r5, #4
+ 281              	.LVL15:
+ 475:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 282              		.loc 1 475 13 view .LVU69
+ 283 0058 FFF7FEFF 		bl	USBD_CtlSendData
+ 284              	.LVL16:
  476:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 290              		.loc 1 476 7 view .LVU72
- 291 005e 58E0     		b	.L15
- 292              	.LVL17:
- 293              	.L18:
+ 285              		.loc 1 476 7 is_stmt 1 view .LVU70
+ 447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t len;
+ 286              		.loc 1 447 22 is_stmt 0 view .LVU71
+ 287 005c 0024     		movs	r4, #0
+ 476:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
+ 288              		.loc 1 476 7 view .LVU72
+ 289 005e 58E0     		b	.L15
+ 290              	.LVL17:
+ 291              	.L18:
  479:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       ret = USBD_FAIL;
- 294              		.loc 1 479 7 is_stmt 1 view .LVU73
- 295 0060 FFF7FEFF 		bl	USBD_CtlError
- 296              	.LVL18:
+ 292              		.loc 1 479 7 is_stmt 1 view .LVU73
+ 293 0060 FFF7FEFF 		bl	USBD_CtlError
+ 294              	.LVL18:
  480:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 297              		.loc 1 480 7 view .LVU74
+ 295              		.loc 1 480 7 view .LVU74
  481:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 298              		.loc 1 481 7 view .LVU75
+ 296              		.loc 1 481 7 view .LVU75
  480:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 299              		.loc 1 480 11 is_stmt 0 view .LVU76
- 300 0064 0324     		movs	r4, #3
+ 297              		.loc 1 480 11 is_stmt 0 view .LVU76
+ 298 0064 0324     		movs	r4, #3
  481:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 301              		.loc 1 481 7 view .LVU77
- 302 0066 54E0     		b	.L15
-ARM GAS  /tmp/ccPeQ5OR.s 			page 18
+ 299              		.loc 1 481 7 view .LVU77
+ 300 0066 54E0     		b	.L15
+ 301              	.LVL19:
+ 302              	.L16:
+ARM GAS  /tmp/cckoXYmN.s 			page 18
 
 
- 303              	.LVL19:
- 304              	.L16:
  485:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
- 305              		.loc 1 485 5 is_stmt 1 view .LVU78
+ 303              		.loc 1 485 5 is_stmt 1 view .LVU78
  485:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
- 306              		.loc 1 485 16 is_stmt 0 view .LVU79
- 307 0068 4E78     		ldrb	r6, [r1, #1]	@ zero_extendqisi2
- 308 006a 0B2E     		cmp	r6, #11
- 309 006c 4AD8     		bhi	.L24
- 310 006e DFE806F0 		tbb	[pc, r6]
- 311              	.L26:
- 312 0072 06       		.byte	(.L29-.L26)/2
- 313 0073 50       		.byte	(.L15-.L26)/2
- 314 0074 49       		.byte	(.L24-.L26)/2
- 315 0075 49       		.byte	(.L24-.L26)/2
- 316 0076 49       		.byte	(.L24-.L26)/2
- 317 0077 49       		.byte	(.L24-.L26)/2
- 318 0078 16       		.byte	(.L28-.L26)/2
- 319 0079 49       		.byte	(.L24-.L26)/2
- 320 007a 49       		.byte	(.L24-.L26)/2
- 321 007b 49       		.byte	(.L24-.L26)/2
- 322 007c 2E       		.byte	(.L27-.L26)/2
- 323 007d 3D       		.byte	(.L25-.L26)/2
- 324              		.p2align 1
- 325              	.L29:
+ 304              		.loc 1 485 16 is_stmt 0 view .LVU79
+ 305 0068 4E78     		ldrb	r6, [r1, #1]	@ zero_extendqisi2
+ 306 006a 0B2E     		cmp	r6, #11
+ 307 006c 4AD8     		bhi	.L24
+ 308 006e DFE806F0 		tbb	[pc, r6]
+ 309              	.L26:
+ 310 0072 06       		.byte	(.L29-.L26)/2
+ 311 0073 50       		.byte	(.L15-.L26)/2
+ 312 0074 49       		.byte	(.L24-.L26)/2
+ 313 0075 49       		.byte	(.L24-.L26)/2
+ 314 0076 49       		.byte	(.L24-.L26)/2
+ 315 0077 49       		.byte	(.L24-.L26)/2
+ 316 0078 16       		.byte	(.L28-.L26)/2
+ 317 0079 49       		.byte	(.L24-.L26)/2
+ 318 007a 49       		.byte	(.L24-.L26)/2
+ 319 007b 49       		.byte	(.L24-.L26)/2
+ 320 007c 2E       		.byte	(.L27-.L26)/2
+ 321 007d 3D       		.byte	(.L25-.L26)/2
+ 322              		.p2align 1
+ 323              	.L29:
  488:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 326              		.loc 1 488 7 is_stmt 1 view .LVU80
+ 324              		.loc 1 488 7 is_stmt 1 view .LVU80
  488:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 327              		.loc 1 488 15 is_stmt 0 view .LVU81
- 328 007e 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
- 329 0082 DBB2     		uxtb	r3, r3
+ 325              		.loc 1 488 15 is_stmt 0 view .LVU81
+ 326 007e 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 327 0082 DBB2     		uxtb	r3, r3
  488:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 330              		.loc 1 488 10 view .LVU82
- 331 0084 032B     		cmp	r3, #3
- 332 0086 03D0     		beq	.L38
+ 328              		.loc 1 488 10 view .LVU82
+ 329 0084 032B     		cmp	r3, #3
+ 330 0086 03D0     		beq	.L39
  494:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         ret = USBD_FAIL;
- 333              		.loc 1 494 9 is_stmt 1 view .LVU83
- 334 0088 FFF7FEFF 		bl	USBD_CtlError
- 335              	.LVL20:
+ 331              		.loc 1 494 9 is_stmt 1 view .LVU83
+ 332 0088 FFF7FEFF 		bl	USBD_CtlError
+ 333              	.LVL20:
  495:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 336              		.loc 1 495 9 view .LVU84
+ 334              		.loc 1 495 9 view .LVU84
  495:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 337              		.loc 1 495 13 is_stmt 0 view .LVU85
- 338 008c 0324     		movs	r4, #3
- 339 008e 40E0     		b	.L15
- 340              	.LVL21:
- 341              	.L38:
+ 335              		.loc 1 495 13 is_stmt 0 view .LVU85
+ 336 008c 0324     		movs	r4, #3
+ 337 008e 40E0     		b	.L15
+ 338              	.LVL21:
+ 339              	.L39:
  490:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 342              		.loc 1 490 9 is_stmt 1 view .LVU86
+ 340              		.loc 1 490 9 is_stmt 1 view .LVU86
  490:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 343              		.loc 1 490 15 is_stmt 0 view .LVU87
- 344 0090 0222     		movs	r2, #2
- 345 0092 0DF10601 		add	r1, sp, #6
- 346              	.LVL22:
+ 341              		.loc 1 490 15 is_stmt 0 view .LVU87
+ 342 0090 0222     		movs	r2, #2
+ 343 0092 0DF10601 		add	r1, sp, #6
+ 344              	.LVL22:
  490:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 347              		.loc 1 490 15 view .LVU88
- 348 0096 FFF7FEFF 		bl	USBD_CtlSendData
-ARM GAS  /tmp/ccPeQ5OR.s 			page 19
-
-
- 349              	.LVL23:
+ 345              		.loc 1 490 15 view .LVU88
+ 346 0096 FFF7FEFF 		bl	USBD_CtlSendData
+ 347              	.LVL23:
  447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint16_t len;
- 350              		.loc 1 447 22 view .LVU89
- 351 009a 3446     		mov	r4, r6
- 352 009c 39E0     		b	.L15
- 353              	.LVL24:
- 354              	.L28:
+ARM GAS  /tmp/cckoXYmN.s 			page 19
+
+
+ 348              		.loc 1 447 22 view .LVU89
+ 349 009a 3446     		mov	r4, r6
+ 350 009c 39E0     		b	.L15
+ 351              	.LVL24:
+ 352              	.L28:
  500:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 355              		.loc 1 500 7 is_stmt 1 view .LVU90
+ 353              		.loc 1 500 7 is_stmt 1 view .LVU90
  500:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 356              		.loc 1 500 15 is_stmt 0 view .LVU91
- 357 009e 4B88     		ldrh	r3, [r1, #2]
+ 354              		.loc 1 500 15 is_stmt 0 view .LVU91
+ 355 009e 4B88     		ldrh	r3, [r1, #2]
  500:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 358              		.loc 1 500 30 view .LVU92
- 359 00a0 1B0A     		lsrs	r3, r3, #8
+ 356              		.loc 1 500 30 view .LVU92
+ 357 00a0 1B0A     		lsrs	r3, r3, #8
  500:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 360              		.loc 1 500 10 view .LVU93
- 361 00a2 222B     		cmp	r3, #34
- 362 00a4 09D0     		beq	.L39
+ 358              		.loc 1 500 10 view .LVU93
+ 359 00a2 222B     		cmp	r3, #34
+ 360 00a4 09D0     		beq	.L40
  505:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 363              		.loc 1 505 12 is_stmt 1 view .LVU94
+ 361              		.loc 1 505 12 is_stmt 1 view .LVU94
  505:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 364              		.loc 1 505 15 is_stmt 0 view .LVU95
- 365 00a6 212B     		cmp	r3, #33
- 366 00a8 0DD1     		bne	.L33
+ 362              		.loc 1 505 15 is_stmt 0 view .LVU95
+ 363 00a6 212B     		cmp	r3, #33
+ 364 00a8 0DD1     		bne	.L33
  507:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         len = MIN(HID_KEYBOARD_DESC_SIZE, req->wLength);
- 367              		.loc 1 507 9 is_stmt 1 view .LVU96
- 368              	.LVL25:
+ 365              		.loc 1 507 9 is_stmt 1 view .LVU96
+ 366              	.LVL25:
  508:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 369              		.loc 1 508 9 view .LVU97
+ 367              		.loc 1 508 9 view .LVU97
  508:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 370              		.loc 1 508 15 is_stmt 0 view .LVU98
- 371 00aa CA88     		ldrh	r2, [r1, #6]
+ 368              		.loc 1 508 15 is_stmt 0 view .LVU98
+ 369 00aa CA88     		ldrh	r2, [r1, #6]
  508:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 372              		.loc 1 508 13 view .LVU99
- 373 00ac 092A     		cmp	r2, #9
- 374 00ae 28BF     		it	cs
- 375 00b0 0922     		movcs	r2, #9
- 376              	.LVL26:
+ 370              		.loc 1 508 13 view .LVU99
+ 371 00ac 092A     		cmp	r2, #9
+ 372 00ae 28BF     		it	cs
+ 373 00b0 0922     		movcs	r2, #9
+ 374              	.LVL26:
  507:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         len = MIN(HID_KEYBOARD_DESC_SIZE, req->wLength);
- 377              		.loc 1 507 14 view .LVU100
- 378 00b2 1A49     		ldr	r1, .L41
- 379              	.LVL27:
- 380              	.L32:
+ 375              		.loc 1 507 14 view .LVU100
+ 376 00b2 1A49     		ldr	r1, .L42
+ 377              	.LVL27:
+ 378              	.L32:
  516:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 381              		.loc 1 516 7 is_stmt 1 view .LVU101
+ 379              		.loc 1 516 7 is_stmt 1 view .LVU101
  516:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 382              		.loc 1 516 13 is_stmt 0 view .LVU102
- 383 00b4 FFF7FEFF 		bl	USBD_CtlSendData
- 384              	.LVL28:
+ 380              		.loc 1 516 13 is_stmt 0 view .LVU102
+ 381 00b4 FFF7FEFF 		bl	USBD_CtlSendData
+ 382              	.LVL28:
  517:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 385              		.loc 1 517 7 is_stmt 1 view .LVU103
- 386 00b8 2BE0     		b	.L15
- 387              	.LVL29:
- 388              	.L39:
+ 383              		.loc 1 517 7 is_stmt 1 view .LVU103
+ 384 00b8 2BE0     		b	.L15
+ 385              	.LVL29:
+ 386              	.L40:
  502:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         pbuf = HID_KEYBOARD_ReportDesc;
- 389              		.loc 1 502 9 view .LVU104
-ARM GAS  /tmp/ccPeQ5OR.s 			page 20
+ 387              		.loc 1 502 9 view .LVU104
+ 502:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         pbuf = HID_KEYBOARD_ReportDesc;
+ 388              		.loc 1 502 15 is_stmt 0 view .LVU105
+ARM GAS  /tmp/cckoXYmN.s 			page 20
 
 
+ 389 00ba CA88     		ldrh	r2, [r1, #6]
  502:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         pbuf = HID_KEYBOARD_ReportDesc;
- 390              		.loc 1 502 15 is_stmt 0 view .LVU105
- 391 00ba CA88     		ldrh	r2, [r1, #6]
- 502:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         pbuf = HID_KEYBOARD_ReportDesc;
- 392              		.loc 1 502 13 view .LVU106
- 393 00bc BB2A     		cmp	r2, #187
- 394 00be 28BF     		it	cs
- 395 00c0 BB22     		movcs	r2, #187
- 396              	.LVL30:
+ 390              		.loc 1 502 13 view .LVU106
+ 391 00bc BB2A     		cmp	r2, #187
+ 392 00be 28BF     		it	cs
+ 393 00c0 BB22     		movcs	r2, #187
+ 394              	.LVL30:
  503:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 397              		.loc 1 503 9 is_stmt 1 view .LVU107
+ 395              		.loc 1 503 9 is_stmt 1 view .LVU107
  503:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 398              		.loc 1 503 14 is_stmt 0 view .LVU108
- 399 00c2 1749     		ldr	r1, .L41+4
- 400              	.LVL31:
+ 396              		.loc 1 503 14 is_stmt 0 view .LVU108
+ 397 00c2 1749     		ldr	r1, .L42+4
+ 398              	.LVL31:
  503:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 401              		.loc 1 503 14 view .LVU109
- 402 00c4 F6E7     		b	.L32
- 403              	.LVL32:
- 404              	.L33:
+ 399              		.loc 1 503 14 view .LVU109
+ 400 00c4 F6E7     		b	.L32
+ 401              	.LVL32:
+ 402              	.L33:
  512:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         ret = USBD_FAIL;
- 405              		.loc 1 512 9 is_stmt 1 view .LVU110
- 406 00c6 FFF7FEFF 		bl	USBD_CtlError
- 407              	.LVL33:
+ 403              		.loc 1 512 9 is_stmt 1 view .LVU110
+ 404 00c6 FFF7FEFF 		bl	USBD_CtlError
+ 405              	.LVL33:
  513:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         break;
- 408              		.loc 1 513 9 view .LVU111
+ 406              		.loc 1 513 9 view .LVU111
  514:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 409              		.loc 1 514 9 view .LVU112
+ 407              		.loc 1 514 9 view .LVU112
  513:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         break;
- 410              		.loc 1 513 13 is_stmt 0 view .LVU113
- 411 00ca 0324     		movs	r4, #3
+ 408              		.loc 1 513 13 is_stmt 0 view .LVU113
+ 409 00ca 0324     		movs	r4, #3
  514:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 412              		.loc 1 514 9 view .LVU114
- 413 00cc 21E0     		b	.L15
- 414              	.LVL34:
- 415              	.L27:
+ 410              		.loc 1 514 9 view .LVU114
+ 411 00cc 21E0     		b	.L15
+ 412              	.LVL34:
+ 413              	.L27:
  520:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 416              		.loc 1 520 7 is_stmt 1 view .LVU115
+ 414              		.loc 1 520 7 is_stmt 1 view .LVU115
  520:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 417              		.loc 1 520 15 is_stmt 0 view .LVU116
- 418 00ce 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
- 419 00d2 DBB2     		uxtb	r3, r3
+ 415              		.loc 1 520 15 is_stmt 0 view .LVU116
+ 416 00ce 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 417 00d2 DBB2     		uxtb	r3, r3
  520:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 420              		.loc 1 520 10 view .LVU117
- 421 00d4 032B     		cmp	r3, #3
- 422 00d6 03D0     		beq	.L40
+ 418              		.loc 1 520 10 view .LVU117
+ 419 00d4 032B     		cmp	r3, #3
+ 420 00d6 03D0     		beq	.L41
  526:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         ret = USBD_FAIL;
- 423              		.loc 1 526 9 is_stmt 1 view .LVU118
- 424 00d8 FFF7FEFF 		bl	USBD_CtlError
- 425              	.LVL35:
+ 421              		.loc 1 526 9 is_stmt 1 view .LVU118
+ 422 00d8 FFF7FEFF 		bl	USBD_CtlError
+ 423              	.LVL35:
  527:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 426              		.loc 1 527 9 view .LVU119
+ 424              		.loc 1 527 9 view .LVU119
  527:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 427              		.loc 1 527 13 is_stmt 0 view .LVU120
- 428 00dc 0324     		movs	r4, #3
- 429 00de 18E0     		b	.L15
- 430              	.LVL36:
-ARM GAS  /tmp/ccPeQ5OR.s 			page 21
+ 425              		.loc 1 527 13 is_stmt 0 view .LVU120
+ 426 00dc 0324     		movs	r4, #3
+ 427 00de 18E0     		b	.L15
+ 428              	.LVL36:
+ 429              	.L41:
+ 522:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
+ARM GAS  /tmp/cckoXYmN.s 			page 21
 
 
- 431              	.L40:
+ 430              		.loc 1 522 9 is_stmt 1 view .LVU121
  522:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 432              		.loc 1 522 9 is_stmt 1 view .LVU121
+ 431              		.loc 1 522 15 is_stmt 0 view .LVU122
+ 432 00e0 0122     		movs	r2, #1
+ 433 00e2 05F10801 		add	r1, r5, #8
+ 434              	.LVL37:
  522:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 433              		.loc 1 522 15 is_stmt 0 view .LVU122
- 434 00e0 0122     		movs	r2, #1
- 435 00e2 05F10801 		add	r1, r5, #8
- 436              	.LVL37:
+ 435              		.loc 1 522 15 view .LVU123
+ 436 00e6 FFF7FEFF 		bl	USBD_CtlSendData
+ 437              	.LVL38:
  522:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 437              		.loc 1 522 15 view .LVU123
- 438 00e6 FFF7FEFF 		bl	USBD_CtlSendData
- 439              	.LVL38:
- 522:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 440              		.loc 1 522 15 view .LVU124
- 441 00ea 12E0     		b	.L15
- 442              	.LVL39:
- 443              	.L25:
+ 438              		.loc 1 522 15 view .LVU124
+ 439 00ea 12E0     		b	.L15
+ 440              	.LVL39:
+ 441              	.L25:
  532:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 444              		.loc 1 532 7 is_stmt 1 view .LVU125
+ 442              		.loc 1 532 7 is_stmt 1 view .LVU125
  532:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 445              		.loc 1 532 15 is_stmt 0 view .LVU126
- 446 00ec 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
- 447 00f0 DBB2     		uxtb	r3, r3
+ 443              		.loc 1 532 15 is_stmt 0 view .LVU126
+ 444 00ec 90F89C32 		ldrb	r3, [r0, #668]	@ zero_extendqisi2
+ 445 00f0 DBB2     		uxtb	r3, r3
  532:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       {
- 448              		.loc 1 532 10 view .LVU127
- 449 00f2 032B     		cmp	r3, #3
- 450 00f4 02D1     		bne	.L35
+ 446              		.loc 1 532 10 view .LVU127
+ 447 00f2 032B     		cmp	r3, #3
+ 448 00f4 02D1     		bne	.L35
  534:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 451              		.loc 1 534 9 is_stmt 1 view .LVU128
+ 449              		.loc 1 534 9 is_stmt 1 view .LVU128
  534:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 452              		.loc 1 534 28 is_stmt 0 view .LVU129
- 453 00f6 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
+ 450              		.loc 1 534 28 is_stmt 0 view .LVU129
+ 451 00f6 8B78     		ldrb	r3, [r1, #2]	@ zero_extendqisi2
  534:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 454              		.loc 1 534 26 view .LVU130
- 455 00f8 AB60     		str	r3, [r5, #8]
- 456 00fa 0AE0     		b	.L15
- 457              	.L35:
+ 452              		.loc 1 534 26 view .LVU130
+ 453 00f8 AB60     		str	r3, [r5, #8]
+ 454 00fa 0AE0     		b	.L15
+ 455              	.L35:
  538:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****         ret = USBD_FAIL;
- 458              		.loc 1 538 9 is_stmt 1 view .LVU131
- 459 00fc FFF7FEFF 		bl	USBD_CtlError
- 460              	.LVL40:
+ 456              		.loc 1 538 9 is_stmt 1 view .LVU131
+ 457 00fc FFF7FEFF 		bl	USBD_CtlError
+ 458              	.LVL40:
  539:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 461              		.loc 1 539 9 view .LVU132
+ 459              		.loc 1 539 9 view .LVU132
  539:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       }
- 462              		.loc 1 539 13 is_stmt 0 view .LVU133
- 463 0100 0324     		movs	r4, #3
- 464 0102 06E0     		b	.L15
- 465              	.LVL41:
- 466              	.L24:
+ 460              		.loc 1 539 13 is_stmt 0 view .LVU133
+ 461 0100 0324     		movs	r4, #3
+ 462 0102 06E0     		b	.L15
+ 463              	.LVL41:
+ 464              	.L24:
  547:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       ret = USBD_FAIL;
- 467              		.loc 1 547 7 is_stmt 1 view .LVU134
- 468 0104 FFF7FEFF 		bl	USBD_CtlError
- 469              	.LVL42:
+ 465              		.loc 1 547 7 is_stmt 1 view .LVU134
+ 466 0104 FFF7FEFF 		bl	USBD_CtlError
+ 467              	.LVL42:
  548:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 470              		.loc 1 548 7 view .LVU135
+ 468              		.loc 1 548 7 view .LVU135
  549:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 471              		.loc 1 549 7 view .LVU136
-ARM GAS  /tmp/ccPeQ5OR.s 			page 22
+ 469              		.loc 1 549 7 view .LVU136
+ 548:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
+ 470              		.loc 1 548 11 is_stmt 0 view .LVU137
+ARM GAS  /tmp/cckoXYmN.s 			page 22
 
 
- 548:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       break;
- 472              		.loc 1 548 11 is_stmt 0 view .LVU137
- 473 0108 0324     		movs	r4, #3
+ 471 0108 0324     		movs	r4, #3
  549:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 474              		.loc 1 549 7 view .LVU138
- 475 010a 02E0     		b	.L15
- 476              	.LVL43:
- 477              	.L17:
+ 472              		.loc 1 549 7 view .LVU138
+ 473 010a 02E0     		b	.L15
+ 474              	.LVL43:
+ 475              	.L17:
  554:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     ret = USBD_FAIL;
- 478              		.loc 1 554 5 is_stmt 1 view .LVU139
- 479 010c FFF7FEFF 		bl	USBD_CtlError
- 480              	.LVL44:
+ 476              		.loc 1 554 5 is_stmt 1 view .LVU139
+ 477 010c FFF7FEFF 		bl	USBD_CtlError
+ 478              	.LVL44:
  555:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     break;
- 481              		.loc 1 555 5 view .LVU140
+ 479              		.loc 1 555 5 view .LVU140
  556:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 482              		.loc 1 556 5 view .LVU141
+ 480              		.loc 1 556 5 view .LVU141
  555:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     break;
- 483              		.loc 1 555 9 is_stmt 0 view .LVU142
- 484 0110 0324     		movs	r4, #3
- 485              	.LVL45:
- 486              	.L15:
+ 481              		.loc 1 555 9 is_stmt 0 view .LVU142
+ 482 0110 0324     		movs	r4, #3
+ 483              	.LVL45:
+ 484              	.L15:
  560:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 487              		.loc 1 560 1 view .LVU143
- 488 0112 2046     		mov	r0, r4
- 489 0114 02B0     		add	sp, sp, #8
- 490              	.LCFI2:
- 491              		.cfi_remember_state
- 492              		.cfi_def_cfa_offset 16
- 493              		@ sp needed
- 494 0116 70BD     		pop	{r4, r5, r6, pc}
- 495              	.LVL46:
- 496              	.L36:
- 497              	.LCFI3:
- 498              		.cfi_restore_state
+ 485              		.loc 1 560 1 view .LVU143
+ 486 0112 2046     		mov	r0, r4
+ 487 0114 02B0     		add	sp, sp, #8
+ 488              		.cfi_remember_state
+ 489              		.cfi_def_cfa_offset 16
+ 490              		@ sp needed
+ 491 0116 70BD     		pop	{r4, r5, r6, pc}
+ 492              	.LVL46:
+ 493              	.L36:
+ 494              		.cfi_restore_state
  454:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 499              		.loc 1 454 12 view .LVU144
- 500 0118 0324     		movs	r4, #3
- 501 011a FAE7     		b	.L15
- 502              	.L42:
- 503              		.align	2
- 504              	.L41:
- 505 011c 00000000 		.word	.LANCHOR4
- 506 0120 00000000 		.word	.LANCHOR3
- 507              		.cfi_endproc
- 508              	.LFE147:
- 510              		.section	.text.USBD_HID_DeInit,"ax",%progbits
- 511              		.align	1
- 512              		.syntax unified
- 513              		.thumb
- 514              		.thumb_func
- 516              	USBD_HID_DeInit:
- 517              	.LVL47:
- 518              	.LFB146:
+ 495              		.loc 1 454 12 view .LVU144
+ 496 0118 0324     		movs	r4, #3
+ 497 011a FAE7     		b	.L15
+ 498              	.L43:
+ 499              		.align	2
+ 500              	.L42:
+ 501 011c 00000000 		.word	USBD_HID_KEYBOARD_Desc
+ 502 0120 00000000 		.word	HID_KEYBOARD_ReportDesc
+ 503              		.cfi_endproc
+ 504              	.LFE147:
+ 506              		.section	.text.USBD_HID_DeInit,"ax",%progbits
+ 507              		.align	1
+ 508              		.syntax unified
+ 509              		.thumb
+ 510              		.thumb_func
+ 512              	USBD_HID_DeInit:
+ 513              	.LVL47:
+ 514              	.LFB146:
  417:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   UNUSED(cfgidx);
- 519              		.loc 1 417 1 is_stmt 1 view -0
- 520              		.cfi_startproc
- 521              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccPeQ5OR.s 			page 23
+ 515              		.loc 1 417 1 is_stmt 1 view -0
+ 516              		.cfi_startproc
+ 517              		@ args = 0, pretend = 0, frame = 0
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 417:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   UNUSED(cfgidx);
+ 519              		.loc 1 417 1 is_stmt 0 view .LVU146
+ 520 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  /tmp/cckoXYmN.s 			page 23
 
 
- 522              		@ frame_needed = 0, uses_anonymous_args = 0
- 417:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   UNUSED(cfgidx);
- 523              		.loc 1 417 1 is_stmt 0 view .LVU146
- 524 0000 38B5     		push	{r3, r4, r5, lr}
- 525              	.LCFI4:
- 526              		.cfi_def_cfa_offset 16
- 527              		.cfi_offset 3, -16
- 528              		.cfi_offset 4, -12
- 529              		.cfi_offset 5, -8
- 530              		.cfi_offset 14, -4
- 531 0002 0446     		mov	r4, r0
+ 521              		.cfi_def_cfa_offset 16
+ 522              		.cfi_offset 3, -16
+ 523              		.cfi_offset 4, -12
+ 524              		.cfi_offset 5, -8
+ 525              		.cfi_offset 14, -4
+ 526 0002 0446     		mov	r4, r0
  418:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 532              		.loc 1 418 3 is_stmt 1 view .LVU147
+ 527              		.loc 1 418 3 is_stmt 1 view .LVU147
  421:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].is_used = 0U;
- 533              		.loc 1 421 3 view .LVU148
- 534 0004 0A4D     		ldr	r5, .L46
+ 528              		.loc 1 421 3 view .LVU148
+ 529 0004 0A4D     		ldr	r5, .L47
  421:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].is_used = 0U;
- 535              		.loc 1 421 9 is_stmt 0 view .LVU149
- 536 0006 2978     		ldrb	r1, [r5]	@ zero_extendqisi2
- 537              	.LVL48:
+ 530              		.loc 1 421 9 is_stmt 0 view .LVU149
+ 531 0006 2978     		ldrb	r1, [r5]	@ zero_extendqisi2
+ 532              	.LVL48:
  421:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].is_used = 0U;
- 538              		.loc 1 421 9 view .LVU150
- 539 0008 FFF7FEFF 		bl	USBD_LL_CloseEP
- 540              	.LVL49:
+ 533              		.loc 1 421 9 view .LVU150
+ 534 0008 FFF7FEFF 		bl	USBD_LL_CloseEP
+ 535              	.LVL49:
  422:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].bInterval = 0U;
- 541              		.loc 1 422 3 is_stmt 1 view .LVU151
+ 536              		.loc 1 422 3 is_stmt 1 view .LVU151
  422:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].bInterval = 0U;
- 542              		.loc 1 422 34 is_stmt 0 view .LVU152
- 543 000c 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
- 544 000e 03F00F03 		and	r3, r3, #15
+ 537              		.loc 1 422 34 is_stmt 0 view .LVU152
+ 538 000c 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 539 000e 03F00F03 		and	r3, r3, #15
  422:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].bInterval = 0U;
- 545              		.loc 1 422 50 view .LVU153
- 546 0012 03EB8302 		add	r2, r3, r3, lsl #2
- 547 0016 04EB8202 		add	r2, r4, r2, lsl #2
- 548 001a 0021     		movs	r1, #0
- 549 001c 9184     		strh	r1, [r2, #36]	@ movhi
+ 540              		.loc 1 422 50 view .LVU153
+ 541 0012 03EB8302 		add	r2, r3, r3, lsl #2
+ 542 0016 04EB8202 		add	r2, r4, r2, lsl #2
+ 543 001a 0021     		movs	r1, #0
+ 544 001c 9184     		strh	r1, [r2, #36]	@ movhi
  423:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 550              		.loc 1 423 3 is_stmt 1 view .LVU154
+ 545              		.loc 1 423 3 is_stmt 1 view .LVU154
  423:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 551              		.loc 1 423 52 is_stmt 0 view .LVU155
- 552 001e D184     		strh	r1, [r2, #38]	@ movhi
+ 546              		.loc 1 423 52 is_stmt 0 view .LVU155
+ 547 001e D184     		strh	r1, [r2, #38]	@ movhi
  426:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 553              		.loc 1 426 3 is_stmt 1 view .LVU156
+ 548              		.loc 1 426 3 is_stmt 1 view .LVU156
  426:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 554              		.loc 1 426 11 is_stmt 0 view .LVU157
- 555 0020 D4F8D432 		ldr	r3, [r4, #724]
+ 549              		.loc 1 426 11 is_stmt 0 view .LVU157
+ 550 0020 D4F8D432 		ldr	r3, [r4, #724]
  426:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 556              		.loc 1 426 6 view .LVU158
- 557 0024 0BB1     		cbz	r3, .L44
+ 551              		.loc 1 426 6 view .LVU158
+ 552 0024 0BB1     		cbz	r3, .L45
  431:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 558              		.loc 1 431 5 is_stmt 1 view .LVU159
+ 553              		.loc 1 431 5 is_stmt 1 view .LVU159
  431:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 559              		.loc 1 431 35 is_stmt 0 view .LVU160
- 560 0026 C4F8D412 		str	r1, [r4, #724]
- 561              	.L44:
+ 554              		.loc 1 431 35 is_stmt 0 view .LVU160
+ 555 0026 C4F8D412 		str	r1, [r4, #724]
+ 556              	.L45:
  434:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** }
- 562              		.loc 1 434 3 is_stmt 1 view .LVU161
-ARM GAS  /tmp/ccPeQ5OR.s 			page 24
+ 557              		.loc 1 434 3 is_stmt 1 view .LVU161
+ 435:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
+ 558              		.loc 1 435 1 is_stmt 0 view .LVU162
+ 559 002a 0020     		movs	r0, #0
+ 560 002c 38BD     		pop	{r3, r4, r5, pc}
+ 561              	.LVL50:
+ARM GAS  /tmp/cckoXYmN.s 			page 24
 
 
+ 562              	.L48:
  435:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 563              		.loc 1 435 1 is_stmt 0 view .LVU162
- 564 002a 0020     		movs	r0, #0
- 565 002c 38BD     		pop	{r3, r4, r5, pc}
- 566              	.LVL50:
- 567              	.L47:
- 435:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 568              		.loc 1 435 1 view .LVU163
- 569 002e 00BF     		.align	2
- 570              	.L46:
- 571 0030 00000000 		.word	.LANCHOR5
- 572              		.cfi_endproc
- 573              	.LFE146:
- 575              		.section	.text.USBD_HID_Init,"ax",%progbits
- 576              		.align	1
- 577              		.syntax unified
- 578              		.thumb
- 579              		.thumb_func
- 581              	USBD_HID_Init:
- 582              	.LVL51:
- 583              	.LFB145:
+ 563              		.loc 1 435 1 view .LVU163
+ 564 002e 00BF     		.align	2
+ 565              	.L47:
+ 566 0030 00000000 		.word	HID_KEYBOARD_IN_EP
+ 567              		.cfi_endproc
+ 568              	.LFE146:
+ 570              		.section	.text.USBD_HID_Init,"ax",%progbits
+ 571              		.align	1
+ 572              		.syntax unified
+ 573              		.thumb
+ 574              		.thumb_func
+ 576              	USBD_HID_Init:
+ 577              	.LVL51:
+ 578              	.LFB145:
  376:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   UNUSED(cfgidx);
- 584              		.loc 1 376 1 is_stmt 1 view -0
- 585              		.cfi_startproc
- 586              		@ args = 0, pretend = 0, frame = 0
- 587              		@ frame_needed = 0, uses_anonymous_args = 0
+ 579              		.loc 1 376 1 is_stmt 1 view -0
+ 580              		.cfi_startproc
+ 581              		@ args = 0, pretend = 0, frame = 0
+ 582              		@ frame_needed = 0, uses_anonymous_args = 0
  376:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   UNUSED(cfgidx);
- 588              		.loc 1 376 1 is_stmt 0 view .LVU165
- 589 0000 38B5     		push	{r3, r4, r5, lr}
- 590              	.LCFI5:
- 591              		.cfi_def_cfa_offset 16
- 592              		.cfi_offset 3, -16
- 593              		.cfi_offset 4, -12
- 594              		.cfi_offset 5, -8
- 595              		.cfi_offset 14, -4
- 596 0002 0446     		mov	r4, r0
+ 583              		.loc 1 376 1 is_stmt 0 view .LVU165
+ 584 0000 38B5     		push	{r3, r4, r5, lr}
+ 585              		.cfi_def_cfa_offset 16
+ 586              		.cfi_offset 3, -16
+ 587              		.cfi_offset 4, -12
+ 588              		.cfi_offset 5, -8
+ 589              		.cfi_offset 14, -4
+ 590 0002 0446     		mov	r4, r0
  377:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 597              		.loc 1 377 3 is_stmt 1 view .LVU166
+ 591              		.loc 1 377 3 is_stmt 1 view .LVU166
  379:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 598              		.loc 1 379 3 view .LVU167
+ 592              		.loc 1 379 3 view .LVU167
  381:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 599              		.loc 1 381 3 view .LVU168
- 600              	.LVL52:
+ 593              		.loc 1 381 3 view .LVU168
+ 594              	.LVL52:
  383:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 601              		.loc 1 383 3 view .LVU169
+ 595              		.loc 1 383 3 view .LVU169
  389:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 602              		.loc 1 389 3 view .LVU170
+ 596              		.loc 1 389 3 view .LVU170
  389:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 603              		.loc 1 389 33 is_stmt 0 view .LVU171
- 604 0004 164B     		ldr	r3, .L52
- 605 0006 C0F8D432 		str	r3, [r0, #724]
+ 597              		.loc 1 389 33 is_stmt 0 view .LVU171
+ 598 0004 164B     		ldr	r3, .L53
+ 599 0006 C0F8D432 		str	r3, [r0, #724]
  391:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 606              		.loc 1 391 3 is_stmt 1 view .LVU172
+ 600              		.loc 1 391 3 is_stmt 1 view .LVU172
  391:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
- 607              		.loc 1 391 11 is_stmt 0 view .LVU173
- 608 000a 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
+ 601              		.loc 1 391 11 is_stmt 0 view .LVU173
+ 602 000a 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
  391:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
-ARM GAS  /tmp/ccPeQ5OR.s 			page 25
+ 603              		.loc 1 391 6 view .LVU174
+ 604 000c EBB9     		cbnz	r3, .L50
+ 393:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
+ 605              		.loc 1 393 5 is_stmt 1 view .LVU175
+ 393:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
+ 606              		.loc 1 393 36 is_stmt 0 view .LVU176
+ARM GAS  /tmp/cckoXYmN.s 			page 25
 
 
- 609              		.loc 1 391 6 view .LVU174
- 610 000c EBB9     		cbnz	r3, .L49
+ 607 000e 154B     		ldr	r3, .L53+4
+ 608 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 609 0012 03F00F03 		and	r3, r3, #15
  393:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 611              		.loc 1 393 5 is_stmt 1 view .LVU175
- 393:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 612              		.loc 1 393 36 is_stmt 0 view .LVU176
- 613 000e 154B     		ldr	r3, .L52+4
- 614 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 615 0012 03F00F03 		and	r3, r3, #15
- 393:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 616              		.loc 1 393 54 view .LVU177
- 617 0016 03EB8303 		add	r3, r3, r3, lsl #2
- 618 001a 00EB8303 		add	r3, r0, r3, lsl #2
- 619 001e 0722     		movs	r2, #7
- 620 0020 DA84     		strh	r2, [r3, #38]	@ movhi
- 621              	.L50:
+ 610              		.loc 1 393 54 view .LVU177
+ 611 0016 03EB8303 		add	r3, r3, r3, lsl #2
+ 612 001a 00EB8303 		add	r3, r0, r3, lsl #2
+ 613 001e 0722     		movs	r2, #7
+ 614 0020 DA84     		strh	r2, [r3, #38]	@ movhi
+ 615              	.L51:
  401:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].is_used = 1U;
- 622              		.loc 1 401 3 is_stmt 1 view .LVU178
- 623 0022 104D     		ldr	r5, .L52+4
+ 616              		.loc 1 401 3 is_stmt 1 view .LVU178
+ 617 0022 104D     		ldr	r5, .L53+4
  401:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].is_used = 1U;
- 624              		.loc 1 401 9 is_stmt 0 view .LVU179
- 625 0024 0823     		movs	r3, #8
- 626 0026 0322     		movs	r2, #3
- 627 0028 2978     		ldrb	r1, [r5]	@ zero_extendqisi2
- 628              	.LVL53:
+ 618              		.loc 1 401 9 is_stmt 0 view .LVU179
+ 619 0024 0823     		movs	r3, #8
+ 620 0026 0322     		movs	r2, #3
+ 621 0028 2978     		ldrb	r1, [r5]	@ zero_extendqisi2
+ 622              	.LVL53:
  401:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].is_used = 1U;
- 629              		.loc 1 401 9 view .LVU180
- 630 002a 2046     		mov	r0, r4
- 631              	.LVL54:
+ 623              		.loc 1 401 9 view .LVU180
+ 624 002a 2046     		mov	r0, r4
+ 625              	.LVL54:
  401:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].is_used = 1U;
- 632              		.loc 1 401 9 view .LVU181
- 633 002c FFF7FEFF 		bl	USBD_LL_OpenEP
- 634              	.LVL55:
+ 626              		.loc 1 401 9 view .LVU181
+ 627 002c FFF7FEFF 		bl	USBD_LL_OpenEP
+ 628              	.LVL55:
  402:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 635              		.loc 1 402 3 is_stmt 1 view .LVU182
+ 629              		.loc 1 402 3 is_stmt 1 view .LVU182
  402:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 636              		.loc 1 402 34 is_stmt 0 view .LVU183
- 637 0030 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
- 638 0032 00F00F00 		and	r0, r0, #15
+ 630              		.loc 1 402 34 is_stmt 0 view .LVU183
+ 631 0030 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 632 0032 03F00F03 		and	r3, r3, #15
  402:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 639              		.loc 1 402 50 view .LVU184
- 640 0036 00EB8000 		add	r0, r0, r0, lsl #2
- 641 003a 04EB8004 		add	r4, r4, r0, lsl #2
- 642              	.LVL56:
+ 633              		.loc 1 402 50 view .LVU184
+ 634 0036 03EB8303 		add	r3, r3, r3, lsl #2
+ 635 003a 04EB8304 		add	r4, r4, r3, lsl #2
+ 636              	.LVL56:
  402:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 643              		.loc 1 402 50 view .LVU185
- 644 003e 0123     		movs	r3, #1
- 645 0040 A384     		strh	r3, [r4, #36]	@ movhi
+ 637              		.loc 1 402 50 view .LVU185
+ 638 003e 0123     		movs	r3, #1
+ 639 0040 A384     		strh	r3, [r4, #36]	@ movhi
  404:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 646              		.loc 1 404 3 is_stmt 1 view .LVU186
+ 640              		.loc 1 404 3 is_stmt 1 view .LVU186
  404:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 647              		.loc 1 404 15 is_stmt 0 view .LVU187
- 648 0042 0020     		movs	r0, #0
- 649 0044 064B     		ldr	r3, .L52
- 650 0046 1873     		strb	r0, [r3, #12]
+ 641              		.loc 1 404 15 is_stmt 0 view .LVU187
+ 642 0042 0020     		movs	r0, #0
+ 643 0044 064B     		ldr	r3, .L53
+ 644 0046 1873     		strb	r0, [r3, #12]
  406:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** }
- 651              		.loc 1 406 3 is_stmt 1 view .LVU188
-ARM GAS  /tmp/ccPeQ5OR.s 			page 26
-
-
+ 645              		.loc 1 406 3 is_stmt 1 view .LVU188
  407:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
- 652              		.loc 1 407 1 is_stmt 0 view .LVU189
- 653 0048 38BD     		pop	{r3, r4, r5, pc}
- 654              	.LVL57:
- 655              	.L49:
+ 646              		.loc 1 407 1 is_stmt 0 view .LVU189
+ 647 0048 38BD     		pop	{r3, r4, r5, pc}
+ 648              	.LVL57:
+ 649              	.L50:
  397:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 656              		.loc 1 397 5 is_stmt 1 view .LVU190
+ARM GAS  /tmp/cckoXYmN.s 			page 26
+
+
+ 650              		.loc 1 397 5 is_stmt 1 view .LVU190
  397:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 657              		.loc 1 397 36 is_stmt 0 view .LVU191
- 658 004a 064B     		ldr	r3, .L52+4
- 659 004c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 660 004e 03F00F03 		and	r3, r3, #15
+ 651              		.loc 1 397 36 is_stmt 0 view .LVU191
+ 652 004a 064B     		ldr	r3, .L53+4
+ 653 004c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 654 004e 03F00F03 		and	r3, r3, #15
  397:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 661              		.loc 1 397 54 view .LVU192
- 662 0052 03EB8303 		add	r3, r3, r3, lsl #2
- 663 0056 00EB8303 		add	r3, r0, r3, lsl #2
- 664 005a 0A22     		movs	r2, #10
- 665 005c DA84     		strh	r2, [r3, #38]	@ movhi
- 666 005e E0E7     		b	.L50
- 667              	.L53:
- 668              		.align	2
- 669              	.L52:
- 670 0060 00000000 		.word	.LANCHOR6
- 671 0064 00000000 		.word	.LANCHOR5
- 672              		.cfi_endproc
- 673              	.LFE145:
- 675              		.section	.text.USBD_HID_Keybaord_SendReport,"ax",%progbits
- 676              		.align	1
- 677              		.global	USBD_HID_Keybaord_SendReport
- 678              		.syntax unified
- 679              		.thumb
- 680              		.thumb_func
- 682              	USBD_HID_Keybaord_SendReport:
- 683              	.LVL58:
- 684              	.LFB153:
+ 655              		.loc 1 397 54 view .LVU192
+ 656 0052 03EB8303 		add	r3, r3, r3, lsl #2
+ 657 0056 00EB8303 		add	r3, r0, r3, lsl #2
+ 658 005a 0A22     		movs	r2, #10
+ 659 005c DA84     		strh	r2, [r3, #38]	@ movhi
+ 660 005e E0E7     		b	.L51
+ 661              	.L54:
+ 662              		.align	2
+ 663              	.L53:
+ 664 0060 00000000 		.word	USBD_HID_KBD_Instace
+ 665 0064 00000000 		.word	HID_KEYBOARD_IN_EP
+ 666              		.cfi_endproc
+ 667              	.LFE145:
+ 669              		.section	.text.USBD_HID_Keybaord_SendReport,"ax",%progbits
+ 670              		.align	1
+ 671              		.global	USBD_HID_Keybaord_SendReport
+ 672              		.syntax unified
+ 673              		.thumb
+ 674              		.thumb_func
+ 676              	USBD_HID_Keybaord_SendReport:
+ 677              	.LVL58:
+ 678              	.LFB153:
  633:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  634:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** /**
  635:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * @brief  USBD_HID_SendReport
@@ -1546,41 +1540,40 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  640:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   */
  641:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** uint8_t USBD_HID_Keybaord_SendReport(USBD_HandleTypeDef *pdev, uint8_t *report, uint16_t len)
  642:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** {
- 685              		.loc 1 642 1 is_stmt 1 view -0
- 686              		.cfi_startproc
- 687              		@ args = 0, pretend = 0, frame = 0
- 688              		@ frame_needed = 0, uses_anonymous_args = 0
- 689              		.loc 1 642 1 is_stmt 0 view .LVU194
- 690 0000 10B5     		push	{r4, lr}
- 691              	.LCFI6:
- 692              		.cfi_def_cfa_offset 8
- 693              		.cfi_offset 4, -8
- 694              		.cfi_offset 14, -4
+ 679              		.loc 1 642 1 is_stmt 1 view -0
+ 680              		.cfi_startproc
+ 681              		@ args = 0, pretend = 0, frame = 0
+ 682              		@ frame_needed = 0, uses_anonymous_args = 0
+ 683              		.loc 1 642 1 is_stmt 0 view .LVU194
+ 684 0000 10B5     		push	{r4, lr}
+ 685              		.cfi_def_cfa_offset 8
+ 686              		.cfi_offset 4, -8
+ 687              		.cfi_offset 14, -4
  643:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   USBD_HID_Keyboard_HandleTypeDef *hhid = (USBD_HID_Keyboard_HandleTypeDef *)pdev->pClassData_HID_K
- 695              		.loc 1 643 3 is_stmt 1 view .LVU195
-ARM GAS  /tmp/ccPeQ5OR.s 			page 27
-
-
- 696              		.loc 1 643 36 is_stmt 0 view .LVU196
- 697 0002 D0F8D432 		ldr	r3, [r0, #724]
- 698              	.LVL59:
+ 688              		.loc 1 643 3 is_stmt 1 view .LVU195
+ 689              		.loc 1 643 36 is_stmt 0 view .LVU196
+ 690 0002 D0F8D432 		ldr	r3, [r0, #724]
+ 691              	.LVL59:
  644:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  645:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   if (hhid == NULL)
- 699              		.loc 1 645 3 is_stmt 1 view .LVU197
- 700              		.loc 1 645 6 is_stmt 0 view .LVU198
- 701 0006 C3B1     		cbz	r3, .L56
+ 692              		.loc 1 645 3 is_stmt 1 view .LVU197
+ 693              		.loc 1 645 6 is_stmt 0 view .LVU198
+ARM GAS  /tmp/cckoXYmN.s 			page 27
+
+
+ 694 0006 C3B1     		cbz	r3, .L57
  646:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
  647:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     return (uint8_t)USBD_FAIL;
  648:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
  649:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  650:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   if (pdev->dev_state == USBD_STATE_CONFIGURED)
- 702              		.loc 1 650 3 is_stmt 1 view .LVU199
- 703              		.loc 1 650 11 is_stmt 0 view .LVU200
- 704 0008 90F89CC2 		ldrb	ip, [r0, #668]	@ zero_extendqisi2
- 705 000c 5FFA8CFC 		uxtb	ip, ip
- 706              		.loc 1 650 6 view .LVU201
- 707 0010 BCF1030F 		cmp	ip, #3
- 708 0014 02D0     		beq	.L60
+ 695              		.loc 1 650 3 is_stmt 1 view .LVU199
+ 696              		.loc 1 650 11 is_stmt 0 view .LVU200
+ 697 0008 90F89CC2 		ldrb	ip, [r0, #668]	@ zero_extendqisi2
+ 698 000c 5FFA8CFC 		uxtb	ip, ip
+ 699              		.loc 1 650 6 view .LVU201
+ 700 0010 BCF1030F 		cmp	ip, #3
+ 701 0014 02D0     		beq	.L61
  651:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
  652:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     if (hhid->state == KEYBOARD_HID_IDLE)
  653:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
@@ -1590,81 +1583,81 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  657:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
  658:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  659:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   return (uint8_t)USBD_OK;
- 709              		.loc 1 659 10 view .LVU202
- 710 0016 0024     		movs	r4, #0
- 711              	.LVL60:
- 712              	.L55:
+ 702              		.loc 1 659 10 view .LVU202
+ 703 0016 0024     		movs	r4, #0
+ 704              	.LVL60:
+ 705              	.L56:
  660:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** }
- 713              		.loc 1 660 1 view .LVU203
- 714 0018 2046     		mov	r0, r4
- 715 001a 10BD     		pop	{r4, pc}
- 716              	.LVL61:
- 717              	.L60:
+ 706              		.loc 1 660 1 view .LVU203
+ 707 0018 2046     		mov	r0, r4
+ 708 001a 10BD     		pop	{r4, pc}
+ 709              	.LVL61:
+ 710              	.L61:
  652:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
- 718              		.loc 1 652 5 is_stmt 1 view .LVU204
+ 711              		.loc 1 652 5 is_stmt 1 view .LVU204
  652:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
- 719              		.loc 1 652 13 is_stmt 0 view .LVU205
- 720 001c 1C7B     		ldrb	r4, [r3, #12]	@ zero_extendqisi2
+ 712              		.loc 1 652 13 is_stmt 0 view .LVU205
+ 713 001c 1C7B     		ldrb	r4, [r3, #12]	@ zero_extendqisi2
  652:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     {
- 721              		.loc 1 652 8 view .LVU206
- 722 001e 0CB1     		cbz	r4, .L61
+ 714              		.loc 1 652 8 view .LVU206
+ 715 001e 0CB1     		cbz	r4, .L62
  659:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** }
- 723              		.loc 1 659 10 view .LVU207
- 724 0020 0024     		movs	r4, #0
- 725 0022 F9E7     		b	.L55
- 726              	.L61:
+ 716              		.loc 1 659 10 view .LVU207
+ 717 0020 0024     		movs	r4, #0
+ 718 0022 F9E7     		b	.L56
+ 719              	.L62:
  654:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       (void)USBD_LL_Transmit(pdev, HID_KEYBOARD_IN_EP, report, len);
- 727              		.loc 1 654 7 is_stmt 1 view .LVU208
+ 720              		.loc 1 654 7 is_stmt 1 view .LVU208
  654:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****       (void)USBD_LL_Transmit(pdev, HID_KEYBOARD_IN_EP, report, len);
- 728              		.loc 1 654 19 is_stmt 0 view .LVU209
- 729 0024 4FF0010C 		mov	ip, #1
-ARM GAS  /tmp/ccPeQ5OR.s 			page 28
+ 721              		.loc 1 654 19 is_stmt 0 view .LVU209
+ 722 0024 4FF0010C 		mov	ip, #1
+ 723 0028 83F80CC0 		strb	ip, [r3, #12]
+ 655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
+ 724              		.loc 1 655 7 is_stmt 1 view .LVU210
+ 655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
+ 725              		.loc 1 655 13 is_stmt 0 view .LVU211
+ 726 002c 1346     		mov	r3, r2
+ 727              	.LVL62:
+ARM GAS  /tmp/cckoXYmN.s 			page 28
 
 
- 730 0028 83F80CC0 		strb	ip, [r3, #12]
  655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 731              		.loc 1 655 7 is_stmt 1 view .LVU210
+ 728              		.loc 1 655 13 view .LVU212
+ 729 002e 0A46     		mov	r2, r1
+ 730              	.LVL63:
  655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 732              		.loc 1 655 13 is_stmt 0 view .LVU211
- 733 002c 1346     		mov	r3, r2
- 734              	.LVL62:
+ 731              		.loc 1 655 13 view .LVU213
+ 732 0030 0349     		ldr	r1, .L63
+ 733              	.LVL64:
  655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 735              		.loc 1 655 13 view .LVU212
- 736 002e 0A46     		mov	r2, r1
- 737              	.LVL63:
+ 734              		.loc 1 655 13 view .LVU214
+ 735 0032 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
+ 736 0034 FFF7FEFF 		bl	USBD_LL_Transmit
+ 737              	.LVL65:
  655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 738              		.loc 1 655 13 view .LVU213
- 739 0030 0349     		ldr	r1, .L62
- 740              	.LVL64:
- 655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 741              		.loc 1 655 13 view .LVU214
- 742 0032 0978     		ldrb	r1, [r1]	@ zero_extendqisi2
- 743 0034 FFF7FEFF 		bl	USBD_LL_Transmit
- 744              	.LVL65:
- 655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     }
- 745              		.loc 1 655 13 view .LVU215
- 746 0038 EEE7     		b	.L55
- 747              	.LVL66:
- 748              	.L56:
+ 738              		.loc 1 655 13 view .LVU215
+ 739 0038 EEE7     		b	.L56
+ 740              	.LVL66:
+ 741              	.L57:
  647:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
- 749              		.loc 1 647 12 view .LVU216
- 750 003a 0324     		movs	r4, #3
- 751 003c ECE7     		b	.L55
- 752              	.L63:
- 753 003e 00BF     		.align	2
- 754              	.L62:
- 755 0040 00000000 		.word	.LANCHOR5
- 756              		.cfi_endproc
- 757              	.LFE153:
- 759              		.section	.text.USBD_HID_Keyboard_GetPollingInterval,"ax",%progbits
- 760              		.align	1
- 761              		.global	USBD_HID_Keyboard_GetPollingInterval
- 762              		.syntax unified
- 763              		.thumb
- 764              		.thumb_func
- 766              	USBD_HID_Keyboard_GetPollingInterval:
- 767              	.LVL67:
- 768              	.LFB154:
+ 742              		.loc 1 647 12 view .LVU216
+ 743 003a 0324     		movs	r4, #3
+ 744 003c ECE7     		b	.L56
+ 745              	.L64:
+ 746 003e 00BF     		.align	2
+ 747              	.L63:
+ 748 0040 00000000 		.word	HID_KEYBOARD_IN_EP
+ 749              		.cfi_endproc
+ 750              	.LFE153:
+ 752              		.section	.text.USBD_HID_Keyboard_GetPollingInterval,"ax",%progbits
+ 753              		.align	1
+ 754              		.global	USBD_HID_Keyboard_GetPollingInterval
+ 755              		.syntax unified
+ 756              		.thumb
+ 757              		.thumb_func
+ 759              	USBD_HID_Keyboard_GetPollingInterval:
+ 760              	.LVL67:
+ 761              	.LFB154:
  661:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  662:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** /**
  663:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   * @brief  USBD_HID_GetPollingInterval
@@ -1674,336 +1667,327 @@ ARM GAS  /tmp/ccPeQ5OR.s 			page 1
  667:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   */
  668:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** uint32_t USBD_HID_Keyboard_GetPollingInterval(USBD_HandleTypeDef *pdev)
  669:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** {
- 769              		.loc 1 669 1 is_stmt 1 view -0
- 770              		.cfi_startproc
- 771              		@ args = 0, pretend = 0, frame = 0
- 772              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccPeQ5OR.s 			page 29
-
-
- 773              		@ link register save eliminated.
+ 762              		.loc 1 669 1 is_stmt 1 view -0
+ 763              		.cfi_startproc
+ 764              		@ args = 0, pretend = 0, frame = 0
+ 765              		@ frame_needed = 0, uses_anonymous_args = 0
+ 766              		@ link register save eliminated.
  670:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   uint32_t polling_interval;
- 774              		.loc 1 670 3 view .LVU218
+ 767              		.loc 1 670 3 view .LVU218
  671:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  672:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   /* HIGH-speed endpoints */
  673:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   if (pdev->dev_speed == USBD_SPEED_HIGH)
- 775              		.loc 1 673 3 view .LVU219
- 776              		.loc 1 673 11 is_stmt 0 view .LVU220
- 777 0000 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
- 778              		.loc 1 673 6 view .LVU221
- 779 0002 0BB9     		cbnz	r3, .L66
+ 768              		.loc 1 673 3 view .LVU219
+ARM GAS  /tmp/cckoXYmN.s 			page 29
+
+
+ 769              		.loc 1 673 11 is_stmt 0 view .LVU220
+ 770 0000 037C     		ldrb	r3, [r0, #16]	@ zero_extendqisi2
+ 771              		.loc 1 673 6 view .LVU221
+ 772 0002 0BB9     		cbnz	r3, .L67
  674:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
  675:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     /* Sets the data transfer polling interval for high speed transfers.
  676:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****      Values between 1..16 are allowed. Values correspond to interval
  677:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****      of 2 ^ (bInterval-1). This option (8 ms, corresponds to HID_HS_BINTERVAL */
  678:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     polling_interval = (((1U << (HID_KEYBOARD_HS_BINTERVAL - 1U))) / 8U);
- 780              		.loc 1 678 22 view .LVU222
- 781 0004 0820     		movs	r0, #8
- 782              	.LVL68:
- 783              		.loc 1 678 22 view .LVU223
- 784 0006 7047     		bx	lr
- 785              	.LVL69:
- 786              	.L66:
+ 773              		.loc 1 678 22 view .LVU222
+ 774 0004 0820     		movs	r0, #8
+ 775              	.LVL68:
+ 776              		.loc 1 678 22 view .LVU223
+ 777 0006 7047     		bx	lr
+ 778              	.LVL69:
+ 779              	.L67:
  679:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
  680:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   else /* LOW and FULL-speed endpoints */
  681:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   {
  682:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     /* Sets the data transfer polling interval for low and full
  683:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     speed transfers */
  684:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****     polling_interval = HID_KEYBOARD_FS_BINTERVAL;
- 787              		.loc 1 684 22 view .LVU224
- 788 0008 0A20     		movs	r0, #10
- 789              	.LVL70:
+ 780              		.loc 1 684 22 view .LVU224
+ 781 0008 0A20     		movs	r0, #10
+ 782              	.LVL70:
  685:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   }
  686:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  687:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   return ((uint32_t)(polling_interval));
- 790              		.loc 1 687 3 is_stmt 1 view .LVU225
+ 783              		.loc 1 687 3 is_stmt 1 view .LVU225
  688:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** }
- 791              		.loc 1 688 1 is_stmt 0 view .LVU226
- 792 000a 7047     		bx	lr
- 793              		.cfi_endproc
- 794              	.LFE154:
- 796              		.section	.text.USBD_Update_HID_KBD_DESC,"ax",%progbits
- 797              		.align	1
- 798              		.global	USBD_Update_HID_KBD_DESC
- 799              		.syntax unified
- 800              		.thumb
- 801              		.thumb_func
- 803              	USBD_Update_HID_KBD_DESC:
- 804              	.LVL71:
- 805              	.LFB155:
+ 784              		.loc 1 688 1 is_stmt 0 view .LVU226
+ 785 000a 7047     		bx	lr
+ 786              		.cfi_endproc
+ 787              	.LFE154:
+ 789              		.section	.text.USBD_Update_HID_KBD_DESC,"ax",%progbits
+ 790              		.align	1
+ 791              		.global	USBD_Update_HID_KBD_DESC
+ 792              		.syntax unified
+ 793              		.thumb
+ 794              		.thumb_func
+ 796              	USBD_Update_HID_KBD_DESC:
+ 797              	.LVL71:
+ 798              	.LFB155:
  689:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  690:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** void USBD_Update_HID_KBD_DESC(uint8_t *desc, uint8_t itf_no, uint8_t in_ep, uint8_t str_idx)
  691:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** {
- 806              		.loc 1 691 1 is_stmt 1 view -0
- 807              		.cfi_startproc
- 808              		@ args = 0, pretend = 0, frame = 0
- 809              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccPeQ5OR.s 			page 30
-
-
- 810              		@ link register save eliminated.
+ 799              		.loc 1 691 1 is_stmt 1 view -0
+ 800              		.cfi_startproc
+ 801              		@ args = 0, pretend = 0, frame = 0
+ 802              		@ frame_needed = 0, uses_anonymous_args = 0
+ 803              		@ link register save eliminated.
  692:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   desc[11] = itf_no;
- 811              		.loc 1 692 3 view .LVU228
- 812              		.loc 1 692 12 is_stmt 0 view .LVU229
- 813 0000 C172     		strb	r1, [r0, #11]
+ 804              		.loc 1 692 3 view .LVU228
+ 805              		.loc 1 692 12 is_stmt 0 view .LVU229
+ 806 0000 C172     		strb	r1, [r0, #11]
  693:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   desc[17] = str_idx;
- 814              		.loc 1 693 3 is_stmt 1 view .LVU230
- 815              		.loc 1 693 12 is_stmt 0 view .LVU231
- 816 0002 4374     		strb	r3, [r0, #17]
+ 807              		.loc 1 693 3 is_stmt 1 view .LVU230
+ARM GAS  /tmp/cckoXYmN.s 			page 30
+
+
+ 808              		.loc 1 693 12 is_stmt 0 view .LVU231
+ 809 0002 4374     		strb	r3, [r0, #17]
  694:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   desc[29] = in_ep;
- 817              		.loc 1 694 3 is_stmt 1 view .LVU232
- 818              		.loc 1 694 12 is_stmt 0 view .LVU233
- 819 0004 4277     		strb	r2, [r0, #29]
+ 810              		.loc 1 694 3 is_stmt 1 view .LVU232
+ 811              		.loc 1 694 12 is_stmt 0 view .LVU233
+ 812 0004 4277     		strb	r2, [r0, #29]
  695:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** 
  696:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   HID_KEYBOARD_IN_EP = in_ep;
- 820              		.loc 1 696 3 is_stmt 1 view .LVU234
- 821              		.loc 1 696 22 is_stmt 0 view .LVU235
- 822 0006 0348     		ldr	r0, .L68
- 823              	.LVL72:
- 824              		.loc 1 696 22 view .LVU236
- 825 0008 0270     		strb	r2, [r0]
+ 813              		.loc 1 696 3 is_stmt 1 view .LVU234
+ 814              		.loc 1 696 22 is_stmt 0 view .LVU235
+ 815 0006 0348     		ldr	r0, .L69
+ 816              	.LVL72:
+ 817              		.loc 1 696 22 view .LVU236
+ 818 0008 0270     		strb	r2, [r0]
  697:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   HID_KEYBOARD_ITF_NBR = itf_no;
- 826              		.loc 1 697 3 is_stmt 1 view .LVU237
- 827              		.loc 1 697 24 is_stmt 0 view .LVU238
- 828 000a 034A     		ldr	r2, .L68+4
- 829              	.LVL73:
- 830              		.loc 1 697 24 view .LVU239
- 831 000c 1170     		strb	r1, [r2]
+ 819              		.loc 1 697 3 is_stmt 1 view .LVU237
+ 820              		.loc 1 697 24 is_stmt 0 view .LVU238
+ 821 000a 034A     		ldr	r2, .L69+4
+ 822              	.LVL73:
+ 823              		.loc 1 697 24 view .LVU239
+ 824 000c 1170     		strb	r1, [r2]
  698:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c ****   HID_KEYBOARD_STR_DESC_IDX = str_idx;
- 832              		.loc 1 698 3 is_stmt 1 view .LVU240
- 833              		.loc 1 698 29 is_stmt 0 view .LVU241
- 834 000e 034A     		ldr	r2, .L68+8
- 835 0010 1370     		strb	r3, [r2]
+ 825              		.loc 1 698 3 is_stmt 1 view .LVU240
+ 826              		.loc 1 698 29 is_stmt 0 view .LVU241
+ 827 000e 034A     		ldr	r2, .L69+8
+ 828 0010 1370     		strb	r3, [r2]
  699:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Src/usbd_hid_keyboard.c **** }
- 836              		.loc 1 699 1 view .LVU242
- 837 0012 7047     		bx	lr
- 838              	.L69:
- 839              		.align	2
- 840              	.L68:
- 841 0014 00000000 		.word	.LANCHOR5
- 842 0018 00000000 		.word	.LANCHOR7
- 843 001c 00000000 		.word	.LANCHOR8
- 844              		.cfi_endproc
- 845              	.LFE155:
- 847              		.global	USBD_HID_KEYBOARD
- 848              		.global	HID_KEYBOARD_STR_DESC_IDX
- 849              		.global	HID_KEYBOARD_ITF_NBR
- 850              		.global	HID_KEYBOARD_IN_EP
- 851              		.section	.bss.HID_KEYBOARD_ITF_NBR,"aw",%nobits
- 852              		.set	.LANCHOR7,. + 0
- 855              	HID_KEYBOARD_ITF_NBR:
- 856 0000 00       		.space	1
- 857              		.section	.bss.HID_KEYBOARD_STR_DESC_IDX,"aw",%nobits
- 858              		.set	.LANCHOR8,. + 0
- 861              	HID_KEYBOARD_STR_DESC_IDX:
- 862 0000 00       		.space	1
- 863              		.section	.bss.USBD_HID_KBD_Instace,"aw",%nobits
-ARM GAS  /tmp/ccPeQ5OR.s 			page 31
+ 829              		.loc 1 699 1 view .LVU242
+ 830 0012 7047     		bx	lr
+ 831              	.L70:
+ 832              		.align	2
+ 833              	.L69:
+ 834 0014 00000000 		.word	HID_KEYBOARD_IN_EP
+ 835 0018 00000000 		.word	HID_KEYBOARD_ITF_NBR
+ 836 001c 00000000 		.word	HID_KEYBOARD_STR_DESC_IDX
+ 837              		.cfi_endproc
+ 838              	.LFE155:
+ 840              		.section	.data.HID_KEYBOARD_ReportDesc,"aw"
+ 841              		.align	2
+ 844              	HID_KEYBOARD_ReportDesc:
+ 845 0000 05010906 		.ascii	"\005\001\011\006\241\001\205\001\005\007\031\340)\347"
+ 845      A1018501 
+ 845      050719E0 
+ 845      29E7
+ 846 000e 15002501 		.ascii	"\025\000%\001u\001\225\010\201\002u\010\225\001\201"
+ 846      75019508 
+ 846      81027508 
+ 846      950181
+ 847 001d 01050719 		.ascii	"\001\005\007\031\000)e\025\000%eu\010\225\005\201\000"
+ 847      00296515 
+ 847      00256575 
+ 847      08950581 
+ 847      00
+ 848 002e C0050C09 		.ascii	"\300\005\014\011\001\241\001\205\002\031\000*<\002\025"
+ 848      01A10185 
+ 848      0219002A 
+ 848      3C0215
+ARM GAS  /tmp/cckoXYmN.s 			page 31
 
 
- 864              		.align	2
- 865              		.set	.LANCHOR6,. + 0
- 868              	USBD_HID_KBD_Instace:
- 869 0000 00000000 		.space	16
- 869      00000000 
- 869      00000000 
- 869      00000000 
- 870              		.section	.data.HID_KEYBOARD_IN_EP,"aw"
- 871              		.set	.LANCHOR5,. + 0
- 874              	HID_KEYBOARD_IN_EP:
- 875 0000 81       		.byte	-127
- 876              		.section	.data.HID_KEYBOARD_ReportDesc,"aw"
- 877              		.align	2
- 878              		.set	.LANCHOR3,. + 0
- 881              	HID_KEYBOARD_ReportDesc:
- 882 0000 05010906 		.ascii	"\005\001\011\006\241\001\205\001\005\007\031\340)\347"
- 882      A1018501 
- 882      050719E0 
- 882      29E7
- 883 000e 15002501 		.ascii	"\025\000%\001u\001\225\010\201\002u\010\225\001\201"
- 883      75019508 
- 883      81027508 
- 883      950181
- 884 001d 01050719 		.ascii	"\001\005\007\031\000)e\025\000%eu\010\225\005\201\000"
- 884      00296515 
- 884      00256575 
- 884      08950581 
- 884      00
- 885 002e C0050C09 		.ascii	"\300\005\014\011\001\241\001\205\002\031\000*<\002\025"
- 885      01A10185 
- 885      0219002A 
- 885      3C0215
- 886 003d 00263C02 		.ascii	"\000&<\002\225\001u\020\201\000\300\005\001\011\200"
- 886      95017510 
- 886      8100C005 
- 886      010980
- 887 004c A1018503 		.ascii	"\241\001\205\003\031\201)\203\025\000%\001u\001\225"
- 887      19812983 
- 887      15002501 
- 887      750195
- 888 005b 03810295 		.ascii	"\003\201\002\225\005\201\001\300\006\001\377\011\001"
- 888      058101C0 
- 888      0601FF09 
- 888      01
- 889 0068 A1018504 		.ascii	"\241\001\205\004\225\001u\010\025\001%\012\011 \261"
- 889      95017508 
- 889      1501250A 
- 889      0920B1
- 890 0077 030923B1 		.ascii	"\003\011#\261\003%O\011!\261\003%0\011\"\261\003\225"
- 890      03254F09 
- 890      21B10325 
- 890      300922B1 
- 890      0395
- 891 0089 030924B1 		.ascii	"\003\011$\261\003\300\006\001\377\011\001\241\001\205"
- 891      03C00601 
- 891      FF0901A1 
- 891      0185
-ARM GAS  /tmp/ccPeQ5OR.s 			page 32
+ 849 003d 00263C02 		.ascii	"\000&<\002\225\001u\020\201\000\300\005\001\011\200"
+ 849      95017510 
+ 849      8100C005 
+ 849      010980
+ 850 004c A1018503 		.ascii	"\241\001\205\003\031\201)\203\025\000%\001u\001\225"
+ 850      19812983 
+ 850      15002501 
+ 850      750195
+ 851 005b 03810295 		.ascii	"\003\201\002\225\005\201\001\300\006\001\377\011\001"
+ 851      058101C0 
+ 851      0601FF09 
+ 851      01
+ 852 0068 A1018504 		.ascii	"\241\001\205\004\225\001u\010\025\001%\012\011 \261"
+ 852      95017508 
+ 852      1501250A 
+ 852      0920B1
+ 853 0077 030923B1 		.ascii	"\003\011#\261\003%O\011!\261\003%0\011\"\261\003\225"
+ 853      03254F09 
+ 853      21B10325 
+ 853      300922B1 
+ 853      0395
+ 854 0089 030924B1 		.ascii	"\003\011$\261\003\300\006\001\377\011\001\241\001\205"
+ 854      03C00601 
+ 854      FF0901A1 
+ 854      0185
+ 855 0097 05950175 		.ascii	"\005\225\001u\010\025\001%\012\011 \261\003\011#\261"
+ 855      08150125 
+ 855      0A0920B1 
+ 855      030923B1 
+ 856 00a7 03254F09 		.ascii	"\003%O\011!\261\003%0\011\"\261\003\225\003\011$\261"
+ 856      21B10325 
+ 856      300922B1 
+ 856      03950309 
+ 856      24B1
+ 857 00b9 03C0     		.ascii	"\003\300"
+ 858              		.section	.data.USBD_HID_DeviceQualifierDesc,"aw"
+ 859              		.align	2
+ 862              	USBD_HID_DeviceQualifierDesc:
+ 863 0000 0A060002 		.ascii	"\012\006\000\002\000\000\000@\001\000"
+ 863      00000040 
+ 863      0100
+ 864              		.section	.data.USBD_HID_KEYBOARD_Desc,"aw"
+ 865              		.align	2
+ 868              	USBD_HID_KEYBOARD_Desc:
+ 869 0000 09211101 		.ascii	"\011!\021\001\000\001\"\273\000"
+ 869      000122BB 
+ 869      00
+ 870              		.section	.data.USBD_HID_KEYBOARD_CfgHSDesc,"aw"
+ 871              		.align	2
+ 874              	USBD_HID_KEYBOARD_CfgHSDesc:
+ 875 0000 09022200 		.ascii	"\011\002\"\000\001\001\000\3402\011\004\000\000\001"
+ 875      010100E0 
+ 875      32090400 
+ 875      0001
+ 876 000e 03010100 		.ascii	"\003\001\001\000\011!\021\001\000\001\"\273\000\007"
+ 876      09211101 
+ 876      000122BB 
+ARM GAS  /tmp/cckoXYmN.s 			page 32
 
 
- 892 0097 05950175 		.ascii	"\005\225\001u\010\025\001%\012\011 \261\003\011#\261"
- 892      08150125 
- 892      0A0920B1 
- 892      030923B1 
- 893 00a7 03254F09 		.ascii	"\003%O\011!\261\003%0\011\"\261\003\225\003\011$\261"
- 893      21B10325 
- 893      300922B1 
- 893      03950309 
- 893      24B1
- 894 00b9 03C0     		.ascii	"\003\300"
- 895              		.section	.data.USBD_HID_DeviceQualifierDesc,"aw"
- 896              		.align	2
- 897              		.set	.LANCHOR2,. + 0
- 900              	USBD_HID_DeviceQualifierDesc:
- 901 0000 0A060002 		.ascii	"\012\006\000\002\000\000\000@\001\000"
- 901      00000040 
- 901      0100
- 902              		.section	.data.USBD_HID_KEYBOARD,"aw"
- 903              		.align	2
- 906              	USBD_HID_KEYBOARD:
- 907 0000 00000000 		.word	USBD_HID_Init
- 908 0004 00000000 		.word	USBD_HID_DeInit
- 909 0008 00000000 		.word	USBD_HID_Setup
- 910 000c 00000000 		.word	0
- 911 0010 00000000 		.word	0
- 912 0014 00000000 		.word	USBD_HID_DataIn
- 913 0018 00000000 		.word	0
- 914 001c 00000000 		.word	0
- 915 0020 00000000 		.word	0
- 916 0024 00000000 		.word	0
- 917 0028 00000000 		.word	USBD_HID_GetHSCfgDesc
- 918 002c 00000000 		.word	USBD_HID_GetFSCfgDesc
- 919 0030 00000000 		.word	USBD_HID_GetOtherSpeedCfgDesc
- 920 0034 00000000 		.word	USBD_HID_GetDeviceQualifierDesc
- 921 0038 00000000 		.space	4
- 922              		.section	.data.USBD_HID_KEYBOARD_CfgFSDesc,"aw"
- 923              		.align	2
- 924              		.set	.LANCHOR0,. + 0
- 927              	USBD_HID_KEYBOARD_CfgFSDesc:
- 928 0000 09022200 		.ascii	"\011\002\"\000\001\001\000\3402\011\004\000\000\001"
- 928      010100E0 
- 928      32090400 
- 928      0001
- 929 000e 03010100 		.ascii	"\003\001\001\000\011!\021\001\000\001\"\273\000\007"
- 929      09211101 
- 929      000122BB 
- 929      0007
- 930 001c 05810308 		.ascii	"\005\201\003\010\000\012"
- 930      000A
- 931              		.section	.data.USBD_HID_KEYBOARD_CfgHSDesc,"aw"
- 932              		.align	2
- 933              		.set	.LANCHOR1,. + 0
- 936              	USBD_HID_KEYBOARD_CfgHSDesc:
- 937 0000 09022200 		.ascii	"\011\002\"\000\001\001\000\3402\011\004\000\000\001"
- 937      010100E0 
- 937      32090400 
- 937      0001
-ARM GAS  /tmp/ccPeQ5OR.s 			page 33
+ 876      0007
+ 877 001c 05810308 		.ascii	"\005\201\003\010\000\007"
+ 877      0007
+ 878              		.section	.data.USBD_HID_KEYBOARD_CfgFSDesc,"aw"
+ 879              		.align	2
+ 882              	USBD_HID_KEYBOARD_CfgFSDesc:
+ 883 0000 09022200 		.ascii	"\011\002\"\000\001\001\000\3402\011\004\000\000\001"
+ 883      010100E0 
+ 883      32090400 
+ 883      0001
+ 884 000e 03010100 		.ascii	"\003\001\001\000\011!\021\001\000\001\"\273\000\007"
+ 884      09211101 
+ 884      000122BB 
+ 884      0007
+ 885 001c 05810308 		.ascii	"\005\201\003\010\000\012"
+ 885      000A
+ 886              		.global	USBD_HID_KEYBOARD
+ 887              		.section	.data.USBD_HID_KEYBOARD,"aw"
+ 888              		.align	2
+ 891              	USBD_HID_KEYBOARD:
+ 892 0000 00000000 		.word	USBD_HID_Init
+ 893 0004 00000000 		.word	USBD_HID_DeInit
+ 894 0008 00000000 		.word	USBD_HID_Setup
+ 895 000c 00000000 		.word	0
+ 896 0010 00000000 		.word	0
+ 897 0014 00000000 		.word	USBD_HID_DataIn
+ 898 0018 00000000 		.word	0
+ 899 001c 00000000 		.word	0
+ 900 0020 00000000 		.word	0
+ 901 0024 00000000 		.word	0
+ 902 0028 00000000 		.word	USBD_HID_GetHSCfgDesc
+ 903 002c 00000000 		.word	USBD_HID_GetFSCfgDesc
+ 904 0030 00000000 		.word	USBD_HID_GetOtherSpeedCfgDesc
+ 905 0034 00000000 		.word	USBD_HID_GetDeviceQualifierDesc
+ 906 0038 00000000 		.space	4
+ 907              		.section	.bss.USBD_HID_KBD_Instace,"aw",%nobits
+ 908              		.align	2
+ 911              	USBD_HID_KBD_Instace:
+ 912 0000 00000000 		.space	16
+ 912      00000000 
+ 912      00000000 
+ 912      00000000 
+ 913              		.global	HID_KEYBOARD_STR_DESC_IDX
+ 914              		.section	.bss.HID_KEYBOARD_STR_DESC_IDX,"aw",%nobits
+ 917              	HID_KEYBOARD_STR_DESC_IDX:
+ 918 0000 00       		.space	1
+ 919              		.global	HID_KEYBOARD_ITF_NBR
+ 920              		.section	.bss.HID_KEYBOARD_ITF_NBR,"aw",%nobits
+ 923              	HID_KEYBOARD_ITF_NBR:
+ 924 0000 00       		.space	1
+ 925              		.global	HID_KEYBOARD_IN_EP
+ 926              		.section	.data.HID_KEYBOARD_IN_EP,"aw"
+ 929              	HID_KEYBOARD_IN_EP:
+ 930 0000 81       		.byte	-127
+ 931              		.text
+ 932              	.Letext0:
+ 933              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ARM GAS  /tmp/cckoXYmN.s 			page 33
 
 
- 938 000e 03010100 		.ascii	"\003\001\001\000\011!\021\001\000\001\"\273\000\007"
- 938      09211101 
- 938      000122BB 
- 938      0007
- 939 001c 05810308 		.ascii	"\005\201\003\010\000\007"
- 939      0007
- 940              		.section	.data.USBD_HID_KEYBOARD_Desc,"aw"
- 941              		.align	2
- 942              		.set	.LANCHOR4,. + 0
- 945              	USBD_HID_KEYBOARD_Desc:
- 946 0000 09211101 		.ascii	"\011!\021\001\000\001\"\273\000"
- 946      000122BB 
- 946      00
- 947              		.text
- 948              	.Letext0:
- 949              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
- 950              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
- 951              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
- 952              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Inc/usbd_hid_keyb
- 953              		.file 6 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
- 954              		.file 7 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h"
- 955              		.file 8 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h"
-ARM GAS  /tmp/ccPeQ5OR.s 			page 34
+ 934              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
+ 935              		.file 4 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
+ 936              		.file 5 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Inc/usbd_hid_keyb
+ 937              		.file 6 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
+ 938              		.file 7 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h"
+ 939              		.file 8 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h"
+ARM GAS  /tmp/cckoXYmN.s 			page 34
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 usbd_hid_keyboard.c
-     /tmp/ccPeQ5OR.s:20     .text.USBD_HID_GetFSCfgDesc:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:25     .text.USBD_HID_GetFSCfgDesc:0000000000000000 USBD_HID_GetFSCfgDesc
-     /tmp/ccPeQ5OR.s:47     .text.USBD_HID_GetFSCfgDesc:0000000000000008 $d
-     /tmp/ccPeQ5OR.s:52     .text.USBD_HID_GetHSCfgDesc:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:57     .text.USBD_HID_GetHSCfgDesc:0000000000000000 USBD_HID_GetHSCfgDesc
-     /tmp/ccPeQ5OR.s:78     .text.USBD_HID_GetHSCfgDesc:0000000000000008 $d
-     /tmp/ccPeQ5OR.s:83     .text.USBD_HID_GetOtherSpeedCfgDesc:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:88     .text.USBD_HID_GetOtherSpeedCfgDesc:0000000000000000 USBD_HID_GetOtherSpeedCfgDesc
-     /tmp/ccPeQ5OR.s:109    .text.USBD_HID_GetOtherSpeedCfgDesc:0000000000000008 $d
-     /tmp/ccPeQ5OR.s:114    .text.USBD_HID_DataIn:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:119    .text.USBD_HID_DataIn:0000000000000000 USBD_HID_DataIn
-     /tmp/ccPeQ5OR.s:143    .text.USBD_HID_GetDeviceQualifierDesc:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:148    .text.USBD_HID_GetDeviceQualifierDesc:0000000000000000 USBD_HID_GetDeviceQualifierDesc
-     /tmp/ccPeQ5OR.s:169    .text.USBD_HID_GetDeviceQualifierDesc:0000000000000008 $d
-     /tmp/ccPeQ5OR.s:174    .text.USBD_HID_Setup:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:179    .text.USBD_HID_Setup:0000000000000000 USBD_HID_Setup
-     /tmp/ccPeQ5OR.s:228    .text.USBD_HID_Setup:000000000000002c $d
-     /tmp/ccPeQ5OR.s:238    .text.USBD_HID_Setup:0000000000000036 $t
-     /tmp/ccPeQ5OR.s:312    .text.USBD_HID_Setup:0000000000000072 $d
-     /tmp/ccPeQ5OR.s:324    .text.USBD_HID_Setup:000000000000007e $t
-     /tmp/ccPeQ5OR.s:505    .text.USBD_HID_Setup:000000000000011c $d
-     /tmp/ccPeQ5OR.s:511    .text.USBD_HID_DeInit:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:516    .text.USBD_HID_DeInit:0000000000000000 USBD_HID_DeInit
-     /tmp/ccPeQ5OR.s:571    .text.USBD_HID_DeInit:0000000000000030 $d
-     /tmp/ccPeQ5OR.s:576    .text.USBD_HID_Init:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:581    .text.USBD_HID_Init:0000000000000000 USBD_HID_Init
-     /tmp/ccPeQ5OR.s:670    .text.USBD_HID_Init:0000000000000060 $d
-     /tmp/ccPeQ5OR.s:676    .text.USBD_HID_Keybaord_SendReport:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:682    .text.USBD_HID_Keybaord_SendReport:0000000000000000 USBD_HID_Keybaord_SendReport
-     /tmp/ccPeQ5OR.s:755    .text.USBD_HID_Keybaord_SendReport:0000000000000040 $d
-     /tmp/ccPeQ5OR.s:760    .text.USBD_HID_Keyboard_GetPollingInterval:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:766    .text.USBD_HID_Keyboard_GetPollingInterval:0000000000000000 USBD_HID_Keyboard_GetPollingInterval
-     /tmp/ccPeQ5OR.s:797    .text.USBD_Update_HID_KBD_DESC:0000000000000000 $t
-     /tmp/ccPeQ5OR.s:803    .text.USBD_Update_HID_KBD_DESC:0000000000000000 USBD_Update_HID_KBD_DESC
-     /tmp/ccPeQ5OR.s:841    .text.USBD_Update_HID_KBD_DESC:0000000000000014 $d
-     /tmp/ccPeQ5OR.s:906    .data.USBD_HID_KEYBOARD:0000000000000000 USBD_HID_KEYBOARD
-     /tmp/ccPeQ5OR.s:861    .bss.HID_KEYBOARD_STR_DESC_IDX:0000000000000000 HID_KEYBOARD_STR_DESC_IDX
-     /tmp/ccPeQ5OR.s:855    .bss.HID_KEYBOARD_ITF_NBR:0000000000000000 HID_KEYBOARD_ITF_NBR
-     /tmp/ccPeQ5OR.s:874    .data.HID_KEYBOARD_IN_EP:0000000000000000 HID_KEYBOARD_IN_EP
-     /tmp/ccPeQ5OR.s:856    .bss.HID_KEYBOARD_ITF_NBR:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:862    .bss.HID_KEYBOARD_STR_DESC_IDX:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:864    .bss.USBD_HID_KBD_Instace:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:868    .bss.USBD_HID_KBD_Instace:0000000000000000 USBD_HID_KBD_Instace
-     /tmp/ccPeQ5OR.s:877    .data.HID_KEYBOARD_ReportDesc:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:881    .data.HID_KEYBOARD_ReportDesc:0000000000000000 HID_KEYBOARD_ReportDesc
-     /tmp/ccPeQ5OR.s:896    .data.USBD_HID_DeviceQualifierDesc:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:900    .data.USBD_HID_DeviceQualifierDesc:0000000000000000 USBD_HID_DeviceQualifierDesc
-     /tmp/ccPeQ5OR.s:903    .data.USBD_HID_KEYBOARD:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:923    .data.USBD_HID_KEYBOARD_CfgFSDesc:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:927    .data.USBD_HID_KEYBOARD_CfgFSDesc:0000000000000000 USBD_HID_KEYBOARD_CfgFSDesc
-     /tmp/ccPeQ5OR.s:932    .data.USBD_HID_KEYBOARD_CfgHSDesc:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:936    .data.USBD_HID_KEYBOARD_CfgHSDesc:0000000000000000 USBD_HID_KEYBOARD_CfgHSDesc
-     /tmp/ccPeQ5OR.s:941    .data.USBD_HID_KEYBOARD_Desc:0000000000000000 $d
-     /tmp/ccPeQ5OR.s:945    .data.USBD_HID_KEYBOARD_Desc:0000000000000000 USBD_HID_KEYBOARD_Desc
+                            *ABS*:00000000 usbd_hid_keyboard.c
+     /tmp/cckoXYmN.s:21     .text.USBD_HID_GetFSCfgDesc:00000000 $t
+     /tmp/cckoXYmN.s:26     .text.USBD_HID_GetFSCfgDesc:00000000 USBD_HID_GetFSCfgDesc
+     /tmp/cckoXYmN.s:47     .text.USBD_HID_GetFSCfgDesc:00000008 $d
+     /tmp/cckoXYmN.s:882    .data.USBD_HID_KEYBOARD_CfgFSDesc:00000000 USBD_HID_KEYBOARD_CfgFSDesc
+     /tmp/cckoXYmN.s:52     .text.USBD_HID_GetHSCfgDesc:00000000 $t
+     /tmp/cckoXYmN.s:57     .text.USBD_HID_GetHSCfgDesc:00000000 USBD_HID_GetHSCfgDesc
+     /tmp/cckoXYmN.s:78     .text.USBD_HID_GetHSCfgDesc:00000008 $d
+     /tmp/cckoXYmN.s:874    .data.USBD_HID_KEYBOARD_CfgHSDesc:00000000 USBD_HID_KEYBOARD_CfgHSDesc
+     /tmp/cckoXYmN.s:83     .text.USBD_HID_GetOtherSpeedCfgDesc:00000000 $t
+     /tmp/cckoXYmN.s:88     .text.USBD_HID_GetOtherSpeedCfgDesc:00000000 USBD_HID_GetOtherSpeedCfgDesc
+     /tmp/cckoXYmN.s:109    .text.USBD_HID_GetOtherSpeedCfgDesc:00000008 $d
+     /tmp/cckoXYmN.s:114    .text.USBD_HID_DataIn:00000000 $t
+     /tmp/cckoXYmN.s:119    .text.USBD_HID_DataIn:00000000 USBD_HID_DataIn
+     /tmp/cckoXYmN.s:143    .text.USBD_HID_GetDeviceQualifierDesc:00000000 $t
+     /tmp/cckoXYmN.s:148    .text.USBD_HID_GetDeviceQualifierDesc:00000000 USBD_HID_GetDeviceQualifierDesc
+     /tmp/cckoXYmN.s:169    .text.USBD_HID_GetDeviceQualifierDesc:00000008 $d
+     /tmp/cckoXYmN.s:862    .data.USBD_HID_DeviceQualifierDesc:00000000 USBD_HID_DeviceQualifierDesc
+     /tmp/cckoXYmN.s:174    .text.USBD_HID_Setup:00000000 $t
+     /tmp/cckoXYmN.s:179    .text.USBD_HID_Setup:00000000 USBD_HID_Setup
+     /tmp/cckoXYmN.s:226    .text.USBD_HID_Setup:0000002c $d
+     /tmp/cckoXYmN.s:236    .text.USBD_HID_Setup:00000036 $t
+     /tmp/cckoXYmN.s:310    .text.USBD_HID_Setup:00000072 $d
+     /tmp/cckoXYmN.s:322    .text.USBD_HID_Setup:0000007e $t
+     /tmp/cckoXYmN.s:501    .text.USBD_HID_Setup:0000011c $d
+     /tmp/cckoXYmN.s:868    .data.USBD_HID_KEYBOARD_Desc:00000000 USBD_HID_KEYBOARD_Desc
+     /tmp/cckoXYmN.s:844    .data.HID_KEYBOARD_ReportDesc:00000000 HID_KEYBOARD_ReportDesc
+     /tmp/cckoXYmN.s:507    .text.USBD_HID_DeInit:00000000 $t
+     /tmp/cckoXYmN.s:512    .text.USBD_HID_DeInit:00000000 USBD_HID_DeInit
+     /tmp/cckoXYmN.s:566    .text.USBD_HID_DeInit:00000030 $d
+     /tmp/cckoXYmN.s:929    .data.HID_KEYBOARD_IN_EP:00000000 HID_KEYBOARD_IN_EP
+     /tmp/cckoXYmN.s:571    .text.USBD_HID_Init:00000000 $t
+     /tmp/cckoXYmN.s:576    .text.USBD_HID_Init:00000000 USBD_HID_Init
+     /tmp/cckoXYmN.s:664    .text.USBD_HID_Init:00000060 $d
+     /tmp/cckoXYmN.s:911    .bss.USBD_HID_KBD_Instace:00000000 USBD_HID_KBD_Instace
+     /tmp/cckoXYmN.s:670    .text.USBD_HID_Keybaord_SendReport:00000000 $t
+     /tmp/cckoXYmN.s:676    .text.USBD_HID_Keybaord_SendReport:00000000 USBD_HID_Keybaord_SendReport
+     /tmp/cckoXYmN.s:748    .text.USBD_HID_Keybaord_SendReport:00000040 $d
+     /tmp/cckoXYmN.s:753    .text.USBD_HID_Keyboard_GetPollingInterval:00000000 $t
+     /tmp/cckoXYmN.s:759    .text.USBD_HID_Keyboard_GetPollingInterval:00000000 USBD_HID_Keyboard_GetPollingInterval
+     /tmp/cckoXYmN.s:790    .text.USBD_Update_HID_KBD_DESC:00000000 $t
+     /tmp/cckoXYmN.s:796    .text.USBD_Update_HID_KBD_DESC:00000000 USBD_Update_HID_KBD_DESC
+     /tmp/cckoXYmN.s:834    .text.USBD_Update_HID_KBD_DESC:00000014 $d
+     /tmp/cckoXYmN.s:923    .bss.HID_KEYBOARD_ITF_NBR:00000000 HID_KEYBOARD_ITF_NBR
+     /tmp/cckoXYmN.s:917    .bss.HID_KEYBOARD_STR_DESC_IDX:00000000 HID_KEYBOARD_STR_DESC_IDX
+     /tmp/cckoXYmN.s:841    .data.HID_KEYBOARD_ReportDesc:00000000 $d
+     /tmp/cckoXYmN.s:859    .data.USBD_HID_DeviceQualifierDesc:00000000 $d
+     /tmp/cckoXYmN.s:865    .data.USBD_HID_KEYBOARD_Desc:00000000 $d
+     /tmp/cckoXYmN.s:871    .data.USBD_HID_KEYBOARD_CfgHSDesc:00000000 $d
+     /tmp/cckoXYmN.s:879    .data.USBD_HID_KEYBOARD_CfgFSDesc:00000000 $d
+     /tmp/cckoXYmN.s:891    .data.USBD_HID_KEYBOARD:00000000 USBD_HID_KEYBOARD
+     /tmp/cckoXYmN.s:888    .data.USBD_HID_KEYBOARD:00000000 $d
+     /tmp/cckoXYmN.s:908    .bss.USBD_HID_KBD_Instace:00000000 $d
+     /tmp/cckoXYmN.s:918    .bss.HID_KEYBOARD_STR_DESC_IDX:00000000 $d
+     /tmp/cckoXYmN.s:924    .bss.HID_KEYBOARD_ITF_NBR:00000000 $d
 
-ARM GAS  /tmp/ccPeQ5OR.s 			page 35
+ARM GAS  /tmp/cckoXYmN.s 			page 35
 
 
 UNDEFINED SYMBOLS

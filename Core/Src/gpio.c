@@ -59,6 +59,9 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(FPGA_config_nrst_GPIO_Port, FPGA_config_nrst_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED0_Pin|Nyan_Keys_LED1_Pin|Nyan_Keys_LED2_Pin|Nyan_Keys_LED3_Pin
                           |Nyan_Keys_LED4_Pin, GPIO_PIN_RESET);
 
@@ -82,6 +85,13 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(Nyan_FPGA_Config_Done_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PtPin */
+  GPIO_InitStruct.Pin = Keys_Slave_Select_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+  HAL_GPIO_Init(Keys_Slave_Select_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pins : PDPin PDPin PDPin PDPin
                            PDPin */
   GPIO_InitStruct.Pin = Nyan_Keys_LED0_Pin|Nyan_Keys_LED1_Pin|Nyan_Keys_LED2_Pin|Nyan_Keys_LED3_Pin
@@ -94,5 +104,26 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
+void NYAN_SPI4_GPIO_Init(void) {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
+  // This should already be done but just incase
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+
+  GPIO_InitStruct.Pin = NYAN_SPI_GPIO_0_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(NYAN_SPI_GPIO_0_Port, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = NYAN_SPI_GPIO_1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(NYAN_SPI_GPIO_1_Port, &GPIO_InitStruct);
+
+  GPIO_InitStruct.Pin = NYAN_SPI_GPIO_2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(NYAN_SPI_GPIO_2_Port, &GPIO_InitStruct);
+
+}
 /* USER CODE END 2 */
