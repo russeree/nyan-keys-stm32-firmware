@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccgZCp4a.s 			page 1
+ARM GAS  /tmp/cc8EUjVO.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -27,7 +27,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
   24              		.thumb
   25              		.thumb_func
   27              	NMI_Handler:
-  28              	.LFB141:
+  28              	.LFB144:
    1:Core/Src/stm32f7xx_it.c **** /* USER CODE BEGIN Header */
    2:Core/Src/stm32f7xx_it.c **** /**
    3:Core/Src/stm32f7xx_it.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
   28:Core/Src/stm32f7xx_it.c **** 
   29:Core/Src/stm32f7xx_it.c **** /* Private typedef -----------------------------------------------------------*/
   30:Core/Src/stm32f7xx_it.c **** /* USER CODE BEGIN TD */
-ARM GAS  /tmp/ccgZCp4a.s 			page 2
+ARM GAS  /tmp/cc8EUjVO.s 			page 2
 
 
   31:Core/Src/stm32f7xx_it.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
   30              		.cfi_startproc
   31              		@ Volatile: function does not return.
   32              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccgZCp4a.s 			page 3
+ARM GAS  /tmp/cc8EUjVO.s 			page 3
 
 
   33              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -137,7 +137,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
   38              		.loc 1 88 9 discriminator 1 view .LVU3
   39 0000 FEE7     		b	.L2
   40              		.cfi_endproc
-  41              	.LFE141:
+  41              	.LFE144:
   43              		.section	.text.HardFault_Handler,"ax",%progbits
   44              		.align	1
   45              		.global	HardFault_Handler
@@ -145,7 +145,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
   47              		.thumb
   48              		.thumb_func
   50              	HardFault_Handler:
-  51              	.LFB142:
+  51              	.LFB145:
   91:Core/Src/stm32f7xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 1 */
   92:Core/Src/stm32f7xx_it.c **** }
   93:Core/Src/stm32f7xx_it.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
   66 0006 1146     		mov	r1, r2
   67 0008 2046     		mov	r0, r4
   68 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
-ARM GAS  /tmp/ccgZCp4a.s 			page 4
+ARM GAS  /tmp/cc8EUjVO.s 			page 4
 
 
   69              	.LVL0:
@@ -218,7 +218,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
   98              	.L6:
   99 0038 000C0240 		.word	1073875968
  100              		.cfi_endproc
- 101              	.LFE142:
+ 101              	.LFE145:
  103              		.section	.text.MemManage_Handler,"ax",%progbits
  104              		.align	1
  105              		.global	MemManage_Handler
@@ -226,7 +226,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  107              		.thumb
  108              		.thumb_func
  110              	MemManage_Handler:
- 111              	.LFB143:
+ 111              	.LFB146:
  110:Core/Src/stm32f7xx_it.c ****     /* USER CODE END W1_HardFault_IRQn 0 */
  111:Core/Src/stm32f7xx_it.c ****   }
  112:Core/Src/stm32f7xx_it.c **** }
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  118:Core/Src/stm32f7xx_it.c **** {
  112              		.loc 1 118 1 view -0
  113              		.cfi_startproc
-ARM GAS  /tmp/ccgZCp4a.s 			page 5
+ARM GAS  /tmp/cc8EUjVO.s 			page 5
 
 
  114              		@ Volatile: function does not return.
@@ -260,7 +260,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  121              		.loc 1 122 9 discriminator 1 view .LVU15
  122 0000 FEE7     		b	.L9
  123              		.cfi_endproc
- 124              	.LFE143:
+ 124              	.LFE146:
  126              		.section	.text.BusFault_Handler,"ax",%progbits
  127              		.align	1
  128              		.global	BusFault_Handler
@@ -268,7 +268,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  130              		.thumb
  131              		.thumb_func
  133              	BusFault_Handler:
- 134              	.LFB144:
+ 134              	.LFB147:
  127:Core/Src/stm32f7xx_it.c **** }
  128:Core/Src/stm32f7xx_it.c **** 
  129:Core/Src/stm32f7xx_it.c **** /**
@@ -297,8 +297,8 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  144              		.loc 1 137 9 discriminator 1 view .LVU19
  145 0000 FEE7     		b	.L11
  146              		.cfi_endproc
- 147              	.LFE144:
-ARM GAS  /tmp/ccgZCp4a.s 			page 6
+ 147              	.LFE147:
+ARM GAS  /tmp/cc8EUjVO.s 			page 6
 
 
  149              		.section	.text.UsageFault_Handler,"ax",%progbits
@@ -308,7 +308,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  153              		.thumb
  154              		.thumb_func
  156              	UsageFault_Handler:
- 157              	.LFB145:
+ 157              	.LFB148:
  142:Core/Src/stm32f7xx_it.c **** }
  143:Core/Src/stm32f7xx_it.c **** 
  144:Core/Src/stm32f7xx_it.c **** /**
@@ -337,7 +337,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  167              		.loc 1 152 9 discriminator 1 view .LVU23
  168 0000 FEE7     		b	.L13
  169              		.cfi_endproc
- 170              	.LFE145:
+ 170              	.LFE148:
  172              		.section	.text.SVC_Handler,"ax",%progbits
  173              		.align	1
  174              		.global	SVC_Handler
@@ -345,7 +345,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  176              		.thumb
  177              		.thumb_func
  179              	SVC_Handler:
- 180              	.LFB146:
+ 180              	.LFB149:
  157:Core/Src/stm32f7xx_it.c **** }
  158:Core/Src/stm32f7xx_it.c **** 
  159:Core/Src/stm32f7xx_it.c **** /**
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  183              		@ args = 0, pretend = 0, frame = 0
  184              		@ frame_needed = 0, uses_anonymous_args = 0
  185              		@ link register save eliminated.
-ARM GAS  /tmp/ccgZCp4a.s 			page 7
+ARM GAS  /tmp/cc8EUjVO.s 			page 7
 
 
  164:Core/Src/stm32f7xx_it.c ****   /* USER CODE BEGIN SVCall_IRQn 0 */
@@ -371,7 +371,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  186              		.loc 1 170 1 view .LVU25
  187 0000 7047     		bx	lr
  188              		.cfi_endproc
- 189              	.LFE146:
+ 189              	.LFE149:
  191              		.section	.text.DebugMon_Handler,"ax",%progbits
  192              		.align	1
  193              		.global	DebugMon_Handler
@@ -379,7 +379,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  195              		.thumb
  196              		.thumb_func
  198              	DebugMon_Handler:
- 199              	.LFB147:
+ 199              	.LFB150:
  171:Core/Src/stm32f7xx_it.c **** 
  172:Core/Src/stm32f7xx_it.c **** /**
  173:Core/Src/stm32f7xx_it.c ****   * @brief This function handles Debug monitor.
@@ -401,7 +401,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  205              		.loc 1 183 1 view .LVU27
  206 0000 7047     		bx	lr
  207              		.cfi_endproc
- 208              	.LFE147:
+ 208              	.LFE150:
  210              		.section	.text.PendSV_Handler,"ax",%progbits
  211              		.align	1
  212              		.global	PendSV_Handler
@@ -409,7 +409,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  214              		.thumb
  215              		.thumb_func
  217              	PendSV_Handler:
- 218              	.LFB148:
+ 218              	.LFB151:
  184:Core/Src/stm32f7xx_it.c **** 
  185:Core/Src/stm32f7xx_it.c **** /**
  186:Core/Src/stm32f7xx_it.c ****   * @brief This function handles Pendable request for system service.
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  189:Core/Src/stm32f7xx_it.c **** {
  219              		.loc 1 189 1 view -0
  220              		.cfi_startproc
-ARM GAS  /tmp/ccgZCp4a.s 			page 8
+ARM GAS  /tmp/cc8EUjVO.s 			page 8
 
 
  221              		@ args = 0, pretend = 0, frame = 0
@@ -434,7 +434,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  224              		.loc 1 196 1 view .LVU29
  225 0000 7047     		bx	lr
  226              		.cfi_endproc
- 227              	.LFE148:
+ 227              	.LFE151:
  229              		.section	.text.SysTick_Handler,"ax",%progbits
  230              		.align	1
  231              		.global	SysTick_Handler
@@ -442,7 +442,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  233              		.thumb
  234              		.thumb_func
  236              	SysTick_Handler:
- 237              	.LFB149:
+ 237              	.LFB152:
  197:Core/Src/stm32f7xx_it.c **** 
  198:Core/Src/stm32f7xx_it.c **** /**
  199:Core/Src/stm32f7xx_it.c ****   * @brief This function handles System tick timer.
@@ -469,7 +469,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  249              		.loc 1 208 1 is_stmt 0 view .LVU32
  250 0006 08BD     		pop	{r3, pc}
  251              		.cfi_endproc
- 252              	.LFE149:
+ 252              	.LFE152:
  254              		.section	.text.DMA1_Stream0_IRQHandler,"ax",%progbits
  255              		.align	1
  256              		.global	DMA1_Stream0_IRQHandler
@@ -477,8 +477,8 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  258              		.thumb
  259              		.thumb_func
  261              	DMA1_Stream0_IRQHandler:
- 262              	.LFB150:
-ARM GAS  /tmp/ccgZCp4a.s 			page 9
+ 262              	.LFB153:
+ARM GAS  /tmp/cc8EUjVO.s 			page 9
 
 
  209:Core/Src/stm32f7xx_it.c **** 
@@ -521,7 +521,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  279              	.L21:
  280 000c 00000000 		.word	hdma_i2c1_rx
  281              		.cfi_endproc
- 282              	.LFE150:
+ 282              	.LFE153:
  284              		.section	.text.DMA1_Stream3_IRQHandler,"ax",%progbits
  285              		.align	1
  286              		.global	DMA1_Stream3_IRQHandler
@@ -529,7 +529,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  288              		.thumb
  289              		.thumb_func
  291              	DMA1_Stream3_IRQHandler:
- 292              	.LFB151:
+ 292              	.LFB154:
  230:Core/Src/stm32f7xx_it.c **** 
  231:Core/Src/stm32f7xx_it.c **** /**
  232:Core/Src/stm32f7xx_it.c ****   * @brief This function handles DMA1 stream3 global interrupt.
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  235:Core/Src/stm32f7xx_it.c **** {
  293              		.loc 1 235 1 is_stmt 1 view -0
  294              		.cfi_startproc
-ARM GAS  /tmp/ccgZCp4a.s 			page 10
+ARM GAS  /tmp/cc8EUjVO.s 			page 10
 
 
  295              		@ args = 0, pretend = 0, frame = 0
@@ -566,7 +566,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  309              	.L25:
  310 000c 00000000 		.word	hdma_spi2_rx
  311              		.cfi_endproc
- 312              	.LFE151:
+ 312              	.LFE154:
  314              		.section	.text.DMA1_Stream4_IRQHandler,"ax",%progbits
  315              		.align	1
  316              		.global	DMA1_Stream4_IRQHandler
@@ -574,7 +574,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  318              		.thumb
  319              		.thumb_func
  321              	DMA1_Stream4_IRQHandler:
- 322              	.LFB152:
+ 322              	.LFB155:
  244:Core/Src/stm32f7xx_it.c **** 
  245:Core/Src/stm32f7xx_it.c **** /**
  246:Core/Src/stm32f7xx_it.c ****   * @brief This function handles DMA1 stream4 global interrupt.
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  333 0004 FFF7FEFF 		bl	HAL_DMA_IRQHandler
  334              	.LVL8:
  254:Core/Src/stm32f7xx_it.c ****   /* USER CODE BEGIN DMA1_Stream4_IRQn 1 */
-ARM GAS  /tmp/ccgZCp4a.s 			page 11
+ARM GAS  /tmp/cc8EUjVO.s 			page 11
 
 
  255:Core/Src/stm32f7xx_it.c **** 
@@ -611,7 +611,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  339              	.L29:
  340 000c 00000000 		.word	hdma_spi2_tx
  341              		.cfi_endproc
- 342              	.LFE152:
+ 342              	.LFE155:
  344              		.section	.text.DMA1_Stream6_IRQHandler,"ax",%progbits
  345              		.align	1
  346              		.global	DMA1_Stream6_IRQHandler
@@ -619,7 +619,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  348              		.thumb
  349              		.thumb_func
  351              	DMA1_Stream6_IRQHandler:
- 352              	.LFB153:
+ 352              	.LFB156:
  258:Core/Src/stm32f7xx_it.c **** 
  259:Core/Src/stm32f7xx_it.c **** /**
  260:Core/Src/stm32f7xx_it.c ****   * @brief This function handles DMA1 stream6 global interrupt.
@@ -653,18 +653,18 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  369              	.L33:
  370 000c 00000000 		.word	hdma_i2c1_tx
  371              		.cfi_endproc
- 372              	.LFE153:
+ 372              	.LFE156:
  374              		.section	.text.TIM1_UP_TIM10_IRQHandler,"ax",%progbits
  375              		.align	1
  376              		.global	TIM1_UP_TIM10_IRQHandler
  377              		.syntax unified
-ARM GAS  /tmp/ccgZCp4a.s 			page 12
+ARM GAS  /tmp/cc8EUjVO.s 			page 12
 
 
  378              		.thumb
  379              		.thumb_func
  381              	TIM1_UP_TIM10_IRQHandler:
- 382              	.LFB154:
+ 382              	.LFB157:
  272:Core/Src/stm32f7xx_it.c **** 
  273:Core/Src/stm32f7xx_it.c **** /**
  274:Core/Src/stm32f7xx_it.c ****   * @brief This function handles TIM1 update interrupt and TIM10 global interrupt.
@@ -698,7 +698,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  399              	.L37:
  400 000c 00000000 		.word	htim1
  401              		.cfi_endproc
- 402              	.LFE154:
+ 402              	.LFE157:
  404              		.section	.text.TIM1_CC_IRQHandler,"ax",%progbits
  405              		.align	1
  406              		.global	TIM1_CC_IRQHandler
@@ -706,7 +706,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  408              		.thumb
  409              		.thumb_func
  411              	TIM1_CC_IRQHandler:
- 412              	.LFB155:
+ 412              	.LFB158:
  286:Core/Src/stm32f7xx_it.c **** 
  287:Core/Src/stm32f7xx_it.c **** /**
  288:Core/Src/stm32f7xx_it.c ****   * @brief This function handles TIM1 capture compare interrupt.
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  415              		@ args = 0, pretend = 0, frame = 0
  416              		@ frame_needed = 0, uses_anonymous_args = 0
  417 0000 08B5     		push	{r3, lr}
-ARM GAS  /tmp/ccgZCp4a.s 			page 13
+ARM GAS  /tmp/cc8EUjVO.s 			page 13
 
 
  418              		.cfi_def_cfa_offset 8
@@ -742,7 +742,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  429              	.L41:
  430 000c 00000000 		.word	htim1
  431              		.cfi_endproc
- 432              	.LFE155:
+ 432              	.LFE158:
  434              		.section	.text.I2C1_EV_IRQHandler,"ax",%progbits
  435              		.align	1
  436              		.global	I2C1_EV_IRQHandler
@@ -750,7 +750,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  438              		.thumb
  439              		.thumb_func
  441              	I2C1_EV_IRQHandler:
- 442              	.LFB156:
+ 442              	.LFB159:
  299:Core/Src/stm32f7xx_it.c **** 
  300:Core/Src/stm32f7xx_it.c **** /**
  301:Core/Src/stm32f7xx_it.c ****   * @brief This function handles I2C1 event interrupt.
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  311:Core/Src/stm32f7xx_it.c ****   /* USER CODE END I2C1_EV_IRQn 1 */
  312:Core/Src/stm32f7xx_it.c **** }
  455              		.loc 1 312 1 is_stmt 0 view .LVU53
-ARM GAS  /tmp/ccgZCp4a.s 			page 14
+ARM GAS  /tmp/cc8EUjVO.s 			page 14
 
 
  456 0008 08BD     		pop	{r3, pc}
@@ -787,7 +787,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  459              	.L45:
  460 000c 00000000 		.word	hi2c1
  461              		.cfi_endproc
- 462              	.LFE156:
+ 462              	.LFE159:
  464              		.section	.text.I2C1_ER_IRQHandler,"ax",%progbits
  465              		.align	1
  466              		.global	I2C1_ER_IRQHandler
@@ -795,7 +795,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  468              		.thumb
  469              		.thumb_func
  471              	I2C1_ER_IRQHandler:
- 472              	.LFB157:
+ 472              	.LFB160:
  313:Core/Src/stm32f7xx_it.c **** 
  314:Core/Src/stm32f7xx_it.c **** /**
  315:Core/Src/stm32f7xx_it.c ****   * @brief This function handles I2C1 error interrupt.
@@ -829,7 +829,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  489              	.L49:
  490 000c 00000000 		.word	hi2c1
  491              		.cfi_endproc
- 492              	.LFE157:
+ 492              	.LFE160:
  494              		.section	.text.SPI2_IRQHandler,"ax",%progbits
  495              		.align	1
  496              		.global	SPI2_IRQHandler
@@ -837,8 +837,8 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  498              		.thumb
  499              		.thumb_func
  501              	SPI2_IRQHandler:
- 502              	.LFB158:
-ARM GAS  /tmp/ccgZCp4a.s 			page 15
+ 502              	.LFB161:
+ARM GAS  /tmp/cc8EUjVO.s 			page 15
 
 
  327:Core/Src/stm32f7xx_it.c **** 
@@ -874,7 +874,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  519              	.L53:
  520 000c 00000000 		.word	hspi2
  521              		.cfi_endproc
- 522              	.LFE158:
+ 522              	.LFE161:
  524              		.section	.text.TIM8_CC_IRQHandler,"ax",%progbits
  525              		.align	1
  526              		.global	TIM8_CC_IRQHandler
@@ -882,7 +882,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  528              		.thumb
  529              		.thumb_func
  531              	TIM8_CC_IRQHandler:
- 532              	.LFB159:
+ 532              	.LFB162:
  341:Core/Src/stm32f7xx_it.c **** 
  342:Core/Src/stm32f7xx_it.c **** /**
  343:Core/Src/stm32f7xx_it.c ****   * @brief This function handles TIM8 capture compare interrupt.
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  539              		.cfi_offset 3, -8
  540              		.cfi_offset 14, -4
  347:Core/Src/stm32f7xx_it.c ****   /* USER CODE BEGIN TIM8_CC_IRQn 0 */
-ARM GAS  /tmp/ccgZCp4a.s 			page 16
+ARM GAS  /tmp/cc8EUjVO.s 			page 16
 
 
  348:Core/Src/stm32f7xx_it.c **** 
@@ -919,7 +919,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  549              	.L57:
  550 000c 00000000 		.word	htim8
  551              		.cfi_endproc
- 552              	.LFE159:
+ 552              	.LFE162:
  554              		.section	.text.TIM6_DAC_IRQHandler,"ax",%progbits
  555              		.align	1
  556              		.global	TIM6_DAC_IRQHandler
@@ -927,7 +927,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  558              		.thumb
  559              		.thumb_func
  561              	TIM6_DAC_IRQHandler:
- 562              	.LFB160:
+ 562              	.LFB163:
  355:Core/Src/stm32f7xx_it.c **** 
  356:Core/Src/stm32f7xx_it.c **** /**
  357:Core/Src/stm32f7xx_it.c ****   * @brief This function handles TIM6 global interrupt, DAC1 and DAC2 underrun error interrupts.
@@ -958,11 +958,11 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  578 000a 00BF     		.align	2
  579              	.L61:
  580 000c 00000000 		.word	htim6
-ARM GAS  /tmp/ccgZCp4a.s 			page 17
+ARM GAS  /tmp/cc8EUjVO.s 			page 17
 
 
  581              		.cfi_endproc
- 582              	.LFE160:
+ 582              	.LFE163:
  584              		.section	.text.TIM7_IRQHandler,"ax",%progbits
  585              		.align	1
  586              		.global	TIM7_IRQHandler
@@ -970,7 +970,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  588              		.thumb
  589              		.thumb_func
  591              	TIM7_IRQHandler:
- 592              	.LFB161:
+ 592              	.LFB164:
  367:Core/Src/stm32f7xx_it.c **** 
  368:Core/Src/stm32f7xx_it.c **** /**
  369:Core/Src/stm32f7xx_it.c ****   * @brief This function handles TIM7 global interrupt.
@@ -1002,7 +1002,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  609              	.L65:
  610 000c 00000000 		.word	htim7
  611              		.cfi_endproc
- 612              	.LFE161:
+ 612              	.LFE164:
  614              		.section	.text.OTG_HS_IRQHandler,"ax",%progbits
  615              		.align	1
  616              		.global	OTG_HS_IRQHandler
@@ -1010,7 +1010,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  618              		.thumb
  619              		.thumb_func
  621              	OTG_HS_IRQHandler:
- 622              	.LFB162:
+ 622              	.LFB165:
  379:Core/Src/stm32f7xx_it.c **** 
  380:Core/Src/stm32f7xx_it.c **** /**
  381:Core/Src/stm32f7xx_it.c ****   * @brief This function handles USB On The Go HS global interrupt.
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  383:Core/Src/stm32f7xx_it.c **** void OTG_HS_IRQHandler(void)
  384:Core/Src/stm32f7xx_it.c **** {
  623              		.loc 1 384 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccgZCp4a.s 			page 18
+ARM GAS  /tmp/cc8EUjVO.s 			page 18
 
 
  624              		.cfi_startproc
@@ -1047,7 +1047,7 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  639              	.L69:
  640 000c 00000000 		.word	hpcd_USB_OTG_HS
  641              		.cfi_endproc
- 642              	.LFE162:
+ 642              	.LFE165:
  644              		.text
  645              	.Letext0:
  646              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
@@ -1061,74 +1061,75 @@ ARM GAS  /tmp/ccgZCp4a.s 			page 1
  654              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h"
  655              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h"
  656              		.file 12 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h"
- 657              		.file 13 "Core/Inc/nyan_os.h"
- 658              		.file 14 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
-ARM GAS  /tmp/ccgZCp4a.s 			page 19
+ 657              		.file 13 "Core/Inc/spi.h"
+ 658              		.file 14 "Core/Inc/nyan_os.h"
+ 659              		.file 15 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
+ARM GAS  /tmp/cc8EUjVO.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32f7xx_it.c
-     /tmp/ccgZCp4a.s:21     .text.NMI_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:27     .text.NMI_Handler:00000000 NMI_Handler
-     /tmp/ccgZCp4a.s:44     .text.HardFault_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:50     .text.HardFault_Handler:00000000 HardFault_Handler
-     /tmp/ccgZCp4a.s:99     .text.HardFault_Handler:00000038 $d
-     /tmp/ccgZCp4a.s:104    .text.MemManage_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:110    .text.MemManage_Handler:00000000 MemManage_Handler
-     /tmp/ccgZCp4a.s:127    .text.BusFault_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:133    .text.BusFault_Handler:00000000 BusFault_Handler
-     /tmp/ccgZCp4a.s:150    .text.UsageFault_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:156    .text.UsageFault_Handler:00000000 UsageFault_Handler
-     /tmp/ccgZCp4a.s:173    .text.SVC_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:179    .text.SVC_Handler:00000000 SVC_Handler
-     /tmp/ccgZCp4a.s:192    .text.DebugMon_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:198    .text.DebugMon_Handler:00000000 DebugMon_Handler
-     /tmp/ccgZCp4a.s:211    .text.PendSV_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:217    .text.PendSV_Handler:00000000 PendSV_Handler
-     /tmp/ccgZCp4a.s:230    .text.SysTick_Handler:00000000 $t
-     /tmp/ccgZCp4a.s:236    .text.SysTick_Handler:00000000 SysTick_Handler
-     /tmp/ccgZCp4a.s:255    .text.DMA1_Stream0_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:261    .text.DMA1_Stream0_IRQHandler:00000000 DMA1_Stream0_IRQHandler
-     /tmp/ccgZCp4a.s:280    .text.DMA1_Stream0_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:285    .text.DMA1_Stream3_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:291    .text.DMA1_Stream3_IRQHandler:00000000 DMA1_Stream3_IRQHandler
-     /tmp/ccgZCp4a.s:310    .text.DMA1_Stream3_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:315    .text.DMA1_Stream4_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:321    .text.DMA1_Stream4_IRQHandler:00000000 DMA1_Stream4_IRQHandler
-     /tmp/ccgZCp4a.s:340    .text.DMA1_Stream4_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:345    .text.DMA1_Stream6_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:351    .text.DMA1_Stream6_IRQHandler:00000000 DMA1_Stream6_IRQHandler
-     /tmp/ccgZCp4a.s:370    .text.DMA1_Stream6_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:375    .text.TIM1_UP_TIM10_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:381    .text.TIM1_UP_TIM10_IRQHandler:00000000 TIM1_UP_TIM10_IRQHandler
-     /tmp/ccgZCp4a.s:400    .text.TIM1_UP_TIM10_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:405    .text.TIM1_CC_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:411    .text.TIM1_CC_IRQHandler:00000000 TIM1_CC_IRQHandler
-     /tmp/ccgZCp4a.s:430    .text.TIM1_CC_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:435    .text.I2C1_EV_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:441    .text.I2C1_EV_IRQHandler:00000000 I2C1_EV_IRQHandler
-     /tmp/ccgZCp4a.s:460    .text.I2C1_EV_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:465    .text.I2C1_ER_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:471    .text.I2C1_ER_IRQHandler:00000000 I2C1_ER_IRQHandler
-     /tmp/ccgZCp4a.s:490    .text.I2C1_ER_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:495    .text.SPI2_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:501    .text.SPI2_IRQHandler:00000000 SPI2_IRQHandler
-     /tmp/ccgZCp4a.s:520    .text.SPI2_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:525    .text.TIM8_CC_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:531    .text.TIM8_CC_IRQHandler:00000000 TIM8_CC_IRQHandler
-     /tmp/ccgZCp4a.s:550    .text.TIM8_CC_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:555    .text.TIM6_DAC_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:561    .text.TIM6_DAC_IRQHandler:00000000 TIM6_DAC_IRQHandler
-     /tmp/ccgZCp4a.s:580    .text.TIM6_DAC_IRQHandler:0000000c $d
-     /tmp/ccgZCp4a.s:585    .text.TIM7_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:591    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
-     /tmp/ccgZCp4a.s:610    .text.TIM7_IRQHandler:0000000c $d
-ARM GAS  /tmp/ccgZCp4a.s 			page 20
+     /tmp/cc8EUjVO.s:21     .text.NMI_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:27     .text.NMI_Handler:00000000 NMI_Handler
+     /tmp/cc8EUjVO.s:44     .text.HardFault_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:50     .text.HardFault_Handler:00000000 HardFault_Handler
+     /tmp/cc8EUjVO.s:99     .text.HardFault_Handler:00000038 $d
+     /tmp/cc8EUjVO.s:104    .text.MemManage_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:110    .text.MemManage_Handler:00000000 MemManage_Handler
+     /tmp/cc8EUjVO.s:127    .text.BusFault_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:133    .text.BusFault_Handler:00000000 BusFault_Handler
+     /tmp/cc8EUjVO.s:150    .text.UsageFault_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:156    .text.UsageFault_Handler:00000000 UsageFault_Handler
+     /tmp/cc8EUjVO.s:173    .text.SVC_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:179    .text.SVC_Handler:00000000 SVC_Handler
+     /tmp/cc8EUjVO.s:192    .text.DebugMon_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:198    .text.DebugMon_Handler:00000000 DebugMon_Handler
+     /tmp/cc8EUjVO.s:211    .text.PendSV_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:217    .text.PendSV_Handler:00000000 PendSV_Handler
+     /tmp/cc8EUjVO.s:230    .text.SysTick_Handler:00000000 $t
+     /tmp/cc8EUjVO.s:236    .text.SysTick_Handler:00000000 SysTick_Handler
+     /tmp/cc8EUjVO.s:255    .text.DMA1_Stream0_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:261    .text.DMA1_Stream0_IRQHandler:00000000 DMA1_Stream0_IRQHandler
+     /tmp/cc8EUjVO.s:280    .text.DMA1_Stream0_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:285    .text.DMA1_Stream3_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:291    .text.DMA1_Stream3_IRQHandler:00000000 DMA1_Stream3_IRQHandler
+     /tmp/cc8EUjVO.s:310    .text.DMA1_Stream3_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:315    .text.DMA1_Stream4_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:321    .text.DMA1_Stream4_IRQHandler:00000000 DMA1_Stream4_IRQHandler
+     /tmp/cc8EUjVO.s:340    .text.DMA1_Stream4_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:345    .text.DMA1_Stream6_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:351    .text.DMA1_Stream6_IRQHandler:00000000 DMA1_Stream6_IRQHandler
+     /tmp/cc8EUjVO.s:370    .text.DMA1_Stream6_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:375    .text.TIM1_UP_TIM10_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:381    .text.TIM1_UP_TIM10_IRQHandler:00000000 TIM1_UP_TIM10_IRQHandler
+     /tmp/cc8EUjVO.s:400    .text.TIM1_UP_TIM10_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:405    .text.TIM1_CC_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:411    .text.TIM1_CC_IRQHandler:00000000 TIM1_CC_IRQHandler
+     /tmp/cc8EUjVO.s:430    .text.TIM1_CC_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:435    .text.I2C1_EV_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:441    .text.I2C1_EV_IRQHandler:00000000 I2C1_EV_IRQHandler
+     /tmp/cc8EUjVO.s:460    .text.I2C1_EV_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:465    .text.I2C1_ER_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:471    .text.I2C1_ER_IRQHandler:00000000 I2C1_ER_IRQHandler
+     /tmp/cc8EUjVO.s:490    .text.I2C1_ER_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:495    .text.SPI2_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:501    .text.SPI2_IRQHandler:00000000 SPI2_IRQHandler
+     /tmp/cc8EUjVO.s:520    .text.SPI2_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:525    .text.TIM8_CC_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:531    .text.TIM8_CC_IRQHandler:00000000 TIM8_CC_IRQHandler
+     /tmp/cc8EUjVO.s:550    .text.TIM8_CC_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:555    .text.TIM6_DAC_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:561    .text.TIM6_DAC_IRQHandler:00000000 TIM6_DAC_IRQHandler
+     /tmp/cc8EUjVO.s:580    .text.TIM6_DAC_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:585    .text.TIM7_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:591    .text.TIM7_IRQHandler:00000000 TIM7_IRQHandler
+     /tmp/cc8EUjVO.s:610    .text.TIM7_IRQHandler:0000000c $d
+ARM GAS  /tmp/cc8EUjVO.s 			page 20
 
 
-     /tmp/ccgZCp4a.s:615    .text.OTG_HS_IRQHandler:00000000 $t
-     /tmp/ccgZCp4a.s:621    .text.OTG_HS_IRQHandler:00000000 OTG_HS_IRQHandler
-     /tmp/ccgZCp4a.s:640    .text.OTG_HS_IRQHandler:0000000c $d
+     /tmp/cc8EUjVO.s:615    .text.OTG_HS_IRQHandler:00000000 $t
+     /tmp/cc8EUjVO.s:621    .text.OTG_HS_IRQHandler:00000000 OTG_HS_IRQHandler
+     /tmp/cc8EUjVO.s:640    .text.OTG_HS_IRQHandler:0000000c $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

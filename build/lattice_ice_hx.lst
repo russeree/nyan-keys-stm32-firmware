@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cci6ClbD.s 			page 1
+ARM GAS  /tmp/ccLp5Mvj.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
   27:Core/Src/lattice_ice_hx.c ****     const uint8_t lattice_dummy_bits = 0x00;
   28:Core/Src/lattice_ice_hx.c ****     HAL_SPI_Transmit(&hspi4, (uint8_t *)&lattice_dummy_bits, 1, 100);
   29:Core/Src/lattice_ice_hx.c ****     HAL_GPIO_WritePin(SPI4_SS_GPIO_Port, SPI4_SS_Pin, GPIO_PIN_RESET);
-ARM GAS  /tmp/cci6ClbD.s 			page 2
+ARM GAS  /tmp/ccLp5Mvj.s 			page 2
 
 
   30:Core/Src/lattice_ice_hx.c ****     // Uncompress and write the bitstream - This happens all in one file to keep the ram footprint 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
   58 0012 16EBD116 		adds	r6, r6, r1, lsr #7
   59              	.LVL3:
   60              		.loc 1 54 7 view .LVU10
-ARM GAS  /tmp/cci6ClbD.s 			page 3
+ARM GAS  /tmp/ccLp5Mvj.s 			page 3
 
 
   61 0016 01D1     		bne	.L15
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
   81              		.loc 1 67 34 is_stmt 0 view .LVU19
   82 0024 6860     		str	r0, [r5, #4]
   70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
-ARM GAS  /tmp/cci6ClbD.s 			page 4
+ARM GAS  /tmp/ccLp5Mvj.s 			page 4
 
 
   83              		.loc 1 70 5 is_stmt 1 view .LVU20
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
  122 0044 4254     		strb	r2, [r0, r1]
   75:Core/Src/lattice_ice_hx.c ****             fpga->p_bitstream_compressed[blk * EEPROM_DRIVER_TX_BUF_SZ + byte] = nos_eeprom.rx_buf[
  123              		.loc 1 75 63 is_stmt 1 discriminator 3 view .LVU36
-ARM GAS  /tmp/cci6ClbD.s 			page 5
+ARM GAS  /tmp/ccLp5Mvj.s 			page 5
 
 
  124 0046 0133     		adds	r3, r3, #1
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
  166 0070 0120     		movs	r0, #1
  167              	.LBB5:
  168 0072 D2E7     		b	.L2
-ARM GAS  /tmp/cci6ClbD.s 			page 6
+ARM GAS  /tmp/ccLp5Mvj.s 			page 6
 
 
  169              	.LVL18:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
  218              	.LVL22:
   87:Core/Src/lattice_ice_hx.c ****     while(nos_eeprom.rx_inflight){}
  219              		.loc 1 87 5 is_stmt 1 view .LVU56
-ARM GAS  /tmp/cci6ClbD.s 			page 7
+ARM GAS  /tmp/ccLp5Mvj.s 			page 7
 
 
  220              	.L21:
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
  268              		.cfi_offset 6, -8
  269              		.cfi_offset 14, -4
  270 0002 82B0     		sub	sp, sp, #8
-ARM GAS  /tmp/cci6ClbD.s 			page 8
+ARM GAS  /tmp/ccLp5Mvj.s 			page 8
 
 
  271              		.cfi_def_cfa_offset 24
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
  315 0046 FFF7FEFF 		bl	HAL_GPIO_WritePin
  316              	.LVL33:
   27:Core/Src/lattice_ice_hx.c ****     const uint8_t lattice_dummy_bits = 0x00;
-ARM GAS  /tmp/cci6ClbD.s 			page 9
+ARM GAS  /tmp/ccLp5Mvj.s 			page 9
 
 
  317              		.loc 1 27 5 view .LVU79
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
  360              	.LVL38:
   35:Core/Src/lattice_ice_hx.c ****     for(uint8_t dummy_byte = 0; dummy_byte < 10; ++dummy_byte) {
  361              		.loc 1 35 50 discriminator 3 view .LVU91
-ARM GAS  /tmp/cci6ClbD.s 			page 10
+ARM GAS  /tmp/ccLp5Mvj.s 			page 10
 
 
  362 0088 0134     		adds	r4, r4, #1
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
  409              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
  410              		.file 12 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
  411              		.file 13 "Core/Inc/24xx_eeprom.h"
-ARM GAS  /tmp/cci6ClbD.s 			page 11
+ARM GAS  /tmp/ccLp5Mvj.s 			page 11
 
 
  412              		.file 14 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
@@ -607,20 +607,20 @@ ARM GAS  /tmp/cci6ClbD.s 			page 1
  415              		.file 17 "Core/Inc/lattice_ice_hx.h"
  416              		.file 18 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
  417              		.file 19 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
-ARM GAS  /tmp/cci6ClbD.s 			page 12
+ARM GAS  /tmp/ccLp5Mvj.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 lattice_ice_hx.c
-     /tmp/cci6ClbD.s:21     .text.FPGAGetBitstreamData:00000000 $t
-     /tmp/cci6ClbD.s:27     .text.FPGAGetBitstreamData:00000000 FPGAGetBitstreamData
-     /tmp/cci6ClbD.s:186    .text.FPGAGetBitstreamData:00000078 $d
-     /tmp/cci6ClbD.s:191    .text.FPGAGetBitstreamCompressedSize:00000000 $t
-     /tmp/cci6ClbD.s:197    .text.FPGAGetBitstreamCompressedSize:00000000 FPGAGetBitstreamCompressedSize
-     /tmp/cci6ClbD.s:245    .text.FPGAGetBitstreamCompressedSize:00000024 $d
-     /tmp/cci6ClbD.s:250    .text.FPGAInit:00000000 $t
-     /tmp/cci6ClbD.s:256    .text.FPGAInit:00000000 FPGAInit
-     /tmp/cci6ClbD.s:392    .text.FPGAInit:000000a0 $d
+     /tmp/ccLp5Mvj.s:21     .text.FPGAGetBitstreamData:00000000 $t
+     /tmp/ccLp5Mvj.s:27     .text.FPGAGetBitstreamData:00000000 FPGAGetBitstreamData
+     /tmp/ccLp5Mvj.s:186    .text.FPGAGetBitstreamData:00000078 $d
+     /tmp/ccLp5Mvj.s:191    .text.FPGAGetBitstreamCompressedSize:00000000 $t
+     /tmp/ccLp5Mvj.s:197    .text.FPGAGetBitstreamCompressedSize:00000000 FPGAGetBitstreamCompressedSize
+     /tmp/ccLp5Mvj.s:245    .text.FPGAGetBitstreamCompressedSize:00000024 $d
+     /tmp/ccLp5Mvj.s:250    .text.FPGAInit:00000000 $t
+     /tmp/ccLp5Mvj.s:256    .text.FPGAInit:00000000 FPGAInit
+     /tmp/ccLp5Mvj.s:392    .text.FPGAInit:000000a0 $d
 
 UNDEFINED SYMBOLS
 realloc

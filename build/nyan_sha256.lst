@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccgdnPtI.s 			page 1
+ARM GAS  /tmp/cc5fpCQQ.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
   27:Core/Src/nyan_sha256.c **** #define EP1(x) (ROTRIGHT(x,6) ^ ROTRIGHT(x,11) ^ ROTRIGHT(x,25))
   28:Core/Src/nyan_sha256.c **** #define SIG0(x) (ROTRIGHT(x,7) ^ ROTRIGHT(x,18) ^ ((x) >> 3))
   29:Core/Src/nyan_sha256.c **** #define SIG1(x) (ROTRIGHT(x,17) ^ ROTRIGHT(x,19) ^ ((x) >> 10))
-ARM GAS  /tmp/ccgdnPtI.s 			page 2
+ARM GAS  /tmp/cc5fpCQQ.s 			page 2
 
 
   30:Core/Src/nyan_sha256.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
   64              		.loc 1 49 33 discriminator 3 view .LVU9
   65 0010 0C18     		adds	r4, r1, r0
   66 0012 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
-ARM GAS  /tmp/ccgdnPtI.s 			page 3
+ARM GAS  /tmp/cc5fpCQQ.s 			page 3
 
 
   67              		.loc 1 49 41 discriminator 3 view .LVU10
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  115 005e 81EAF011 		eor	r1, r1, r0, ror #7
  116 0062 81EAD001 		eor	r1, r1, r0, lsr #3
  117              		.loc 1 51 36 discriminator 2 view .LVU27
-ARM GAS  /tmp/ccgdnPtI.s 			page 4
+ARM GAS  /tmp/cc5fpCQQ.s 			page 4
 
 
  118 0066 0B44     		add	r3, r3, r1
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
   59:Core/Src/nyan_sha256.c **** 	g = ctx->state[6];
  163              		.loc 1 59 2 is_stmt 1 view .LVU47
  164              		.loc 1 59 4 is_stmt 0 view .LVU48
-ARM GAS  /tmp/ccgdnPtI.s 			page 5
+ARM GAS  /tmp/cc5fpCQQ.s 			page 5
 
 
  165 009a D9F86860 		ldr	r6, [r9, #104]
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  210              		.loc 1 63 34 discriminator 3 view .LVU66
  211 00da 2549     		ldr	r1, .L9
  212 00dc 51F82010 		ldr	r1, [r1, r0, lsl #2]
-ARM GAS  /tmp/ccgdnPtI.s 			page 6
+ARM GAS  /tmp/cc5fpCQQ.s 			page 6
 
 
  213              		.loc 1 63 31 discriminator 3 view .LVU67
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  253              		.loc 1 68 5 discriminator 3 view .LVU86
  254 0112 08EB0A02 		add	r2, r8, r10
  255              	.LVL25:
-ARM GAS  /tmp/ccgdnPtI.s 			page 7
+ARM GAS  /tmp/cc5fpCQQ.s 			page 7
 
 
   69:Core/Src/nyan_sha256.c **** 		c = b;
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  299 0148 019B     		ldr	r3, [sp, #4]
  300 014a 1A44     		add	r2, r2, r3
  301              	.LVL32:
-ARM GAS  /tmp/ccgdnPtI.s 			page 8
+ARM GAS  /tmp/cc5fpCQQ.s 			page 8
 
 
  302              		.loc 1 79 16 view .LVU106
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  351              		@ link register save eliminated.
   87:Core/Src/nyan_sha256.c **** 	ctx->datalen = 0;
  352              		.loc 1 87 2 view .LVU118
-ARM GAS  /tmp/ccgdnPtI.s 			page 9
+ARM GAS  /tmp/cc5fpCQQ.s 			page 9
 
 
  353              		.loc 1 87 15 is_stmt 0 view .LVU119
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  397              	.L13:
  398              		.align	2
  399              	.L12:
-ARM GAS  /tmp/ccgdnPtI.s 			page 10
+ARM GAS  /tmp/cc5fpCQQ.s 			page 10
 
 
  400 0038 67E6096A 		.word	1779033703
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  450 000e B542     		cmp	r5, r6
  451 0010 15D2     		bcs	.L19
  104:Core/Src/nyan_sha256.c **** 		ctx->data[ctx->datalen] = data[i];
-ARM GAS  /tmp/ccgdnPtI.s 			page 11
+ARM GAS  /tmp/cc5fpCQQ.s 			page 11
 
 
  452              		.loc 1 104 3 view .LVU147
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  500              	sha256_final:
  501              	.LVL42:
  502              	.LFB3:
-ARM GAS  /tmp/ccgdnPtI.s 			page 12
+ARM GAS  /tmp/cc5fpCQQ.s 			page 12
 
 
  113:Core/Src/nyan_sha256.c **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  545              	.LVL47:
  546              	.L22:
  123:Core/Src/nyan_sha256.c **** 		while (i < 56)
-ARM GAS  /tmp/ccgdnPtI.s 			page 13
+ARM GAS  /tmp/cc5fpCQQ.s 			page 13
 
 
  547              		.loc 1 123 12 is_stmt 1 view .LVU179
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  585 0046 84F83B20 		strb	r2, [r4, #59]
  141:Core/Src/nyan_sha256.c **** 	ctx->data[58] = ctx->bitlen >> 40;
  586              		.loc 1 141 2 is_stmt 1 view .LVU198
-ARM GAS  /tmp/ccgdnPtI.s 			page 14
+ARM GAS  /tmp/cc5fpCQQ.s 			page 14
 
 
  587              		.loc 1 141 30 is_stmt 0 view .LVU199
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  627              	.LVL53:
  129:Core/Src/nyan_sha256.c **** 		sha256_transform(ctx, ctx->data);
  628              		.loc 1 129 19 is_stmt 0 view .LVU218
-ARM GAS  /tmp/ccgdnPtI.s 			page 15
+ARM GAS  /tmp/cc5fpCQQ.s 			page 15
 
 
  629 0070 0022     		movs	r2, #0
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  675 00a2 A16D     		ldr	r1, [r4, #88]
  676              		.loc 1 151 33 discriminator 3 view .LVU236
  677 00a4 D140     		lsrs	r1, r1, r2
-ARM GAS  /tmp/ccgdnPtI.s 			page 16
+ARM GAS  /tmp/cc5fpCQQ.s 			page 16
 
 
  678              		.loc 1 151 7 discriminator 3 view .LVU237
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  148:Core/Src/nyan_sha256.c **** 		hash[i]      = (ctx->state[0] >> (24 - i * 8)) & 0x000000ff;
  727              		.loc 1 148 21 is_stmt 1 discriminator 3 view .LVU264
  728 00de 0133     		adds	r3, r3, #1
-ARM GAS  /tmp/ccgdnPtI.s 			page 17
+ARM GAS  /tmp/cc5fpCQQ.s 			page 17
 
 
  729              	.LVL59:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  783 0098 2EC9C281 		.word	-2117940946
  784 009c 852C7292 		.word	-1838011259
  785 00a0 A1E8BFA2 		.word	-1564481375
-ARM GAS  /tmp/ccgdnPtI.s 			page 18
+ARM GAS  /tmp/cc5fpCQQ.s 			page 18
 
 
  786 00a4 4B661AA8 		.word	-1474664885
@@ -1050,23 +1050,23 @@ ARM GAS  /tmp/ccgdnPtI.s 			page 1
  812              		.file 3 "Core/Inc/nyan_sha256.h"
  813              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
  814              		.file 5 "<built-in>"
-ARM GAS  /tmp/ccgdnPtI.s 			page 19
+ARM GAS  /tmp/cc5fpCQQ.s 			page 19
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 nyan_sha256.c
-     /tmp/ccgdnPtI.s:21     .text.sha256_transform:00000000 $t
-     /tmp/ccgdnPtI.s:27     .text.sha256_transform:00000000 sha256_transform
-     /tmp/ccgdnPtI.s:333    .text.sha256_transform:00000170 $d
-     /tmp/ccgdnPtI.s:744    .rodata.k:00000000 k
-     /tmp/ccgdnPtI.s:338    .text.sha256_init:00000000 $t
-     /tmp/ccgdnPtI.s:344    .text.sha256_init:00000000 sha256_init
-     /tmp/ccgdnPtI.s:400    .text.sha256_init:00000038 $d
-     /tmp/ccgdnPtI.s:411    .text.sha256_update:00000000 $t
-     /tmp/ccgdnPtI.s:417    .text.sha256_update:00000000 sha256_update
-     /tmp/ccgdnPtI.s:494    .text.sha256_final:00000000 $t
-     /tmp/ccgdnPtI.s:500    .text.sha256_final:00000000 sha256_final
-     /tmp/ccgdnPtI.s:741    .rodata.k:00000000 $d
+     /tmp/cc5fpCQQ.s:21     .text.sha256_transform:00000000 $t
+     /tmp/cc5fpCQQ.s:27     .text.sha256_transform:00000000 sha256_transform
+     /tmp/cc5fpCQQ.s:333    .text.sha256_transform:00000170 $d
+     /tmp/cc5fpCQQ.s:744    .rodata.k:00000000 k
+     /tmp/cc5fpCQQ.s:338    .text.sha256_init:00000000 $t
+     /tmp/cc5fpCQQ.s:344    .text.sha256_init:00000000 sha256_init
+     /tmp/cc5fpCQQ.s:400    .text.sha256_init:00000038 $d
+     /tmp/cc5fpCQQ.s:411    .text.sha256_update:00000000 $t
+     /tmp/cc5fpCQQ.s:417    .text.sha256_update:00000000 sha256_update
+     /tmp/cc5fpCQQ.s:494    .text.sha256_final:00000000 $t
+     /tmp/cc5fpCQQ.s:500    .text.sha256_final:00000000 sha256_final
+     /tmp/cc5fpCQQ.s:741    .rodata.k:00000000 $d
 
 UNDEFINED SYMBOLS
 memset

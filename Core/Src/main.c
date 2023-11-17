@@ -28,16 +28,18 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+// USB Composite device support
 #include "usb_device.h"
 #include "usbd_cdc_acm_if.h"
+// Nyan Keys Specific Hardware
 #include "24xx_eeprom.h"
 #include "iceuncompr.h"
 #include "lattice_ice_hx.h"
+// NyanOS and Packages
 #include "nyan_os.h"
 #include "nyan_leds.h"
 #include "nyan_strings.h"
 #include "nyan_keys.h"
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -58,13 +60,13 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-double system_status_led_angle;
+double system_status_led_angle; // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
 
-volatile NyanOS nos;
-Iceuncompr ice_uncompr;
-Eeprom24xx nos_eeprom;
-LatticeIceHX nos_fpga;
-NyanKeys nyan_keys;
+volatile NyanOS nos;    // NyanOS - Main Operating System
+Iceuncompr ice_uncompr; // Decompression agent - FPGA Bitstream 
+Eeprom24xx nos_eeprom;  // 24xx Based EEPROM
+LatticeIceHX nos_fpga;  // Lattice ICE40HX4k FPGA driver
+NyanKeys nyan_keys;     // The nyan keys driver FPGA -> SPI -> STM32
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -138,10 +140,6 @@ int main(void)
   FPGAInit(&nos_fpga);
   // Load up the fast cat IP for access to your keys; happy typing.
   NyanKeysInit(&nyan_keys);
-  // Deinit the SPI4 interface until we need it again and replace it with GPIO inputs
-  HAL_SPI_DeInit(&hspi4);
-  NYAN_SPI4_GPIO_Init();
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -150,6 +148,8 @@ int main(void)
   {
     if(nos_fpga.configured)
       NyanGetKeys(&nyan_keys);
+    else
+      FPGAInit(&nos_fpga);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -213,6 +213,7 @@ void SystemClock_Config(void)
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
   nyan_keys.key_read_inflight = false;
+  HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
 }
 
 void HAL_I2C_MemTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
@@ -248,11 +249,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
     else
       HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
-    // Nyan Keys FPGA IP running indicator
-    if(HAL_GPIO_ReadPin(NYAN_SPI_GPIO_1_Port, NYAN_SPI_GPIO_1_Pin))
-      HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED1_Pin, GPIO_PIN_SET);
-    else
-      HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED1_Pin, GPIO_PIN_RESET);
   }
   if (htim->Instance == TIM6) {
     // Increment the power on pulsing LED angle [sin^2(x) + cos^2(x) = 1]
@@ -280,7 +276,6 @@ void HAL_TIM_OC_DelayElapsedCallback(TIM_HandleTypeDef *htim)
     }
     if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2) {
       HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
-      HAL_GPIO_WritePin(Nyan_Keys_LED1_GPIO_Port, Nyan_Keys_LED1_Pin, GPIO_PIN_RESET);
     }
   }
   if (htim->Instance == TIM8) {

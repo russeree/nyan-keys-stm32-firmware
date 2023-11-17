@@ -11,11 +11,11 @@
 
 #include "main.h"
 #include "24xx_eeprom.h"
+#include "tim.h"
+#include "usbd_cdc_acm_if.h"
 #include "nyan_os.h"
 #include "nyan_sha256.h"
 #include "nyan_strings.h"
-#include "tim.h"
-#include "usbd_cdc_acm_if.h"
 
 NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
 {
@@ -493,13 +493,17 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos)
             }
         }
     }
+
     // Perform function cleanup maintenance
     nos->bytes_array_size = 0;
     nos->bytes_received = 0;
     free(nos->bytes_array);
     nos->bytes_array = NULL;
     nos->state = READY;
-    //NyanPrint(nos, (char*)&nyan_keys_write_bitstream_info_success[0], sizeof(nyan_keys_write_bitstream_info_success));
+
+    // Set the FPGA configuration to false - main() will pick it up to perform the programming.
+    nos_fpga.configured = false;
+
     return NOS_SUCCESS;
 }
 

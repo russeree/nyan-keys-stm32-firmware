@@ -31,9 +31,8 @@ build/nyan_os.o: Core/Src/nyan_os.c Core/Inc/main.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h \
  Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h \
- Core/Inc/nyan_eeprom_map.h Core/Inc/24xx_eeprom.h Core/Inc/nyan_os.h \
- Core/Inc/24xx_eeprom.h Core/Inc/nyan_sha256.h Core/Inc/nyan_strings.h \
- Core/Inc/tim.h Core/Inc/main.h \
+ Core/Inc/nyan_eeprom_map.h Core/Inc/24xx_eeprom.h Core/Inc/tim.h \
+ Core/Inc/main.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
@@ -42,7 +41,9 @@ build/nyan_os.o: Core/Src/nyan_os.c Core/Inc/main.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h \
- Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h
+ Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h Core/Inc/nyan_os.h \
+ Core/Inc/24xx_eeprom.h Core/Inc/lattice_ice_hx.h Core/Inc/iceuncompr.h \
+ Core/Inc/spi.h Core/Inc/nyan_sha256.h Core/Inc/nyan_strings.h
 Core/Inc/main.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 Core/Inc/stm32f7xx_hal_conf.h:
@@ -80,10 +81,6 @@ Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h:
 Core/Inc/nyan_eeprom_map.h:
 Core/Inc/24xx_eeprom.h:
-Core/Inc/nyan_os.h:
-Core/Inc/24xx_eeprom.h:
-Core/Inc/nyan_sha256.h:
-Core/Inc/nyan_strings.h:
 Core/Inc/tim.h:
 Core/Inc/main.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h:
@@ -95,3 +92,10 @@ Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h:
 Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h:
+Core/Inc/nyan_os.h:
+Core/Inc/24xx_eeprom.h:
+Core/Inc/lattice_ice_hx.h:
+Core/Inc/iceuncompr.h:
+Core/Inc/spi.h:
+Core/Inc/nyan_sha256.h:
+Core/Inc/nyan_strings.h:

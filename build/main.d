@@ -47,7 +47,8 @@ build/main.o: Core/Src/main.c Core/Inc/main.h \
  Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h Core/Inc/24xx_eeprom.h \
  Core/Inc/iceuncompr.h Core/Inc/spi.h Core/Inc/lattice_ice_hx.h \
  Core/Inc/24xx_eeprom.h Core/Inc/iceuncompr.h Core/Inc/nyan_os.h \
- Core/Inc/nyan_leds.h Core/Inc/nyan_strings.h Core/Inc/nyan_keys.h
+ Core/Inc/lattice_ice_hx.h Core/Inc/nyan_leds.h Core/Inc/nyan_strings.h \
+ Core/Inc/nyan_keys.h
 Core/Inc/main.h:
 Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 Core/Inc/stm32f7xx_hal_conf.h:
@@ -110,6 +111,7 @@ Core/Inc/lattice_ice_hx.h:
 Core/Inc/24xx_eeprom.h:
 Core/Inc/iceuncompr.h:
 Core/Inc/nyan_os.h:
+Core/Inc/lattice_ice_hx.h:
 Core/Inc/nyan_leds.h:
 Core/Inc/nyan_strings.h:
 Core/Inc/nyan_keys.h:

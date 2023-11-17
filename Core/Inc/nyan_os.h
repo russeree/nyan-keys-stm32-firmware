@@ -4,9 +4,10 @@
 #include <stdint.h>
 #include <main.h>
 #include "24xx_eeprom.h"
+#include "lattice_ice_hx.h"
 #include "nyan_eeprom_map.h"
 
-#define _NYAN_WELCOME_GUARD_TIME 30 //Currently a multiple of TIM7 Period (.777 seconds)
+#define _NYAN_WELCOME_GUARD_TIME 30 // Currently a multiple of TIM7 Period (.777 seconds)
 #define _NYAN_CDC_CHANNEL 0
 #define _NYAN_CDC_RX_BUF_SZ 512
 #define _NYAN_CDC_TX_MAX_LEN 128
@@ -16,6 +17,8 @@
 #define _NYAN_EXE_CHAR '\n'
 
 #define _NYAN_NUM_COMMANDS (sizeof(nyan_commands) / sizeof(nyan_commands[0]))
+
+extern LatticeIceHX nos_fpga;  // Lattice ICE40HX4k FPGA driver access
 
 static const char* const nyan_commands[] = {
     "getinfo",
