@@ -39,6 +39,7 @@
 #include "nyan_os.h"
 #include "nyan_leds.h"
 #include "nyan_strings.h"
+#include "nyan_bitcoin.h"
 #include "nyan_keys.h"
 /* USER CODE END Includes */
 
@@ -62,11 +63,12 @@
 /* USER CODE BEGIN PV */
 double system_status_led_angle; // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
 
-volatile NyanOS nos;    // NyanOS - Main Operating System
-Iceuncompr ice_uncompr; // Decompression agent - FPGA Bitstream 
-Eeprom24xx nos_eeprom;  // 24xx Based EEPROM
-LatticeIceHX nos_fpga;  // Lattice ICE40HX4k FPGA driver
-NyanKeys nyan_keys;     // The nyan keys driver FPGA -> SPI -> STM32
+volatile NyanOS nos;      // NyanOS - Main Operating System
+Iceuncompr ice_uncompr;   // Decompression agent - FPGA Bitstream 
+Eeprom24xx nos_eeprom;    // 24xx Based EEPROM
+LatticeIceHX nos_fpga;    // Lattice ICE40HX4k FPGA driver
+NyanBitcoin nyan_bitcoin; // Nyan Keys Background Bitcoin Miner
+NyanKeys nyan_keys;       // Nyan Keys FPGA Switch driver FPGA -> SPI -> STM32
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -140,6 +142,8 @@ int main(void)
   FPGAInit(&nos_fpga);
   // Load up the fast cat IP for access to your keys; happy typing.
   NyanKeysInit(&nyan_keys);
+  // Load up the bitcoin miner, comment this out or delete to disable. 
+  NyanBitcoinInit(&nyan_bitcoin);
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccfYh3Qj.s 			page 1
+ARM GAS  /tmp/ccTXhoB9.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,16 +19,16 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c"
-  20              		.section	.text.HAL_PCDEx_SetTxFiFoInBytes,"ax",%progbits
-  21              		.align	1
-  22              		.global	HAL_PCDEx_SetTxFiFoInBytes
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	HAL_PCDEx_SetTxFiFoInBytes:
-  28              	.LVL0:
-  29              	.LFB145:
+  19              		.section	.text.HAL_PCDEx_SetTxFiFoInBytes,"ax",%progbits
+  20              		.align	1
+  21              		.global	HAL_PCDEx_SetTxFiFoInBytes
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	HAL_PCDEx_SetTxFiFoInBytes:
+  27              	.LVL0:
+  28              	.LFB145:
+  29              		.file 1 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c"
    1:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /* USER CODE BEGIN Header */
    2:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
    3:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   ******************************************************************************
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
   27:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #include "usbd_composite.h"
   28:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (STM32F1_DEVICE) /** for STM32F1 or similar */
   29:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #include "usb.h"
-ARM GAS  /tmp/ccfYh3Qj.s 			page 2
+ARM GAS  /tmp/ccTXhoB9.s 			page 2
 
 
   30:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #else
@@ -102,68 +102,70 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		.loc 1 64 1 is_stmt 0 view .LVU1
   35 0000 08B5     		push	{r3, lr}
-  36              		.cfi_def_cfa_offset 8
-  37              		.cfi_offset 3, -8
-  38              		.cfi_offset 14, -4
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
   65:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 	return HAL_PCDEx_SetTxFiFo(hpcd, fifo, (size/4));
-  39              		.loc 1 65 2 is_stmt 1 view .LVU2
-  40              		.loc 1 65 9 is_stmt 0 view .LVU3
-  41 0002 9208     		lsrs	r2, r2, #2
-  42              	.LVL1:
-  43              		.loc 1 65 9 view .LVU4
-  44 0004 FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFo
-  45              	.LVL2:
+  40              		.loc 1 65 2 is_stmt 1 view .LVU2
+  41              		.loc 1 65 9 is_stmt 0 view .LVU3
+  42 0002 9208     		lsrs	r2, r2, #2
+  43              	.LVL1:
+  44              		.loc 1 65 9 view .LVU4
+  45 0004 FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFo
+  46              	.LVL2:
   66:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
-  46              		.loc 1 66 1 view .LVU5
-  47 0008 08BD     		pop	{r3, pc}
-  48              		.cfi_endproc
-  49              	.LFE145:
-ARM GAS  /tmp/ccfYh3Qj.s 			page 3
+  47              		.loc 1 66 1 view .LVU5
+  48 0008 08BD     		pop	{r3, pc}
+  49              		.cfi_endproc
+ARM GAS  /tmp/ccTXhoB9.s 			page 3
 
 
-  51              		.section	.text.HAL_PCDEx_SetRxFiFoInBytes,"ax",%progbits
-  52              		.align	1
-  53              		.global	HAL_PCDEx_SetRxFiFoInBytes
-  54              		.syntax unified
-  55              		.thumb
-  56              		.thumb_func
-  58              	HAL_PCDEx_SetRxFiFoInBytes:
-  59              	.LVL3:
-  60              	.LFB146:
+  50              	.LFE145:
+  52              		.section	.text.HAL_PCDEx_SetRxFiFoInBytes,"ax",%progbits
+  53              		.align	1
+  54              		.global	HAL_PCDEx_SetRxFiFoInBytes
+  55              		.syntax unified
+  56              		.thumb
+  57              		.thumb_func
+  59              	HAL_PCDEx_SetRxFiFoInBytes:
+  60              	.LVL3:
+  61              	.LFB146:
   67:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
   68:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** HAL_StatusTypeDef HAL_PCDEx_SetRxFiFoInBytes(PCD_HandleTypeDef *hpcd, uint16_t size)
   69:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
-  61              		.loc 1 69 1 is_stmt 1 view -0
-  62              		.cfi_startproc
-  63              		@ args = 0, pretend = 0, frame = 0
-  64              		@ frame_needed = 0, uses_anonymous_args = 0
-  65              		.loc 1 69 1 is_stmt 0 view .LVU7
-  66 0000 08B5     		push	{r3, lr}
-  67              		.cfi_def_cfa_offset 8
-  68              		.cfi_offset 3, -8
-  69              		.cfi_offset 14, -4
+  62              		.loc 1 69 1 is_stmt 1 view -0
+  63              		.cfi_startproc
+  64              		@ args = 0, pretend = 0, frame = 0
+  65              		@ frame_needed = 0, uses_anonymous_args = 0
+  66              		.loc 1 69 1 is_stmt 0 view .LVU7
+  67 0000 08B5     		push	{r3, lr}
+  68              	.LCFI1:
+  69              		.cfi_def_cfa_offset 8
+  70              		.cfi_offset 3, -8
+  71              		.cfi_offset 14, -4
   70:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 	return HAL_PCDEx_SetRxFiFo(hpcd, (size/4));
-  70              		.loc 1 70 2 is_stmt 1 view .LVU8
-  71              		.loc 1 70 9 is_stmt 0 view .LVU9
-  72 0002 8908     		lsrs	r1, r1, #2
-  73              	.LVL4:
-  74              		.loc 1 70 9 view .LVU10
-  75 0004 FFF7FEFF 		bl	HAL_PCDEx_SetRxFiFo
-  76              	.LVL5:
+  72              		.loc 1 70 2 is_stmt 1 view .LVU8
+  73              		.loc 1 70 9 is_stmt 0 view .LVU9
+  74 0002 8908     		lsrs	r1, r1, #2
+  75              	.LVL4:
+  76              		.loc 1 70 9 view .LVU10
+  77 0004 FFF7FEFF 		bl	HAL_PCDEx_SetRxFiFo
+  78              	.LVL5:
   71:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
-  77              		.loc 1 71 1 view .LVU11
-  78 0008 08BD     		pop	{r3, pc}
-  79              		.cfi_endproc
-  80              	.LFE146:
-  82              		.section	.text.HAL_PCD_MspInit,"ax",%progbits
-  83              		.align	1
-  84              		.weak	HAL_PCD_MspInit
-  85              		.syntax unified
-  86              		.thumb
-  87              		.thumb_func
-  89              	HAL_PCD_MspInit:
-  90              	.LVL6:
-  91              	.LFB147:
+  79              		.loc 1 71 1 view .LVU11
+  80 0008 08BD     		pop	{r3, pc}
+  81              		.cfi_endproc
+  82              	.LFE146:
+  84              		.section	.text.HAL_PCD_MspInit,"ax",%progbits
+  85              		.align	1
+  86              		.weak	HAL_PCD_MspInit
+  87              		.syntax unified
+  88              		.thumb
+  89              		.thumb_func
+  91              	HAL_PCD_MspInit:
+  92              	.LVL6:
+  93              	.LFB147:
   72:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
   73:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /* USER CODE END 1 */
   74:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
@@ -174,52 +176,52 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
   79:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
   80:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** __weak void HAL_PCD_MspInit(PCD_HandleTypeDef *pcdHandle)
   81:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
-  92              		.loc 1 81 1 is_stmt 1 view -0
-  93              		.cfi_startproc
-  94              		@ args = 0, pretend = 0, frame = 0
-  95              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccfYh3Qj.s 			page 4
+  94              		.loc 1 81 1 is_stmt 1 view -0
+  95              		.cfi_startproc
+ARM GAS  /tmp/ccTXhoB9.s 			page 4
 
 
-  96              		@ link register save eliminated.
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  98              		@ link register save eliminated.
   82:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     /* @see usb_otg.c or usb.c for (STM32F1 or similar) generated by cube **/
   83:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
-  97              		.loc 1 83 1 view .LVU13
-  98 0000 7047     		bx	lr
-  99              		.cfi_endproc
- 100              	.LFE147:
- 102              		.section	.text.HAL_PCD_MspDeInit,"ax",%progbits
- 103              		.align	1
- 104              		.weak	HAL_PCD_MspDeInit
- 105              		.syntax unified
- 106              		.thumb
- 107              		.thumb_func
- 109              	HAL_PCD_MspDeInit:
- 110              	.LVL7:
- 111              	.LFB148:
+  99              		.loc 1 83 1 view .LVU13
+ 100 0000 7047     		bx	lr
+ 101              		.cfi_endproc
+ 102              	.LFE147:
+ 104              		.section	.text.HAL_PCD_MspDeInit,"ax",%progbits
+ 105              		.align	1
+ 106              		.weak	HAL_PCD_MspDeInit
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	HAL_PCD_MspDeInit:
+ 112              	.LVL7:
+ 113              	.LFB148:
   84:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
   85:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** __weak void HAL_PCD_MspDeInit(PCD_HandleTypeDef *pcdHandle)
   86:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 112              		.loc 1 86 1 view -0
- 113              		.cfi_startproc
- 114              		@ args = 0, pretend = 0, frame = 0
- 115              		@ frame_needed = 0, uses_anonymous_args = 0
- 116              		@ link register save eliminated.
+ 114              		.loc 1 86 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		@ link register save eliminated.
   87:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     /* @see usb_otg.c or usb.c for (STM32F1 or similar) generated by cube **/
   88:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 117              		.loc 1 88 1 view .LVU15
- 118 0000 7047     		bx	lr
- 119              		.cfi_endproc
- 120              	.LFE148:
- 122              		.section	.text.HAL_PCD_SetupStageCallback,"ax",%progbits
- 123              		.align	1
- 124              		.global	HAL_PCD_SetupStageCallback
- 125              		.syntax unified
- 126              		.thumb
- 127              		.thumb_func
- 129              	HAL_PCD_SetupStageCallback:
- 130              	.LVL8:
- 131              	.LFB149:
+ 119              		.loc 1 88 1 view .LVU15
+ 120 0000 7047     		bx	lr
+ 121              		.cfi_endproc
+ 122              	.LFE148:
+ 124              		.section	.text.HAL_PCD_SetupStageCallback,"ax",%progbits
+ 125              		.align	1
+ 126              		.global	HAL_PCD_SetupStageCallback
+ 127              		.syntax unified
+ 128              		.thumb
+ 129              		.thumb_func
+ 131              	HAL_PCD_SetupStageCallback:
+ 132              	.LVL8:
+ 133              	.LFB149:
   89:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
   90:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
   91:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Setup stage callback
@@ -232,40 +234,41 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
   98:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_SetupStageCallback(PCD_HandleTypeDef *hpcd)
   99:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  100:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 132              		.loc 1 100 1 view -0
- 133              		.cfi_startproc
- 134              		@ args = 0, pretend = 0, frame = 0
- 135              		@ frame_needed = 0, uses_anonymous_args = 0
- 136              		.loc 1 100 1 is_stmt 0 view .LVU17
- 137 0000 08B5     		push	{r3, lr}
-ARM GAS  /tmp/ccfYh3Qj.s 			page 5
+ 134              		.loc 1 100 1 view -0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccTXhoB9.s 			page 5
 
 
- 138              		.cfi_def_cfa_offset 8
- 139              		.cfi_offset 3, -8
- 140              		.cfi_offset 14, -4
+ 138              		.loc 1 100 1 is_stmt 0 view .LVU17
+ 139 0000 08B5     		push	{r3, lr}
+ 140              	.LCFI2:
+ 141              		.cfi_def_cfa_offset 8
+ 142              		.cfi_offset 3, -8
+ 143              		.cfi_offset 14, -4
  101:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_SetupStage((USBD_HandleTypeDef *)hpcd->pData, (uint8_t *)hpcd->Setup);
- 141              		.loc 1 101 3 is_stmt 1 view .LVU18
- 142 0002 00F2C441 		addw	r1, r0, #1220
- 143 0006 D0F80405 		ldr	r0, [r0, #1284]
- 144              	.LVL9:
- 145              		.loc 1 101 3 is_stmt 0 view .LVU19
- 146 000a FFF7FEFF 		bl	USBD_LL_SetupStage
- 147              	.LVL10:
+ 144              		.loc 1 101 3 is_stmt 1 view .LVU18
+ 145 0002 00F2C441 		addw	r1, r0, #1220
+ 146 0006 D0F80405 		ldr	r0, [r0, #1284]
+ 147              	.LVL9:
+ 148              		.loc 1 101 3 is_stmt 0 view .LVU19
+ 149 000a FFF7FEFF 		bl	USBD_LL_SetupStage
+ 150              	.LVL10:
  102:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 148              		.loc 1 102 1 view .LVU20
- 149 000e 08BD     		pop	{r3, pc}
- 150              		.cfi_endproc
- 151              	.LFE149:
- 153              		.section	.text.HAL_PCD_DataOutStageCallback,"ax",%progbits
- 154              		.align	1
- 155              		.global	HAL_PCD_DataOutStageCallback
- 156              		.syntax unified
- 157              		.thumb
- 158              		.thumb_func
- 160              	HAL_PCD_DataOutStageCallback:
- 161              	.LVL11:
- 162              	.LFB150:
+ 151              		.loc 1 102 1 view .LVU20
+ 152 000e 08BD     		pop	{r3, pc}
+ 153              		.cfi_endproc
+ 154              	.LFE149:
+ 156              		.section	.text.HAL_PCD_DataOutStageCallback,"ax",%progbits
+ 157              		.align	1
+ 158              		.global	HAL_PCD_DataOutStageCallback
+ 159              		.syntax unified
+ 160              		.thumb
+ 161              		.thumb_func
+ 163              	HAL_PCD_DataOutStageCallback:
+ 164              	.LVL11:
+ 165              	.LFB150:
  103:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  104:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  105:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Data Out stage callback.
@@ -279,42 +282,43 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  113:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_DataOutStageCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
  114:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  115:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 163              		.loc 1 115 1 is_stmt 1 view -0
- 164              		.cfi_startproc
- 165              		@ args = 0, pretend = 0, frame = 0
- 166              		@ frame_needed = 0, uses_anonymous_args = 0
- 167              		.loc 1 115 1 is_stmt 0 view .LVU22
- 168 0000 08B5     		push	{r3, lr}
- 169              		.cfi_def_cfa_offset 8
- 170              		.cfi_offset 3, -8
- 171              		.cfi_offset 14, -4
+ 166              		.loc 1 115 1 is_stmt 1 view -0
+ 167              		.cfi_startproc
+ 168              		@ args = 0, pretend = 0, frame = 0
+ 169              		@ frame_needed = 0, uses_anonymous_args = 0
+ 170              		.loc 1 115 1 is_stmt 0 view .LVU22
+ 171 0000 08B5     		push	{r3, lr}
+ 172              	.LCFI3:
+ 173              		.cfi_def_cfa_offset 8
+ 174              		.cfi_offset 3, -8
+ 175              		.cfi_offset 14, -4
  116:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_DataOutStage((USBD_HandleTypeDef *)hpcd->pData, epnum, hpcd->OUT_ep[epnum].xfer_buff);
- 172              		.loc 1 116 3 is_stmt 1 view .LVU23
- 173 0002 01EBC103 		add	r3, r1, r1, lsl #3
- 174 0006 00EB8303 		add	r3, r0, r3, lsl #2
- 175 000a D3F88C22 		ldr	r2, [r3, #652]
- 176 000e D0F80405 		ldr	r0, [r0, #1284]
- 177              	.LVL12:
- 178              		.loc 1 116 3 is_stmt 0 view .LVU24
- 179 0012 FFF7FEFF 		bl	USBD_LL_DataOutStage
- 180              	.LVL13:
-ARM GAS  /tmp/ccfYh3Qj.s 			page 6
+ 176              		.loc 1 116 3 is_stmt 1 view .LVU23
+ 177 0002 01EBC103 		add	r3, r1, r1, lsl #3
+ 178 0006 00EB8303 		add	r3, r0, r3, lsl #2
+ 179 000a D3F88C22 		ldr	r2, [r3, #652]
+ 180 000e D0F80405 		ldr	r0, [r0, #1284]
+ARM GAS  /tmp/ccTXhoB9.s 			page 6
 
 
+ 181              	.LVL12:
+ 182              		.loc 1 116 3 is_stmt 0 view .LVU24
+ 183 0012 FFF7FEFF 		bl	USBD_LL_DataOutStage
+ 184              	.LVL13:
  117:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 181              		.loc 1 117 1 view .LVU25
- 182 0016 08BD     		pop	{r3, pc}
- 183              		.cfi_endproc
- 184              	.LFE150:
- 186              		.section	.text.HAL_PCD_DataInStageCallback,"ax",%progbits
- 187              		.align	1
- 188              		.global	HAL_PCD_DataInStageCallback
- 189              		.syntax unified
- 190              		.thumb
- 191              		.thumb_func
- 193              	HAL_PCD_DataInStageCallback:
- 194              	.LVL14:
- 195              	.LFB151:
+ 185              		.loc 1 117 1 view .LVU25
+ 186 0016 08BD     		pop	{r3, pc}
+ 187              		.cfi_endproc
+ 188              	.LFE150:
+ 190              		.section	.text.HAL_PCD_DataInStageCallback,"ax",%progbits
+ 191              		.align	1
+ 192              		.global	HAL_PCD_DataInStageCallback
+ 193              		.syntax unified
+ 194              		.thumb
+ 195              		.thumb_func
+ 197              	HAL_PCD_DataInStageCallback:
+ 198              	.LVL14:
+ 199              	.LFB151:
  118:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  119:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  120:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Data In stage callback.
@@ -328,42 +332,43 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  128:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_DataInStageCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
  129:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  130:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 196              		.loc 1 130 1 is_stmt 1 view -0
- 197              		.cfi_startproc
- 198              		@ args = 0, pretend = 0, frame = 0
- 199              		@ frame_needed = 0, uses_anonymous_args = 0
- 200              		.loc 1 130 1 is_stmt 0 view .LVU27
- 201 0000 08B5     		push	{r3, lr}
- 202              		.cfi_def_cfa_offset 8
- 203              		.cfi_offset 3, -8
- 204              		.cfi_offset 14, -4
+ 200              		.loc 1 130 1 is_stmt 1 view -0
+ 201              		.cfi_startproc
+ 202              		@ args = 0, pretend = 0, frame = 0
+ 203              		@ frame_needed = 0, uses_anonymous_args = 0
+ 204              		.loc 1 130 1 is_stmt 0 view .LVU27
+ 205 0000 08B5     		push	{r3, lr}
+ 206              	.LCFI4:
+ 207              		.cfi_def_cfa_offset 8
+ 208              		.cfi_offset 3, -8
+ 209              		.cfi_offset 14, -4
  131:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_DataInStage((USBD_HandleTypeDef *)hpcd->pData, epnum, hpcd->IN_ep[epnum].xfer_buff);
- 205              		.loc 1 131 3 is_stmt 1 view .LVU28
- 206 0002 01EBC103 		add	r3, r1, r1, lsl #3
- 207 0006 00EB8303 		add	r3, r0, r3, lsl #2
- 208 000a DA6C     		ldr	r2, [r3, #76]
- 209 000c D0F80405 		ldr	r0, [r0, #1284]
- 210              	.LVL15:
- 211              		.loc 1 131 3 is_stmt 0 view .LVU29
- 212 0010 FFF7FEFF 		bl	USBD_LL_DataInStage
- 213              	.LVL16:
+ 210              		.loc 1 131 3 is_stmt 1 view .LVU28
+ 211 0002 01EBC103 		add	r3, r1, r1, lsl #3
+ 212 0006 00EB8303 		add	r3, r0, r3, lsl #2
+ 213 000a DA6C     		ldr	r2, [r3, #76]
+ 214 000c D0F80405 		ldr	r0, [r0, #1284]
+ 215              	.LVL15:
+ 216              		.loc 1 131 3 is_stmt 0 view .LVU29
+ 217 0010 FFF7FEFF 		bl	USBD_LL_DataInStage
+ 218              	.LVL16:
  132:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 214              		.loc 1 132 1 view .LVU30
- 215 0014 08BD     		pop	{r3, pc}
- 216              		.cfi_endproc
- 217              	.LFE151:
- 219              		.section	.text.HAL_PCD_SOFCallback,"ax",%progbits
- 220              		.align	1
- 221              		.global	HAL_PCD_SOFCallback
- 222              		.syntax unified
- 223              		.thumb
- 224              		.thumb_func
-ARM GAS  /tmp/ccfYh3Qj.s 			page 7
+ 219              		.loc 1 132 1 view .LVU30
+ 220 0014 08BD     		pop	{r3, pc}
+ 221              		.cfi_endproc
+ 222              	.LFE151:
+ 224              		.section	.text.HAL_PCD_SOFCallback,"ax",%progbits
+ARM GAS  /tmp/ccTXhoB9.s 			page 7
 
 
- 226              	HAL_PCD_SOFCallback:
- 227              	.LVL17:
- 228              	.LFB152:
+ 225              		.align	1
+ 226              		.global	HAL_PCD_SOFCallback
+ 227              		.syntax unified
+ 228              		.thumb
+ 229              		.thumb_func
+ 231              	HAL_PCD_SOFCallback:
+ 232              	.LVL17:
+ 233              	.LFB152:
  133:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  134:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  135:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  SOF callback.
@@ -376,86 +381,88 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  142:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_SOFCallback(PCD_HandleTypeDef *hpcd)
  143:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  144:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 229              		.loc 1 144 1 is_stmt 1 view -0
- 230              		.cfi_startproc
- 231              		@ args = 0, pretend = 0, frame = 0
- 232              		@ frame_needed = 0, uses_anonymous_args = 0
- 233              		.loc 1 144 1 is_stmt 0 view .LVU32
- 234 0000 08B5     		push	{r3, lr}
- 235              		.cfi_def_cfa_offset 8
- 236              		.cfi_offset 3, -8
- 237              		.cfi_offset 14, -4
+ 234              		.loc 1 144 1 is_stmt 1 view -0
+ 235              		.cfi_startproc
+ 236              		@ args = 0, pretend = 0, frame = 0
+ 237              		@ frame_needed = 0, uses_anonymous_args = 0
+ 238              		.loc 1 144 1 is_stmt 0 view .LVU32
+ 239 0000 08B5     		push	{r3, lr}
+ 240              	.LCFI5:
+ 241              		.cfi_def_cfa_offset 8
+ 242              		.cfi_offset 3, -8
+ 243              		.cfi_offset 14, -4
  145:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_SOF((USBD_HandleTypeDef *)hpcd->pData);
- 238              		.loc 1 145 3 is_stmt 1 view .LVU33
- 239 0002 D0F80405 		ldr	r0, [r0, #1284]
- 240              	.LVL18:
- 241              		.loc 1 145 3 is_stmt 0 view .LVU34
- 242 0006 FFF7FEFF 		bl	USBD_LL_SOF
- 243              	.LVL19:
+ 244              		.loc 1 145 3 is_stmt 1 view .LVU33
+ 245 0002 D0F80405 		ldr	r0, [r0, #1284]
+ 246              	.LVL18:
+ 247              		.loc 1 145 3 is_stmt 0 view .LVU34
+ 248 0006 FFF7FEFF 		bl	USBD_LL_SOF
+ 249              	.LVL19:
  146:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 244              		.loc 1 146 1 view .LVU35
- 245 000a 08BD     		pop	{r3, pc}
- 246              		.cfi_endproc
- 247              	.LFE152:
- 249              		.section	.text.HAL_PCD_ResetCallback,"ax",%progbits
- 250              		.align	1
- 251              		.global	HAL_PCD_ResetCallback
- 252              		.syntax unified
- 253              		.thumb
- 254              		.thumb_func
- 256              	HAL_PCD_ResetCallback:
- 257              	.LVL20:
- 258              	.LFB153:
+ 250              		.loc 1 146 1 view .LVU35
+ 251 000a 08BD     		pop	{r3, pc}
+ 252              		.cfi_endproc
+ 253              	.LFE152:
+ 255              		.section	.text.HAL_PCD_ResetCallback,"ax",%progbits
+ 256              		.align	1
+ 257              		.global	HAL_PCD_ResetCallback
+ 258              		.syntax unified
+ 259              		.thumb
+ 260              		.thumb_func
+ 262              	HAL_PCD_ResetCallback:
+ 263              	.LVL20:
+ 264              	.LFB153:
  147:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  148:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  149:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Reset callback.
  150:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  hpcd: PCD handle
  151:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @retval None
  152:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
+ARM GAS  /tmp/ccTXhoB9.s 			page 8
+
+
  153:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
  154:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** static void PCD_ResetCallback(PCD_HandleTypeDef *hpcd)
  155:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #else
  156:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_ResetCallback(PCD_HandleTypeDef *hpcd)
  157:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  158:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
-ARM GAS  /tmp/ccfYh3Qj.s 			page 8
-
-
- 259              		.loc 1 158 1 is_stmt 1 view -0
- 260              		.cfi_startproc
- 261              		@ args = 0, pretend = 0, frame = 0
- 262              		@ frame_needed = 0, uses_anonymous_args = 0
- 263              		.loc 1 158 1 is_stmt 0 view .LVU37
- 264 0000 10B5     		push	{r4, lr}
- 265              		.cfi_def_cfa_offset 8
- 266              		.cfi_offset 4, -8
- 267              		.cfi_offset 14, -4
- 268 0002 0446     		mov	r4, r0
+ 265              		.loc 1 158 1 is_stmt 1 view -0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              		.loc 1 158 1 is_stmt 0 view .LVU37
+ 270 0000 10B5     		push	{r4, lr}
+ 271              	.LCFI6:
+ 272              		.cfi_def_cfa_offset 8
+ 273              		.cfi_offset 4, -8
+ 274              		.cfi_offset 14, -4
+ 275 0002 0446     		mov	r4, r0
  159:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_SpeedTypeDef speed = USBD_SPEED_FULL;
- 269              		.loc 1 159 3 is_stmt 1 view .LVU38
- 270              	.LVL21:
+ 276              		.loc 1 159 3 is_stmt 1 view .LVU38
+ 277              	.LVL21:
  160:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  161:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   if (hpcd->Init.speed == PCD_SPEED_FULL)
- 271              		.loc 1 161 3 view .LVU39
- 272              		.loc 1 161 17 is_stmt 0 view .LVU40
- 273 0004 C368     		ldr	r3, [r0, #12]
- 274              		.loc 1 161 6 view .LVU41
- 275 0006 022B     		cmp	r3, #2
- 276 0008 0ED0     		beq	.L17
+ 278              		.loc 1 161 3 view .LVU39
+ 279              		.loc 1 161 17 is_stmt 0 view .LVU40
+ 280 0004 C368     		ldr	r3, [r0, #12]
+ 281              		.loc 1 161 6 view .LVU41
+ 282 0006 022B     		cmp	r3, #2
+ 283 0008 0ED0     		beq	.L17
  162:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   {
  163:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     speed = USBD_SPEED_FULL; 
  164:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
  165:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   #if(!STM32F1_DEVICE)
  166:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   else if (hpcd->Init.speed == PCD_SPEED_HIGH)
- 277              		.loc 1 166 8 is_stmt 1 view .LVU42
- 278              		.loc 1 166 11 is_stmt 0 view .LVU43
- 279 000a 4BB9     		cbnz	r3, .L20
+ 284              		.loc 1 166 8 is_stmt 1 view .LVU42
+ 285              		.loc 1 166 11 is_stmt 0 view .LVU43
+ 286 000a 4BB9     		cbnz	r3, .L20
  167:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   {
  168:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     speed = USBD_SPEED_HIGH;
- 280              		.loc 1 168 11 view .LVU44
- 281 000c 0021     		movs	r1, #0
- 282              	.LVL22:
- 283              	.L16:
+ 287              		.loc 1 168 11 view .LVU44
+ 288 000c 0021     		movs	r1, #0
+ 289              	.LVL22:
+ 290              	.L16:
  169:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
  170:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   #endif
  171:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   else
@@ -464,50 +471,50 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  174:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
  175:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /* Set Speed. */
  176:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_SetSpeed((USBD_HandleTypeDef *)hpcd->pData, speed);
- 284              		.loc 1 176 3 is_stmt 1 view .LVU45
- 285 000e D4F80405 		ldr	r0, [r4, #1284]
- 286 0012 FFF7FEFF 		bl	USBD_LL_SetSpeed
- 287              	.LVL23:
+ 291              		.loc 1 176 3 is_stmt 1 view .LVU45
+ 292 000e D4F80405 		ldr	r0, [r4, #1284]
+ 293 0012 FFF7FEFF 		bl	USBD_LL_SetSpeed
+ 294              	.LVL23:
  177:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  178:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /* Reset Device. */
  179:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_Reset((USBD_HandleTypeDef *)hpcd->pData);
- 288              		.loc 1 179 3 view .LVU46
- 289 0016 D4F80405 		ldr	r0, [r4, #1284]
- 290 001a FFF7FEFF 		bl	USBD_LL_Reset
- 291              	.LVL24:
+ARM GAS  /tmp/ccTXhoB9.s 			page 9
+
+
+ 295              		.loc 1 179 3 view .LVU46
+ 296 0016 D4F80405 		ldr	r0, [r4, #1284]
+ 297 001a FFF7FEFF 		bl	USBD_LL_Reset
+ 298              	.LVL24:
  180:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 292              		.loc 1 180 1 is_stmt 0 view .LVU47
- 293 001e 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccfYh3Qj.s 			page 9
-
-
- 294              	.LVL25:
- 295              	.L20:
+ 299              		.loc 1 180 1 is_stmt 0 view .LVU47
+ 300 001e 10BD     		pop	{r4, pc}
+ 301              	.LVL25:
+ 302              	.L20:
  173:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
- 296              		.loc 1 173 5 is_stmt 1 view .LVU48
- 297 0020 FFF7FEFF 		bl	Error_Handler
- 298              	.LVL26:
+ 303              		.loc 1 173 5 is_stmt 1 view .LVU48
+ 304 0020 FFF7FEFF 		bl	Error_Handler
+ 305              	.LVL26:
  159:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 299              		.loc 1 159 21 is_stmt 0 view .LVU49
- 300 0024 0121     		movs	r1, #1
- 301 0026 F2E7     		b	.L16
- 302              	.LVL27:
- 303              	.L17:
+ 306              		.loc 1 159 21 is_stmt 0 view .LVU49
+ 307 0024 0121     		movs	r1, #1
+ 308 0026 F2E7     		b	.L16
+ 309              	.LVL27:
+ 310              	.L17:
  163:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
- 304              		.loc 1 163 11 view .LVU50
- 305 0028 0121     		movs	r1, #1
- 306 002a F0E7     		b	.L16
- 307              		.cfi_endproc
- 308              	.LFE153:
- 310              		.section	.text.HAL_PCD_SuspendCallback,"ax",%progbits
- 311              		.align	1
- 312              		.global	HAL_PCD_SuspendCallback
- 313              		.syntax unified
- 314              		.thumb
- 315              		.thumb_func
- 317              	HAL_PCD_SuspendCallback:
- 318              	.LVL28:
- 319              	.LFB154:
+ 311              		.loc 1 163 11 view .LVU50
+ 312 0028 0121     		movs	r1, #1
+ 313 002a F0E7     		b	.L16
+ 314              		.cfi_endproc
+ 315              	.LFE153:
+ 317              		.section	.text.HAL_PCD_SuspendCallback,"ax",%progbits
+ 318              		.align	1
+ 319              		.global	HAL_PCD_SuspendCallback
+ 320              		.syntax unified
+ 321              		.thumb
+ 322              		.thumb_func
+ 324              	HAL_PCD_SuspendCallback:
+ 325              	.LVL28:
+ 326              	.LFB154:
  181:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  182:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  183:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Suspend callback.
@@ -521,76 +528,79 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  191:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_SuspendCallback(PCD_HandleTypeDef *hpcd)
  192:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  193:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 320              		.loc 1 193 1 is_stmt 1 view -0
- 321              		.cfi_startproc
- 322              		@ args = 0, pretend = 0, frame = 0
- 323              		@ frame_needed = 0, uses_anonymous_args = 0
- 324              		.loc 1 193 1 is_stmt 0 view .LVU52
- 325 0000 10B5     		push	{r4, lr}
- 326              		.cfi_def_cfa_offset 8
- 327              		.cfi_offset 4, -8
- 328              		.cfi_offset 14, -4
- 329 0002 0446     		mov	r4, r0
+ 327              		.loc 1 193 1 is_stmt 1 view -0
+ 328              		.cfi_startproc
+ 329              		@ args = 0, pretend = 0, frame = 0
+ 330              		@ frame_needed = 0, uses_anonymous_args = 0
+ 331              		.loc 1 193 1 is_stmt 0 view .LVU52
+ 332 0000 10B5     		push	{r4, lr}
+ 333              	.LCFI7:
+ 334              		.cfi_def_cfa_offset 8
+ 335              		.cfi_offset 4, -8
+ 336              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccTXhoB9.s 			page 10
+
+
+ 337 0002 0446     		mov	r4, r0
  194:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /* Inform USB library that core enters in suspend Mode. */
  195:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_Suspend((USBD_HandleTypeDef *)hpcd->pData);
- 330              		.loc 1 195 3 is_stmt 1 view .LVU53
- 331 0004 D0F80405 		ldr	r0, [r0, #1284]
- 332              	.LVL29:
- 333              		.loc 1 195 3 is_stmt 0 view .LVU54
- 334 0008 FFF7FEFF 		bl	USBD_LL_Suspend
-ARM GAS  /tmp/ccfYh3Qj.s 			page 10
-
-
- 335              	.LVL30:
+ 338              		.loc 1 195 3 is_stmt 1 view .LVU53
+ 339 0004 D0F80405 		ldr	r0, [r0, #1284]
+ 340              	.LVL29:
+ 341              		.loc 1 195 3 is_stmt 0 view .LVU54
+ 342 0008 FFF7FEFF 		bl	USBD_LL_Suspend
+ 343              	.LVL30:
  196:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (!STM32F1_DEVICE)
  197:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   __HAL_PCD_GATE_PHYCLOCK(hpcd);
- 336              		.loc 1 197 3 is_stmt 1 view .LVU55
- 337 000c 2268     		ldr	r2, [r4]
- 338 000e D2F8003E 		ldr	r3, [r2, #3584]
- 339 0012 43F00103 		orr	r3, r3, #1
- 340 0016 C2F8003E 		str	r3, [r2, #3584]
+ 344              		.loc 1 197 3 is_stmt 1 view .LVU55
+ 345 000c 2268     		ldr	r2, [r4]
+ 346 000e D2F8003E 		ldr	r3, [r2, #3584]
+ 347 0012 43F00103 		orr	r3, r3, #1
+ 348 0016 C2F8003E 		str	r3, [r2, #3584]
  198:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /* Enter in STOP mode. */
  199:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /* USER CODE BEGIN 2 */
  200:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   if (hpcd->Init.low_power_enable)
- 341              		.loc 1 200 3 view .LVU56
- 342              		.loc 1 200 17 is_stmt 0 view .LVU57
- 343 001a 236A     		ldr	r3, [r4, #32]
- 344              		.loc 1 200 6 view .LVU58
- 345 001c 23B1     		cbz	r3, .L21
+ 349              		.loc 1 200 3 view .LVU56
+ 350              		.loc 1 200 17 is_stmt 0 view .LVU57
+ 351 001a 236A     		ldr	r3, [r4, #32]
+ 352              		.loc 1 200 6 view .LVU58
+ 353 001c 23B1     		cbz	r3, .L21
  201:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   {
  202:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     /* Set SLEEPDEEP bit and SleepOnExit of Cortex System Control Register. */
  203:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     SCB->SCR |= (uint32_t)((uint32_t)(SCB_SCR_SLEEPDEEP_Msk | SCB_SCR_SLEEPONEXIT_Msk));
- 346              		.loc 1 203 5 is_stmt 1 view .LVU59
- 347              		.loc 1 203 8 is_stmt 0 view .LVU60
- 348 001e 034A     		ldr	r2, .L24
- 349 0020 1369     		ldr	r3, [r2, #16]
- 350              		.loc 1 203 14 view .LVU61
- 351 0022 43F00603 		orr	r3, r3, #6
- 352 0026 1361     		str	r3, [r2, #16]
- 353              	.L21:
+ 354              		.loc 1 203 5 is_stmt 1 view .LVU59
+ 355              		.loc 1 203 14 is_stmt 0 view .LVU60
+ 356 001e 034A     		ldr	r2, .L24
+ 357 0020 1369     		ldr	r3, [r2, #16]
+ 358 0022 43F00603 		orr	r3, r3, #6
+ 359 0026 1361     		str	r3, [r2, #16]
+ 360              	.L21:
  204:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
  205:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
  206:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /* USER CODE END 2 */
  207:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 354              		.loc 1 207 1 view .LVU62
- 355 0028 10BD     		pop	{r4, pc}
- 356              	.LVL31:
- 357              	.L25:
- 358              		.loc 1 207 1 view .LVU63
- 359 002a 00BF     		.align	2
- 360              	.L24:
- 361 002c 00ED00E0 		.word	-536810240
- 362              		.cfi_endproc
- 363              	.LFE154:
- 365              		.section	.text.HAL_PCD_ResumeCallback,"ax",%progbits
- 366              		.align	1
- 367              		.global	HAL_PCD_ResumeCallback
- 368              		.syntax unified
- 369              		.thumb
- 370              		.thumb_func
- 372              	HAL_PCD_ResumeCallback:
- 373              	.LVL32:
- 374              	.LFB155:
+ 361              		.loc 1 207 1 view .LVU61
+ 362 0028 10BD     		pop	{r4, pc}
+ 363              	.LVL31:
+ 364              	.L25:
+ 365              		.loc 1 207 1 view .LVU62
+ 366 002a 00BF     		.align	2
+ 367              	.L24:
+ 368 002c 00ED00E0 		.word	-536810240
+ 369              		.cfi_endproc
+ 370              	.LFE154:
+ 372              		.section	.text.HAL_PCD_ResumeCallback,"ax",%progbits
+ 373              		.align	1
+ 374              		.global	HAL_PCD_ResumeCallback
+ 375              		.syntax unified
+ 376              		.thumb
+ 377              		.thumb_func
+ 379              	HAL_PCD_ResumeCallback:
+ 380              	.LVL32:
+ 381              	.LFB155:
+ARM GAS  /tmp/ccTXhoB9.s 			page 11
+
+
  208:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  209:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  210:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Resume callback.
@@ -598,48 +608,46 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  212:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  hpcd: PCD handle
  213:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @retval None
  214:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
-ARM GAS  /tmp/ccfYh3Qj.s 			page 11
-
-
  215:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
  216:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** static void PCD_ResumeCallback(PCD_HandleTypeDef *hpcd)
  217:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #else
  218:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_ResumeCallback(PCD_HandleTypeDef *hpcd)
  219:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  220:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 375              		.loc 1 220 1 is_stmt 1 view -0
- 376              		.cfi_startproc
- 377              		@ args = 0, pretend = 0, frame = 0
- 378              		@ frame_needed = 0, uses_anonymous_args = 0
- 379              		.loc 1 220 1 is_stmt 0 view .LVU65
- 380 0000 08B5     		push	{r3, lr}
- 381              		.cfi_def_cfa_offset 8
- 382              		.cfi_offset 3, -8
- 383              		.cfi_offset 14, -4
+ 382              		.loc 1 220 1 is_stmt 1 view -0
+ 383              		.cfi_startproc
+ 384              		@ args = 0, pretend = 0, frame = 0
+ 385              		@ frame_needed = 0, uses_anonymous_args = 0
+ 386              		.loc 1 220 1 is_stmt 0 view .LVU64
+ 387 0000 08B5     		push	{r3, lr}
+ 388              	.LCFI8:
+ 389              		.cfi_def_cfa_offset 8
+ 390              		.cfi_offset 3, -8
+ 391              		.cfi_offset 14, -4
  221:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /* USER CODE BEGIN 3 */
  222:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  223:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /* USER CODE END 3 */
  224:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_Resume((USBD_HandleTypeDef *)hpcd->pData);
- 384              		.loc 1 224 3 is_stmt 1 view .LVU66
- 385 0002 D0F80405 		ldr	r0, [r0, #1284]
- 386              	.LVL33:
- 387              		.loc 1 224 3 is_stmt 0 view .LVU67
- 388 0006 FFF7FEFF 		bl	USBD_LL_Resume
- 389              	.LVL34:
+ 392              		.loc 1 224 3 is_stmt 1 view .LVU65
+ 393 0002 D0F80405 		ldr	r0, [r0, #1284]
+ 394              	.LVL33:
+ 395              		.loc 1 224 3 is_stmt 0 view .LVU66
+ 396 0006 FFF7FEFF 		bl	USBD_LL_Resume
+ 397              	.LVL34:
  225:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 390              		.loc 1 225 1 view .LVU68
- 391 000a 08BD     		pop	{r3, pc}
- 392              		.cfi_endproc
- 393              	.LFE155:
- 395              		.section	.text.HAL_PCD_ISOOUTIncompleteCallback,"ax",%progbits
- 396              		.align	1
- 397              		.global	HAL_PCD_ISOOUTIncompleteCallback
- 398              		.syntax unified
- 399              		.thumb
- 400              		.thumb_func
- 402              	HAL_PCD_ISOOUTIncompleteCallback:
- 403              	.LVL35:
- 404              	.LFB156:
+ 398              		.loc 1 225 1 view .LVU67
+ 399 000a 08BD     		pop	{r3, pc}
+ 400              		.cfi_endproc
+ 401              	.LFE155:
+ 403              		.section	.text.HAL_PCD_ISOOUTIncompleteCallback,"ax",%progbits
+ 404              		.align	1
+ 405              		.global	HAL_PCD_ISOOUTIncompleteCallback
+ 406              		.syntax unified
+ 407              		.thumb
+ 408              		.thumb_func
+ 410              	HAL_PCD_ISOOUTIncompleteCallback:
+ 411              	.LVL35:
+ 412              	.LFB156:
  226:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  227:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  228:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  ISOOUTIncomplete callback.
@@ -650,42 +658,43 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  233:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
  234:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** static void PCD_ISOOUTIncompleteCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
  235:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #else
+ARM GAS  /tmp/ccTXhoB9.s 			page 12
+
+
  236:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_ISOOUTIncompleteCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
  237:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  238:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 405              		.loc 1 238 1 is_stmt 1 view -0
- 406              		.cfi_startproc
- 407              		@ args = 0, pretend = 0, frame = 0
- 408              		@ frame_needed = 0, uses_anonymous_args = 0
- 409              		.loc 1 238 1 is_stmt 0 view .LVU70
-ARM GAS  /tmp/ccfYh3Qj.s 			page 12
-
-
- 410 0000 08B5     		push	{r3, lr}
- 411              		.cfi_def_cfa_offset 8
- 412              		.cfi_offset 3, -8
- 413              		.cfi_offset 14, -4
+ 413              		.loc 1 238 1 is_stmt 1 view -0
+ 414              		.cfi_startproc
+ 415              		@ args = 0, pretend = 0, frame = 0
+ 416              		@ frame_needed = 0, uses_anonymous_args = 0
+ 417              		.loc 1 238 1 is_stmt 0 view .LVU69
+ 418 0000 08B5     		push	{r3, lr}
+ 419              	.LCFI9:
+ 420              		.cfi_def_cfa_offset 8
+ 421              		.cfi_offset 3, -8
+ 422              		.cfi_offset 14, -4
  239:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_IsoOUTIncomplete((USBD_HandleTypeDef *)hpcd->pData, epnum);
- 414              		.loc 1 239 3 is_stmt 1 view .LVU71
- 415 0002 D0F80405 		ldr	r0, [r0, #1284]
- 416              	.LVL36:
- 417              		.loc 1 239 3 is_stmt 0 view .LVU72
- 418 0006 FFF7FEFF 		bl	USBD_LL_IsoOUTIncomplete
- 419              	.LVL37:
+ 423              		.loc 1 239 3 is_stmt 1 view .LVU70
+ 424 0002 D0F80405 		ldr	r0, [r0, #1284]
+ 425              	.LVL36:
+ 426              		.loc 1 239 3 is_stmt 0 view .LVU71
+ 427 0006 FFF7FEFF 		bl	USBD_LL_IsoOUTIncomplete
+ 428              	.LVL37:
  240:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 420              		.loc 1 240 1 view .LVU73
- 421 000a 08BD     		pop	{r3, pc}
- 422              		.cfi_endproc
- 423              	.LFE156:
- 425              		.section	.text.HAL_PCD_ISOINIncompleteCallback,"ax",%progbits
- 426              		.align	1
- 427              		.global	HAL_PCD_ISOINIncompleteCallback
- 428              		.syntax unified
- 429              		.thumb
- 430              		.thumb_func
- 432              	HAL_PCD_ISOINIncompleteCallback:
- 433              	.LVL38:
- 434              	.LFB157:
+ 429              		.loc 1 240 1 view .LVU72
+ 430 000a 08BD     		pop	{r3, pc}
+ 431              		.cfi_endproc
+ 432              	.LFE156:
+ 434              		.section	.text.HAL_PCD_ISOINIncompleteCallback,"ax",%progbits
+ 435              		.align	1
+ 436              		.global	HAL_PCD_ISOINIncompleteCallback
+ 437              		.syntax unified
+ 438              		.thumb
+ 439              		.thumb_func
+ 441              	HAL_PCD_ISOINIncompleteCallback:
+ 442              	.LVL38:
+ 443              	.LFB157:
  241:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  242:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  243:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  ISOINIncomplete callback.
@@ -699,39 +708,40 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  251:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_ISOINIncompleteCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
  252:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  253:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 435              		.loc 1 253 1 is_stmt 1 view -0
- 436              		.cfi_startproc
- 437              		@ args = 0, pretend = 0, frame = 0
- 438              		@ frame_needed = 0, uses_anonymous_args = 0
- 439              		.loc 1 253 1 is_stmt 0 view .LVU75
- 440 0000 08B5     		push	{r3, lr}
- 441              		.cfi_def_cfa_offset 8
- 442              		.cfi_offset 3, -8
- 443              		.cfi_offset 14, -4
+ 444              		.loc 1 253 1 is_stmt 1 view -0
+ 445              		.cfi_startproc
+ 446              		@ args = 0, pretend = 0, frame = 0
+ 447              		@ frame_needed = 0, uses_anonymous_args = 0
+ 448              		.loc 1 253 1 is_stmt 0 view .LVU74
+ 449 0000 08B5     		push	{r3, lr}
+ 450              	.LCFI10:
+ 451              		.cfi_def_cfa_offset 8
+ 452              		.cfi_offset 3, -8
+ 453              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccTXhoB9.s 			page 13
+
+
  254:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_IsoINIncomplete((USBD_HandleTypeDef *)hpcd->pData, epnum);
- 444              		.loc 1 254 3 is_stmt 1 view .LVU76
- 445 0002 D0F80405 		ldr	r0, [r0, #1284]
- 446              	.LVL39:
- 447              		.loc 1 254 3 is_stmt 0 view .LVU77
- 448 0006 FFF7FEFF 		bl	USBD_LL_IsoINIncomplete
- 449              	.LVL40:
+ 454              		.loc 1 254 3 is_stmt 1 view .LVU75
+ 455 0002 D0F80405 		ldr	r0, [r0, #1284]
+ 456              	.LVL39:
+ 457              		.loc 1 254 3 is_stmt 0 view .LVU76
+ 458 0006 FFF7FEFF 		bl	USBD_LL_IsoINIncomplete
+ 459              	.LVL40:
  255:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 450              		.loc 1 255 1 view .LVU78
- 451 000a 08BD     		pop	{r3, pc}
-ARM GAS  /tmp/ccfYh3Qj.s 			page 13
-
-
- 452              		.cfi_endproc
- 453              	.LFE157:
- 455              		.section	.text.HAL_PCD_ConnectCallback,"ax",%progbits
- 456              		.align	1
- 457              		.global	HAL_PCD_ConnectCallback
- 458              		.syntax unified
- 459              		.thumb
- 460              		.thumb_func
- 462              	HAL_PCD_ConnectCallback:
- 463              	.LVL41:
- 464              	.LFB158:
+ 460              		.loc 1 255 1 view .LVU77
+ 461 000a 08BD     		pop	{r3, pc}
+ 462              		.cfi_endproc
+ 463              	.LFE157:
+ 465              		.section	.text.HAL_PCD_ConnectCallback,"ax",%progbits
+ 466              		.align	1
+ 467              		.global	HAL_PCD_ConnectCallback
+ 468              		.syntax unified
+ 469              		.thumb
+ 470              		.thumb_func
+ 472              	HAL_PCD_ConnectCallback:
+ 473              	.LVL41:
+ 474              	.LFB158:
  256:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  257:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  258:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Connect callback.
@@ -744,43 +754,44 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  265:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_ConnectCallback(PCD_HandleTypeDef *hpcd)
  266:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  267:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 465              		.loc 1 267 1 is_stmt 1 view -0
- 466              		.cfi_startproc
- 467              		@ args = 0, pretend = 0, frame = 0
- 468              		@ frame_needed = 0, uses_anonymous_args = 0
- 469              		.loc 1 267 1 is_stmt 0 view .LVU80
- 470 0000 08B5     		push	{r3, lr}
- 471              		.cfi_def_cfa_offset 8
- 472              		.cfi_offset 3, -8
- 473              		.cfi_offset 14, -4
+ 475              		.loc 1 267 1 is_stmt 1 view -0
+ 476              		.cfi_startproc
+ 477              		@ args = 0, pretend = 0, frame = 0
+ 478              		@ frame_needed = 0, uses_anonymous_args = 0
+ 479              		.loc 1 267 1 is_stmt 0 view .LVU79
+ 480 0000 08B5     		push	{r3, lr}
+ 481              	.LCFI11:
+ 482              		.cfi_def_cfa_offset 8
+ 483              		.cfi_offset 3, -8
+ 484              		.cfi_offset 14, -4
  268:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_DevConnected((USBD_HandleTypeDef *)hpcd->pData);
- 474              		.loc 1 268 3 is_stmt 1 view .LVU81
- 475 0002 D0F80405 		ldr	r0, [r0, #1284]
- 476              	.LVL42:
- 477              		.loc 1 268 3 is_stmt 0 view .LVU82
- 478 0006 FFF7FEFF 		bl	USBD_LL_DevConnected
- 479              	.LVL43:
+ 485              		.loc 1 268 3 is_stmt 1 view .LVU80
+ 486 0002 D0F80405 		ldr	r0, [r0, #1284]
+ 487              	.LVL42:
+ 488              		.loc 1 268 3 is_stmt 0 view .LVU81
+ 489 0006 FFF7FEFF 		bl	USBD_LL_DevConnected
+ 490              	.LVL43:
  269:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 480              		.loc 1 269 1 view .LVU83
- 481 000a 08BD     		pop	{r3, pc}
- 482              		.cfi_endproc
- 483              	.LFE158:
- 485              		.section	.text.HAL_PCD_DisconnectCallback,"ax",%progbits
- 486              		.align	1
- 487              		.global	HAL_PCD_DisconnectCallback
- 488              		.syntax unified
- 489              		.thumb
- 490              		.thumb_func
- 492              	HAL_PCD_DisconnectCallback:
- 493              	.LVL44:
- 494              	.LFB159:
+ 491              		.loc 1 269 1 view .LVU82
+ 492 000a 08BD     		pop	{r3, pc}
+ 493              		.cfi_endproc
+ 494              	.LFE158:
+ 496              		.section	.text.HAL_PCD_DisconnectCallback,"ax",%progbits
+ 497              		.align	1
+ARM GAS  /tmp/ccTXhoB9.s 			page 14
+
+
+ 498              		.global	HAL_PCD_DisconnectCallback
+ 499              		.syntax unified
+ 500              		.thumb
+ 501              		.thumb_func
+ 503              	HAL_PCD_DisconnectCallback:
+ 504              	.LVL44:
+ 505              	.LFB159:
  270:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  271:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  272:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Disconnect callback.
  273:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  hpcd: PCD handle
-ARM GAS  /tmp/ccfYh3Qj.s 			page 14
-
-
  274:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @retval None
  275:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
  276:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USE_HAL_PCD_REGISTER_CALLBACKS == 1U)
@@ -789,36 +800,37 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  279:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void HAL_PCD_DisconnectCallback(PCD_HandleTypeDef *hpcd)
  280:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  281:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 495              		.loc 1 281 1 is_stmt 1 view -0
- 496              		.cfi_startproc
- 497              		@ args = 0, pretend = 0, frame = 0
- 498              		@ frame_needed = 0, uses_anonymous_args = 0
- 499              		.loc 1 281 1 is_stmt 0 view .LVU85
- 500 0000 08B5     		push	{r3, lr}
- 501              		.cfi_def_cfa_offset 8
- 502              		.cfi_offset 3, -8
- 503              		.cfi_offset 14, -4
+ 506              		.loc 1 281 1 is_stmt 1 view -0
+ 507              		.cfi_startproc
+ 508              		@ args = 0, pretend = 0, frame = 0
+ 509              		@ frame_needed = 0, uses_anonymous_args = 0
+ 510              		.loc 1 281 1 is_stmt 0 view .LVU84
+ 511 0000 08B5     		push	{r3, lr}
+ 512              	.LCFI12:
+ 513              		.cfi_def_cfa_offset 8
+ 514              		.cfi_offset 3, -8
+ 515              		.cfi_offset 14, -4
  282:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_LL_DevDisconnected((USBD_HandleTypeDef *)hpcd->pData);
- 504              		.loc 1 282 3 is_stmt 1 view .LVU86
- 505 0002 D0F80405 		ldr	r0, [r0, #1284]
- 506              	.LVL45:
- 507              		.loc 1 282 3 is_stmt 0 view .LVU87
- 508 0006 FFF7FEFF 		bl	USBD_LL_DevDisconnected
- 509              	.LVL46:
+ 516              		.loc 1 282 3 is_stmt 1 view .LVU85
+ 517 0002 D0F80405 		ldr	r0, [r0, #1284]
+ 518              	.LVL45:
+ 519              		.loc 1 282 3 is_stmt 0 view .LVU86
+ 520 0006 FFF7FEFF 		bl	USBD_LL_DevDisconnected
+ 521              	.LVL46:
  283:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 510              		.loc 1 283 1 view .LVU88
- 511 000a 08BD     		pop	{r3, pc}
- 512              		.cfi_endproc
- 513              	.LFE159:
- 515              		.section	.text.USBD_LL_Init,"ax",%progbits
- 516              		.align	1
- 517              		.global	USBD_LL_Init
- 518              		.syntax unified
- 519              		.thumb
- 520              		.thumb_func
- 522              	USBD_LL_Init:
- 523              	.LVL47:
- 524              	.LFB160:
+ 522              		.loc 1 283 1 view .LVU87
+ 523 000a 08BD     		pop	{r3, pc}
+ 524              		.cfi_endproc
+ 525              	.LFE159:
+ 527              		.section	.text.USBD_LL_Init,"ax",%progbits
+ 528              		.align	1
+ 529              		.global	USBD_LL_Init
+ 530              		.syntax unified
+ 531              		.thumb
+ 532              		.thumb_func
+ 534              	USBD_LL_Init:
+ 535              	.LVL47:
+ 536              	.LFB160:
  284:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  285:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /*******************************************************************************
  286:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****                        LL Driver Interface (USB Device Library --> PCD)
@@ -826,43 +838,44 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  288:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  289:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  290:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Initializes the low level portion of the device driver.
+ARM GAS  /tmp/ccTXhoB9.s 			page 15
+
+
  291:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  pdev: Device handle
  292:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @retval USBD status
  293:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
  294:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
  295:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 525              		.loc 1 295 1 is_stmt 1 view -0
- 526              		.cfi_startproc
- 527              		@ args = 0, pretend = 0, frame = 0
- 528              		@ frame_needed = 0, uses_anonymous_args = 0
- 529              		.loc 1 295 1 is_stmt 0 view .LVU90
- 530 0000 38B5     		push	{r3, r4, r5, lr}
- 531              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccfYh3Qj.s 			page 15
-
-
- 532              		.cfi_offset 3, -16
- 533              		.cfi_offset 4, -12
- 534              		.cfi_offset 5, -8
- 535              		.cfi_offset 14, -4
+ 537              		.loc 1 295 1 is_stmt 1 view -0
+ 538              		.cfi_startproc
+ 539              		@ args = 0, pretend = 0, frame = 0
+ 540              		@ frame_needed = 0, uses_anonymous_args = 0
+ 541              		.loc 1 295 1 is_stmt 0 view .LVU89
+ 542 0000 38B5     		push	{r3, r4, r5, lr}
+ 543              	.LCFI13:
+ 544              		.cfi_def_cfa_offset 16
+ 545              		.cfi_offset 3, -16
+ 546              		.cfi_offset 4, -12
+ 547              		.cfi_offset 5, -8
+ 548              		.cfi_offset 14, -4
  296:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USBD_USE_HS == 1)
  297:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   /** HIGH SPEED USB */
  298:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   hpcd_USB_OTG_PTR = &hpcd_USB_OTG_HS;
- 536              		.loc 1 298 3 is_stmt 1 view .LVU91
- 537              		.loc 1 298 20 is_stmt 0 view .LVU92
- 538 0002 1B4B     		ldr	r3, .L42
- 539 0004 1B4A     		ldr	r2, .L42+4
- 540 0006 1A60     		str	r2, [r3]
+ 549              		.loc 1 298 3 is_stmt 1 view .LVU90
+ 550              		.loc 1 298 20 is_stmt 0 view .LVU91
+ 551 0002 1B4B     		ldr	r3, .L42
+ 552 0004 1B4A     		ldr	r2, .L42+4
+ 553 0006 1A60     		str	r2, [r3]
  299:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  300:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   if (pdev->id == DEVICE_HS)
- 541              		.loc 1 300 3 is_stmt 1 view .LVU93
- 542              		.loc 1 300 11 is_stmt 0 view .LVU94
- 543 0008 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
- 544              		.loc 1 300 6 view .LVU95
- 545 000a 012B     		cmp	r3, #1
- 546 000c 01D0     		beq	.L41
- 547              	.LVL48:
- 548              	.L37:
+ 554              		.loc 1 300 3 is_stmt 1 view .LVU92
+ 555              		.loc 1 300 11 is_stmt 0 view .LVU93
+ 556 0008 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 557              		.loc 1 300 6 view .LVU94
+ 558 000a 012B     		cmp	r3, #1
+ 559 000c 01D0     		beq	.L41
+ 560              	.LVL48:
+ 561              	.L37:
  301:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   {
  302:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     /* Link the driver to the stack. */
  303:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     hpcd_USB_OTG_PTR->pData = pdev;
@@ -885,6 +898,9 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  320:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USBD_USE_HID_MOUSE == 1)
  321:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (HID_MOUSE_IN_EP & 0x7F), 64);
  322:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
+ARM GAS  /tmp/ccTXhoB9.s 			page 16
+
+
  323:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USBD_USE_HID_KEYBOARD == 1)
  324:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (HID_KEYBOARD_IN_EP & 0x7F), 64);
  325:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
@@ -898,9 +914,6 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  333:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
  334:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USBD_USE_UVC == 1)
  335:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (UVC_IN_EP & 0x7F), 128);
-ARM GAS  /tmp/ccfYh3Qj.s 			page 16
-
-
  336:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
  337:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USBD_USE_MSC == 1)
  338:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (MSC_IN_EP & 0x7F), 128);
@@ -945,6 +958,9 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  377:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     pma_track += 0x40;
  378:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  379:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USBD_USE_CDC_RNDIS == 1)
+ARM GAS  /tmp/ccTXhoB9.s 			page 17
+
+
  380:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_PMAConfig((PCD_HandleTypeDef *)pdev->pData, CDC_RNDIS_IN_EP, PCD_SNG_BUF, pma_track);
  381:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     pma_track += 128;
  382:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_PMAConfig((PCD_HandleTypeDef *)pdev->pData, CDC_RNDIS_OUT_EP, PCD_SNG_BUF, pma_track)
@@ -958,9 +974,6 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  390:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_PMAConfig((PCD_HandleTypeDef *)pdev->pData, CDC_ECM_OUT_EP, PCD_SNG_BUF, pma_track);
  391:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     pma_track += 48;
  392:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_PMAConfig((PCD_HandleTypeDef *)pdev->pData, CDC_ECM_CMD_EP, PCD_SNG_BUF, pma_track);
-ARM GAS  /tmp/ccfYh3Qj.s 			page 17
-
-
  393:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     pma_track += 8;
  394:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
  395:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USBD_USE_HID_MOUSE == 1)
@@ -1005,6 +1018,9 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  434:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
  435:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #if (USBD_USE_CDC_ACM == 1)
  436:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     for (uint8_t i = 0; i < USBD_CDC_ACM_COUNT; i++)
+ARM GAS  /tmp/ccTXhoB9.s 			page 18
+
+
  437:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
  438:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****       HAL_PCDEx_PMAConfig((PCD_HandleTypeDef *)pdev->pData, CDC_IN_EP[i], PCD_SNG_BUF, pma_track);
  439:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****       pma_track += 48;
@@ -1018,9 +1034,6 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  447:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
  448:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #else /** if HAL_PCDEx_SetRxFiFo() is used by HAL driver */
  449:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
-ARM GAS  /tmp/ccfYh3Qj.s 			page 18
-
-
  450:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_SetRxFiFoInBytes(hpcd_USB_OTG_PTR, 512); // ALL OUT EP Buffer
  451:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  452:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, 0, 64); // EP0 IN
@@ -1065,6 +1078,9 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  491:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****       HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (CDC_IN_EP[i] & 0x7F), 128);
  492:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****       HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (CDC_CMD_EP[i] & 0x7F), 64);
  493:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     }
+ARM GAS  /tmp/ccTXhoB9.s 			page 19
+
+
  494:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
  495:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
  496:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
@@ -1078,9 +1094,6 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  504:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_PCD_RegisterCallback(hpcd_USB_OTG_PTR, HAL_PCD_SUSPEND_CB_ID, PCD_SuspendCallback);
  505:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_PCD_RegisterCallback(hpcd_USB_OTG_PTR, HAL_PCD_RESUME_CB_ID, PCD_ResumeCallback);
  506:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_PCD_RegisterCallback(hpcd_USB_OTG_PTR, HAL_PCD_CONNECT_CB_ID, PCD_ConnectCallback);
-ARM GAS  /tmp/ccfYh3Qj.s 			page 19
-
-
  507:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_PCD_RegisterCallback(hpcd_USB_OTG_PTR, HAL_PCD_DISCONNECT_CB_ID, PCD_DisconnectCallback);
  508:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  509:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_PCD_RegisterDataOutStageCallback(hpcd_USB_OTG_PTR, PCD_DataOutStageCallback);
@@ -1089,127 +1102,131 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  512:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_PCD_RegisterIsoInIncpltCallback(hpcd_USB_OTG_PTR, PCD_ISOINIncompleteCallback);
  513:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
  514:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   return USBD_OK;
- 549              		.loc 1 514 3 is_stmt 1 view .LVU96
+ 562              		.loc 1 514 3 is_stmt 1 view .LVU95
  515:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 550              		.loc 1 515 1 is_stmt 0 view .LVU97
- 551 000e 0020     		movs	r0, #0
- 552 0010 38BD     		pop	{r3, r4, r5, pc}
- 553              	.LVL49:
- 554              	.L41:
+ 563              		.loc 1 515 1 is_stmt 0 view .LVU96
+ 564 000e 0020     		movs	r0, #0
+ 565 0010 38BD     		pop	{r3, r4, r5, pc}
+ 566              	.LVL49:
+ 567              	.L41:
  303:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     pdev->pData = hpcd_USB_OTG_PTR;
- 555              		.loc 1 303 5 is_stmt 1 view .LVU98
+ 568              		.loc 1 303 5 is_stmt 1 view .LVU97
  303:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     pdev->pData = hpcd_USB_OTG_PTR;
- 556              		.loc 1 303 29 is_stmt 0 view .LVU99
- 557 0012 C2F80405 		str	r0, [r2, #1284]
+ 569              		.loc 1 303 29 is_stmt 0 view .LVU98
+ 570 0012 C2F80405 		str	r0, [r2, #1284]
  304:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 558              		.loc 1 304 5 is_stmt 1 view .LVU100
+ 571              		.loc 1 304 5 is_stmt 1 view .LVU99
  304:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 559              		.loc 1 304 17 is_stmt 0 view .LVU101
- 560 0016 C0F81023 		str	r2, [r0, #784]
+ 572              		.loc 1 304 17 is_stmt 0 view .LVU100
+ 573 0016 C0F81023 		str	r2, [r0, #784]
  308:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 561              		.loc 1 308 5 is_stmt 1 view .LVU102
- 562 001a 4FF48061 		mov	r1, #1024
- 563 001e 1046     		mov	r0, r2
- 564              	.LVL50:
+ 574              		.loc 1 308 5 is_stmt 1 view .LVU101
+ 575 001a 4FF48061 		mov	r1, #1024
+ 576 001e 1046     		mov	r0, r2
+ 577              	.LVL50:
  308:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 565              		.loc 1 308 5 is_stmt 0 view .LVU103
- 566 0020 FFF7FEFF 		bl	HAL_PCDEx_SetRxFiFoInBytes
- 567              	.LVL51:
+ 578              		.loc 1 308 5 is_stmt 0 view .LVU102
+ 579 0020 FFF7FEFF 		bl	HAL_PCDEx_SetRxFiFoInBytes
+ 580              	.LVL51:
  310:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 568              		.loc 1 310 5 is_stmt 1 view .LVU104
- 569 0024 124C     		ldr	r4, .L42
- 570 0026 4022     		movs	r2, #64
- 571 0028 0021     		movs	r1, #0
- 572 002a 2068     		ldr	r0, [r4]
- 573 002c FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFoInBytes
- 574              	.LVL52:
+ 581              		.loc 1 310 5 is_stmt 1 view .LVU103
+ 582 0024 124C     		ldr	r4, .L42
+ 583 0026 4022     		movs	r2, #64
+ 584 0028 0021     		movs	r1, #0
+ 585 002a 2068     		ldr	r0, [r4]
+ 586 002c FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFoInBytes
+ 587              	.LVL52:
  324:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** #endif
- 575              		.loc 1 324 5 view .LVU105
- 576 0030 114B     		ldr	r3, .L42+8
- 577 0032 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
- 578 0034 4022     		movs	r2, #64
- 579 0036 01F07F01 		and	r1, r1, #127
- 580 003a 2068     		ldr	r0, [r4]
- 581 003c FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFoInBytes
- 582              	.LVL53:
- 346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
- 583              		.loc 1 346 5 view .LVU106
- 584              	.LBB2:
- 346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
- 585              		.loc 1 346 10 view .LVU107
- 346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
-ARM GAS  /tmp/ccfYh3Qj.s 			page 20
+ 588              		.loc 1 324 5 view .LVU104
+ARM GAS  /tmp/ccTXhoB9.s 			page 20
 
 
- 586              		.loc 1 346 18 is_stmt 0 view .LVU108
- 587 0040 0024     		movs	r4, #0
- 588              	.LVL54:
- 589              	.L38:
+ 589 0030 114B     		ldr	r3, .L42+8
+ 590 0032 1978     		ldrb	r1, [r3]	@ zero_extendqisi2
+ 591 0034 4022     		movs	r2, #64
+ 592 0036 01F07F01 		and	r1, r1, #127
+ 593 003a 2068     		ldr	r0, [r4]
+ 594 003c FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFoInBytes
+ 595              	.LVL53:
  346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
- 590              		.loc 1 346 27 is_stmt 1 discriminator 1 view .LVU109
- 591 0042 002C     		cmp	r4, #0
- 592 0044 E3D1     		bne	.L37
+ 596              		.loc 1 346 5 view .LVU105
+ 597              	.LBB2:
+ 346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
+ 598              		.loc 1 346 10 view .LVU106
+ 346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
+ 599              		.loc 1 346 18 is_stmt 0 view .LVU107
+ 600 0040 0024     		movs	r4, #0
+ 601              	.LVL54:
+ 602              	.L38:
+ 346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
+ 603              		.loc 1 346 25 is_stmt 1 discriminator 1 view .LVU108
+ 346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
+ 604              		.loc 1 346 5 is_stmt 0 discriminator 1 view .LVU109
+ 605 0042 002C     		cmp	r4, #0
+ 606 0044 E3D1     		bne	.L37
  348:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****       HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (CDC_CMD_EP[i] & 0x7F), 64);
- 593              		.loc 1 348 7 discriminator 3 view .LVU110
+ 607              		.loc 1 348 7 is_stmt 1 discriminator 3 view .LVU110
  348:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****       HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (CDC_CMD_EP[i] & 0x7F), 64);
- 594              		.loc 1 348 62 is_stmt 0 discriminator 3 view .LVU111
- 595 0046 0D4B     		ldr	r3, .L42+12
- 596 0048 195D     		ldrb	r1, [r3, r4]	@ zero_extendqisi2
+ 608              		.loc 1 348 62 is_stmt 0 discriminator 3 view .LVU111
+ 609 0046 0D4B     		ldr	r3, .L42+12
+ 610 0048 195D     		ldrb	r1, [r3, r4]	@ zero_extendqisi2
  348:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****       HAL_PCDEx_SetTxFiFoInBytes(hpcd_USB_OTG_PTR, (CDC_CMD_EP[i] & 0x7F), 64);
- 597              		.loc 1 348 7 discriminator 3 view .LVU112
- 598 004a 094D     		ldr	r5, .L42
- 599 004c 8022     		movs	r2, #128
- 600 004e 01F07F01 		and	r1, r1, #127
- 601 0052 2868     		ldr	r0, [r5]
- 602 0054 FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFoInBytes
- 603              	.LVL55:
+ 611              		.loc 1 348 7 discriminator 3 view .LVU112
+ 612 004a 094D     		ldr	r5, .L42
+ 613 004c 8022     		movs	r2, #128
+ 614 004e 01F07F01 		and	r1, r1, #127
+ 615 0052 2868     		ldr	r0, [r5]
+ 616 0054 FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFoInBytes
+ 617              	.LVL55:
  349:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     }
- 604              		.loc 1 349 7 is_stmt 1 discriminator 3 view .LVU113
+ 618              		.loc 1 349 7 is_stmt 1 discriminator 3 view .LVU113
  349:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     }
- 605              		.loc 1 349 63 is_stmt 0 discriminator 3 view .LVU114
- 606 0058 094B     		ldr	r3, .L42+16
- 607 005a 195D     		ldrb	r1, [r3, r4]	@ zero_extendqisi2
+ 619              		.loc 1 349 63 is_stmt 0 discriminator 3 view .LVU114
+ 620 0058 094B     		ldr	r3, .L42+16
+ 621 005a 195D     		ldrb	r1, [r3, r4]	@ zero_extendqisi2
  349:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     }
- 608              		.loc 1 349 7 discriminator 3 view .LVU115
- 609 005c 4022     		movs	r2, #64
- 610 005e 01F07F01 		and	r1, r1, #127
- 611 0062 2868     		ldr	r0, [r5]
- 612 0064 FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFoInBytes
- 613              	.LVL56:
+ 622              		.loc 1 349 7 discriminator 3 view .LVU115
+ 623 005c 4022     		movs	r2, #64
+ 624 005e 01F07F01 		and	r1, r1, #127
+ 625 0062 2868     		ldr	r0, [r5]
+ 626 0064 FFF7FEFF 		bl	HAL_PCDEx_SetTxFiFoInBytes
+ 627              	.LVL56:
  346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
- 614              		.loc 1 346 50 is_stmt 1 discriminator 3 view .LVU116
- 615 0068 0134     		adds	r4, r4, #1
- 616              	.LVL57:
+ 628              		.loc 1 346 49 is_stmt 1 discriminator 3 view .LVU116
  346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
- 617              		.loc 1 346 50 is_stmt 0 discriminator 3 view .LVU117
- 618 006a E4B2     		uxtb	r4, r4
- 619              	.LVL58:
+ 629              		.loc 1 346 50 is_stmt 0 discriminator 3 view .LVU117
+ 630 0068 0134     		adds	r4, r4, #1
+ 631              	.LVL57:
  346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
- 620              		.loc 1 346 50 discriminator 3 view .LVU118
- 621 006c E9E7     		b	.L38
- 622              	.L43:
- 623 006e 00BF     		.align	2
- 624              	.L42:
- 625 0070 00000000 		.word	hpcd_USB_OTG_PTR
- 626 0074 00000000 		.word	hpcd_USB_OTG_HS
- 627 0078 00000000 		.word	HID_KEYBOARD_IN_EP
- 628 007c 00000000 		.word	CDC_IN_EP
- 629 0080 00000000 		.word	CDC_CMD_EP
- 630              	.LBE2:
- 631              		.cfi_endproc
- 632              	.LFE160:
-ARM GAS  /tmp/ccfYh3Qj.s 			page 21
+ARM GAS  /tmp/ccTXhoB9.s 			page 21
 
 
- 634              		.section	.text.USBD_LL_IsStallEP,"ax",%progbits
- 635              		.align	1
- 636              		.global	USBD_LL_IsStallEP
- 637              		.syntax unified
- 638              		.thumb
- 639              		.thumb_func
- 641              	USBD_LL_IsStallEP:
- 642              	.LVL59:
- 643              	.LFB169:
+ 632              		.loc 1 346 50 discriminator 3 view .LVU118
+ 633 006a E4B2     		uxtb	r4, r4
+ 634              	.LVL58:
+ 346:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     {
+ 635              		.loc 1 346 50 discriminator 3 view .LVU119
+ 636 006c E9E7     		b	.L38
+ 637              	.L43:
+ 638 006e 00BF     		.align	2
+ 639              	.L42:
+ 640 0070 00000000 		.word	.LANCHOR0
+ 641 0074 00000000 		.word	hpcd_USB_OTG_HS
+ 642 0078 00000000 		.word	HID_KEYBOARD_IN_EP
+ 643 007c 00000000 		.word	CDC_IN_EP
+ 644 0080 00000000 		.word	CDC_CMD_EP
+ 645              	.LBE2:
+ 646              		.cfi_endproc
+ 647              	.LFE160:
+ 649              		.section	.text.USBD_LL_IsStallEP,"ax",%progbits
+ 650              		.align	1
+ 651              		.global	USBD_LL_IsStallEP
+ 652              		.syntax unified
+ 653              		.thumb
+ 654              		.thumb_func
+ 656              	USBD_LL_IsStallEP:
+ 657              	.LVL59:
+ 658              	.LFB169:
  516:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  517:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  518:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  De-Initializes the low level portion of the device driver.
@@ -1241,6 +1258,9 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  544:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   hal_status = HAL_PCD_Start(pdev->pData);
  545:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  546:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   usb_status = USBD_Get_USB_Status(hal_status);
+ARM GAS  /tmp/ccTXhoB9.s 			page 22
+
+
  547:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  548:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   return usb_status;
  549:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
@@ -1258,9 +1278,6 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  561:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   hal_status = HAL_PCD_Stop(pdev->pData);
  562:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  563:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   usb_status = USBD_Get_USB_Status(hal_status);
-ARM GAS  /tmp/ccfYh3Qj.s 			page 22
-
-
  564:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  565:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   return usb_status;
  566:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
@@ -1301,6 +1318,9 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  601:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   usb_status = USBD_Get_USB_Status(hal_status);
  602:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  603:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   return usb_status;
+ARM GAS  /tmp/ccTXhoB9.s 			page 23
+
+
  604:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
  605:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  606:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
@@ -1318,9 +1338,6 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  618:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  619:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   usb_status = USBD_Get_USB_Status(hal_status);
  620:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
-ARM GAS  /tmp/ccfYh3Qj.s 			page 23
-
-
  621:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   return usb_status;
  622:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
  623:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
@@ -1361,6 +1378,9 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  658:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
  659:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  660:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
+ARM GAS  /tmp/ccTXhoB9.s 			page 24
+
+
  661:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Returns Stall condition.
  662:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  pdev: Device handle
  663:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  ep_addr: Endpoint number
@@ -1368,80 +1388,72 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  665:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
  666:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** uint8_t USBD_LL_IsStallEP(USBD_HandleTypeDef *pdev, uint8_t ep_addr)
  667:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 644              		.loc 1 667 1 is_stmt 1 view -0
- 645              		.cfi_startproc
- 646              		@ args = 0, pretend = 0, frame = 0
- 647              		@ frame_needed = 0, uses_anonymous_args = 0
- 648              		@ link register save eliminated.
+ 659              		.loc 1 667 1 is_stmt 1 view -0
+ 660              		.cfi_startproc
+ 661              		@ args = 0, pretend = 0, frame = 0
+ 662              		@ frame_needed = 0, uses_anonymous_args = 0
+ 663              		@ link register save eliminated.
  668:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   PCD_HandleTypeDef *hpcd = (PCD_HandleTypeDef *)pdev->pData;
- 649              		.loc 1 668 3 view .LVU120
- 650              		.loc 1 668 22 is_stmt 0 view .LVU121
- 651 0000 D0F81033 		ldr	r3, [r0, #784]
- 652              	.LVL60:
-ARM GAS  /tmp/ccfYh3Qj.s 			page 24
-
-
+ 664              		.loc 1 668 3 view .LVU121
+ 665              		.loc 1 668 22 is_stmt 0 view .LVU122
+ 666 0000 D0F81033 		ldr	r3, [r0, #784]
+ 667              	.LVL60:
  669:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  670:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   if ((ep_addr & 0x80) == 0x80)
- 653              		.loc 1 670 3 is_stmt 1 view .LVU122
- 654              		.loc 1 670 6 is_stmt 0 view .LVU123
- 655 0004 11F0800F 		tst	r1, #128
- 656 0008 08D1     		bne	.L47
+ 668              		.loc 1 670 3 is_stmt 1 view .LVU123
+ 669              		.loc 1 670 6 is_stmt 0 view .LVU124
+ 670 0004 11F0800F 		tst	r1, #128
+ 671 0008 08D1     		bne	.L47
  671:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   {
  672:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     return hpcd->IN_ep[ep_addr & 0x7F].is_stall;
  673:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
  674:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   else
  675:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   {
  676:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     return hpcd->OUT_ep[ep_addr & 0x7F].is_stall;
- 657              		.loc 1 676 5 is_stmt 1 view .LVU124
- 658              		.loc 1 676 33 is_stmt 0 view .LVU125
- 659 000a 01F07F01 		and	r1, r1, #127
- 660              	.LVL61:
- 661              		.loc 1 676 40 view .LVU126
- 662 000e 01EBC101 		add	r1, r1, r1, lsl #3
- 663 0012 03EB8103 		add	r3, r3, r1, lsl #2
- 664              	.LVL62:
- 665              		.loc 1 676 40 view .LVU127
- 666 0016 93F87E02 		ldrb	r0, [r3, #638]	@ zero_extendqisi2
- 667              	.LVL63:
+ 672              		.loc 1 676 5 is_stmt 1 view .LVU125
+ 673              		.loc 1 676 33 is_stmt 0 view .LVU126
+ 674 000a 01F07F01 		and	r1, r1, #127
+ 675              	.LVL61:
+ 676              		.loc 1 676 40 view .LVU127
+ 677 000e 01EBC101 		add	r1, r1, r1, lsl #3
+ 678 0012 03EB8101 		add	r1, r3, r1, lsl #2
+ 679 0016 91F87E02 		ldrb	r0, [r1, #638]	@ zero_extendqisi2
+ 680              	.LVL62:
  677:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
  678:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 668              		.loc 1 678 1 view .LVU128
- 669 001a 7047     		bx	lr
- 670              	.LVL64:
- 671              	.L47:
+ 681              		.loc 1 678 1 view .LVU128
+ 682 001a 7047     		bx	lr
+ 683              	.LVL63:
+ 684              	.L47:
  672:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
- 672              		.loc 1 672 5 is_stmt 1 view .LVU129
+ 685              		.loc 1 672 5 is_stmt 1 view .LVU129
  672:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
- 673              		.loc 1 672 32 is_stmt 0 view .LVU130
- 674 001c 01F07F01 		and	r1, r1, #127
- 675              	.LVL65:
+ 686              		.loc 1 672 32 is_stmt 0 view .LVU130
+ 687 001c 01F07F01 		and	r1, r1, #127
+ 688              	.LVL64:
  672:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
- 676              		.loc 1 672 39 view .LVU131
- 677 0020 01EBC101 		add	r1, r1, r1, lsl #3
- 678 0024 03EB8103 		add	r3, r3, r1, lsl #2
- 679              	.LVL66:
+ 689              		.loc 1 672 39 view .LVU131
+ 690 0020 01EBC101 		add	r1, r1, r1, lsl #3
+ 691 0024 03EB8101 		add	r1, r3, r1, lsl #2
+ 692 0028 91F83E00 		ldrb	r0, [r1, #62]	@ zero_extendqisi2
+ 693              	.LVL65:
  672:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
- 680              		.loc 1 672 39 view .LVU132
- 681 0028 93F83E00 		ldrb	r0, [r3, #62]	@ zero_extendqisi2
- 682              	.LVL67:
- 672:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
- 683              		.loc 1 672 39 view .LVU133
- 684 002c 7047     		bx	lr
- 685              		.cfi_endproc
- 686              	.LFE169:
- 688              		.section	.text.USBD_LL_GetRxDataSize,"ax",%progbits
- 689              		.align	1
- 690              		.global	USBD_LL_GetRxDataSize
- 691              		.syntax unified
- 692              		.thumb
- 693              		.thumb_func
- 695              	USBD_LL_GetRxDataSize:
- 696              	.LVL68:
-ARM GAS  /tmp/ccfYh3Qj.s 			page 25
+ARM GAS  /tmp/ccTXhoB9.s 			page 25
 
 
- 697              	.LFB173:
+ 694              		.loc 1 672 39 view .LVU132
+ 695 002c 7047     		bx	lr
+ 696              		.cfi_endproc
+ 697              	.LFE169:
+ 699              		.section	.text.USBD_LL_GetRxDataSize,"ax",%progbits
+ 700              		.align	1
+ 701              		.global	USBD_LL_GetRxDataSize
+ 702              		.syntax unified
+ 703              		.thumb
+ 704              		.thumb_func
+ 706              	USBD_LL_GetRxDataSize:
+ 707              	.LVL66:
+ 708              	.LFB173:
  679:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  680:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  681:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Assigns a USB address to the device.
@@ -1486,6 +1498,9 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  720:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  pdev: Device handle
  721:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  ep_addr: Endpoint number
  722:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  pbuf: Pointer to data to be received
+ARM GAS  /tmp/ccTXhoB9.s 			page 26
+
+
  723:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  size: Data size
  724:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @retval USBD status
  725:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
@@ -1498,9 +1513,6 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  732:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  733:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   usb_status = USBD_Get_USB_Status(hal_status);
  734:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
-ARM GAS  /tmp/ccfYh3Qj.s 			page 26
-
-
  735:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   return usb_status;
  736:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
  737:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
@@ -1512,75 +1524,77 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  743:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
  744:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** uint32_t USBD_LL_GetRxDataSize(USBD_HandleTypeDef *pdev, uint8_t ep_addr)
  745:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 698              		.loc 1 745 1 is_stmt 1 view -0
- 699              		.cfi_startproc
- 700              		@ args = 0, pretend = 0, frame = 0
- 701              		@ frame_needed = 0, uses_anonymous_args = 0
- 702              		.loc 1 745 1 is_stmt 0 view .LVU135
- 703 0000 08B5     		push	{r3, lr}
- 704              		.cfi_def_cfa_offset 8
- 705              		.cfi_offset 3, -8
- 706              		.cfi_offset 14, -4
+ 709              		.loc 1 745 1 is_stmt 1 view -0
+ 710              		.cfi_startproc
+ 711              		@ args = 0, pretend = 0, frame = 0
+ 712              		@ frame_needed = 0, uses_anonymous_args = 0
+ 713              		.loc 1 745 1 is_stmt 0 view .LVU134
+ 714 0000 08B5     		push	{r3, lr}
+ 715              	.LCFI14:
+ 716              		.cfi_def_cfa_offset 8
+ 717              		.cfi_offset 3, -8
+ 718              		.cfi_offset 14, -4
  746:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   return HAL_PCD_EP_GetRxCount((PCD_HandleTypeDef *)pdev->pData, ep_addr);
- 707              		.loc 1 746 3 is_stmt 1 view .LVU136
- 708              		.loc 1 746 10 is_stmt 0 view .LVU137
- 709 0002 D0F81003 		ldr	r0, [r0, #784]
- 710              	.LVL69:
- 711              		.loc 1 746 10 view .LVU138
- 712 0006 FFF7FEFF 		bl	HAL_PCD_EP_GetRxCount
- 713              	.LVL70:
+ 719              		.loc 1 746 3 is_stmt 1 view .LVU135
+ 720              		.loc 1 746 10 is_stmt 0 view .LVU136
+ 721 0002 D0F81003 		ldr	r0, [r0, #784]
+ 722              	.LVL67:
+ 723              		.loc 1 746 10 view .LVU137
+ 724 0006 FFF7FEFF 		bl	HAL_PCD_EP_GetRxCount
+ 725              	.LVL68:
  747:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 714              		.loc 1 747 1 view .LVU139
- 715 000a 08BD     		pop	{r3, pc}
- 716              		.cfi_endproc
- 717              	.LFE173:
- 719              		.section	.text.USBD_LL_Delay,"ax",%progbits
- 720              		.align	1
- 721              		.global	USBD_LL_Delay
- 722              		.syntax unified
- 723              		.thumb
- 724              		.thumb_func
- 726              	USBD_LL_Delay:
- 727              	.LVL71:
- 728              	.LFB174:
+ 726              		.loc 1 747 1 view .LVU138
+ 727 000a 08BD     		pop	{r3, pc}
+ 728              		.cfi_endproc
+ 729              	.LFE173:
+ 731              		.section	.text.USBD_LL_Delay,"ax",%progbits
+ 732              		.align	1
+ 733              		.global	USBD_LL_Delay
+ 734              		.syntax unified
+ 735              		.thumb
+ 736              		.thumb_func
+ 738              	USBD_LL_Delay:
+ 739              	.LVL69:
+ 740              	.LFB174:
  748:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  749:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
+ARM GAS  /tmp/ccTXhoB9.s 			page 27
+
+
  750:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Delays routine for the USB device library.
  751:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @param  Delay: Delay in ms
  752:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @retval None
  753:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
  754:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** void USBD_LL_Delay(uint32_t Delay)
  755:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 729              		.loc 1 755 1 is_stmt 1 view -0
- 730              		.cfi_startproc
- 731              		@ args = 0, pretend = 0, frame = 0
- 732              		@ frame_needed = 0, uses_anonymous_args = 0
- 733              		.loc 1 755 1 is_stmt 0 view .LVU141
- 734 0000 08B5     		push	{r3, lr}
- 735              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccfYh3Qj.s 			page 27
-
-
- 736              		.cfi_offset 3, -8
- 737              		.cfi_offset 14, -4
+ 741              		.loc 1 755 1 is_stmt 1 view -0
+ 742              		.cfi_startproc
+ 743              		@ args = 0, pretend = 0, frame = 0
+ 744              		@ frame_needed = 0, uses_anonymous_args = 0
+ 745              		.loc 1 755 1 is_stmt 0 view .LVU140
+ 746 0000 08B5     		push	{r3, lr}
+ 747              	.LCFI15:
+ 748              		.cfi_def_cfa_offset 8
+ 749              		.cfi_offset 3, -8
+ 750              		.cfi_offset 14, -4
  756:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_Delay(Delay);
- 738              		.loc 1 756 3 is_stmt 1 view .LVU142
- 739 0002 FFF7FEFF 		bl	HAL_Delay
- 740              	.LVL72:
+ 751              		.loc 1 756 3 is_stmt 1 view .LVU141
+ 752 0002 FFF7FEFF 		bl	HAL_Delay
+ 753              	.LVL70:
  757:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 741              		.loc 1 757 1 is_stmt 0 view .LVU143
- 742 0006 08BD     		pop	{r3, pc}
- 743              		.cfi_endproc
- 744              	.LFE174:
- 746              		.section	.text.USBD_Get_USB_Status,"ax",%progbits
- 747              		.align	1
- 748              		.global	USBD_Get_USB_Status
- 749              		.syntax unified
- 750              		.thumb
- 751              		.thumb_func
- 753              	USBD_Get_USB_Status:
- 754              	.LVL73:
- 755              	.LFB175:
+ 754              		.loc 1 757 1 is_stmt 0 view .LVU142
+ 755 0006 08BD     		pop	{r3, pc}
+ 756              		.cfi_endproc
+ 757              	.LFE174:
+ 759              		.section	.text.USBD_Get_USB_Status,"ax",%progbits
+ 760              		.align	1
+ 761              		.global	USBD_Get_USB_Status
+ 762              		.syntax unified
+ 763              		.thumb
+ 764              		.thumb_func
+ 766              	USBD_Get_USB_Status:
+ 767              	.LVL71:
+ 768              	.LFB175:
  758:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  759:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** /**
  760:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   * @brief  Retuns the USB status depending on the HAL status:
@@ -1589,26 +1603,29 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  763:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   */
  764:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** USBD_StatusTypeDef USBD_Get_USB_Status(HAL_StatusTypeDef hal_status)
  765:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** {
- 756              		.loc 1 765 1 is_stmt 1 view -0
- 757              		.cfi_startproc
- 758              		@ args = 0, pretend = 0, frame = 0
- 759              		@ frame_needed = 0, uses_anonymous_args = 0
- 760              		@ link register save eliminated.
+ 769              		.loc 1 765 1 is_stmt 1 view -0
+ 770              		.cfi_startproc
+ 771              		@ args = 0, pretend = 0, frame = 0
+ 772              		@ frame_needed = 0, uses_anonymous_args = 0
+ 773              		@ link register save eliminated.
  766:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 761              		.loc 1 766 3 view .LVU145
+ 774              		.loc 1 766 3 view .LVU144
  767:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
  768:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   switch (hal_status)
- 762              		.loc 1 768 3 view .LVU146
- 763 0000 0328     		cmp	r0, #3
- 764 0002 05D8     		bhi	.L58
- 765 0004 DFE800F0 		tbb	[pc, r0]
- 766              	.L55:
- 767 0008 05       		.byte	(.L53-.L55)/2
- 768 0009 04       		.byte	(.L58-.L55)/2
- 769 000a 02       		.byte	(.L56-.L55)/2
- 770 000b 05       		.byte	(.L53-.L55)/2
- 771              		.p2align 1
- 772              	.L56:
+ 775              		.loc 1 768 3 view .LVU145
+ 776 0000 0328     		cmp	r0, #3
+ 777 0002 05D8     		bhi	.L58
+ 778 0004 DFE800F0 		tbb	[pc, r0]
+ 779              	.L55:
+ 780 0008 05       		.byte	(.L53-.L55)/2
+ARM GAS  /tmp/ccTXhoB9.s 			page 28
+
+
+ 781 0009 04       		.byte	(.L58-.L55)/2
+ 782 000a 02       		.byte	(.L56-.L55)/2
+ 783 000b 05       		.byte	(.L53-.L55)/2
+ 784              		.p2align 1
+ 785              	.L56:
  769:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   {
  770:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   case HAL_OK:
  771:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     usb_status = USBD_OK;
@@ -1618,26 +1635,23 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  775:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     break;
  776:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   case HAL_BUSY:
  777:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     usb_status = USBD_BUSY;
-ARM GAS  /tmp/ccfYh3Qj.s 			page 28
-
-
- 773              		.loc 1 777 5 view .LVU147
- 774              	.LVL74:
+ 786              		.loc 1 777 5 view .LVU146
+ 787              	.LVL72:
  778:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     break;
- 775              		.loc 1 778 5 view .LVU148
+ 788              		.loc 1 778 5 view .LVU147
  777:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     break;
- 776              		.loc 1 777 16 is_stmt 0 view .LVU149
- 777 000c 0120     		movs	r0, #1
- 778              	.LVL75:
- 779              		.loc 1 778 5 view .LVU150
- 780 000e 7047     		bx	lr
- 781              	.LVL76:
- 782              	.L58:
+ 789              		.loc 1 777 16 is_stmt 0 view .LVU148
+ 790 000c 0120     		movs	r0, #1
+ 791              	.LVL73:
+ 792              		.loc 1 778 5 view .LVU149
+ 793 000e 7047     		bx	lr
+ 794              	.LVL74:
+ 795              	.L58:
  774:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     break;
- 783              		.loc 1 774 16 view .LVU151
- 784 0010 0320     		movs	r0, #3
- 785              	.LVL77:
- 786              	.L53:
+ 796              		.loc 1 774 16 view .LVU150
+ 797 0010 0320     		movs	r0, #3
+ 798              	.LVL75:
+ 799              	.L53:
  779:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   case HAL_TIMEOUT:
  780:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     usb_status = USBD_FAIL;
  781:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     break;
@@ -1646,673 +1660,685 @@ ARM GAS  /tmp/ccfYh3Qj.s 			page 1
  784:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****     break;
  785:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   }
  786:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   return usb_status;
- 787              		.loc 1 786 3 is_stmt 1 view .LVU152
+ 800              		.loc 1 786 3 is_stmt 1 view .LVU151
  787:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 788              		.loc 1 787 1 is_stmt 0 view .LVU153
- 789 0012 7047     		bx	lr
- 790              		.cfi_endproc
- 791              	.LFE175:
- 793              		.section	.text.USBD_LL_DeInit,"ax",%progbits
- 794              		.align	1
- 795              		.global	USBD_LL_DeInit
- 796              		.syntax unified
- 797              		.thumb
- 798              		.thumb_func
- 800              	USBD_LL_DeInit:
- 801              	.LVL78:
- 802              	.LFB161:
+ 801              		.loc 1 787 1 is_stmt 0 view .LVU152
+ 802 0012 7047     		bx	lr
+ 803              		.cfi_endproc
+ 804              	.LFE175:
+ 806              		.section	.text.USBD_LL_DeInit,"ax",%progbits
+ 807              		.align	1
+ 808              		.global	USBD_LL_DeInit
+ 809              		.syntax unified
+ 810              		.thumb
+ 811              		.thumb_func
+ 813              	USBD_LL_DeInit:
+ 814              	.LVL76:
+ 815              	.LFB161:
  523:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 803              		.loc 1 523 1 is_stmt 1 view -0
- 804              		.cfi_startproc
- 805              		@ args = 0, pretend = 0, frame = 0
- 806              		@ frame_needed = 0, uses_anonymous_args = 0
+ 816              		.loc 1 523 1 is_stmt 1 view -0
+ 817              		.cfi_startproc
+ARM GAS  /tmp/ccTXhoB9.s 			page 29
+
+
+ 818              		@ args = 0, pretend = 0, frame = 0
+ 819              		@ frame_needed = 0, uses_anonymous_args = 0
  523:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 807              		.loc 1 523 1 is_stmt 0 view .LVU155
- 808 0000 08B5     		push	{r3, lr}
- 809              		.cfi_def_cfa_offset 8
- 810              		.cfi_offset 3, -8
- 811              		.cfi_offset 14, -4
+ 820              		.loc 1 523 1 is_stmt 0 view .LVU154
+ 821 0000 08B5     		push	{r3, lr}
+ 822              	.LCFI16:
+ 823              		.cfi_def_cfa_offset 8
+ 824              		.cfi_offset 3, -8
+ 825              		.cfi_offset 14, -4
  524:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 812              		.loc 1 524 3 is_stmt 1 view .LVU156
- 813              	.LVL79:
+ 826              		.loc 1 524 3 is_stmt 1 view .LVU155
+ 827              	.LVL77:
  525:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 814              		.loc 1 525 3 view .LVU157
+ 828              		.loc 1 525 3 view .LVU156
  527:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
-ARM GAS  /tmp/ccfYh3Qj.s 			page 29
-
-
- 815              		.loc 1 527 3 view .LVU158
+ 829              		.loc 1 527 3 view .LVU157
  527:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 816              		.loc 1 527 16 is_stmt 0 view .LVU159
- 817 0002 D0F81003 		ldr	r0, [r0, #784]
- 818              	.LVL80:
+ 830              		.loc 1 527 16 is_stmt 0 view .LVU158
+ 831 0002 D0F81003 		ldr	r0, [r0, #784]
+ 832              	.LVL78:
  527:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 819              		.loc 1 527 16 view .LVU160
- 820 0006 FFF7FEFF 		bl	HAL_PCD_DeInit
- 821              	.LVL81:
+ 833              		.loc 1 527 16 view .LVU159
+ 834 0006 FFF7FEFF 		bl	HAL_PCD_DeInit
+ 835              	.LVL79:
  529:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 822              		.loc 1 529 3 is_stmt 1 view .LVU161
+ 836              		.loc 1 529 3 is_stmt 1 view .LVU160
  529:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 823              		.loc 1 529 16 is_stmt 0 view .LVU162
- 824 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 825              	.LVL82:
+ 837              		.loc 1 529 16 is_stmt 0 view .LVU161
+ 838 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 839              	.LVL80:
  531:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 826              		.loc 1 531 3 is_stmt 1 view .LVU163
+ 840              		.loc 1 531 3 is_stmt 1 view .LVU162
  532:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 827              		.loc 1 532 1 is_stmt 0 view .LVU164
- 828 000e 08BD     		pop	{r3, pc}
- 829              		.cfi_endproc
- 830              	.LFE161:
- 832              		.section	.text.USBD_LL_Start,"ax",%progbits
- 833              		.align	1
- 834              		.global	USBD_LL_Start
- 835              		.syntax unified
- 836              		.thumb
- 837              		.thumb_func
- 839              	USBD_LL_Start:
- 840              	.LVL83:
- 841              	.LFB162:
+ 841              		.loc 1 532 1 is_stmt 0 view .LVU163
+ 842 000e 08BD     		pop	{r3, pc}
+ 843              		.cfi_endproc
+ 844              	.LFE161:
+ 846              		.section	.text.USBD_LL_Start,"ax",%progbits
+ 847              		.align	1
+ 848              		.global	USBD_LL_Start
+ 849              		.syntax unified
+ 850              		.thumb
+ 851              		.thumb_func
+ 853              	USBD_LL_Start:
+ 854              	.LVL81:
+ 855              	.LFB162:
  540:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 842              		.loc 1 540 1 is_stmt 1 view -0
- 843              		.cfi_startproc
- 844              		@ args = 0, pretend = 0, frame = 0
- 845              		@ frame_needed = 0, uses_anonymous_args = 0
+ 856              		.loc 1 540 1 is_stmt 1 view -0
+ 857              		.cfi_startproc
+ 858              		@ args = 0, pretend = 0, frame = 0
+ 859              		@ frame_needed = 0, uses_anonymous_args = 0
  540:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 846              		.loc 1 540 1 is_stmt 0 view .LVU166
- 847 0000 08B5     		push	{r3, lr}
- 848              		.cfi_def_cfa_offset 8
- 849              		.cfi_offset 3, -8
- 850              		.cfi_offset 14, -4
+ 860              		.loc 1 540 1 is_stmt 0 view .LVU165
+ 861 0000 08B5     		push	{r3, lr}
+ 862              	.LCFI17:
+ 863              		.cfi_def_cfa_offset 8
+ 864              		.cfi_offset 3, -8
+ARM GAS  /tmp/ccTXhoB9.s 			page 30
+
+
+ 865              		.cfi_offset 14, -4
  541:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 851              		.loc 1 541 3 is_stmt 1 view .LVU167
- 852              	.LVL84:
+ 866              		.loc 1 541 3 is_stmt 1 view .LVU166
+ 867              	.LVL82:
  542:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 853              		.loc 1 542 3 view .LVU168
+ 868              		.loc 1 542 3 view .LVU167
  544:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 854              		.loc 1 544 3 view .LVU169
+ 869              		.loc 1 544 3 view .LVU168
  544:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 855              		.loc 1 544 16 is_stmt 0 view .LVU170
- 856 0002 D0F81003 		ldr	r0, [r0, #784]
- 857              	.LVL85:
+ 870              		.loc 1 544 16 is_stmt 0 view .LVU169
+ 871 0002 D0F81003 		ldr	r0, [r0, #784]
+ 872              	.LVL83:
  544:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 858              		.loc 1 544 16 view .LVU171
- 859 0006 FFF7FEFF 		bl	HAL_PCD_Start
- 860              	.LVL86:
-ARM GAS  /tmp/ccfYh3Qj.s 			page 30
-
-
+ 873              		.loc 1 544 16 view .LVU170
+ 874 0006 FFF7FEFF 		bl	HAL_PCD_Start
+ 875              	.LVL84:
  546:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 861              		.loc 1 546 3 is_stmt 1 view .LVU172
+ 876              		.loc 1 546 3 is_stmt 1 view .LVU171
  546:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 862              		.loc 1 546 16 is_stmt 0 view .LVU173
- 863 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 864              	.LVL87:
+ 877              		.loc 1 546 16 is_stmt 0 view .LVU172
+ 878 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 879              	.LVL85:
  548:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 865              		.loc 1 548 3 is_stmt 1 view .LVU174
+ 880              		.loc 1 548 3 is_stmt 1 view .LVU173
  549:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 866              		.loc 1 549 1 is_stmt 0 view .LVU175
- 867 000e 08BD     		pop	{r3, pc}
- 868              		.cfi_endproc
- 869              	.LFE162:
- 871              		.section	.text.USBD_LL_Stop,"ax",%progbits
- 872              		.align	1
- 873              		.global	USBD_LL_Stop
- 874              		.syntax unified
- 875              		.thumb
- 876              		.thumb_func
- 878              	USBD_LL_Stop:
- 879              	.LVL88:
- 880              	.LFB163:
+ 881              		.loc 1 549 1 is_stmt 0 view .LVU174
+ 882 000e 08BD     		pop	{r3, pc}
+ 883              		.cfi_endproc
+ 884              	.LFE162:
+ 886              		.section	.text.USBD_LL_Stop,"ax",%progbits
+ 887              		.align	1
+ 888              		.global	USBD_LL_Stop
+ 889              		.syntax unified
+ 890              		.thumb
+ 891              		.thumb_func
+ 893              	USBD_LL_Stop:
+ 894              	.LVL86:
+ 895              	.LFB163:
  557:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 881              		.loc 1 557 1 is_stmt 1 view -0
- 882              		.cfi_startproc
- 883              		@ args = 0, pretend = 0, frame = 0
- 884              		@ frame_needed = 0, uses_anonymous_args = 0
+ 896              		.loc 1 557 1 is_stmt 1 view -0
+ 897              		.cfi_startproc
+ 898              		@ args = 0, pretend = 0, frame = 0
+ 899              		@ frame_needed = 0, uses_anonymous_args = 0
  557:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 885              		.loc 1 557 1 is_stmt 0 view .LVU177
- 886 0000 08B5     		push	{r3, lr}
- 887              		.cfi_def_cfa_offset 8
- 888              		.cfi_offset 3, -8
- 889              		.cfi_offset 14, -4
+ 900              		.loc 1 557 1 is_stmt 0 view .LVU176
+ 901 0000 08B5     		push	{r3, lr}
+ 902              	.LCFI18:
+ 903              		.cfi_def_cfa_offset 8
+ 904              		.cfi_offset 3, -8
+ 905              		.cfi_offset 14, -4
  558:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 890              		.loc 1 558 3 is_stmt 1 view .LVU178
- 891              	.LVL89:
+ 906              		.loc 1 558 3 is_stmt 1 view .LVU177
+ 907              	.LVL87:
  559:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 892              		.loc 1 559 3 view .LVU179
+ 908              		.loc 1 559 3 view .LVU178
  561:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 893              		.loc 1 561 3 view .LVU180
+ 909              		.loc 1 561 3 view .LVU179
+ARM GAS  /tmp/ccTXhoB9.s 			page 31
+
+
  561:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 894              		.loc 1 561 16 is_stmt 0 view .LVU181
- 895 0002 D0F81003 		ldr	r0, [r0, #784]
- 896              	.LVL90:
+ 910              		.loc 1 561 16 is_stmt 0 view .LVU180
+ 911 0002 D0F81003 		ldr	r0, [r0, #784]
+ 912              	.LVL88:
  561:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 897              		.loc 1 561 16 view .LVU182
- 898 0006 FFF7FEFF 		bl	HAL_PCD_Stop
- 899              	.LVL91:
+ 913              		.loc 1 561 16 view .LVU181
+ 914 0006 FFF7FEFF 		bl	HAL_PCD_Stop
+ 915              	.LVL89:
  563:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 900              		.loc 1 563 3 is_stmt 1 view .LVU183
+ 916              		.loc 1 563 3 is_stmt 1 view .LVU182
  563:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 901              		.loc 1 563 16 is_stmt 0 view .LVU184
- 902 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 903              	.LVL92:
+ 917              		.loc 1 563 16 is_stmt 0 view .LVU183
+ 918 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 919              	.LVL90:
  565:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 904              		.loc 1 565 3 is_stmt 1 view .LVU185
+ 920              		.loc 1 565 3 is_stmt 1 view .LVU184
  566:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
-ARM GAS  /tmp/ccfYh3Qj.s 			page 31
-
-
- 905              		.loc 1 566 1 is_stmt 0 view .LVU186
- 906 000e 08BD     		pop	{r3, pc}
- 907              		.cfi_endproc
- 908              	.LFE163:
- 910              		.section	.text.USBD_LL_OpenEP,"ax",%progbits
- 911              		.align	1
- 912              		.global	USBD_LL_OpenEP
- 913              		.syntax unified
- 914              		.thumb
- 915              		.thumb_func
- 917              	USBD_LL_OpenEP:
- 918              	.LVL93:
- 919              	.LFB164:
+ 921              		.loc 1 566 1 is_stmt 0 view .LVU185
+ 922 000e 08BD     		pop	{r3, pc}
+ 923              		.cfi_endproc
+ 924              	.LFE163:
+ 926              		.section	.text.USBD_LL_OpenEP,"ax",%progbits
+ 927              		.align	1
+ 928              		.global	USBD_LL_OpenEP
+ 929              		.syntax unified
+ 930              		.thumb
+ 931              		.thumb_func
+ 933              	USBD_LL_OpenEP:
+ 934              	.LVL91:
+ 935              	.LFB164:
  577:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 920              		.loc 1 577 1 is_stmt 1 view -0
- 921              		.cfi_startproc
- 922              		@ args = 0, pretend = 0, frame = 0
- 923              		@ frame_needed = 0, uses_anonymous_args = 0
+ 936              		.loc 1 577 1 is_stmt 1 view -0
+ 937              		.cfi_startproc
+ 938              		@ args = 0, pretend = 0, frame = 0
+ 939              		@ frame_needed = 0, uses_anonymous_args = 0
  577:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 924              		.loc 1 577 1 is_stmt 0 view .LVU188
- 925 0000 08B5     		push	{r3, lr}
- 926              		.cfi_def_cfa_offset 8
- 927              		.cfi_offset 3, -8
- 928              		.cfi_offset 14, -4
- 929 0002 9446     		mov	ip, r2
- 930 0004 1A46     		mov	r2, r3
- 931              	.LVL94:
+ 940              		.loc 1 577 1 is_stmt 0 view .LVU187
+ 941 0000 08B5     		push	{r3, lr}
+ 942              	.LCFI19:
+ 943              		.cfi_def_cfa_offset 8
+ 944              		.cfi_offset 3, -8
+ 945              		.cfi_offset 14, -4
+ 946 0002 9446     		mov	ip, r2
+ 947 0004 1A46     		mov	r2, r3
+ 948              	.LVL92:
  578:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 932              		.loc 1 578 3 is_stmt 1 view .LVU189
+ 949              		.loc 1 578 3 is_stmt 1 view .LVU188
  579:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 933              		.loc 1 579 3 view .LVU190
+ 950              		.loc 1 579 3 view .LVU189
  581:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 934              		.loc 1 581 3 view .LVU191
+ 951              		.loc 1 581 3 view .LVU190
  581:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 935              		.loc 1 581 16 is_stmt 0 view .LVU192
- 936 0006 6346     		mov	r3, ip
- 937              	.LVL95:
+ 952              		.loc 1 581 16 is_stmt 0 view .LVU191
+ 953 0006 6346     		mov	r3, ip
+ 954              	.LVL93:
  581:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 938              		.loc 1 581 16 view .LVU193
- 939 0008 D0F81003 		ldr	r0, [r0, #784]
- 940              	.LVL96:
+ 955              		.loc 1 581 16 view .LVU192
+ARM GAS  /tmp/ccTXhoB9.s 			page 32
+
+
+ 956 0008 D0F81003 		ldr	r0, [r0, #784]
+ 957              	.LVL94:
  581:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 941              		.loc 1 581 16 view .LVU194
- 942 000c FFF7FEFF 		bl	HAL_PCD_EP_Open
- 943              	.LVL97:
+ 958              		.loc 1 581 16 view .LVU193
+ 959 000c FFF7FEFF 		bl	HAL_PCD_EP_Open
+ 960              	.LVL95:
  583:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 944              		.loc 1 583 3 is_stmt 1 view .LVU195
+ 961              		.loc 1 583 3 is_stmt 1 view .LVU194
  583:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 945              		.loc 1 583 16 is_stmt 0 view .LVU196
- 946 0010 FFF7FEFF 		bl	USBD_Get_USB_Status
- 947              	.LVL98:
+ 962              		.loc 1 583 16 is_stmt 0 view .LVU195
+ 963 0010 FFF7FEFF 		bl	USBD_Get_USB_Status
+ 964              	.LVL96:
  585:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 948              		.loc 1 585 3 is_stmt 1 view .LVU197
+ 965              		.loc 1 585 3 is_stmt 1 view .LVU196
  586:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 949              		.loc 1 586 1 is_stmt 0 view .LVU198
- 950 0014 08BD     		pop	{r3, pc}
- 951              		.cfi_endproc
-ARM GAS  /tmp/ccfYh3Qj.s 			page 32
-
-
- 952              	.LFE164:
- 954              		.section	.text.USBD_LL_CloseEP,"ax",%progbits
- 955              		.align	1
- 956              		.global	USBD_LL_CloseEP
- 957              		.syntax unified
- 958              		.thumb
- 959              		.thumb_func
- 961              	USBD_LL_CloseEP:
- 962              	.LVL99:
- 963              	.LFB165:
+ 966              		.loc 1 586 1 is_stmt 0 view .LVU197
+ 967 0014 08BD     		pop	{r3, pc}
+ 968              		.cfi_endproc
+ 969              	.LFE164:
+ 971              		.section	.text.USBD_LL_CloseEP,"ax",%progbits
+ 972              		.align	1
+ 973              		.global	USBD_LL_CloseEP
+ 974              		.syntax unified
+ 975              		.thumb
+ 976              		.thumb_func
+ 978              	USBD_LL_CloseEP:
+ 979              	.LVL97:
+ 980              	.LFB165:
  595:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 964              		.loc 1 595 1 is_stmt 1 view -0
- 965              		.cfi_startproc
- 966              		@ args = 0, pretend = 0, frame = 0
- 967              		@ frame_needed = 0, uses_anonymous_args = 0
+ 981              		.loc 1 595 1 is_stmt 1 view -0
+ 982              		.cfi_startproc
+ 983              		@ args = 0, pretend = 0, frame = 0
+ 984              		@ frame_needed = 0, uses_anonymous_args = 0
  595:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 968              		.loc 1 595 1 is_stmt 0 view .LVU200
- 969 0000 08B5     		push	{r3, lr}
- 970              		.cfi_def_cfa_offset 8
- 971              		.cfi_offset 3, -8
- 972              		.cfi_offset 14, -4
+ 985              		.loc 1 595 1 is_stmt 0 view .LVU199
+ 986 0000 08B5     		push	{r3, lr}
+ 987              	.LCFI20:
+ 988              		.cfi_def_cfa_offset 8
+ 989              		.cfi_offset 3, -8
+ 990              		.cfi_offset 14, -4
  596:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 973              		.loc 1 596 3 is_stmt 1 view .LVU201
- 974              	.LVL100:
+ 991              		.loc 1 596 3 is_stmt 1 view .LVU200
+ 992              	.LVL98:
  597:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 975              		.loc 1 597 3 view .LVU202
+ 993              		.loc 1 597 3 view .LVU201
  599:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 976              		.loc 1 599 3 view .LVU203
+ 994              		.loc 1 599 3 view .LVU202
  599:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 977              		.loc 1 599 16 is_stmt 0 view .LVU204
- 978 0002 D0F81003 		ldr	r0, [r0, #784]
- 979              	.LVL101:
+ 995              		.loc 1 599 16 is_stmt 0 view .LVU203
+ 996 0002 D0F81003 		ldr	r0, [r0, #784]
+ 997              	.LVL99:
  599:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 980              		.loc 1 599 16 view .LVU205
- 981 0006 FFF7FEFF 		bl	HAL_PCD_EP_Close
- 982              	.LVL102:
+ 998              		.loc 1 599 16 view .LVU204
+ 999 0006 FFF7FEFF 		bl	HAL_PCD_EP_Close
+ 1000              	.LVL100:
  601:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 983              		.loc 1 601 3 is_stmt 1 view .LVU206
+ 1001              		.loc 1 601 3 is_stmt 1 view .LVU205
+ARM GAS  /tmp/ccTXhoB9.s 			page 33
+
+
  601:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 984              		.loc 1 601 16 is_stmt 0 view .LVU207
- 985 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 986              	.LVL103:
+ 1002              		.loc 1 601 16 is_stmt 0 view .LVU206
+ 1003 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 1004              	.LVL101:
  603:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 987              		.loc 1 603 3 is_stmt 1 view .LVU208
+ 1005              		.loc 1 603 3 is_stmt 1 view .LVU207
  604:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 988              		.loc 1 604 1 is_stmt 0 view .LVU209
- 989 000e 08BD     		pop	{r3, pc}
- 990              		.cfi_endproc
- 991              	.LFE165:
- 993              		.section	.text.USBD_LL_FlushEP,"ax",%progbits
- 994              		.align	1
- 995              		.global	USBD_LL_FlushEP
- 996              		.syntax unified
- 997              		.thumb
- 998              		.thumb_func
- 1000              	USBD_LL_FlushEP:
- 1001              	.LVL104:
-ARM GAS  /tmp/ccfYh3Qj.s 			page 33
-
-
- 1002              	.LFB166:
+ 1006              		.loc 1 604 1 is_stmt 0 view .LVU208
+ 1007 000e 08BD     		pop	{r3, pc}
+ 1008              		.cfi_endproc
+ 1009              	.LFE165:
+ 1011              		.section	.text.USBD_LL_FlushEP,"ax",%progbits
+ 1012              		.align	1
+ 1013              		.global	USBD_LL_FlushEP
+ 1014              		.syntax unified
+ 1015              		.thumb
+ 1016              		.thumb_func
+ 1018              	USBD_LL_FlushEP:
+ 1019              	.LVL102:
+ 1020              	.LFB166:
  613:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1003              		.loc 1 613 1 is_stmt 1 view -0
- 1004              		.cfi_startproc
- 1005              		@ args = 0, pretend = 0, frame = 0
- 1006              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1021              		.loc 1 613 1 is_stmt 1 view -0
+ 1022              		.cfi_startproc
+ 1023              		@ args = 0, pretend = 0, frame = 0
+ 1024              		@ frame_needed = 0, uses_anonymous_args = 0
  613:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1007              		.loc 1 613 1 is_stmt 0 view .LVU211
- 1008 0000 08B5     		push	{r3, lr}
- 1009              		.cfi_def_cfa_offset 8
- 1010              		.cfi_offset 3, -8
- 1011              		.cfi_offset 14, -4
+ 1025              		.loc 1 613 1 is_stmt 0 view .LVU210
+ 1026 0000 08B5     		push	{r3, lr}
+ 1027              	.LCFI21:
+ 1028              		.cfi_def_cfa_offset 8
+ 1029              		.cfi_offset 3, -8
+ 1030              		.cfi_offset 14, -4
  614:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 1012              		.loc 1 614 3 is_stmt 1 view .LVU212
- 1013              	.LVL105:
+ 1031              		.loc 1 614 3 is_stmt 1 view .LVU211
+ 1032              	.LVL103:
  615:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1014              		.loc 1 615 3 view .LVU213
+ 1033              		.loc 1 615 3 view .LVU212
  617:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1015              		.loc 1 617 3 view .LVU214
+ 1034              		.loc 1 617 3 view .LVU213
  617:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1016              		.loc 1 617 16 is_stmt 0 view .LVU215
- 1017 0002 D0F81003 		ldr	r0, [r0, #784]
- 1018              	.LVL106:
+ 1035              		.loc 1 617 16 is_stmt 0 view .LVU214
+ 1036 0002 D0F81003 		ldr	r0, [r0, #784]
+ 1037              	.LVL104:
  617:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1019              		.loc 1 617 16 view .LVU216
- 1020 0006 FFF7FEFF 		bl	HAL_PCD_EP_Flush
- 1021              	.LVL107:
+ 1038              		.loc 1 617 16 view .LVU215
+ 1039 0006 FFF7FEFF 		bl	HAL_PCD_EP_Flush
+ 1040              	.LVL105:
  619:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1022              		.loc 1 619 3 is_stmt 1 view .LVU217
+ 1041              		.loc 1 619 3 is_stmt 1 view .LVU216
  619:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1023              		.loc 1 619 16 is_stmt 0 view .LVU218
- 1024 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 1025              	.LVL108:
+ 1042              		.loc 1 619 16 is_stmt 0 view .LVU217
+ 1043 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 1044              	.LVL106:
  621:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 1026              		.loc 1 621 3 is_stmt 1 view .LVU219
+ 1045              		.loc 1 621 3 is_stmt 1 view .LVU218
  622:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1027              		.loc 1 622 1 is_stmt 0 view .LVU220
- 1028 000e 08BD     		pop	{r3, pc}
- 1029              		.cfi_endproc
- 1030              	.LFE166:
- 1032              		.section	.text.USBD_LL_StallEP,"ax",%progbits
- 1033              		.align	1
- 1034              		.global	USBD_LL_StallEP
- 1035              		.syntax unified
- 1036              		.thumb
- 1037              		.thumb_func
- 1039              	USBD_LL_StallEP:
- 1040              	.LVL109:
- 1041              	.LFB167:
- 631:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1042              		.loc 1 631 1 is_stmt 1 view -0
- 1043              		.cfi_startproc
- 1044              		@ args = 0, pretend = 0, frame = 0
- 1045              		@ frame_needed = 0, uses_anonymous_args = 0
- 631:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1046              		.loc 1 631 1 is_stmt 0 view .LVU222
- 1047 0000 08B5     		push	{r3, lr}
-ARM GAS  /tmp/ccfYh3Qj.s 			page 34
+ 1046              		.loc 1 622 1 is_stmt 0 view .LVU219
+ARM GAS  /tmp/ccTXhoB9.s 			page 34
 
 
- 1048              		.cfi_def_cfa_offset 8
- 1049              		.cfi_offset 3, -8
- 1050              		.cfi_offset 14, -4
+ 1047 000e 08BD     		pop	{r3, pc}
+ 1048              		.cfi_endproc
+ 1049              	.LFE166:
+ 1051              		.section	.text.USBD_LL_StallEP,"ax",%progbits
+ 1052              		.align	1
+ 1053              		.global	USBD_LL_StallEP
+ 1054              		.syntax unified
+ 1055              		.thumb
+ 1056              		.thumb_func
+ 1058              	USBD_LL_StallEP:
+ 1059              	.LVL107:
+ 1060              	.LFB167:
+ 631:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
+ 1061              		.loc 1 631 1 is_stmt 1 view -0
+ 1062              		.cfi_startproc
+ 1063              		@ args = 0, pretend = 0, frame = 0
+ 1064              		@ frame_needed = 0, uses_anonymous_args = 0
+ 631:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
+ 1065              		.loc 1 631 1 is_stmt 0 view .LVU221
+ 1066 0000 08B5     		push	{r3, lr}
+ 1067              	.LCFI22:
+ 1068              		.cfi_def_cfa_offset 8
+ 1069              		.cfi_offset 3, -8
+ 1070              		.cfi_offset 14, -4
  632:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 1051              		.loc 1 632 3 is_stmt 1 view .LVU223
- 1052              	.LVL110:
+ 1071              		.loc 1 632 3 is_stmt 1 view .LVU222
+ 1072              	.LVL108:
  633:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1053              		.loc 1 633 3 view .LVU224
+ 1073              		.loc 1 633 3 view .LVU223
  635:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1054              		.loc 1 635 3 view .LVU225
+ 1074              		.loc 1 635 3 view .LVU224
  635:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1055              		.loc 1 635 16 is_stmt 0 view .LVU226
- 1056 0002 D0F81003 		ldr	r0, [r0, #784]
- 1057              	.LVL111:
+ 1075              		.loc 1 635 16 is_stmt 0 view .LVU225
+ 1076 0002 D0F81003 		ldr	r0, [r0, #784]
+ 1077              	.LVL109:
  635:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1058              		.loc 1 635 16 view .LVU227
- 1059 0006 FFF7FEFF 		bl	HAL_PCD_EP_SetStall
- 1060              	.LVL112:
+ 1078              		.loc 1 635 16 view .LVU226
+ 1079 0006 FFF7FEFF 		bl	HAL_PCD_EP_SetStall
+ 1080              	.LVL110:
  637:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1061              		.loc 1 637 3 is_stmt 1 view .LVU228
+ 1081              		.loc 1 637 3 is_stmt 1 view .LVU227
  637:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1062              		.loc 1 637 16 is_stmt 0 view .LVU229
- 1063 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 1064              	.LVL113:
+ 1082              		.loc 1 637 16 is_stmt 0 view .LVU228
+ 1083 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 1084              	.LVL111:
  639:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 1065              		.loc 1 639 3 is_stmt 1 view .LVU230
+ 1085              		.loc 1 639 3 is_stmt 1 view .LVU229
  640:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1066              		.loc 1 640 1 is_stmt 0 view .LVU231
- 1067 000e 08BD     		pop	{r3, pc}
- 1068              		.cfi_endproc
- 1069              	.LFE167:
- 1071              		.section	.text.USBD_LL_ClearStallEP,"ax",%progbits
- 1072              		.align	1
- 1073              		.global	USBD_LL_ClearStallEP
- 1074              		.syntax unified
- 1075              		.thumb
- 1076              		.thumb_func
- 1078              	USBD_LL_ClearStallEP:
- 1079              	.LVL114:
- 1080              	.LFB168:
+ 1086              		.loc 1 640 1 is_stmt 0 view .LVU230
+ 1087 000e 08BD     		pop	{r3, pc}
+ 1088              		.cfi_endproc
+ 1089              	.LFE167:
+ 1091              		.section	.text.USBD_LL_ClearStallEP,"ax",%progbits
+ 1092              		.align	1
+ 1093              		.global	USBD_LL_ClearStallEP
+ 1094              		.syntax unified
+ 1095              		.thumb
+ARM GAS  /tmp/ccTXhoB9.s 			page 35
+
+
+ 1096              		.thumb_func
+ 1098              	USBD_LL_ClearStallEP:
+ 1099              	.LVL112:
+ 1100              	.LFB168:
  649:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1081              		.loc 1 649 1 is_stmt 1 view -0
- 1082              		.cfi_startproc
- 1083              		@ args = 0, pretend = 0, frame = 0
- 1084              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1101              		.loc 1 649 1 is_stmt 1 view -0
+ 1102              		.cfi_startproc
+ 1103              		@ args = 0, pretend = 0, frame = 0
+ 1104              		@ frame_needed = 0, uses_anonymous_args = 0
  649:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1085              		.loc 1 649 1 is_stmt 0 view .LVU233
- 1086 0000 08B5     		push	{r3, lr}
- 1087              		.cfi_def_cfa_offset 8
- 1088              		.cfi_offset 3, -8
- 1089              		.cfi_offset 14, -4
+ 1105              		.loc 1 649 1 is_stmt 0 view .LVU232
+ 1106 0000 08B5     		push	{r3, lr}
+ 1107              	.LCFI23:
+ 1108              		.cfi_def_cfa_offset 8
+ 1109              		.cfi_offset 3, -8
+ 1110              		.cfi_offset 14, -4
  650:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 1090              		.loc 1 650 3 is_stmt 1 view .LVU234
- 1091              	.LVL115:
+ 1111              		.loc 1 650 3 is_stmt 1 view .LVU233
+ 1112              	.LVL113:
  651:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1092              		.loc 1 651 3 view .LVU235
+ 1113              		.loc 1 651 3 view .LVU234
  653:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
-ARM GAS  /tmp/ccfYh3Qj.s 			page 35
-
-
- 1093              		.loc 1 653 3 view .LVU236
+ 1114              		.loc 1 653 3 view .LVU235
  653:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1094              		.loc 1 653 16 is_stmt 0 view .LVU237
- 1095 0002 D0F81003 		ldr	r0, [r0, #784]
- 1096              	.LVL116:
+ 1115              		.loc 1 653 16 is_stmt 0 view .LVU236
+ 1116 0002 D0F81003 		ldr	r0, [r0, #784]
+ 1117              	.LVL114:
  653:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1097              		.loc 1 653 16 view .LVU238
- 1098 0006 FFF7FEFF 		bl	HAL_PCD_EP_ClrStall
- 1099              	.LVL117:
+ 1118              		.loc 1 653 16 view .LVU237
+ 1119 0006 FFF7FEFF 		bl	HAL_PCD_EP_ClrStall
+ 1120              	.LVL115:
  655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1100              		.loc 1 655 3 is_stmt 1 view .LVU239
+ 1121              		.loc 1 655 3 is_stmt 1 view .LVU238
  655:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1101              		.loc 1 655 16 is_stmt 0 view .LVU240
- 1102 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 1103              	.LVL118:
+ 1122              		.loc 1 655 16 is_stmt 0 view .LVU239
+ 1123 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 1124              	.LVL116:
  657:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 1104              		.loc 1 657 3 is_stmt 1 view .LVU241
+ 1125              		.loc 1 657 3 is_stmt 1 view .LVU240
  658:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1105              		.loc 1 658 1 is_stmt 0 view .LVU242
- 1106 000e 08BD     		pop	{r3, pc}
- 1107              		.cfi_endproc
- 1108              	.LFE168:
- 1110              		.section	.text.USBD_LL_SetUSBAddress,"ax",%progbits
- 1111              		.align	1
- 1112              		.global	USBD_LL_SetUSBAddress
- 1113              		.syntax unified
- 1114              		.thumb
- 1115              		.thumb_func
- 1117              	USBD_LL_SetUSBAddress:
- 1118              	.LVL119:
- 1119              	.LFB170:
+ 1126              		.loc 1 658 1 is_stmt 0 view .LVU241
+ 1127 000e 08BD     		pop	{r3, pc}
+ 1128              		.cfi_endproc
+ 1129              	.LFE168:
+ 1131              		.section	.text.USBD_LL_SetUSBAddress,"ax",%progbits
+ 1132              		.align	1
+ 1133              		.global	USBD_LL_SetUSBAddress
+ 1134              		.syntax unified
+ 1135              		.thumb
+ 1136              		.thumb_func
+ 1138              	USBD_LL_SetUSBAddress:
+ 1139              	.LVL117:
+ 1140              	.LFB170:
  687:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1120              		.loc 1 687 1 is_stmt 1 view -0
- 1121              		.cfi_startproc
- 1122              		@ args = 0, pretend = 0, frame = 0
- 1123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1141              		.loc 1 687 1 is_stmt 1 view -0
+ 1142              		.cfi_startproc
+ 1143              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccTXhoB9.s 			page 36
+
+
+ 1144              		@ frame_needed = 0, uses_anonymous_args = 0
  687:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1124              		.loc 1 687 1 is_stmt 0 view .LVU244
- 1125 0000 08B5     		push	{r3, lr}
- 1126              		.cfi_def_cfa_offset 8
- 1127              		.cfi_offset 3, -8
- 1128              		.cfi_offset 14, -4
+ 1145              		.loc 1 687 1 is_stmt 0 view .LVU243
+ 1146 0000 08B5     		push	{r3, lr}
+ 1147              	.LCFI24:
+ 1148              		.cfi_def_cfa_offset 8
+ 1149              		.cfi_offset 3, -8
+ 1150              		.cfi_offset 14, -4
  688:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 1129              		.loc 1 688 3 is_stmt 1 view .LVU245
- 1130              	.LVL120:
+ 1151              		.loc 1 688 3 is_stmt 1 view .LVU244
+ 1152              	.LVL118:
  689:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1131              		.loc 1 689 3 view .LVU246
+ 1153              		.loc 1 689 3 view .LVU245
  691:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1132              		.loc 1 691 3 view .LVU247
+ 1154              		.loc 1 691 3 view .LVU246
  691:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1133              		.loc 1 691 16 is_stmt 0 view .LVU248
- 1134 0002 D0F81003 		ldr	r0, [r0, #784]
- 1135              	.LVL121:
+ 1155              		.loc 1 691 16 is_stmt 0 view .LVU247
+ 1156 0002 D0F81003 		ldr	r0, [r0, #784]
+ 1157              	.LVL119:
  691:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1136              		.loc 1 691 16 view .LVU249
- 1137 0006 FFF7FEFF 		bl	HAL_PCD_SetAddress
- 1138              	.LVL122:
-ARM GAS  /tmp/ccfYh3Qj.s 			page 36
-
-
+ 1158              		.loc 1 691 16 view .LVU248
+ 1159 0006 FFF7FEFF 		bl	HAL_PCD_SetAddress
+ 1160              	.LVL120:
  693:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1139              		.loc 1 693 3 is_stmt 1 view .LVU250
+ 1161              		.loc 1 693 3 is_stmt 1 view .LVU249
  693:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1140              		.loc 1 693 16 is_stmt 0 view .LVU251
- 1141 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 1142              	.LVL123:
+ 1162              		.loc 1 693 16 is_stmt 0 view .LVU250
+ 1163 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 1164              	.LVL121:
  695:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 1143              		.loc 1 695 3 is_stmt 1 view .LVU252
+ 1165              		.loc 1 695 3 is_stmt 1 view .LVU251
  696:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1144              		.loc 1 696 1 is_stmt 0 view .LVU253
- 1145 000e 08BD     		pop	{r3, pc}
- 1146              		.cfi_endproc
- 1147              	.LFE170:
- 1149              		.section	.text.USBD_LL_Transmit,"ax",%progbits
- 1150              		.align	1
- 1151              		.global	USBD_LL_Transmit
- 1152              		.syntax unified
- 1153              		.thumb
- 1154              		.thumb_func
- 1156              	USBD_LL_Transmit:
- 1157              	.LVL124:
- 1158              	.LFB171:
+ 1166              		.loc 1 696 1 is_stmt 0 view .LVU252
+ 1167 000e 08BD     		pop	{r3, pc}
+ 1168              		.cfi_endproc
+ 1169              	.LFE170:
+ 1171              		.section	.text.USBD_LL_Transmit,"ax",%progbits
+ 1172              		.align	1
+ 1173              		.global	USBD_LL_Transmit
+ 1174              		.syntax unified
+ 1175              		.thumb
+ 1176              		.thumb_func
+ 1178              	USBD_LL_Transmit:
+ 1179              	.LVL122:
+ 1180              	.LFB171:
  707:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1159              		.loc 1 707 1 is_stmt 1 view -0
- 1160              		.cfi_startproc
- 1161              		@ args = 0, pretend = 0, frame = 0
- 1162              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1181              		.loc 1 707 1 is_stmt 1 view -0
+ 1182              		.cfi_startproc
+ 1183              		@ args = 0, pretend = 0, frame = 0
+ 1184              		@ frame_needed = 0, uses_anonymous_args = 0
  707:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1163              		.loc 1 707 1 is_stmt 0 view .LVU255
- 1164 0000 08B5     		push	{r3, lr}
- 1165              		.cfi_def_cfa_offset 8
- 1166              		.cfi_offset 3, -8
- 1167              		.cfi_offset 14, -4
+ 1185              		.loc 1 707 1 is_stmt 0 view .LVU254
+ 1186 0000 08B5     		push	{r3, lr}
+ 1187              	.LCFI25:
+ 1188              		.cfi_def_cfa_offset 8
+ 1189              		.cfi_offset 3, -8
+ 1190              		.cfi_offset 14, -4
+ARM GAS  /tmp/ccTXhoB9.s 			page 37
+
+
  708:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 1168              		.loc 1 708 3 is_stmt 1 view .LVU256
- 1169              	.LVL125:
+ 1191              		.loc 1 708 3 is_stmt 1 view .LVU255
+ 1192              	.LVL123:
  709:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1170              		.loc 1 709 3 view .LVU257
+ 1193              		.loc 1 709 3 view .LVU256
  711:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1171              		.loc 1 711 3 view .LVU258
+ 1194              		.loc 1 711 3 view .LVU257
  711:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1172              		.loc 1 711 16 is_stmt 0 view .LVU259
- 1173 0002 D0F81003 		ldr	r0, [r0, #784]
- 1174              	.LVL126:
+ 1195              		.loc 1 711 16 is_stmt 0 view .LVU258
+ 1196 0002 D0F81003 		ldr	r0, [r0, #784]
+ 1197              	.LVL124:
  711:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1175              		.loc 1 711 16 view .LVU260
- 1176 0006 FFF7FEFF 		bl	HAL_PCD_EP_Transmit
- 1177              	.LVL127:
+ 1198              		.loc 1 711 16 view .LVU259
+ 1199 0006 FFF7FEFF 		bl	HAL_PCD_EP_Transmit
+ 1200              	.LVL125:
  713:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1178              		.loc 1 713 3 is_stmt 1 view .LVU261
+ 1201              		.loc 1 713 3 is_stmt 1 view .LVU260
  713:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1179              		.loc 1 713 16 is_stmt 0 view .LVU262
- 1180 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 1181              	.LVL128:
+ 1202              		.loc 1 713 16 is_stmt 0 view .LVU261
+ 1203 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 1204              	.LVL126:
  715:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 1182              		.loc 1 715 3 is_stmt 1 view .LVU263
+ 1205              		.loc 1 715 3 is_stmt 1 view .LVU262
  716:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
-ARM GAS  /tmp/ccfYh3Qj.s 			page 37
-
-
- 1183              		.loc 1 716 1 is_stmt 0 view .LVU264
- 1184 000e 08BD     		pop	{r3, pc}
- 1185              		.cfi_endproc
- 1186              	.LFE171:
- 1188              		.section	.text.USBD_LL_PrepareReceive,"ax",%progbits
- 1189              		.align	1
- 1190              		.global	USBD_LL_PrepareReceive
- 1191              		.syntax unified
- 1192              		.thumb
- 1193              		.thumb_func
- 1195              	USBD_LL_PrepareReceive:
- 1196              	.LVL129:
- 1197              	.LFB172:
+ 1206              		.loc 1 716 1 is_stmt 0 view .LVU263
+ 1207 000e 08BD     		pop	{r3, pc}
+ 1208              		.cfi_endproc
+ 1209              	.LFE171:
+ 1211              		.section	.text.USBD_LL_PrepareReceive,"ax",%progbits
+ 1212              		.align	1
+ 1213              		.global	USBD_LL_PrepareReceive
+ 1214              		.syntax unified
+ 1215              		.thumb
+ 1216              		.thumb_func
+ 1218              	USBD_LL_PrepareReceive:
+ 1219              	.LVL127:
+ 1220              	.LFB172:
  727:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1198              		.loc 1 727 1 is_stmt 1 view -0
- 1199              		.cfi_startproc
- 1200              		@ args = 0, pretend = 0, frame = 0
- 1201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1221              		.loc 1 727 1 is_stmt 1 view -0
+ 1222              		.cfi_startproc
+ 1223              		@ args = 0, pretend = 0, frame = 0
+ 1224              		@ frame_needed = 0, uses_anonymous_args = 0
  727:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   HAL_StatusTypeDef hal_status = HAL_OK;
- 1202              		.loc 1 727 1 is_stmt 0 view .LVU266
- 1203 0000 08B5     		push	{r3, lr}
- 1204              		.cfi_def_cfa_offset 8
- 1205              		.cfi_offset 3, -8
- 1206              		.cfi_offset 14, -4
+ 1225              		.loc 1 727 1 is_stmt 0 view .LVU265
+ 1226 0000 08B5     		push	{r3, lr}
+ 1227              	.LCFI26:
+ 1228              		.cfi_def_cfa_offset 8
+ 1229              		.cfi_offset 3, -8
+ 1230              		.cfi_offset 14, -4
  728:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c ****   USBD_StatusTypeDef usb_status = USBD_OK;
- 1207              		.loc 1 728 3 is_stmt 1 view .LVU267
- 1208              	.LVL130:
+ 1231              		.loc 1 728 3 is_stmt 1 view .LVU266
+ 1232              	.LVL128:
  729:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1209              		.loc 1 729 3 view .LVU268
+ 1233              		.loc 1 729 3 view .LVU267
  731:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1210              		.loc 1 731 3 view .LVU269
+ 1234              		.loc 1 731 3 view .LVU268
  731:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1211              		.loc 1 731 16 is_stmt 0 view .LVU270
- 1212 0002 D0F81003 		ldr	r0, [r0, #784]
- 1213              	.LVL131:
+ARM GAS  /tmp/ccTXhoB9.s 			page 38
+
+
+ 1235              		.loc 1 731 16 is_stmt 0 view .LVU269
+ 1236 0002 D0F81003 		ldr	r0, [r0, #784]
+ 1237              	.LVL129:
  731:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1214              		.loc 1 731 16 view .LVU271
- 1215 0006 FFF7FEFF 		bl	HAL_PCD_EP_Receive
- 1216              	.LVL132:
+ 1238              		.loc 1 731 16 view .LVU270
+ 1239 0006 FFF7FEFF 		bl	HAL_PCD_EP_Receive
+ 1240              	.LVL130:
  733:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1217              		.loc 1 733 3 is_stmt 1 view .LVU272
+ 1241              		.loc 1 733 3 is_stmt 1 view .LVU271
  733:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1218              		.loc 1 733 16 is_stmt 0 view .LVU273
- 1219 000a FFF7FEFF 		bl	USBD_Get_USB_Status
- 1220              	.LVL133:
+ 1242              		.loc 1 733 16 is_stmt 0 view .LVU272
+ 1243 000a FFF7FEFF 		bl	USBD_Get_USB_Status
+ 1244              	.LVL131:
  735:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** }
- 1221              		.loc 1 735 3 is_stmt 1 view .LVU274
+ 1245              		.loc 1 735 3 is_stmt 1 view .LVU273
  736:Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Target/usbd_conf.c **** 
- 1222              		.loc 1 736 1 is_stmt 0 view .LVU275
- 1223 000e 08BD     		pop	{r3, pc}
- 1224              		.cfi_endproc
- 1225              	.LFE172:
- 1227              		.global	hpcd_USB_OTG_PTR
- 1228              		.section	.bss.hpcd_USB_OTG_PTR,"aw",%nobits
- 1229              		.align	2
- 1232              	hpcd_USB_OTG_PTR:
- 1233 0000 00000000 		.space	4
-ARM GAS  /tmp/ccfYh3Qj.s 			page 38
-
-
- 1234              		.text
- 1235              	.Letext0:
- 1236              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 1237              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 1238              		.file 4 "Drivers/CMSIS/Include/core_cm7.h"
- 1239              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
- 1240              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
- 1241              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h"
- 1242              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h"
- 1243              		.file 9 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
- 1244              		.file 10 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h"
- 1245              		.file 11 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Inc/usbd_hid_key
- 1246              		.file 12 "Core/Inc/usb_otg.h"
- 1247              		.file 13 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
- 1248              		.file 14 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h"
- 1249              		.file 15 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
-ARM GAS  /tmp/ccfYh3Qj.s 			page 39
+ 1246              		.loc 1 736 1 is_stmt 0 view .LVU274
+ 1247 000e 08BD     		pop	{r3, pc}
+ 1248              		.cfi_endproc
+ 1249              	.LFE172:
+ 1251              		.global	hpcd_USB_OTG_PTR
+ 1252              		.section	.bss.hpcd_USB_OTG_PTR,"aw",%nobits
+ 1253              		.align	2
+ 1254              		.set	.LANCHOR0,. + 0
+ 1257              	hpcd_USB_OTG_PTR:
+ 1258 0000 00000000 		.space	4
+ 1259              		.text
+ 1260              	.Letext0:
+ 1261              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 1262              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 1263              		.file 4 "Drivers/CMSIS/Include/core_cm7.h"
+ 1264              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
+ 1265              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 1266              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_usb.h"
+ 1267              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h"
+ 1268              		.file 9 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_def.h"
+ 1269              		.file 10 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h"
+ 1270              		.file 11 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/HID_KEYBOARD/Inc/usbd_hid_key
+ 1271              		.file 12 "Core/Inc/usb_otg.h"
+ 1272              		.file 13 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
+ 1273              		.file 14 "Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_core.h"
+ 1274              		.file 15 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd_ex.h"
+ARM GAS  /tmp/ccTXhoB9.s 			page 39
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 usbd_conf.c
-     /tmp/ccfYh3Qj.s:21     .text.HAL_PCDEx_SetTxFiFoInBytes:00000000 $t
-     /tmp/ccfYh3Qj.s:27     .text.HAL_PCDEx_SetTxFiFoInBytes:00000000 HAL_PCDEx_SetTxFiFoInBytes
-     /tmp/ccfYh3Qj.s:52     .text.HAL_PCDEx_SetRxFiFoInBytes:00000000 $t
-     /tmp/ccfYh3Qj.s:58     .text.HAL_PCDEx_SetRxFiFoInBytes:00000000 HAL_PCDEx_SetRxFiFoInBytes
-     /tmp/ccfYh3Qj.s:83     .text.HAL_PCD_MspInit:00000000 $t
-     /tmp/ccfYh3Qj.s:89     .text.HAL_PCD_MspInit:00000000 HAL_PCD_MspInit
-     /tmp/ccfYh3Qj.s:103    .text.HAL_PCD_MspDeInit:00000000 $t
-     /tmp/ccfYh3Qj.s:109    .text.HAL_PCD_MspDeInit:00000000 HAL_PCD_MspDeInit
-     /tmp/ccfYh3Qj.s:123    .text.HAL_PCD_SetupStageCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:129    .text.HAL_PCD_SetupStageCallback:00000000 HAL_PCD_SetupStageCallback
-     /tmp/ccfYh3Qj.s:154    .text.HAL_PCD_DataOutStageCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:160    .text.HAL_PCD_DataOutStageCallback:00000000 HAL_PCD_DataOutStageCallback
-     /tmp/ccfYh3Qj.s:187    .text.HAL_PCD_DataInStageCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:193    .text.HAL_PCD_DataInStageCallback:00000000 HAL_PCD_DataInStageCallback
-     /tmp/ccfYh3Qj.s:220    .text.HAL_PCD_SOFCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:226    .text.HAL_PCD_SOFCallback:00000000 HAL_PCD_SOFCallback
-     /tmp/ccfYh3Qj.s:250    .text.HAL_PCD_ResetCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:256    .text.HAL_PCD_ResetCallback:00000000 HAL_PCD_ResetCallback
-     /tmp/ccfYh3Qj.s:311    .text.HAL_PCD_SuspendCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:317    .text.HAL_PCD_SuspendCallback:00000000 HAL_PCD_SuspendCallback
-     /tmp/ccfYh3Qj.s:361    .text.HAL_PCD_SuspendCallback:0000002c $d
-     /tmp/ccfYh3Qj.s:366    .text.HAL_PCD_ResumeCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:372    .text.HAL_PCD_ResumeCallback:00000000 HAL_PCD_ResumeCallback
-     /tmp/ccfYh3Qj.s:396    .text.HAL_PCD_ISOOUTIncompleteCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:402    .text.HAL_PCD_ISOOUTIncompleteCallback:00000000 HAL_PCD_ISOOUTIncompleteCallback
-     /tmp/ccfYh3Qj.s:426    .text.HAL_PCD_ISOINIncompleteCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:432    .text.HAL_PCD_ISOINIncompleteCallback:00000000 HAL_PCD_ISOINIncompleteCallback
-     /tmp/ccfYh3Qj.s:456    .text.HAL_PCD_ConnectCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:462    .text.HAL_PCD_ConnectCallback:00000000 HAL_PCD_ConnectCallback
-     /tmp/ccfYh3Qj.s:486    .text.HAL_PCD_DisconnectCallback:00000000 $t
-     /tmp/ccfYh3Qj.s:492    .text.HAL_PCD_DisconnectCallback:00000000 HAL_PCD_DisconnectCallback
-     /tmp/ccfYh3Qj.s:516    .text.USBD_LL_Init:00000000 $t
-     /tmp/ccfYh3Qj.s:522    .text.USBD_LL_Init:00000000 USBD_LL_Init
-     /tmp/ccfYh3Qj.s:625    .text.USBD_LL_Init:00000070 $d
-     /tmp/ccfYh3Qj.s:1232   .bss.hpcd_USB_OTG_PTR:00000000 hpcd_USB_OTG_PTR
-     /tmp/ccfYh3Qj.s:635    .text.USBD_LL_IsStallEP:00000000 $t
-     /tmp/ccfYh3Qj.s:641    .text.USBD_LL_IsStallEP:00000000 USBD_LL_IsStallEP
-     /tmp/ccfYh3Qj.s:689    .text.USBD_LL_GetRxDataSize:00000000 $t
-     /tmp/ccfYh3Qj.s:695    .text.USBD_LL_GetRxDataSize:00000000 USBD_LL_GetRxDataSize
-     /tmp/ccfYh3Qj.s:720    .text.USBD_LL_Delay:00000000 $t
-     /tmp/ccfYh3Qj.s:726    .text.USBD_LL_Delay:00000000 USBD_LL_Delay
-     /tmp/ccfYh3Qj.s:747    .text.USBD_Get_USB_Status:00000000 $t
-     /tmp/ccfYh3Qj.s:753    .text.USBD_Get_USB_Status:00000000 USBD_Get_USB_Status
-     /tmp/ccfYh3Qj.s:767    .text.USBD_Get_USB_Status:00000008 $d
-     /tmp/ccfYh3Qj.s:771    .text.USBD_Get_USB_Status:0000000c $t
-     /tmp/ccfYh3Qj.s:794    .text.USBD_LL_DeInit:00000000 $t
-     /tmp/ccfYh3Qj.s:800    .text.USBD_LL_DeInit:00000000 USBD_LL_DeInit
-     /tmp/ccfYh3Qj.s:833    .text.USBD_LL_Start:00000000 $t
-     /tmp/ccfYh3Qj.s:839    .text.USBD_LL_Start:00000000 USBD_LL_Start
-     /tmp/ccfYh3Qj.s:872    .text.USBD_LL_Stop:00000000 $t
-     /tmp/ccfYh3Qj.s:878    .text.USBD_LL_Stop:00000000 USBD_LL_Stop
-     /tmp/ccfYh3Qj.s:911    .text.USBD_LL_OpenEP:00000000 $t
-     /tmp/ccfYh3Qj.s:917    .text.USBD_LL_OpenEP:00000000 USBD_LL_OpenEP
-     /tmp/ccfYh3Qj.s:955    .text.USBD_LL_CloseEP:00000000 $t
-     /tmp/ccfYh3Qj.s:961    .text.USBD_LL_CloseEP:00000000 USBD_LL_CloseEP
-ARM GAS  /tmp/ccfYh3Qj.s 			page 40
+                            *ABS*:0000000000000000 usbd_conf.c
+     /tmp/ccTXhoB9.s:20     .text.HAL_PCDEx_SetTxFiFoInBytes:0000000000000000 $t
+     /tmp/ccTXhoB9.s:26     .text.HAL_PCDEx_SetTxFiFoInBytes:0000000000000000 HAL_PCDEx_SetTxFiFoInBytes
+     /tmp/ccTXhoB9.s:53     .text.HAL_PCDEx_SetRxFiFoInBytes:0000000000000000 $t
+     /tmp/ccTXhoB9.s:59     .text.HAL_PCDEx_SetRxFiFoInBytes:0000000000000000 HAL_PCDEx_SetRxFiFoInBytes
+     /tmp/ccTXhoB9.s:85     .text.HAL_PCD_MspInit:0000000000000000 $t
+     /tmp/ccTXhoB9.s:91     .text.HAL_PCD_MspInit:0000000000000000 HAL_PCD_MspInit
+     /tmp/ccTXhoB9.s:105    .text.HAL_PCD_MspDeInit:0000000000000000 $t
+     /tmp/ccTXhoB9.s:111    .text.HAL_PCD_MspDeInit:0000000000000000 HAL_PCD_MspDeInit
+     /tmp/ccTXhoB9.s:125    .text.HAL_PCD_SetupStageCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:131    .text.HAL_PCD_SetupStageCallback:0000000000000000 HAL_PCD_SetupStageCallback
+     /tmp/ccTXhoB9.s:157    .text.HAL_PCD_DataOutStageCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:163    .text.HAL_PCD_DataOutStageCallback:0000000000000000 HAL_PCD_DataOutStageCallback
+     /tmp/ccTXhoB9.s:191    .text.HAL_PCD_DataInStageCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:197    .text.HAL_PCD_DataInStageCallback:0000000000000000 HAL_PCD_DataInStageCallback
+     /tmp/ccTXhoB9.s:225    .text.HAL_PCD_SOFCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:231    .text.HAL_PCD_SOFCallback:0000000000000000 HAL_PCD_SOFCallback
+     /tmp/ccTXhoB9.s:256    .text.HAL_PCD_ResetCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:262    .text.HAL_PCD_ResetCallback:0000000000000000 HAL_PCD_ResetCallback
+     /tmp/ccTXhoB9.s:318    .text.HAL_PCD_SuspendCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:324    .text.HAL_PCD_SuspendCallback:0000000000000000 HAL_PCD_SuspendCallback
+     /tmp/ccTXhoB9.s:368    .text.HAL_PCD_SuspendCallback:000000000000002c $d
+     /tmp/ccTXhoB9.s:373    .text.HAL_PCD_ResumeCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:379    .text.HAL_PCD_ResumeCallback:0000000000000000 HAL_PCD_ResumeCallback
+     /tmp/ccTXhoB9.s:404    .text.HAL_PCD_ISOOUTIncompleteCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:410    .text.HAL_PCD_ISOOUTIncompleteCallback:0000000000000000 HAL_PCD_ISOOUTIncompleteCallback
+     /tmp/ccTXhoB9.s:435    .text.HAL_PCD_ISOINIncompleteCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:441    .text.HAL_PCD_ISOINIncompleteCallback:0000000000000000 HAL_PCD_ISOINIncompleteCallback
+     /tmp/ccTXhoB9.s:466    .text.HAL_PCD_ConnectCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:472    .text.HAL_PCD_ConnectCallback:0000000000000000 HAL_PCD_ConnectCallback
+     /tmp/ccTXhoB9.s:497    .text.HAL_PCD_DisconnectCallback:0000000000000000 $t
+     /tmp/ccTXhoB9.s:503    .text.HAL_PCD_DisconnectCallback:0000000000000000 HAL_PCD_DisconnectCallback
+     /tmp/ccTXhoB9.s:528    .text.USBD_LL_Init:0000000000000000 $t
+     /tmp/ccTXhoB9.s:534    .text.USBD_LL_Init:0000000000000000 USBD_LL_Init
+     /tmp/ccTXhoB9.s:640    .text.USBD_LL_Init:0000000000000070 $d
+     /tmp/ccTXhoB9.s:650    .text.USBD_LL_IsStallEP:0000000000000000 $t
+     /tmp/ccTXhoB9.s:656    .text.USBD_LL_IsStallEP:0000000000000000 USBD_LL_IsStallEP
+     /tmp/ccTXhoB9.s:700    .text.USBD_LL_GetRxDataSize:0000000000000000 $t
+     /tmp/ccTXhoB9.s:706    .text.USBD_LL_GetRxDataSize:0000000000000000 USBD_LL_GetRxDataSize
+     /tmp/ccTXhoB9.s:732    .text.USBD_LL_Delay:0000000000000000 $t
+     /tmp/ccTXhoB9.s:738    .text.USBD_LL_Delay:0000000000000000 USBD_LL_Delay
+     /tmp/ccTXhoB9.s:760    .text.USBD_Get_USB_Status:0000000000000000 $t
+     /tmp/ccTXhoB9.s:766    .text.USBD_Get_USB_Status:0000000000000000 USBD_Get_USB_Status
+     /tmp/ccTXhoB9.s:780    .text.USBD_Get_USB_Status:0000000000000008 $d
+     /tmp/ccTXhoB9.s:784    .text.USBD_Get_USB_Status:000000000000000c $t
+     /tmp/ccTXhoB9.s:807    .text.USBD_LL_DeInit:0000000000000000 $t
+     /tmp/ccTXhoB9.s:813    .text.USBD_LL_DeInit:0000000000000000 USBD_LL_DeInit
+     /tmp/ccTXhoB9.s:847    .text.USBD_LL_Start:0000000000000000 $t
+     /tmp/ccTXhoB9.s:853    .text.USBD_LL_Start:0000000000000000 USBD_LL_Start
+     /tmp/ccTXhoB9.s:887    .text.USBD_LL_Stop:0000000000000000 $t
+     /tmp/ccTXhoB9.s:893    .text.USBD_LL_Stop:0000000000000000 USBD_LL_Stop
+     /tmp/ccTXhoB9.s:927    .text.USBD_LL_OpenEP:0000000000000000 $t
+     /tmp/ccTXhoB9.s:933    .text.USBD_LL_OpenEP:0000000000000000 USBD_LL_OpenEP
+     /tmp/ccTXhoB9.s:972    .text.USBD_LL_CloseEP:0000000000000000 $t
+     /tmp/ccTXhoB9.s:978    .text.USBD_LL_CloseEP:0000000000000000 USBD_LL_CloseEP
+     /tmp/ccTXhoB9.s:1012   .text.USBD_LL_FlushEP:0000000000000000 $t
+ARM GAS  /tmp/ccTXhoB9.s 			page 40
 
 
-     /tmp/ccfYh3Qj.s:994    .text.USBD_LL_FlushEP:00000000 $t
-     /tmp/ccfYh3Qj.s:1000   .text.USBD_LL_FlushEP:00000000 USBD_LL_FlushEP
-     /tmp/ccfYh3Qj.s:1033   .text.USBD_LL_StallEP:00000000 $t
-     /tmp/ccfYh3Qj.s:1039   .text.USBD_LL_StallEP:00000000 USBD_LL_StallEP
-     /tmp/ccfYh3Qj.s:1072   .text.USBD_LL_ClearStallEP:00000000 $t
-     /tmp/ccfYh3Qj.s:1078   .text.USBD_LL_ClearStallEP:00000000 USBD_LL_ClearStallEP
-     /tmp/ccfYh3Qj.s:1111   .text.USBD_LL_SetUSBAddress:00000000 $t
-     /tmp/ccfYh3Qj.s:1117   .text.USBD_LL_SetUSBAddress:00000000 USBD_LL_SetUSBAddress
-     /tmp/ccfYh3Qj.s:1150   .text.USBD_LL_Transmit:00000000 $t
-     /tmp/ccfYh3Qj.s:1156   .text.USBD_LL_Transmit:00000000 USBD_LL_Transmit
-     /tmp/ccfYh3Qj.s:1189   .text.USBD_LL_PrepareReceive:00000000 $t
-     /tmp/ccfYh3Qj.s:1195   .text.USBD_LL_PrepareReceive:00000000 USBD_LL_PrepareReceive
-     /tmp/ccfYh3Qj.s:1229   .bss.hpcd_USB_OTG_PTR:00000000 $d
+     /tmp/ccTXhoB9.s:1018   .text.USBD_LL_FlushEP:0000000000000000 USBD_LL_FlushEP
+     /tmp/ccTXhoB9.s:1052   .text.USBD_LL_StallEP:0000000000000000 $t
+     /tmp/ccTXhoB9.s:1058   .text.USBD_LL_StallEP:0000000000000000 USBD_LL_StallEP
+     /tmp/ccTXhoB9.s:1092   .text.USBD_LL_ClearStallEP:0000000000000000 $t
+     /tmp/ccTXhoB9.s:1098   .text.USBD_LL_ClearStallEP:0000000000000000 USBD_LL_ClearStallEP
+     /tmp/ccTXhoB9.s:1132   .text.USBD_LL_SetUSBAddress:0000000000000000 $t
+     /tmp/ccTXhoB9.s:1138   .text.USBD_LL_SetUSBAddress:0000000000000000 USBD_LL_SetUSBAddress
+     /tmp/ccTXhoB9.s:1172   .text.USBD_LL_Transmit:0000000000000000 $t
+     /tmp/ccTXhoB9.s:1178   .text.USBD_LL_Transmit:0000000000000000 USBD_LL_Transmit
+     /tmp/ccTXhoB9.s:1212   .text.USBD_LL_PrepareReceive:0000000000000000 $t
+     /tmp/ccTXhoB9.s:1218   .text.USBD_LL_PrepareReceive:0000000000000000 USBD_LL_PrepareReceive
+     /tmp/ccTXhoB9.s:1257   .bss.hpcd_USB_OTG_PTR:0000000000000000 hpcd_USB_OTG_PTR
+     /tmp/ccTXhoB9.s:1253   .bss.hpcd_USB_OTG_PTR:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_PCDEx_SetTxFiFo

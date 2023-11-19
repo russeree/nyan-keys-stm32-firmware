@@ -38,6 +38,7 @@ typedef struct {
  */
 typedef struct {
     bool enabled;                     /**< Flag indicating if mining is enabled. */
+    bool active;                      /**< Actively mining, block header components submitted*/
     NyanBitcoinHeader block_header;   /**< Current block header being mined. */
     uint32_t current_nonce;           /**< Current nonce value in mining. */
 } NyanBitcoin;

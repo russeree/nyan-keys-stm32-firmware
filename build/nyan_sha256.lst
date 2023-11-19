@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc5fpCQQ.s 			page 1
+ARM GAS  /tmp/ccxR7PgV.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,16 +19,16 @@ ARM GAS  /tmp/cc5fpCQQ.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.file 1 "Core/Src/nyan_sha256.c"
-  20              		.section	.text.sha256_transform,"ax",%progbits
-  21              		.align	1
-  22              		.global	sha256_transform
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	sha256_transform:
-  28              	.LVL0:
-  29              	.LFB0:
+  19              		.section	.text.sha256_transform,"ax",%progbits
+  20              		.align	1
+  21              		.global	sha256_transform
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	sha256_transform:
+  27              	.LVL0:
+  28              	.LFB0:
+  29              		.file 1 "Core/Src/nyan_sha256.c"
    1:Core/Src/nyan_sha256.c **** /*********************************************************************
    2:Core/Src/nyan_sha256.c **** * Filename:   sha256.c
    3:Core/Src/nyan_sha256.c **** * Author:     Brad Conte (brad AT bradconte.com)
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc5fpCQQ.s 			page 1
   27:Core/Src/nyan_sha256.c **** #define EP1(x) (ROTRIGHT(x,6) ^ ROTRIGHT(x,11) ^ ROTRIGHT(x,25))
   28:Core/Src/nyan_sha256.c **** #define SIG0(x) (ROTRIGHT(x,7) ^ ROTRIGHT(x,18) ^ ((x) >> 3))
   29:Core/Src/nyan_sha256.c **** #define SIG1(x) (ROTRIGHT(x,17) ^ ROTRIGHT(x,19) ^ ((x) >> 10))
-ARM GAS  /tmp/cc5fpCQQ.s 			page 2
+ARM GAS  /tmp/ccxR7PgV.s 			page 2
 
 
   30:Core/Src/nyan_sha256.c **** 
@@ -83,649 +83,647 @@ ARM GAS  /tmp/cc5fpCQQ.s 			page 1
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		.loc 1 45 1 is_stmt 0 view .LVU1
   35 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
-  36              		.cfi_def_cfa_offset 36
-  37              		.cfi_offset 4, -36
-  38              		.cfi_offset 5, -32
-  39              		.cfi_offset 6, -28
-  40              		.cfi_offset 7, -24
-  41              		.cfi_offset 8, -20
-  42              		.cfi_offset 9, -16
-  43              		.cfi_offset 10, -12
-  44              		.cfi_offset 11, -8
-  45              		.cfi_offset 14, -4
-  46 0004 C9B0     		sub	sp, sp, #292
-  47              		.cfi_def_cfa_offset 328
-  48 0006 8146     		mov	r9, r0
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 36
+  38              		.cfi_offset 4, -36
+  39              		.cfi_offset 5, -32
+  40              		.cfi_offset 6, -28
+  41              		.cfi_offset 7, -24
+  42              		.cfi_offset 8, -20
+  43              		.cfi_offset 9, -16
+  44              		.cfi_offset 10, -12
+  45              		.cfi_offset 11, -8
+  46              		.cfi_offset 14, -4
+  47 0004 C9B0     		sub	sp, sp, #292
+  48              	.LCFI1:
+  49              		.cfi_def_cfa_offset 328
+  50 0006 8246     		mov	r10, r0
   46:Core/Src/nyan_sha256.c **** 	WORD a, b, c, d, e, f, g, h, i, j, t1, t2, m[64];
-  49              		.loc 1 46 2 is_stmt 1 view .LVU2
+  51              		.loc 1 46 2 is_stmt 1 view .LVU2
   47:Core/Src/nyan_sha256.c **** 
   48:Core/Src/nyan_sha256.c **** 	for (i = 0, j = 0; i < 16; ++i, j += 4)
-  50              		.loc 1 48 2 view .LVU3
-  51              	.LVL1:
-  52              		.loc 1 48 16 is_stmt 0 view .LVU4
-  53 0008 0020     		movs	r0, #0
-  54              	.LVL2:
-  55              		.loc 1 48 9 view .LVU5
-  56 000a 0246     		mov	r2, r0
-  57              		.loc 1 48 2 view .LVU6
-  58 000c 0FE0     		b	.L2
-  59              	.LVL3:
-  60              	.L3:
+  52              		.loc 1 48 2 view .LVU3
+  53              	.LVL1:
+  54              		.loc 1 48 16 is_stmt 0 view .LVU4
+  55 0008 0020     		movs	r0, #0
+  56              	.LVL2:
+  57              		.loc 1 48 9 view .LVU5
+  58 000a 0246     		mov	r2, r0
+  59              		.loc 1 48 2 view .LVU6
+  60 000c 0FE0     		b	.L2
+  61              	.LVL3:
+  62              	.L3:
   49:Core/Src/nyan_sha256.c **** 		m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);
-  61              		.loc 1 49 3 is_stmt 1 discriminator 3 view .LVU7
-  62              		.loc 1 49 15 is_stmt 0 discriminator 3 view .LVU8
-  63 000e 0D5C     		ldrb	r5, [r1, r0]	@ zero_extendqisi2
-  64              		.loc 1 49 33 discriminator 3 view .LVU9
-  65 0010 0C18     		adds	r4, r1, r0
-  66 0012 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
-ARM GAS  /tmp/cc5fpCQQ.s 			page 3
+  63              		.loc 1 49 3 is_stmt 1 discriminator 3 view .LVU7
+  64              		.loc 1 49 15 is_stmt 0 discriminator 3 view .LVU8
+  65 000e 0D5C     		ldrb	r5, [r1, r0]	@ zero_extendqisi2
+  66              		.loc 1 49 33 discriminator 3 view .LVU9
+ARM GAS  /tmp/ccxR7PgV.s 			page 3
 
 
-  67              		.loc 1 49 41 discriminator 3 view .LVU10
-  68 0014 1B04     		lsls	r3, r3, #16
-  69              		.loc 1 49 26 discriminator 3 view .LVU11
-  70 0016 43EA0563 		orr	r3, r3, r5, lsl #24
-  71              		.loc 1 49 55 discriminator 3 view .LVU12
-  72 001a A578     		ldrb	r5, [r4, #2]	@ zero_extendqisi2
-  73              		.loc 1 49 48 discriminator 3 view .LVU13
-  74 001c 43EA0523 		orr	r3, r3, r5, lsl #8
-  75              		.loc 1 49 76 discriminator 3 view .LVU14
-  76 0020 E478     		ldrb	r4, [r4, #3]	@ zero_extendqisi2
-  77              		.loc 1 49 69 discriminator 3 view .LVU15
-  78 0022 2343     		orrs	r3, r3, r4
-  79              		.loc 1 49 8 discriminator 3 view .LVU16
-  80 0024 08AC     		add	r4, sp, #32
-  81 0026 44F82230 		str	r3, [r4, r2, lsl #2]
+  67 0010 0C18     		adds	r4, r1, r0
+  68 0012 6378     		ldrb	r3, [r4, #1]	@ zero_extendqisi2
+  69              		.loc 1 49 41 discriminator 3 view .LVU10
+  70 0014 1B04     		lsls	r3, r3, #16
+  71              		.loc 1 49 26 discriminator 3 view .LVU11
+  72 0016 43EA0563 		orr	r3, r3, r5, lsl #24
+  73              		.loc 1 49 55 discriminator 3 view .LVU12
+  74 001a A578     		ldrb	r5, [r4, #2]	@ zero_extendqisi2
+  75              		.loc 1 49 48 discriminator 3 view .LVU13
+  76 001c 43EA0523 		orr	r3, r3, r5, lsl #8
+  77              		.loc 1 49 76 discriminator 3 view .LVU14
+  78 0020 E478     		ldrb	r4, [r4, #3]	@ zero_extendqisi2
+  79              		.loc 1 49 69 discriminator 3 view .LVU15
+  80 0022 2343     		orrs	r3, r3, r4
+  81              		.loc 1 49 8 discriminator 3 view .LVU16
+  82 0024 08AC     		add	r4, sp, #32
+  83 0026 44F82230 		str	r3, [r4, r2, lsl #2]
   48:Core/Src/nyan_sha256.c **** 		m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);
-  82              		.loc 1 48 32 is_stmt 1 discriminator 3 view .LVU17
+  84              		.loc 1 48 29 is_stmt 1 discriminator 3 view .LVU17
+  85 002a 0132     		adds	r2, r2, #1
+  86              	.LVL4:
   48:Core/Src/nyan_sha256.c **** 		m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);
-  83              		.loc 1 48 29 is_stmt 0 discriminator 3 view .LVU18
-  84 002a 0132     		adds	r2, r2, #1
-  85              	.LVL4:
+  87              		.loc 1 48 36 is_stmt 0 discriminator 3 view .LVU18
+  88 002c 0430     		adds	r0, r0, #4
+  89              	.LVL5:
+  90              	.L2:
   48:Core/Src/nyan_sha256.c **** 		m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);
-  86              		.loc 1 48 36 discriminator 3 view .LVU19
-  87 002c 0430     		adds	r0, r0, #4
-  88              	.LVL5:
-  89              	.L2:
+  91              		.loc 1 48 21 is_stmt 1 discriminator 1 view .LVU19
   48:Core/Src/nyan_sha256.c **** 		m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);
-  90              		.loc 1 48 23 is_stmt 1 discriminator 1 view .LVU20
-  91 002e 0F2A     		cmp	r2, #15
-  92 0030 EDD9     		bls	.L3
-  93 0032 22E0     		b	.L4
-  94              	.LVL6:
-  95              	.L5:
+  92              		.loc 1 48 2 is_stmt 0 discriminator 1 view .LVU20
+  93 002e 0F2A     		cmp	r2, #15
+  94 0030 EDD9     		bls	.L3
+  95 0032 22E0     		b	.L4
+  96              	.LVL6:
+  97              	.L5:
   50:Core/Src/nyan_sha256.c **** 	for ( ; i < 64; ++i)
   51:Core/Src/nyan_sha256.c **** 		m[i] = SIG1(m[i - 2]) + m[i - 7] + SIG0(m[i - 15]) + m[i - 16];
-  96              		.loc 1 51 3 discriminator 2 view .LVU21
-  97              		.loc 1 51 10 is_stmt 0 discriminator 2 view .LVU22
-  98 0034 931E     		subs	r3, r2, #2
-  99 0036 08A9     		add	r1, sp, #32
- 100 0038 51F82310 		ldr	r1, [r1, r3, lsl #2]
- 101 003c 4FEAF143 		ror	r3, r1, #19
- 102 0040 83EA7143 		eor	r3, r3, r1, ror #17
- 103 0044 83EA9123 		eor	r3, r3, r1, lsr #10
- 104              		.loc 1 51 31 discriminator 2 view .LVU23
- 105 0048 D11F     		subs	r1, r2, #7
- 106              		.loc 1 51 28 discriminator 2 view .LVU24
- 107 004a 08A8     		add	r0, sp, #32
- 108 004c 50F82110 		ldr	r1, [r0, r1, lsl #2]
- 109              		.loc 1 51 25 discriminator 2 view .LVU25
- 110 0050 0B44     		add	r3, r3, r1
- 111              		.loc 1 51 38 discriminator 2 view .LVU26
- 112 0052 A2F10F01 		sub	r1, r2, #15
- 113 0056 50F82100 		ldr	r0, [r0, r1, lsl #2]
- 114 005a 4FEAB041 		ror	r1, r0, #18
- 115 005e 81EAF011 		eor	r1, r1, r0, ror #7
- 116 0062 81EAD001 		eor	r1, r1, r0, lsr #3
- 117              		.loc 1 51 36 discriminator 2 view .LVU27
-ARM GAS  /tmp/cc5fpCQQ.s 			page 4
+  98              		.loc 1 51 3 is_stmt 1 discriminator 2 view .LVU21
+  99              		.loc 1 51 10 is_stmt 0 discriminator 2 view .LVU22
+ 100 0034 931E     		subs	r3, r2, #2
+ 101 0036 08A9     		add	r1, sp, #32
+ 102 0038 51F82310 		ldr	r1, [r1, r3, lsl #2]
+ 103 003c 4FEAF143 		ror	r3, r1, #19
+ 104 0040 83EA7143 		eor	r3, r3, r1, ror #17
+ 105 0044 83EA9123 		eor	r3, r3, r1, lsr #10
+ 106              		.loc 1 51 31 discriminator 2 view .LVU23
+ 107 0048 D11F     		subs	r1, r2, #7
+ 108              		.loc 1 51 28 discriminator 2 view .LVU24
+ 109 004a 08A8     		add	r0, sp, #32
+ 110 004c 50F82110 		ldr	r1, [r0, r1, lsl #2]
+ 111              		.loc 1 51 25 discriminator 2 view .LVU25
+ 112 0050 0B44     		add	r3, r3, r1
+ 113              		.loc 1 51 38 discriminator 2 view .LVU26
+ 114 0052 A2F10F01 		sub	r1, r2, #15
+ 115 0056 50F82100 		ldr	r0, [r0, r1, lsl #2]
+ 116 005a 4FEAB041 		ror	r1, r0, #18
+ 117 005e 81EAF011 		eor	r1, r1, r0, ror #7
+ARM GAS  /tmp/ccxR7PgV.s 			page 4
 
 
- 118 0066 0B44     		add	r3, r3, r1
- 119              		.loc 1 51 60 discriminator 2 view .LVU28
- 120 0068 A2F11001 		sub	r1, r2, #16
- 121              		.loc 1 51 57 discriminator 2 view .LVU29
- 122 006c 08A8     		add	r0, sp, #32
- 123 006e 50F82110 		ldr	r1, [r0, r1, lsl #2]
- 124              		.loc 1 51 54 discriminator 2 view .LVU30
- 125 0072 0B44     		add	r3, r3, r1
- 126              		.loc 1 51 8 discriminator 2 view .LVU31
- 127 0074 40F82230 		str	r3, [r0, r2, lsl #2]
+ 118 0062 81EAD001 		eor	r1, r1, r0, lsr #3
+ 119              		.loc 1 51 36 discriminator 2 view .LVU27
+ 120 0066 0B44     		add	r3, r3, r1
+ 121              		.loc 1 51 60 discriminator 2 view .LVU28
+ 122 0068 A2F11001 		sub	r1, r2, #16
+ 123              		.loc 1 51 57 discriminator 2 view .LVU29
+ 124 006c 08A8     		add	r0, sp, #32
+ 125 006e 50F82110 		ldr	r1, [r0, r1, lsl #2]
+ 126              		.loc 1 51 54 discriminator 2 view .LVU30
+ 127 0072 0B44     		add	r3, r3, r1
+ 128              		.loc 1 51 8 discriminator 2 view .LVU31
+ 129 0074 40F82230 		str	r3, [r0, r2, lsl #2]
   50:Core/Src/nyan_sha256.c **** 	for ( ; i < 64; ++i)
- 128              		.loc 1 50 18 is_stmt 1 discriminator 2 view .LVU32
- 129 0078 0132     		adds	r2, r2, #1
- 130              	.LVL7:
- 131              	.L4:
+ 130              		.loc 1 50 18 is_stmt 1 discriminator 2 view .LVU32
+ 131 0078 0132     		adds	r2, r2, #1
+ 132              	.LVL7:
+ 133              	.L4:
   50:Core/Src/nyan_sha256.c **** 	for ( ; i < 64; ++i)
- 132              		.loc 1 50 12 discriminator 1 view .LVU33
- 133 007a 3F2A     		cmp	r2, #63
- 134 007c DAD9     		bls	.L5
+ 134              		.loc 1 50 10 discriminator 1 view .LVU33
+  50:Core/Src/nyan_sha256.c **** 	for ( ; i < 64; ++i)
+ 135              		.loc 1 50 2 is_stmt 0 discriminator 1 view .LVU34
+ 136 007a 3F2A     		cmp	r2, #63
+ 137 007c DAD9     		bls	.L5
   52:Core/Src/nyan_sha256.c **** 
   53:Core/Src/nyan_sha256.c **** 	a = ctx->state[0];
- 135              		.loc 1 53 2 view .LVU34
- 136              		.loc 1 53 4 is_stmt 0 view .LVU35
- 137 007e D9F850A0 		ldr	r10, [r9, #80]
- 138              	.LVL8:
+ 138              		.loc 1 53 2 is_stmt 1 view .LVU35
+ 139              		.loc 1 53 4 is_stmt 0 view .LVU36
+ 140 007e DAF850B0 		ldr	fp, [r10, #80]
+ 141              	.LVL8:
   54:Core/Src/nyan_sha256.c **** 	b = ctx->state[1];
- 139              		.loc 1 54 2 is_stmt 1 view .LVU36
- 140              		.loc 1 54 4 is_stmt 0 view .LVU37
- 141 0082 D9F854B0 		ldr	fp, [r9, #84]
- 142              	.LVL9:
+ 142              		.loc 1 54 2 is_stmt 1 view .LVU37
+ 143              		.loc 1 54 4 is_stmt 0 view .LVU38
+ 144 0082 DAF85450 		ldr	r5, [r10, #84]
+ 145 0086 0195     		str	r5, [sp, #4]
+ 146              	.LVL9:
   55:Core/Src/nyan_sha256.c **** 	c = ctx->state[2];
- 143              		.loc 1 55 2 is_stmt 1 view .LVU38
- 144              		.loc 1 55 4 is_stmt 0 view .LVU39
- 145 0086 D9F85810 		ldr	r1, [r9, #88]
- 146              	.LVL10:
+ 147              		.loc 1 55 2 is_stmt 1 view .LVU39
+ 148              		.loc 1 55 4 is_stmt 0 view .LVU40
+ 149 0088 DAF85840 		ldr	r4, [r10, #88]
+ 150 008c 0294     		str	r4, [sp, #8]
+ 151              	.LVL10:
   56:Core/Src/nyan_sha256.c **** 	d = ctx->state[3];
- 147              		.loc 1 56 2 is_stmt 1 view .LVU40
- 148              		.loc 1 56 4 is_stmt 0 view .LVU41
- 149 008a D9F85C30 		ldr	r3, [r9, #92]
- 150              	.LVL11:
+ 152              		.loc 1 56 2 is_stmt 1 view .LVU41
+ 153              		.loc 1 56 4 is_stmt 0 view .LVU42
+ 154 008e DAF85C30 		ldr	r3, [r10, #92]
+ 155 0092 0393     		str	r3, [sp, #12]
+ 156              	.LVL11:
   57:Core/Src/nyan_sha256.c **** 	e = ctx->state[4];
- 151              		.loc 1 57 2 is_stmt 1 view .LVU42
- 152              		.loc 1 57 4 is_stmt 0 view .LVU43
- 153 008e D9F86020 		ldr	r2, [r9, #96]
- 154              	.LVL12:
- 155              		.loc 1 57 4 view .LVU44
- 156 0092 0192     		str	r2, [sp, #4]
- 157              	.LVL13:
+ 157              		.loc 1 57 2 is_stmt 1 view .LVU43
+ 158              		.loc 1 57 4 is_stmt 0 view .LVU44
+ 159 0094 DAF86020 		ldr	r2, [r10, #96]
+ 160              	.LVL12:
+ 161              		.loc 1 57 4 view .LVU45
+ 162 0098 0492     		str	r2, [sp, #16]
+ 163              	.LVL13:
   58:Core/Src/nyan_sha256.c **** 	f = ctx->state[5];
- 158              		.loc 1 58 2 is_stmt 1 view .LVU45
- 159              		.loc 1 58 4 is_stmt 0 view .LVU46
- 160 0094 D9F86470 		ldr	r7, [r9, #100]
- 161 0098 0297     		str	r7, [sp, #8]
- 162              	.LVL14:
+ 164              		.loc 1 58 2 is_stmt 1 view .LVU46
+ARM GAS  /tmp/ccxR7PgV.s 			page 5
+
+
+ 165              		.loc 1 58 4 is_stmt 0 view .LVU47
+ 166 009a DAF86470 		ldr	r7, [r10, #100]
+ 167 009e 0597     		str	r7, [sp, #20]
+ 168              	.LVL14:
   59:Core/Src/nyan_sha256.c **** 	g = ctx->state[6];
- 163              		.loc 1 59 2 is_stmt 1 view .LVU47
- 164              		.loc 1 59 4 is_stmt 0 view .LVU48
-ARM GAS  /tmp/cc5fpCQQ.s 			page 5
-
-
- 165 009a D9F86860 		ldr	r6, [r9, #104]
- 166 009e 0396     		str	r6, [sp, #12]
- 167              	.LVL15:
+ 169              		.loc 1 59 2 is_stmt 1 view .LVU48
+ 170              		.loc 1 59 4 is_stmt 0 view .LVU49
+ 171 00a0 DAF86860 		ldr	r6, [r10, #104]
+ 172 00a4 0696     		str	r6, [sp, #24]
+ 173              	.LVL15:
   60:Core/Src/nyan_sha256.c **** 	h = ctx->state[7];
- 168              		.loc 1 60 2 is_stmt 1 view .LVU49
- 169              		.loc 1 60 4 is_stmt 0 view .LVU50
- 170 00a0 D9F86C00 		ldr	r0, [r9, #108]
- 171 00a4 0490     		str	r0, [sp, #16]
- 172              	.LVL16:
+ 174              		.loc 1 60 2 is_stmt 1 view .LVU50
+ 175              		.loc 1 60 4 is_stmt 0 view .LVU51
+ 176 00a6 DAF86C10 		ldr	r1, [r10, #108]
+ 177 00aa 0791     		str	r1, [sp, #28]
+ 178              	.LVL16:
   61:Core/Src/nyan_sha256.c **** 
   62:Core/Src/nyan_sha256.c **** 	for (i = 0; i < 64; ++i) {
- 173              		.loc 1 62 2 is_stmt 1 view .LVU51
+ 179              		.loc 1 62 2 is_stmt 1 view .LVU52
   60:Core/Src/nyan_sha256.c **** 	h = ctx->state[7];
- 174              		.loc 1 60 4 is_stmt 0 view .LVU52
- 175 00a6 8646     		mov	lr, r0
+ 180              		.loc 1 60 4 is_stmt 0 view .LVU53
+ 181 00ac 8E46     		mov	lr, r1
   56:Core/Src/nyan_sha256.c **** 	e = ctx->state[4];
- 176              		.loc 1 56 4 view .LVU53
- 177 00a8 9846     		mov	r8, r3
-  55:Core/Src/nyan_sha256.c **** 	d = ctx->state[3];
- 178              		.loc 1 55 4 view .LVU54
- 179 00aa 0C46     		mov	r4, r1
-  54:Core/Src/nyan_sha256.c **** 	c = ctx->state[2];
- 180              		.loc 1 54 4 view .LVU55
- 181 00ac 5D46     		mov	r5, fp
+ 182              		.loc 1 56 4 view .LVU54
+ 183 00ae 9846     		mov	r8, r3
   53:Core/Src/nyan_sha256.c **** 	b = ctx->state[1];
- 182              		.loc 1 53 4 view .LVU56
- 183 00ae D446     		mov	ip, r10
- 184              		.loc 1 62 9 view .LVU57
- 185 00b0 0020     		movs	r0, #0
- 186              	.LVL17:
- 187              		.loc 1 62 9 view .LVU58
- 188 00b2 CDF814A0 		str	r10, [sp, #20]
- 189 00b6 CDF818B0 		str	fp, [sp, #24]
- 190 00ba 0791     		str	r1, [sp, #28]
- 191              		.loc 1 62 2 view .LVU59
- 192 00bc 30E0     		b	.L6
- 193              	.LVL18:
- 194              	.L7:
+ 184              		.loc 1 53 4 view .LVU55
+ 185 00b0 DC46     		mov	ip, fp
+ 186              		.loc 1 62 9 view .LVU56
+ 187 00b2 0020     		movs	r0, #0
+ 188              		.loc 1 62 2 view .LVU57
+ 189 00b4 2FE0     		b	.L6
+ 190              	.LVL17:
+ 191              	.L7:
   63:Core/Src/nyan_sha256.c **** 		t1 = h + EP1(e) + CH(e,f,g) + k[i] + m[i];
- 195              		.loc 1 63 3 is_stmt 1 discriminator 3 view .LVU60
- 196              		.loc 1 63 12 is_stmt 0 discriminator 3 view .LVU61
- 197 00be 4FEAF221 		ror	r1, r2, #11
- 198 00c2 81EAB211 		eor	r1, r1, r2, ror #6
- 199 00c6 81EA7261 		eor	r1, r1, r2, ror #25
- 200              		.loc 1 63 10 discriminator 3 view .LVU62
- 201 00ca 7144     		add	r1, r1, lr
- 202              		.loc 1 63 21 discriminator 3 view .LVU63
- 203 00cc 02EA070E 		and	lr, r2, r7
- 204              	.LVL19:
- 205              		.loc 1 63 21 discriminator 3 view .LVU64
- 206 00d0 26EA020A 		bic	r10, r6, r2
- 207 00d4 8EEA0A0E 		eor	lr, lr, r10
- 208              		.loc 1 63 19 discriminator 3 view .LVU65
- 209 00d8 8E44     		add	lr, lr, r1
- 210              		.loc 1 63 34 discriminator 3 view .LVU66
- 211 00da 2549     		ldr	r1, .L9
- 212 00dc 51F82010 		ldr	r1, [r1, r0, lsl #2]
-ARM GAS  /tmp/cc5fpCQQ.s 			page 6
+ 192              		.loc 1 63 3 is_stmt 1 discriminator 3 view .LVU58
+ 193              		.loc 1 63 12 is_stmt 0 discriminator 3 view .LVU59
+ 194 00b6 4FEAF223 		ror	r3, r2, #11
+ 195 00ba 83EAB213 		eor	r3, r3, r2, ror #6
+ 196 00be 83EA7263 		eor	r3, r3, r2, ror #25
+ 197              		.loc 1 63 10 discriminator 3 view .LVU60
+ 198 00c2 7344     		add	r3, r3, lr
+ 199              		.loc 1 63 21 discriminator 3 view .LVU61
+ 200 00c4 02EA0701 		and	r1, r2, r7
+ 201 00c8 26EA020E 		bic	lr, r6, r2
+ 202              	.LVL18:
+ 203              		.loc 1 63 21 discriminator 3 view .LVU62
+ 204 00cc 81EA0E01 		eor	r1, r1, lr
+ 205              		.loc 1 63 19 discriminator 3 view .LVU63
+ 206 00d0 0B44     		add	r3, r3, r1
+ 207              		.loc 1 63 34 discriminator 3 view .LVU64
+ 208 00d2 2349     		ldr	r1, .L9
+ 209 00d4 51F82010 		ldr	r1, [r1, r0, lsl #2]
+ 210              		.loc 1 63 31 discriminator 3 view .LVU65
+ 211 00d8 0B44     		add	r3, r3, r1
+ 212              		.loc 1 63 41 discriminator 3 view .LVU66
+ 213 00da 08A9     		add	r1, sp, #32
+ARM GAS  /tmp/ccxR7PgV.s 			page 6
 
 
- 213              		.loc 1 63 31 discriminator 3 view .LVU67
- 214 00e0 0EEB010A 		add	r10, lr, r1
- 215              		.loc 1 63 41 discriminator 3 view .LVU68
- 216 00e4 08A9     		add	r1, sp, #32
- 217 00e6 51F82010 		ldr	r1, [r1, r0, lsl #2]
- 218              		.loc 1 63 6 discriminator 3 view .LVU69
- 219 00ea 8A44     		add	r10, r10, r1
- 220              	.LVL20:
+ 214 00dc 51F82010 		ldr	r1, [r1, r0, lsl #2]
+ 215              		.loc 1 63 6 discriminator 3 view .LVU67
+ 216 00e0 0B44     		add	r3, r3, r1
+ 217              	.LVL19:
   64:Core/Src/nyan_sha256.c **** 		t2 = EP0(a) + MAJ(a,b,c);
- 221              		.loc 1 64 3 is_stmt 1 discriminator 3 view .LVU70
- 222              		.loc 1 64 8 is_stmt 0 discriminator 3 view .LVU71
- 223 00ec 4FEA7C3E 		ror	lr, ip, #13
- 224 00f0 8EEABC0E 		eor	lr, lr, ip, ror #2
- 225 00f4 8EEABC5E 		eor	lr, lr, ip, ror #22
- 226              		.loc 1 64 17 discriminator 3 view .LVU72
- 227 00f8 85EA0401 		eor	r1, r5, r4
- 228 00fc 01EA0C01 		and	r1, r1, ip
- 229 0100 05EA040B 		and	fp, r5, r4
- 230 0104 81EA0B01 		eor	r1, r1, fp
- 231              		.loc 1 64 6 discriminator 3 view .LVU73
- 232 0108 7144     		add	r1, r1, lr
- 233              	.LVL21:
+ 218              		.loc 1 64 3 is_stmt 1 discriminator 3 view .LVU68
+ 219              		.loc 1 64 8 is_stmt 0 discriminator 3 view .LVU69
+ 220 00e2 4FEA7C31 		ror	r1, ip, #13
+ 221 00e6 81EABC01 		eor	r1, r1, ip, ror #2
+ 222 00ea 81EABC51 		eor	r1, r1, ip, ror #22
+ 223              		.loc 1 64 17 discriminator 3 view .LVU70
+ 224 00ee 85EA040E 		eor	lr, r5, r4
+ 225 00f2 0EEA0C0E 		and	lr, lr, ip
+ 226 00f6 05EA0409 		and	r9, r5, r4
+ 227 00fa 8EEA090E 		eor	lr, lr, r9
+ 228              		.loc 1 64 6 discriminator 3 view .LVU71
+ 229 00fe 7144     		add	r1, r1, lr
+ 230              	.LVL20:
   65:Core/Src/nyan_sha256.c **** 		h = g;
- 234              		.loc 1 65 3 is_stmt 1 discriminator 3 view .LVU74
+ 231              		.loc 1 65 3 is_stmt 1 discriminator 3 view .LVU72
   66:Core/Src/nyan_sha256.c **** 		g = f;
- 235              		.loc 1 66 3 discriminator 3 view .LVU75
+ 232              		.loc 1 66 3 discriminator 3 view .LVU73
   67:Core/Src/nyan_sha256.c **** 		f = e;
- 236              		.loc 1 67 3 discriminator 3 view .LVU76
+ 233              		.loc 1 67 3 discriminator 3 view .LVU74
   68:Core/Src/nyan_sha256.c **** 		e = d + t1;
- 237              		.loc 1 68 3 discriminator 3 view .LVU77
+ 234              		.loc 1 68 3 discriminator 3 view .LVU75
   69:Core/Src/nyan_sha256.c **** 		d = c;
- 238              		.loc 1 69 3 discriminator 3 view .LVU78
+ 235              		.loc 1 69 3 discriminator 3 view .LVU76
   70:Core/Src/nyan_sha256.c **** 		c = b;
- 239              		.loc 1 70 3 discriminator 3 view .LVU79
+ 236              		.loc 1 70 3 discriminator 3 view .LVU77
   71:Core/Src/nyan_sha256.c **** 		b = a;
- 240              		.loc 1 71 3 discriminator 3 view .LVU80
+ 237              		.loc 1 71 3 discriminator 3 view .LVU78
   72:Core/Src/nyan_sha256.c **** 		a = t1 + t2;
- 241              		.loc 1 72 3 discriminator 3 view .LVU81
+ 238              		.loc 1 72 3 discriminator 3 view .LVU79
   62:Core/Src/nyan_sha256.c **** 		t1 = h + EP1(e) + CH(e,f,g) + k[i] + m[i];
- 242              		.loc 1 62 22 discriminator 3 view .LVU82
- 243 010a 0130     		adds	r0, r0, #1
- 244              	.LVL22:
+ 239              		.loc 1 62 22 discriminator 3 view .LVU80
+ 240 0100 0130     		adds	r0, r0, #1
+ 241              	.LVL21:
   65:Core/Src/nyan_sha256.c **** 		g = f;
- 245              		.loc 1 65 5 is_stmt 0 discriminator 3 view .LVU83
- 246 010c B646     		mov	lr, r6
+ 242              		.loc 1 65 5 is_stmt 0 discriminator 3 view .LVU81
+ 243 0102 B646     		mov	lr, r6
   66:Core/Src/nyan_sha256.c **** 		f = e;
- 247              		.loc 1 66 5 discriminator 3 view .LVU84
- 248 010e 3E46     		mov	r6, r7
- 249              	.LVL23:
+ 244              		.loc 1 66 5 discriminator 3 view .LVU82
+ 245 0104 3E46     		mov	r6, r7
+ 246              	.LVL22:
   67:Core/Src/nyan_sha256.c **** 		e = d + t1;
- 250              		.loc 1 67 5 discriminator 3 view .LVU85
- 251 0110 1746     		mov	r7, r2
- 252              	.LVL24:
+ 247              		.loc 1 67 5 discriminator 3 view .LVU83
+ 248 0106 1746     		mov	r7, r2
+ 249              	.LVL23:
   68:Core/Src/nyan_sha256.c **** 		d = c;
- 253              		.loc 1 68 5 discriminator 3 view .LVU86
- 254 0112 08EB0A02 		add	r2, r8, r10
- 255              	.LVL25:
-ARM GAS  /tmp/cc5fpCQQ.s 			page 7
-
-
+ 250              		.loc 1 68 5 discriminator 3 view .LVU84
+ 251 0108 08EB0302 		add	r2, r8, r3
+ 252              	.LVL24:
   69:Core/Src/nyan_sha256.c **** 		c = b;
- 256              		.loc 1 69 5 discriminator 3 view .LVU87
- 257 0116 A046     		mov	r8, r4
+ 253              		.loc 1 69 5 discriminator 3 view .LVU85
+ 254 010c A046     		mov	r8, r4
   70:Core/Src/nyan_sha256.c **** 		b = a;
- 258              		.loc 1 70 5 discriminator 3 view .LVU88
- 259 0118 2C46     		mov	r4, r5
- 260              	.LVL26:
+ARM GAS  /tmp/ccxR7PgV.s 			page 7
+
+
+ 255              		.loc 1 70 5 discriminator 3 view .LVU86
+ 256 010e 2C46     		mov	r4, r5
+ 257              	.LVL25:
   71:Core/Src/nyan_sha256.c **** 		a = t1 + t2;
- 261              		.loc 1 71 5 discriminator 3 view .LVU89
- 262 011a 6546     		mov	r5, ip
+ 258              		.loc 1 71 5 discriminator 3 view .LVU87
+ 259 0110 6546     		mov	r5, ip
+ 260              	.LVL26:
+ 261              		.loc 1 72 5 discriminator 3 view .LVU88
+ 262 0112 03EB010C 		add	ip, r3, r1
  263              	.LVL27:
- 264              		.loc 1 72 5 discriminator 3 view .LVU90
- 265 011c 0AEB010C 		add	ip, r10, r1
- 266              	.LVL28:
- 267              	.L6:
+ 264              	.L6:
   62:Core/Src/nyan_sha256.c **** 		t1 = h + EP1(e) + CH(e,f,g) + k[i] + m[i];
- 268              		.loc 1 62 16 is_stmt 1 discriminator 1 view .LVU91
- 269 0120 3F28     		cmp	r0, #63
- 270 0122 CCD9     		bls	.L7
+ 265              		.loc 1 62 14 is_stmt 1 discriminator 1 view .LVU89
+  62:Core/Src/nyan_sha256.c **** 		t1 = h + EP1(e) + CH(e,f,g) + k[i] + m[i];
+ 266              		.loc 1 62 2 is_stmt 0 discriminator 1 view .LVU90
+ 267 0116 3F28     		cmp	r0, #63
+ 268 0118 CDD9     		bls	.L7
   73:Core/Src/nyan_sha256.c **** 	}
   74:Core/Src/nyan_sha256.c **** 
   75:Core/Src/nyan_sha256.c **** 	ctx->state[0] += a;
- 271              		.loc 1 75 16 is_stmt 0 view .LVU92
- 272 0124 DDF814A0 		ldr	r10, [sp, #20]
- 273 0128 DDF818B0 		ldr	fp, [sp, #24]
- 274 012c 0799     		ldr	r1, [sp, #28]
- 275              		.loc 1 75 2 is_stmt 1 view .LVU93
- 276              		.loc 1 75 16 is_stmt 0 view .LVU94
- 277 012e 0CEB0A00 		add	r0, ip, r10
- 278              	.LVL29:
- 279              		.loc 1 75 16 view .LVU95
- 280 0132 C9F85000 		str	r0, [r9, #80]
+ 269              		.loc 1 75 2 is_stmt 1 view .LVU91
+ 270              		.loc 1 75 16 is_stmt 0 view .LVU92
+ 271 011a 0CEB0B03 		add	r3, ip, fp
+ 272 011e CAF85030 		str	r3, [r10, #80]
   76:Core/Src/nyan_sha256.c **** 	ctx->state[1] += b;
- 281              		.loc 1 76 2 is_stmt 1 view .LVU96
- 282              		.loc 1 76 16 is_stmt 0 view .LVU97
- 283 0136 5D44     		add	r5, r5, fp
- 284              	.LVL30:
- 285              		.loc 1 76 16 view .LVU98
- 286 0138 C9F85450 		str	r5, [r9, #84]
+ 273              		.loc 1 76 2 is_stmt 1 view .LVU93
+ 274              		.loc 1 76 16 is_stmt 0 view .LVU94
+ 275 0122 019B     		ldr	r3, [sp, #4]
+ 276 0124 1D44     		add	r5, r5, r3
+ 277              	.LVL28:
+ 278              		.loc 1 76 16 view .LVU95
+ 279 0126 CAF85450 		str	r5, [r10, #84]
   77:Core/Src/nyan_sha256.c **** 	ctx->state[2] += c;
- 287              		.loc 1 77 2 is_stmt 1 view .LVU99
- 288              		.loc 1 77 16 is_stmt 0 view .LVU100
- 289 013c 0C44     		add	r4, r4, r1
- 290              	.LVL31:
- 291              		.loc 1 77 16 view .LVU101
- 292 013e C9F85840 		str	r4, [r9, #88]
+ 280              		.loc 1 77 2 is_stmt 1 view .LVU96
+ 281              		.loc 1 77 16 is_stmt 0 view .LVU97
+ 282 012a 029B     		ldr	r3, [sp, #8]
+ 283 012c 1C44     		add	r4, r4, r3
+ 284              	.LVL29:
+ 285              		.loc 1 77 16 view .LVU98
+ 286 012e CAF85840 		str	r4, [r10, #88]
   78:Core/Src/nyan_sha256.c **** 	ctx->state[3] += d;
- 293              		.loc 1 78 2 is_stmt 1 view .LVU102
- 294              		.loc 1 78 16 is_stmt 0 view .LVU103
- 295 0142 4344     		add	r3, r3, r8
- 296 0144 C9F85C30 		str	r3, [r9, #92]
+ 287              		.loc 1 78 2 is_stmt 1 view .LVU99
+ 288              		.loc 1 78 16 is_stmt 0 view .LVU100
+ 289 0132 039B     		ldr	r3, [sp, #12]
+ 290 0134 4344     		add	r3, r3, r8
+ 291 0136 CAF85C30 		str	r3, [r10, #92]
   79:Core/Src/nyan_sha256.c **** 	ctx->state[4] += e;
- 297              		.loc 1 79 2 is_stmt 1 view .LVU104
- 298              		.loc 1 79 16 is_stmt 0 view .LVU105
- 299 0148 019B     		ldr	r3, [sp, #4]
- 300 014a 1A44     		add	r2, r2, r3
- 301              	.LVL32:
-ARM GAS  /tmp/cc5fpCQQ.s 			page 8
-
-
- 302              		.loc 1 79 16 view .LVU106
- 303 014c C9F86020 		str	r2, [r9, #96]
+ 292              		.loc 1 79 2 is_stmt 1 view .LVU101
+ 293              		.loc 1 79 16 is_stmt 0 view .LVU102
+ 294 013a 049B     		ldr	r3, [sp, #16]
+ 295 013c 1A44     		add	r2, r2, r3
+ 296              	.LVL30:
+ 297              		.loc 1 79 16 view .LVU103
+ 298 013e CAF86020 		str	r2, [r10, #96]
   80:Core/Src/nyan_sha256.c **** 	ctx->state[5] += f;
- 304              		.loc 1 80 2 is_stmt 1 view .LVU107
- 305              		.loc 1 80 16 is_stmt 0 view .LVU108
- 306 0150 029B     		ldr	r3, [sp, #8]
- 307 0152 1F44     		add	r7, r7, r3
- 308              	.LVL33:
- 309              		.loc 1 80 16 view .LVU109
- 310 0154 C9F86470 		str	r7, [r9, #100]
+ 299              		.loc 1 80 2 is_stmt 1 view .LVU104
+ 300              		.loc 1 80 16 is_stmt 0 view .LVU105
+ARM GAS  /tmp/ccxR7PgV.s 			page 8
+
+
+ 301 0142 059B     		ldr	r3, [sp, #20]
+ 302 0144 1F44     		add	r7, r7, r3
+ 303              	.LVL31:
+ 304              		.loc 1 80 16 view .LVU106
+ 305 0146 CAF86470 		str	r7, [r10, #100]
   81:Core/Src/nyan_sha256.c **** 	ctx->state[6] += g;
- 311              		.loc 1 81 2 is_stmt 1 view .LVU110
- 312              		.loc 1 81 16 is_stmt 0 view .LVU111
- 313 0158 039B     		ldr	r3, [sp, #12]
- 314 015a 1E44     		add	r6, r6, r3
- 315              	.LVL34:
- 316              		.loc 1 81 16 view .LVU112
- 317 015c C9F86860 		str	r6, [r9, #104]
+ 306              		.loc 1 81 2 is_stmt 1 view .LVU107
+ 307              		.loc 1 81 16 is_stmt 0 view .LVU108
+ 308 014a 069B     		ldr	r3, [sp, #24]
+ 309 014c 1E44     		add	r6, r6, r3
+ 310              	.LVL32:
+ 311              		.loc 1 81 16 view .LVU109
+ 312 014e CAF86860 		str	r6, [r10, #104]
   82:Core/Src/nyan_sha256.c **** 	ctx->state[7] += h;
- 318              		.loc 1 82 2 is_stmt 1 view .LVU113
- 319              		.loc 1 82 16 is_stmt 0 view .LVU114
- 320 0160 049B     		ldr	r3, [sp, #16]
- 321 0162 7344     		add	r3, r3, lr
- 322 0164 C9F86C30 		str	r3, [r9, #108]
+ 313              		.loc 1 82 2 is_stmt 1 view .LVU110
+ 314              		.loc 1 82 16 is_stmt 0 view .LVU111
+ 315 0152 079B     		ldr	r3, [sp, #28]
+ 316 0154 7344     		add	r3, r3, lr
+ 317 0156 CAF86C30 		str	r3, [r10, #108]
   83:Core/Src/nyan_sha256.c **** }
- 323              		.loc 1 83 1 view .LVU115
- 324 0168 49B0     		add	sp, sp, #292
- 325              		.cfi_def_cfa_offset 36
- 326              		@ sp needed
- 327 016a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
- 328              	.LVL35:
- 329              	.L10:
- 330              		.loc 1 83 1 view .LVU116
- 331 016e 00BF     		.align	2
- 332              	.L9:
- 333 0170 00000000 		.word	k
- 334              		.cfi_endproc
- 335              	.LFE0:
- 337              		.section	.text.sha256_init,"ax",%progbits
- 338              		.align	1
- 339              		.global	sha256_init
- 340              		.syntax unified
- 341              		.thumb
- 342              		.thumb_func
- 344              	sha256_init:
- 345              	.LVL36:
- 346              	.LFB1:
+ 318              		.loc 1 83 1 view .LVU112
+ 319 015a 49B0     		add	sp, sp, #292
+ 320              	.LCFI2:
+ 321              		.cfi_def_cfa_offset 36
+ 322              		@ sp needed
+ 323 015c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 324              	.LVL33:
+ 325              	.L10:
+ 326              		.loc 1 83 1 view .LVU113
+ 327              		.align	2
+ 328              	.L9:
+ 329 0160 00000000 		.word	.LANCHOR0
+ 330              		.cfi_endproc
+ 331              	.LFE0:
+ 333              		.section	.text.sha256_init,"ax",%progbits
+ 334              		.align	1
+ 335              		.global	sha256_init
+ 336              		.syntax unified
+ 337              		.thumb
+ 338              		.thumb_func
+ 340              	sha256_init:
+ 341              	.LVL34:
+ 342              	.LFB1:
   84:Core/Src/nyan_sha256.c **** 
   85:Core/Src/nyan_sha256.c **** void sha256_init(SHA256_CTX *ctx)
   86:Core/Src/nyan_sha256.c **** {
- 347              		.loc 1 86 1 is_stmt 1 view -0
- 348              		.cfi_startproc
- 349              		@ args = 0, pretend = 0, frame = 0
- 350              		@ frame_needed = 0, uses_anonymous_args = 0
- 351              		@ link register save eliminated.
+ 343              		.loc 1 86 1 is_stmt 1 view -0
+ 344              		.cfi_startproc
+ 345              		@ args = 0, pretend = 0, frame = 0
+ 346              		@ frame_needed = 0, uses_anonymous_args = 0
+ 347              		@ link register save eliminated.
   87:Core/Src/nyan_sha256.c **** 	ctx->datalen = 0;
- 352              		.loc 1 87 2 view .LVU118
-ARM GAS  /tmp/cc5fpCQQ.s 			page 9
-
-
- 353              		.loc 1 87 15 is_stmt 0 view .LVU119
- 354 0000 0023     		movs	r3, #0
- 355 0002 0364     		str	r3, [r0, #64]
+ 348              		.loc 1 87 2 view .LVU115
+ 349              		.loc 1 87 15 is_stmt 0 view .LVU116
+ 350 0000 0023     		movs	r3, #0
+ 351 0002 0364     		str	r3, [r0, #64]
   88:Core/Src/nyan_sha256.c **** 	ctx->bitlen = 0;
- 356              		.loc 1 88 2 is_stmt 1 view .LVU120
- 357              		.loc 1 88 14 is_stmt 0 view .LVU121
- 358 0004 0022     		movs	r2, #0
- 359 0006 0023     		movs	r3, #0
- 360 0008 C0E91223 		strd	r2, [r0, #72]
+ARM GAS  /tmp/ccxR7PgV.s 			page 9
+
+
+ 352              		.loc 1 88 2 is_stmt 1 view .LVU117
+ 353              		.loc 1 88 14 is_stmt 0 view .LVU118
+ 354 0004 0022     		movs	r2, #0
+ 355 0006 0023     		movs	r3, #0
+ 356 0008 C0E91223 		strd	r2, [r0, #72]
   89:Core/Src/nyan_sha256.c **** 	ctx->state[0] = 0x6a09e667;
- 361              		.loc 1 89 2 is_stmt 1 view .LVU122
- 362              		.loc 1 89 16 is_stmt 0 view .LVU123
- 363 000c 0A4B     		ldr	r3, .L12
- 364 000e 0365     		str	r3, [r0, #80]
+ 357              		.loc 1 89 2 is_stmt 1 view .LVU119
+ 358              		.loc 1 89 16 is_stmt 0 view .LVU120
+ 359 000c 0A4B     		ldr	r3, .L12
+ 360 000e 0365     		str	r3, [r0, #80]
   90:Core/Src/nyan_sha256.c **** 	ctx->state[1] = 0xbb67ae85;
- 365              		.loc 1 90 2 is_stmt 1 view .LVU124
- 366              		.loc 1 90 16 is_stmt 0 view .LVU125
- 367 0010 0A4B     		ldr	r3, .L12+4
- 368 0012 4365     		str	r3, [r0, #84]
+ 361              		.loc 1 90 2 is_stmt 1 view .LVU121
+ 362              		.loc 1 90 16 is_stmt 0 view .LVU122
+ 363 0010 0A4B     		ldr	r3, .L12+4
+ 364 0012 4365     		str	r3, [r0, #84]
   91:Core/Src/nyan_sha256.c **** 	ctx->state[2] = 0x3c6ef372;
- 369              		.loc 1 91 2 is_stmt 1 view .LVU126
- 370              		.loc 1 91 16 is_stmt 0 view .LVU127
- 371 0014 0A4B     		ldr	r3, .L12+8
- 372 0016 8365     		str	r3, [r0, #88]
+ 365              		.loc 1 91 2 is_stmt 1 view .LVU123
+ 366              		.loc 1 91 16 is_stmt 0 view .LVU124
+ 367 0014 0A4B     		ldr	r3, .L12+8
+ 368 0016 8365     		str	r3, [r0, #88]
   92:Core/Src/nyan_sha256.c **** 	ctx->state[3] = 0xa54ff53a;
- 373              		.loc 1 92 2 is_stmt 1 view .LVU128
- 374              		.loc 1 92 16 is_stmt 0 view .LVU129
- 375 0018 0A4B     		ldr	r3, .L12+12
- 376 001a C365     		str	r3, [r0, #92]
+ 369              		.loc 1 92 2 is_stmt 1 view .LVU125
+ 370              		.loc 1 92 16 is_stmt 0 view .LVU126
+ 371 0018 0A4B     		ldr	r3, .L12+12
+ 372 001a C365     		str	r3, [r0, #92]
   93:Core/Src/nyan_sha256.c **** 	ctx->state[4] = 0x510e527f;
- 377              		.loc 1 93 2 is_stmt 1 view .LVU130
- 378              		.loc 1 93 16 is_stmt 0 view .LVU131
- 379 001c 0A4B     		ldr	r3, .L12+16
- 380 001e 0366     		str	r3, [r0, #96]
+ 373              		.loc 1 93 2 is_stmt 1 view .LVU127
+ 374              		.loc 1 93 16 is_stmt 0 view .LVU128
+ 375 001c 0A4B     		ldr	r3, .L12+16
+ 376 001e 0366     		str	r3, [r0, #96]
   94:Core/Src/nyan_sha256.c **** 	ctx->state[5] = 0x9b05688c;
- 381              		.loc 1 94 2 is_stmt 1 view .LVU132
- 382              		.loc 1 94 16 is_stmt 0 view .LVU133
- 383 0020 0A4B     		ldr	r3, .L12+20
- 384 0022 4366     		str	r3, [r0, #100]
+ 377              		.loc 1 94 2 is_stmt 1 view .LVU129
+ 378              		.loc 1 94 16 is_stmt 0 view .LVU130
+ 379 0020 0A4B     		ldr	r3, .L12+20
+ 380 0022 4366     		str	r3, [r0, #100]
   95:Core/Src/nyan_sha256.c **** 	ctx->state[6] = 0x1f83d9ab;
- 385              		.loc 1 95 2 is_stmt 1 view .LVU134
- 386              		.loc 1 95 16 is_stmt 0 view .LVU135
- 387 0024 0A4B     		ldr	r3, .L12+24
- 388 0026 8366     		str	r3, [r0, #104]
+ 381              		.loc 1 95 2 is_stmt 1 view .LVU131
+ 382              		.loc 1 95 16 is_stmt 0 view .LVU132
+ 383 0024 0A4B     		ldr	r3, .L12+24
+ 384 0026 8366     		str	r3, [r0, #104]
   96:Core/Src/nyan_sha256.c **** 	ctx->state[7] = 0x5be0cd19;
- 389              		.loc 1 96 2 is_stmt 1 view .LVU136
- 390              		.loc 1 96 16 is_stmt 0 view .LVU137
- 391 0028 03F17453 		add	r3, r3, #1023410176
- 392 002c A3F52303 		sub	r3, r3, #10682368
- 393 0030 A3F69243 		subw	r3, r3, #3218
- 394 0034 C366     		str	r3, [r0, #108]
+ 385              		.loc 1 96 2 is_stmt 1 view .LVU133
+ 386              		.loc 1 96 16 is_stmt 0 view .LVU134
+ 387 0028 03F17453 		add	r3, r3, #1023410176
+ 388 002c A3F52303 		sub	r3, r3, #10682368
+ 389 0030 A3F69243 		subw	r3, r3, #3218
+ 390 0034 C366     		str	r3, [r0, #108]
   97:Core/Src/nyan_sha256.c **** }
- 395              		.loc 1 97 1 view .LVU138
- 396 0036 7047     		bx	lr
- 397              	.L13:
- 398              		.align	2
- 399              	.L12:
-ARM GAS  /tmp/cc5fpCQQ.s 			page 10
+ 391              		.loc 1 97 1 view .LVU135
+ 392 0036 7047     		bx	lr
+ 393              	.L13:
+ 394              		.align	2
+ 395              	.L12:
+ 396 0038 67E6096A 		.word	1779033703
+ 397 003c 85AE67BB 		.word	-1150833019
+ 398 0040 72F36E3C 		.word	1013904242
+ 399 0044 3AF54FA5 		.word	-1521486534
+ARM GAS  /tmp/ccxR7PgV.s 			page 10
 
 
- 400 0038 67E6096A 		.word	1779033703
- 401 003c 85AE67BB 		.word	-1150833019
- 402 0040 72F36E3C 		.word	1013904242
- 403 0044 3AF54FA5 		.word	-1521486534
- 404 0048 7F520E51 		.word	1359893119
- 405 004c 8C68059B 		.word	-1694144372
- 406 0050 ABD9831F 		.word	528734635
- 407              		.cfi_endproc
- 408              	.LFE1:
- 410              		.section	.text.sha256_update,"ax",%progbits
- 411              		.align	1
- 412              		.global	sha256_update
- 413              		.syntax unified
- 414              		.thumb
- 415              		.thumb_func
- 417              	sha256_update:
- 418              	.LVL37:
- 419              	.LFB2:
+ 400 0048 7F520E51 		.word	1359893119
+ 401 004c 8C68059B 		.word	-1694144372
+ 402 0050 ABD9831F 		.word	528734635
+ 403              		.cfi_endproc
+ 404              	.LFE1:
+ 406              		.section	.text.sha256_update,"ax",%progbits
+ 407              		.align	1
+ 408              		.global	sha256_update
+ 409              		.syntax unified
+ 410              		.thumb
+ 411              		.thumb_func
+ 413              	sha256_update:
+ 414              	.LVL35:
+ 415              	.LFB2:
   98:Core/Src/nyan_sha256.c **** 
   99:Core/Src/nyan_sha256.c **** void sha256_update(SHA256_CTX *ctx, const BYTE data[], size_t len)
  100:Core/Src/nyan_sha256.c **** {
- 420              		.loc 1 100 1 is_stmt 1 view -0
- 421              		.cfi_startproc
- 422              		@ args = 0, pretend = 0, frame = 0
- 423              		@ frame_needed = 0, uses_anonymous_args = 0
- 424              		.loc 1 100 1 is_stmt 0 view .LVU140
- 425 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
- 426              		.cfi_def_cfa_offset 24
- 427              		.cfi_offset 3, -24
- 428              		.cfi_offset 4, -20
- 429              		.cfi_offset 5, -16
- 430              		.cfi_offset 6, -12
- 431              		.cfi_offset 7, -8
- 432              		.cfi_offset 14, -4
- 433 0002 0446     		mov	r4, r0
- 434 0004 0F46     		mov	r7, r1
- 435 0006 1646     		mov	r6, r2
+ 416              		.loc 1 100 1 is_stmt 1 view -0
+ 417              		.cfi_startproc
+ 418              		@ args = 0, pretend = 0, frame = 0
+ 419              		@ frame_needed = 0, uses_anonymous_args = 0
+ 420              		.loc 1 100 1 is_stmt 0 view .LVU137
+ 421 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 422              	.LCFI3:
+ 423              		.cfi_def_cfa_offset 24
+ 424              		.cfi_offset 3, -24
+ 425              		.cfi_offset 4, -20
+ 426              		.cfi_offset 5, -16
+ 427              		.cfi_offset 6, -12
+ 428              		.cfi_offset 7, -8
+ 429              		.cfi_offset 14, -4
+ 430 0002 0446     		mov	r4, r0
+ 431 0004 0F46     		mov	r7, r1
+ 432 0006 1646     		mov	r6, r2
  101:Core/Src/nyan_sha256.c **** 	WORD i;
- 436              		.loc 1 101 2 is_stmt 1 view .LVU141
+ 433              		.loc 1 101 2 is_stmt 1 view .LVU138
  102:Core/Src/nyan_sha256.c **** 
  103:Core/Src/nyan_sha256.c **** 	for (i = 0; i < len; ++i) {
- 437              		.loc 1 103 2 view .LVU142
- 438              	.LVL38:
- 439              		.loc 1 103 9 is_stmt 0 view .LVU143
- 440 0008 0025     		movs	r5, #0
- 441              		.loc 1 103 2 view .LVU144
- 442 000a 00E0     		b	.L15
- 443              	.LVL39:
- 444              	.L16:
- 445              		.loc 1 103 23 is_stmt 1 discriminator 2 view .LVU145
- 446 000c 0135     		adds	r5, r5, #1
- 447              	.LVL40:
- 448              	.L15:
- 449              		.loc 1 103 16 discriminator 1 view .LVU146
- 450 000e B542     		cmp	r5, r6
- 451 0010 15D2     		bcs	.L19
+ 434              		.loc 1 103 2 view .LVU139
+ 435              	.LVL36:
+ 436              		.loc 1 103 9 is_stmt 0 view .LVU140
+ 437 0008 0025     		movs	r5, #0
+ 438              		.loc 1 103 2 view .LVU141
+ 439 000a 00E0     		b	.L15
+ 440              	.LVL37:
+ 441              	.L16:
+ 442              		.loc 1 103 23 is_stmt 1 discriminator 2 view .LVU142
+ 443 000c 0135     		adds	r5, r5, #1
+ 444              	.LVL38:
+ 445              	.L15:
+ 446              		.loc 1 103 14 discriminator 1 view .LVU143
+ 447              		.loc 1 103 2 is_stmt 0 discriminator 1 view .LVU144
+ 448 000e B542     		cmp	r5, r6
+ 449 0010 15D2     		bcs	.L19
  104:Core/Src/nyan_sha256.c **** 		ctx->data[ctx->datalen] = data[i];
-ARM GAS  /tmp/cc5fpCQQ.s 			page 11
+ 450              		.loc 1 104 3 is_stmt 1 view .LVU145
+ 451              		.loc 1 104 16 is_stmt 0 view .LVU146
+ARM GAS  /tmp/ccxR7PgV.s 			page 11
 
 
- 452              		.loc 1 104 3 view .LVU147
- 453              		.loc 1 104 16 is_stmt 0 view .LVU148
- 454 0012 236C     		ldr	r3, [r4, #64]
- 455              		.loc 1 104 33 view .LVU149
- 456 0014 785D     		ldrb	r0, [r7, r5]	@ zero_extendqisi2
- 457              		.loc 1 104 27 view .LVU150
- 458 0016 E054     		strb	r0, [r4, r3]
+ 452 0012 236C     		ldr	r3, [r4, #64]
+ 453              		.loc 1 104 33 view .LVU147
+ 454 0014 785D     		ldrb	r0, [r7, r5]	@ zero_extendqisi2
+ 455              		.loc 1 104 27 view .LVU148
+ 456 0016 E054     		strb	r0, [r4, r3]
  105:Core/Src/nyan_sha256.c **** 		ctx->datalen++;
- 459              		.loc 1 105 3 is_stmt 1 view .LVU151
- 460              		.loc 1 105 15 is_stmt 0 view .LVU152
- 461 0018 0133     		adds	r3, r3, #1
- 462 001a 2364     		str	r3, [r4, #64]
+ 457              		.loc 1 105 3 is_stmt 1 view .LVU149
+ 458              		.loc 1 105 15 is_stmt 0 view .LVU150
+ 459 0018 0133     		adds	r3, r3, #1
+ 460 001a 2364     		str	r3, [r4, #64]
  106:Core/Src/nyan_sha256.c **** 		if (ctx->datalen == 64) {
- 463              		.loc 1 106 3 is_stmt 1 view .LVU153
- 464              		.loc 1 106 6 is_stmt 0 view .LVU154
- 465 001c 402B     		cmp	r3, #64
- 466 001e F5D1     		bne	.L16
+ 461              		.loc 1 106 3 is_stmt 1 view .LVU151
+ 462              		.loc 1 106 6 is_stmt 0 view .LVU152
+ 463 001c 402B     		cmp	r3, #64
+ 464 001e F5D1     		bne	.L16
  107:Core/Src/nyan_sha256.c **** 			sha256_transform(ctx, ctx->data);
- 467              		.loc 1 107 4 is_stmt 1 view .LVU155
- 468 0020 2146     		mov	r1, r4
- 469 0022 2046     		mov	r0, r4
- 470 0024 FFF7FEFF 		bl	sha256_transform
- 471              	.LVL41:
+ 465              		.loc 1 107 4 is_stmt 1 view .LVU153
+ 466 0020 2146     		mov	r1, r4
+ 467 0022 2046     		mov	r0, r4
+ 468 0024 FFF7FEFF 		bl	sha256_transform
+ 469              	.LVL39:
  108:Core/Src/nyan_sha256.c **** 			ctx->bitlen += 512;
- 472              		.loc 1 108 4 view .LVU156
- 473              		.loc 1 108 7 is_stmt 0 view .LVU157
- 474 0028 A36C     		ldr	r3, [r4, #72]
- 475 002a E26C     		ldr	r2, [r4, #76]
- 476              		.loc 1 108 16 view .LVU158
- 477 002c 13F50073 		adds	r3, r3, #512
- 478 0030 42F10002 		adc	r2, r2, #0
- 479 0034 A364     		str	r3, [r4, #72]
- 480 0036 E264     		str	r2, [r4, #76]
+ 470              		.loc 1 108 4 view .LVU154
+ 471              		.loc 1 108 16 is_stmt 0 view .LVU155
+ 472 0028 A36C     		ldr	r3, [r4, #72]
+ 473 002a E26C     		ldr	r2, [r4, #76]
+ 474 002c 13F50073 		adds	r3, r3, #512
+ 475 0030 42F10002 		adc	r2, r2, #0
+ 476 0034 A364     		str	r3, [r4, #72]
+ 477 0036 E264     		str	r2, [r4, #76]
  109:Core/Src/nyan_sha256.c **** 			ctx->datalen = 0;
- 481              		.loc 1 109 4 is_stmt 1 view .LVU159
- 482              		.loc 1 109 17 is_stmt 0 view .LVU160
- 483 0038 0023     		movs	r3, #0
- 484 003a 2364     		str	r3, [r4, #64]
- 485 003c E6E7     		b	.L16
- 486              	.L19:
+ 478              		.loc 1 109 4 is_stmt 1 view .LVU156
+ 479              		.loc 1 109 17 is_stmt 0 view .LVU157
+ 480 0038 0023     		movs	r3, #0
+ 481 003a 2364     		str	r3, [r4, #64]
+ 482 003c E6E7     		b	.L16
+ 483              	.L19:
  110:Core/Src/nyan_sha256.c **** 		}
  111:Core/Src/nyan_sha256.c **** 	}
  112:Core/Src/nyan_sha256.c **** }
- 487              		.loc 1 112 1 view .LVU161
- 488 003e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
- 489              		.loc 1 112 1 view .LVU162
- 490              		.cfi_endproc
- 491              	.LFE2:
- 493              		.section	.text.sha256_final,"ax",%progbits
- 494              		.align	1
- 495              		.global	sha256_final
- 496              		.syntax unified
- 497              		.thumb
- 498              		.thumb_func
- 500              	sha256_final:
- 501              	.LVL42:
- 502              	.LFB3:
-ARM GAS  /tmp/cc5fpCQQ.s 			page 12
-
-
+ 484              		.loc 1 112 1 view .LVU158
+ 485 003e F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 486              		.loc 1 112 1 view .LVU159
+ 487              		.cfi_endproc
+ 488              	.LFE2:
+ 490              		.section	.text.sha256_final,"ax",%progbits
+ 491              		.align	1
+ 492              		.global	sha256_final
+ 493              		.syntax unified
+ 494              		.thumb
+ 495              		.thumb_func
+ 497              	sha256_final:
+ 498              	.LVL40:
+ 499              	.LFB3:
  113:Core/Src/nyan_sha256.c **** 
  114:Core/Src/nyan_sha256.c **** void sha256_final(SHA256_CTX *ctx, BYTE hash[])
  115:Core/Src/nyan_sha256.c **** {
- 503              		.loc 1 115 1 is_stmt 1 view -0
- 504              		.cfi_startproc
- 505              		@ args = 0, pretend = 0, frame = 0
- 506              		@ frame_needed = 0, uses_anonymous_args = 0
- 507              		.loc 1 115 1 is_stmt 0 view .LVU164
- 508 0000 38B5     		push	{r3, r4, r5, lr}
- 509              		.cfi_def_cfa_offset 16
- 510              		.cfi_offset 3, -16
- 511              		.cfi_offset 4, -12
- 512              		.cfi_offset 5, -8
- 513              		.cfi_offset 14, -4
- 514 0002 0446     		mov	r4, r0
- 515 0004 0D46     		mov	r5, r1
+ARM GAS  /tmp/ccxR7PgV.s 			page 12
+
+
+ 500              		.loc 1 115 1 is_stmt 1 view -0
+ 501              		.cfi_startproc
+ 502              		@ args = 0, pretend = 0, frame = 0
+ 503              		@ frame_needed = 0, uses_anonymous_args = 0
+ 504              		.loc 1 115 1 is_stmt 0 view .LVU161
+ 505 0000 38B5     		push	{r3, r4, r5, lr}
+ 506              	.LCFI4:
+ 507              		.cfi_def_cfa_offset 16
+ 508              		.cfi_offset 3, -16
+ 509              		.cfi_offset 4, -12
+ 510              		.cfi_offset 5, -8
+ 511              		.cfi_offset 14, -4
+ 512 0002 0446     		mov	r4, r0
+ 513 0004 0D46     		mov	r5, r1
  116:Core/Src/nyan_sha256.c **** 	WORD i;
- 516              		.loc 1 116 2 is_stmt 1 view .LVU165
+ 514              		.loc 1 116 2 is_stmt 1 view .LVU162
  117:Core/Src/nyan_sha256.c **** 
  118:Core/Src/nyan_sha256.c **** 	i = ctx->datalen;
- 517              		.loc 1 118 2 view .LVU166
- 518              		.loc 1 118 4 is_stmt 0 view .LVU167
- 519 0006 026C     		ldr	r2, [r0, #64]
- 520              	.LVL43:
+ 515              		.loc 1 118 2 view .LVU163
+ 516              		.loc 1 118 4 is_stmt 0 view .LVU164
+ 517 0006 026C     		ldr	r2, [r0, #64]
+ 518              	.LVL41:
  119:Core/Src/nyan_sha256.c **** 
  120:Core/Src/nyan_sha256.c **** 	// Pad whatever data is left in the buffer.
  121:Core/Src/nyan_sha256.c **** 	if (ctx->datalen < 56) {
- 521              		.loc 1 121 2 is_stmt 1 view .LVU168
- 522              		.loc 1 121 5 is_stmt 0 view .LVU169
- 523 0008 372A     		cmp	r2, #55
- 524 000a 2DD8     		bhi	.L21
+ 519              		.loc 1 121 2 is_stmt 1 view .LVU165
+ 520              		.loc 1 121 5 is_stmt 0 view .LVU166
+ 521 0008 372A     		cmp	r2, #55
+ 522 000a 2DD8     		bhi	.L21
  122:Core/Src/nyan_sha256.c **** 		ctx->data[i++] = 0x80;
- 525              		.loc 1 122 3 is_stmt 1 view .LVU170
- 526              		.loc 1 122 14 is_stmt 0 view .LVU171
- 527 000c 531C     		adds	r3, r2, #1
- 528              	.LVL44:
- 529              		.loc 1 122 18 view .LVU172
- 530 000e 8021     		movs	r1, #128
- 531              	.LVL45:
- 532              		.loc 1 122 18 view .LVU173
- 533 0010 8154     		strb	r1, [r0, r2]
+ 523              		.loc 1 122 3 is_stmt 1 view .LVU167
+ 524              		.loc 1 122 14 is_stmt 0 view .LVU168
+ 525 000c 531C     		adds	r3, r2, #1
+ 526              	.LVL42:
+ 527              		.loc 1 122 18 view .LVU169
+ 528 000e 8021     		movs	r1, #128
+ 529              	.LVL43:
+ 530              		.loc 1 122 18 view .LVU170
+ 531 0010 8154     		strb	r1, [r0, r2]
  123:Core/Src/nyan_sha256.c **** 		while (i < 56)
- 534              		.loc 1 123 3 is_stmt 1 view .LVU174
- 535              		.loc 1 123 9 is_stmt 0 view .LVU175
- 536 0012 02E0     		b	.L22
- 537              	.L23:
+ 532              		.loc 1 123 3 is_stmt 1 view .LVU171
+ 533              		.loc 1 123 9 is_stmt 0 view .LVU172
+ 534 0012 02E0     		b	.L22
+ 535              	.L23:
  124:Core/Src/nyan_sha256.c **** 			ctx->data[i++] = 0x00;
- 538              		.loc 1 124 4 is_stmt 1 view .LVU176
- 539              	.LVL46:
- 540              		.loc 1 124 19 is_stmt 0 view .LVU177
- 541 0014 0022     		movs	r2, #0
- 542 0016 E254     		strb	r2, [r4, r3]
- 543              		.loc 1 124 15 view .LVU178
- 544 0018 0133     		adds	r3, r3, #1
- 545              	.LVL47:
- 546              	.L22:
+ 536              		.loc 1 124 4 is_stmt 1 view .LVU173
+ 537              	.LVL44:
+ 538              		.loc 1 124 19 is_stmt 0 view .LVU174
+ 539 0014 0022     		movs	r2, #0
+ 540 0016 E254     		strb	r2, [r4, r3]
+ 541              		.loc 1 124 15 view .LVU175
+ 542 0018 0133     		adds	r3, r3, #1
+ 543              	.LVL45:
+ 544              	.L22:
  123:Core/Src/nyan_sha256.c **** 		while (i < 56)
-ARM GAS  /tmp/cc5fpCQQ.s 			page 13
+ 545              		.loc 1 123 9 is_stmt 1 view .LVU176
+ 546 001a 372B     		cmp	r3, #55
+ARM GAS  /tmp/ccxR7PgV.s 			page 13
 
 
- 547              		.loc 1 123 12 is_stmt 1 view .LVU179
- 548 001a 372B     		cmp	r3, #55
- 549 001c FAD9     		bls	.L23
- 550              	.LVL48:
- 551              	.L24:
+ 547 001c FAD9     		bls	.L23
+ 548              	.LVL46:
+ 549              	.L24:
  125:Core/Src/nyan_sha256.c **** 	}
  126:Core/Src/nyan_sha256.c **** 	else {
  127:Core/Src/nyan_sha256.c **** 		ctx->data[i++] = 0x80;
@@ -737,336 +735,337 @@ ARM GAS  /tmp/cc5fpCQQ.s 			page 1
  133:Core/Src/nyan_sha256.c **** 
  134:Core/Src/nyan_sha256.c **** 	// Append to the padding the total message's length in bits and transform.
  135:Core/Src/nyan_sha256.c **** 	ctx->bitlen += ctx->datalen * 8;
- 552              		.loc 1 135 2 view .LVU180
- 553              		.loc 1 135 5 is_stmt 0 view .LVU181
- 554 001e A36C     		ldr	r3, [r4, #72]
- 555 0020 E26C     		ldr	r2, [r4, #76]
- 556              		.loc 1 135 20 view .LVU182
- 557 0022 216C     		ldr	r1, [r4, #64]
- 558              		.loc 1 135 30 view .LVU183
- 559 0024 C900     		lsls	r1, r1, #3
- 560              		.loc 1 135 14 view .LVU184
- 561 0026 5B18     		adds	r3, r3, r1
- 562 0028 42F10002 		adc	r2, r2, #0
- 563 002c A364     		str	r3, [r4, #72]
- 564 002e E264     		str	r2, [r4, #76]
+ 550              		.loc 1 135 2 view .LVU177
+ 551              		.loc 1 135 20 is_stmt 0 view .LVU178
+ 552 001e 236C     		ldr	r3, [r4, #64]
+ 553              		.loc 1 135 30 view .LVU179
+ 554 0020 DB00     		lsls	r3, r3, #3
+ 555              		.loc 1 135 14 view .LVU180
+ 556 0022 A16C     		ldr	r1, [r4, #72]
+ 557 0024 E26C     		ldr	r2, [r4, #76]
+ 558 0026 5B18     		adds	r3, r3, r1
+ 559 0028 42F10002 		adc	r2, r2, #0
+ 560 002c A364     		str	r3, [r4, #72]
+ 561 002e E264     		str	r2, [r4, #76]
  136:Core/Src/nyan_sha256.c **** 	ctx->data[63] = ctx->bitlen;
- 565              		.loc 1 136 2 is_stmt 1 view .LVU185
- 566              		.loc 1 136 16 is_stmt 0 view .LVU186
- 567 0030 84F83F30 		strb	r3, [r4, #63]
+ 562              		.loc 1 136 2 is_stmt 1 view .LVU181
+ 563              		.loc 1 136 16 is_stmt 0 view .LVU182
+ 564 0030 84F83F30 		strb	r3, [r4, #63]
  137:Core/Src/nyan_sha256.c **** 	ctx->data[62] = ctx->bitlen >> 8;
- 568              		.loc 1 137 2 is_stmt 1 view .LVU187
- 569              		.loc 1 137 30 is_stmt 0 view .LVU188
- 570 0034 190A     		lsrs	r1, r3, #8
- 571              		.loc 1 137 16 view .LVU189
- 572 0036 84F83E10 		strb	r1, [r4, #62]
+ 565              		.loc 1 137 2 is_stmt 1 view .LVU183
+ 566              		.loc 1 137 30 is_stmt 0 view .LVU184
+ 567 0034 190A     		lsrs	r1, r3, #8
+ 568              		.loc 1 137 16 view .LVU185
+ 569 0036 84F83E10 		strb	r1, [r4, #62]
  138:Core/Src/nyan_sha256.c **** 	ctx->data[61] = ctx->bitlen >> 16;
- 573              		.loc 1 138 2 is_stmt 1 view .LVU190
- 574              		.loc 1 138 30 is_stmt 0 view .LVU191
- 575 003a 190C     		lsrs	r1, r3, #16
- 576              		.loc 1 138 16 view .LVU192
- 577 003c 84F83D10 		strb	r1, [r4, #61]
+ 570              		.loc 1 138 2 is_stmt 1 view .LVU186
+ 571              		.loc 1 138 30 is_stmt 0 view .LVU187
+ 572 003a 190C     		lsrs	r1, r3, #16
+ 573              		.loc 1 138 16 view .LVU188
+ 574 003c 84F83D10 		strb	r1, [r4, #61]
  139:Core/Src/nyan_sha256.c **** 	ctx->data[60] = ctx->bitlen >> 24;
- 578              		.loc 1 139 2 is_stmt 1 view .LVU193
- 579              		.loc 1 139 30 is_stmt 0 view .LVU194
- 580 0040 1B0E     		lsrs	r3, r3, #24
- 581              		.loc 1 139 16 view .LVU195
- 582 0042 84F83C30 		strb	r3, [r4, #60]
+ 575              		.loc 1 139 2 is_stmt 1 view .LVU189
+ 576              		.loc 1 139 30 is_stmt 0 view .LVU190
+ 577 0040 1B0E     		lsrs	r3, r3, #24
+ 578              		.loc 1 139 16 view .LVU191
+ 579 0042 84F83C30 		strb	r3, [r4, #60]
  140:Core/Src/nyan_sha256.c **** 	ctx->data[59] = ctx->bitlen >> 32;
- 583              		.loc 1 140 2 is_stmt 1 view .LVU196
- 584              		.loc 1 140 16 is_stmt 0 view .LVU197
- 585 0046 84F83B20 		strb	r2, [r4, #59]
+ 580              		.loc 1 140 2 is_stmt 1 view .LVU192
+ 581              		.loc 1 140 16 is_stmt 0 view .LVU193
+ 582 0046 84F83B20 		strb	r2, [r4, #59]
  141:Core/Src/nyan_sha256.c **** 	ctx->data[58] = ctx->bitlen >> 40;
- 586              		.loc 1 141 2 is_stmt 1 view .LVU198
-ARM GAS  /tmp/cc5fpCQQ.s 			page 14
+ 583              		.loc 1 141 2 is_stmt 1 view .LVU194
+ 584              		.loc 1 141 30 is_stmt 0 view .LVU195
+ 585 004a 130A     		lsrs	r3, r2, #8
+ 586              		.loc 1 141 16 view .LVU196
+ARM GAS  /tmp/ccxR7PgV.s 			page 14
 
 
- 587              		.loc 1 141 30 is_stmt 0 view .LVU199
- 588 004a 130A     		lsrs	r3, r2, #8
- 589              		.loc 1 141 16 view .LVU200
- 590 004c 84F83A30 		strb	r3, [r4, #58]
+ 587 004c 84F83A30 		strb	r3, [r4, #58]
  142:Core/Src/nyan_sha256.c **** 	ctx->data[57] = ctx->bitlen >> 48;
- 591              		.loc 1 142 2 is_stmt 1 view .LVU201
- 592              		.loc 1 142 30 is_stmt 0 view .LVU202
- 593 0050 130C     		lsrs	r3, r2, #16
- 594              		.loc 1 142 16 view .LVU203
- 595 0052 84F83930 		strb	r3, [r4, #57]
+ 588              		.loc 1 142 2 is_stmt 1 view .LVU197
+ 589              		.loc 1 142 30 is_stmt 0 view .LVU198
+ 590 0050 130C     		lsrs	r3, r2, #16
+ 591              		.loc 1 142 16 view .LVU199
+ 592 0052 84F83930 		strb	r3, [r4, #57]
  143:Core/Src/nyan_sha256.c **** 	ctx->data[56] = ctx->bitlen >> 56;
- 596              		.loc 1 143 2 is_stmt 1 view .LVU204
- 597              		.loc 1 143 30 is_stmt 0 view .LVU205
- 598 0056 120E     		lsrs	r2, r2, #24
- 599              		.loc 1 143 16 view .LVU206
- 600 0058 84F83820 		strb	r2, [r4, #56]
+ 593              		.loc 1 143 2 is_stmt 1 view .LVU200
+ 594              		.loc 1 143 30 is_stmt 0 view .LVU201
+ 595 0056 120E     		lsrs	r2, r2, #24
+ 596              		.loc 1 143 16 view .LVU202
+ 597 0058 84F83820 		strb	r2, [r4, #56]
  144:Core/Src/nyan_sha256.c **** 	sha256_transform(ctx, ctx->data);
- 601              		.loc 1 144 2 is_stmt 1 view .LVU207
- 602 005c 2146     		mov	r1, r4
- 603 005e 2046     		mov	r0, r4
- 604 0060 FFF7FEFF 		bl	sha256_transform
- 605              	.LVL49:
+ 598              		.loc 1 144 2 is_stmt 1 view .LVU203
+ 599 005c 2146     		mov	r1, r4
+ 600 005e 2046     		mov	r0, r4
+ 601 0060 FFF7FEFF 		bl	sha256_transform
+ 602              	.LVL47:
  145:Core/Src/nyan_sha256.c **** 
  146:Core/Src/nyan_sha256.c **** 	// Since this implementation uses little endian byte ordering and SHA uses big endian,
  147:Core/Src/nyan_sha256.c **** 	// reverse all the bytes when copying the final state to the output hash.
  148:Core/Src/nyan_sha256.c **** 	for (i = 0; i < 4; ++i) {
- 606              		.loc 1 148 2 view .LVU208
- 607              		.loc 1 148 9 is_stmt 0 view .LVU209
- 608 0064 0023     		movs	r3, #0
- 609              		.loc 1 148 2 view .LVU210
- 610 0066 3BE0     		b	.L27
- 611              	.LVL50:
- 612              	.L21:
+ 603              		.loc 1 148 2 view .LVU204
+ 604              		.loc 1 148 9 is_stmt 0 view .LVU205
+ 605 0064 0023     		movs	r3, #0
+ 606              		.loc 1 148 2 view .LVU206
+ 607 0066 3CE0     		b	.L27
+ 608              	.LVL48:
+ 609              	.L21:
  127:Core/Src/nyan_sha256.c **** 		while (i < 64)
- 613              		.loc 1 127 3 is_stmt 1 view .LVU211
+ 610              		.loc 1 127 3 is_stmt 1 view .LVU207
  127:Core/Src/nyan_sha256.c **** 		while (i < 64)
- 614              		.loc 1 127 14 is_stmt 0 view .LVU212
- 615 0068 531C     		adds	r3, r2, #1
- 616              	.LVL51:
+ 611              		.loc 1 127 14 is_stmt 0 view .LVU208
+ 612 0068 531C     		adds	r3, r2, #1
+ 613              	.LVL49:
  127:Core/Src/nyan_sha256.c **** 		while (i < 64)
- 617              		.loc 1 127 18 view .LVU213
- 618 006a 8021     		movs	r1, #128
- 619              	.LVL52:
+ 614              		.loc 1 127 18 view .LVU209
+ 615 006a 8021     		movs	r1, #128
+ 616              	.LVL50:
  127:Core/Src/nyan_sha256.c **** 		while (i < 64)
- 620              		.loc 1 127 18 view .LVU214
- 621 006c 8154     		strb	r1, [r0, r2]
+ 617              		.loc 1 127 18 view .LVU210
+ 618 006c 8154     		strb	r1, [r0, r2]
  128:Core/Src/nyan_sha256.c **** 			ctx->data[i++] = 0x00;
- 622              		.loc 1 128 3 is_stmt 1 view .LVU215
+ 619              		.loc 1 128 3 is_stmt 1 view .LVU211
  128:Core/Src/nyan_sha256.c **** 			ctx->data[i++] = 0x00;
- 623              		.loc 1 128 9 is_stmt 0 view .LVU216
- 624 006e 02E0     		b	.L25
- 625              	.L26:
+ 620              		.loc 1 128 9 is_stmt 0 view .LVU212
+ 621 006e 02E0     		b	.L25
+ 622              	.L26:
  129:Core/Src/nyan_sha256.c **** 		sha256_transform(ctx, ctx->data);
- 626              		.loc 1 129 4 is_stmt 1 view .LVU217
- 627              	.LVL53:
+ 623              		.loc 1 129 4 is_stmt 1 view .LVU213
+ 624              	.LVL51:
  129:Core/Src/nyan_sha256.c **** 		sha256_transform(ctx, ctx->data);
- 628              		.loc 1 129 19 is_stmt 0 view .LVU218
-ARM GAS  /tmp/cc5fpCQQ.s 			page 15
+ 625              		.loc 1 129 19 is_stmt 0 view .LVU214
+ 626 0070 0022     		movs	r2, #0
+ 627 0072 E254     		strb	r2, [r4, r3]
+ 129:Core/Src/nyan_sha256.c **** 		sha256_transform(ctx, ctx->data);
+ARM GAS  /tmp/ccxR7PgV.s 			page 15
 
 
- 629 0070 0022     		movs	r2, #0
- 630 0072 E254     		strb	r2, [r4, r3]
- 129:Core/Src/nyan_sha256.c **** 		sha256_transform(ctx, ctx->data);
- 631              		.loc 1 129 15 view .LVU219
- 632 0074 0133     		adds	r3, r3, #1
- 633              	.LVL54:
- 634              	.L25:
+ 628              		.loc 1 129 15 view .LVU215
+ 629 0074 0133     		adds	r3, r3, #1
+ 630              	.LVL52:
+ 631              	.L25:
  128:Core/Src/nyan_sha256.c **** 			ctx->data[i++] = 0x00;
- 635              		.loc 1 128 12 is_stmt 1 view .LVU220
- 636 0076 3F2B     		cmp	r3, #63
- 637 0078 FAD9     		bls	.L26
+ 632              		.loc 1 128 9 is_stmt 1 view .LVU216
+ 633 0076 3F2B     		cmp	r3, #63
+ 634 0078 FAD9     		bls	.L26
  130:Core/Src/nyan_sha256.c **** 		memset(ctx->data, 0, 56);
- 638              		.loc 1 130 3 view .LVU221
- 639 007a 2146     		mov	r1, r4
- 640 007c 2046     		mov	r0, r4
- 641              	.LVL55:
+ 635              		.loc 1 130 3 view .LVU217
+ 636 007a 2146     		mov	r1, r4
+ 637 007c 2046     		mov	r0, r4
+ 638              	.LVL53:
  130:Core/Src/nyan_sha256.c **** 		memset(ctx->data, 0, 56);
- 642              		.loc 1 130 3 is_stmt 0 view .LVU222
- 643 007e FFF7FEFF 		bl	sha256_transform
- 644              	.LVL56:
+ 639              		.loc 1 130 3 is_stmt 0 view .LVU218
+ 640 007e FFF7FEFF 		bl	sha256_transform
+ 641              	.LVL54:
  131:Core/Src/nyan_sha256.c **** 	}
- 645              		.loc 1 131 3 is_stmt 1 view .LVU223
- 646 0082 3822     		movs	r2, #56
- 647 0084 0021     		movs	r1, #0
- 648 0086 2046     		mov	r0, r4
- 649 0088 FFF7FEFF 		bl	memset
- 650              	.LVL57:
- 651 008c C7E7     		b	.L24
- 652              	.LVL58:
- 653              	.L28:
+ 642              		.loc 1 131 3 is_stmt 1 view .LVU219
+ 643 0082 3822     		movs	r2, #56
+ 644 0084 0021     		movs	r1, #0
+ 645 0086 2046     		mov	r0, r4
+ 646 0088 FFF7FEFF 		bl	memset
+ 647              	.LVL55:
+ 648 008c C7E7     		b	.L24
+ 649              	.LVL56:
+ 650              	.L28:
  149:Core/Src/nyan_sha256.c **** 		hash[i]      = (ctx->state[0] >> (24 - i * 8)) & 0x000000ff;
- 654              		.loc 1 149 3 discriminator 3 view .LVU224
- 655              		.loc 1 149 29 is_stmt 0 discriminator 3 view .LVU225
- 656 008e 216D     		ldr	r1, [r4, #80]
- 657              		.loc 1 149 40 discriminator 3 view .LVU226
- 658 0090 C3F10302 		rsb	r2, r3, #3
- 659 0094 D200     		lsls	r2, r2, #3
- 660              		.loc 1 149 33 discriminator 3 view .LVU227
- 661 0096 D140     		lsrs	r1, r1, r2
- 662              		.loc 1 149 16 discriminator 3 view .LVU228
- 663 0098 E954     		strb	r1, [r5, r3]
+ 651              		.loc 1 149 3 discriminator 3 view .LVU220
+ 652              		.loc 1 149 29 is_stmt 0 discriminator 3 view .LVU221
+ 653 008e 216D     		ldr	r1, [r4, #80]
+ 654              		.loc 1 149 40 discriminator 3 view .LVU222
+ 655 0090 C3F10302 		rsb	r2, r3, #3
+ 656 0094 D200     		lsls	r2, r2, #3
+ 657              		.loc 1 149 33 discriminator 3 view .LVU223
+ 658 0096 D140     		lsrs	r1, r1, r2
+ 659              		.loc 1 149 16 discriminator 3 view .LVU224
+ 660 0098 E954     		strb	r1, [r5, r3]
  150:Core/Src/nyan_sha256.c **** 		hash[i + 4]  = (ctx->state[1] >> (24 - i * 8)) & 0x000000ff;
- 664              		.loc 1 150 3 is_stmt 1 discriminator 3 view .LVU229
- 665              		.loc 1 150 29 is_stmt 0 discriminator 3 view .LVU230
- 666 009a 616D     		ldr	r1, [r4, #84]
- 667              		.loc 1 150 33 discriminator 3 view .LVU231
- 668 009c D140     		lsrs	r1, r1, r2
- 669              		.loc 1 150 7 discriminator 3 view .LVU232
- 670 009e 181D     		adds	r0, r3, #4
- 671              		.loc 1 150 16 discriminator 3 view .LVU233
- 672 00a0 2954     		strb	r1, [r5, r0]
+ 661              		.loc 1 150 3 is_stmt 1 discriminator 3 view .LVU225
+ 662              		.loc 1 150 29 is_stmt 0 discriminator 3 view .LVU226
+ 663 009a 616D     		ldr	r1, [r4, #84]
+ 664              		.loc 1 150 33 discriminator 3 view .LVU227
+ 665 009c D140     		lsrs	r1, r1, r2
+ 666              		.loc 1 150 7 discriminator 3 view .LVU228
+ 667 009e 181D     		adds	r0, r3, #4
+ 668              		.loc 1 150 16 discriminator 3 view .LVU229
+ 669 00a0 2954     		strb	r1, [r5, r0]
  151:Core/Src/nyan_sha256.c **** 		hash[i + 8]  = (ctx->state[2] >> (24 - i * 8)) & 0x000000ff;
- 673              		.loc 1 151 3 is_stmt 1 discriminator 3 view .LVU234
- 674              		.loc 1 151 29 is_stmt 0 discriminator 3 view .LVU235
- 675 00a2 A16D     		ldr	r1, [r4, #88]
- 676              		.loc 1 151 33 discriminator 3 view .LVU236
- 677 00a4 D140     		lsrs	r1, r1, r2
-ARM GAS  /tmp/cc5fpCQQ.s 			page 16
+ 670              		.loc 1 151 3 is_stmt 1 discriminator 3 view .LVU230
+ 671              		.loc 1 151 29 is_stmt 0 discriminator 3 view .LVU231
+ 672 00a2 A16D     		ldr	r1, [r4, #88]
+ 673              		.loc 1 151 33 discriminator 3 view .LVU232
+ 674 00a4 D140     		lsrs	r1, r1, r2
+ 675              		.loc 1 151 7 discriminator 3 view .LVU233
+ 676 00a6 03F10800 		add	r0, r3, #8
+ 677              		.loc 1 151 16 discriminator 3 view .LVU234
+ARM GAS  /tmp/ccxR7PgV.s 			page 16
 
 
- 678              		.loc 1 151 7 discriminator 3 view .LVU237
- 679 00a6 03F10800 		add	r0, r3, #8
- 680              		.loc 1 151 16 discriminator 3 view .LVU238
- 681 00aa 2954     		strb	r1, [r5, r0]
+ 678 00aa 2954     		strb	r1, [r5, r0]
  152:Core/Src/nyan_sha256.c **** 		hash[i + 12] = (ctx->state[3] >> (24 - i * 8)) & 0x000000ff;
- 682              		.loc 1 152 3 is_stmt 1 discriminator 3 view .LVU239
- 683              		.loc 1 152 29 is_stmt 0 discriminator 3 view .LVU240
- 684 00ac E16D     		ldr	r1, [r4, #92]
- 685              		.loc 1 152 33 discriminator 3 view .LVU241
- 686 00ae D140     		lsrs	r1, r1, r2
- 687              		.loc 1 152 7 discriminator 3 view .LVU242
- 688 00b0 03F10C00 		add	r0, r3, #12
- 689              		.loc 1 152 16 discriminator 3 view .LVU243
- 690 00b4 2954     		strb	r1, [r5, r0]
+ 679              		.loc 1 152 3 is_stmt 1 discriminator 3 view .LVU235
+ 680              		.loc 1 152 29 is_stmt 0 discriminator 3 view .LVU236
+ 681 00ac E16D     		ldr	r1, [r4, #92]
+ 682              		.loc 1 152 33 discriminator 3 view .LVU237
+ 683 00ae D140     		lsrs	r1, r1, r2
+ 684              		.loc 1 152 7 discriminator 3 view .LVU238
+ 685 00b0 03F10C00 		add	r0, r3, #12
+ 686              		.loc 1 152 16 discriminator 3 view .LVU239
+ 687 00b4 2954     		strb	r1, [r5, r0]
  153:Core/Src/nyan_sha256.c **** 		hash[i + 16] = (ctx->state[4] >> (24 - i * 8)) & 0x000000ff;
- 691              		.loc 1 153 3 is_stmt 1 discriminator 3 view .LVU244
- 692              		.loc 1 153 29 is_stmt 0 discriminator 3 view .LVU245
- 693 00b6 216E     		ldr	r1, [r4, #96]
- 694              		.loc 1 153 33 discriminator 3 view .LVU246
- 695 00b8 D140     		lsrs	r1, r1, r2
- 696              		.loc 1 153 7 discriminator 3 view .LVU247
- 697 00ba 03F11000 		add	r0, r3, #16
- 698              		.loc 1 153 16 discriminator 3 view .LVU248
- 699 00be 2954     		strb	r1, [r5, r0]
+ 688              		.loc 1 153 3 is_stmt 1 discriminator 3 view .LVU240
+ 689              		.loc 1 153 29 is_stmt 0 discriminator 3 view .LVU241
+ 690 00b6 216E     		ldr	r1, [r4, #96]
+ 691              		.loc 1 153 33 discriminator 3 view .LVU242
+ 692 00b8 D140     		lsrs	r1, r1, r2
+ 693              		.loc 1 153 7 discriminator 3 view .LVU243
+ 694 00ba 03F11000 		add	r0, r3, #16
+ 695              		.loc 1 153 16 discriminator 3 view .LVU244
+ 696 00be 2954     		strb	r1, [r5, r0]
  154:Core/Src/nyan_sha256.c **** 		hash[i + 20] = (ctx->state[5] >> (24 - i * 8)) & 0x000000ff;
- 700              		.loc 1 154 3 is_stmt 1 discriminator 3 view .LVU249
- 701              		.loc 1 154 29 is_stmt 0 discriminator 3 view .LVU250
- 702 00c0 616E     		ldr	r1, [r4, #100]
- 703              		.loc 1 154 33 discriminator 3 view .LVU251
- 704 00c2 D140     		lsrs	r1, r1, r2
- 705              		.loc 1 154 7 discriminator 3 view .LVU252
- 706 00c4 03F11400 		add	r0, r3, #20
- 707              		.loc 1 154 16 discriminator 3 view .LVU253
- 708 00c8 2954     		strb	r1, [r5, r0]
+ 697              		.loc 1 154 3 is_stmt 1 discriminator 3 view .LVU245
+ 698              		.loc 1 154 29 is_stmt 0 discriminator 3 view .LVU246
+ 699 00c0 616E     		ldr	r1, [r4, #100]
+ 700              		.loc 1 154 33 discriminator 3 view .LVU247
+ 701 00c2 D140     		lsrs	r1, r1, r2
+ 702              		.loc 1 154 7 discriminator 3 view .LVU248
+ 703 00c4 03F11400 		add	r0, r3, #20
+ 704              		.loc 1 154 16 discriminator 3 view .LVU249
+ 705 00c8 2954     		strb	r1, [r5, r0]
  155:Core/Src/nyan_sha256.c **** 		hash[i + 24] = (ctx->state[6] >> (24 - i * 8)) & 0x000000ff;
- 709              		.loc 1 155 3 is_stmt 1 discriminator 3 view .LVU254
- 710              		.loc 1 155 29 is_stmt 0 discriminator 3 view .LVU255
- 711 00ca A16E     		ldr	r1, [r4, #104]
- 712              		.loc 1 155 33 discriminator 3 view .LVU256
- 713 00cc D140     		lsrs	r1, r1, r2
- 714              		.loc 1 155 7 discriminator 3 view .LVU257
- 715 00ce 03F11800 		add	r0, r3, #24
- 716              		.loc 1 155 16 discriminator 3 view .LVU258
- 717 00d2 2954     		strb	r1, [r5, r0]
+ 706              		.loc 1 155 3 is_stmt 1 discriminator 3 view .LVU250
+ 707              		.loc 1 155 29 is_stmt 0 discriminator 3 view .LVU251
+ 708 00ca A16E     		ldr	r1, [r4, #104]
+ 709              		.loc 1 155 33 discriminator 3 view .LVU252
+ 710 00cc D140     		lsrs	r1, r1, r2
+ 711              		.loc 1 155 7 discriminator 3 view .LVU253
+ 712 00ce 03F11800 		add	r0, r3, #24
+ 713              		.loc 1 155 16 discriminator 3 view .LVU254
+ 714 00d2 2954     		strb	r1, [r5, r0]
  156:Core/Src/nyan_sha256.c **** 		hash[i + 28] = (ctx->state[7] >> (24 - i * 8)) & 0x000000ff;
- 718              		.loc 1 156 3 is_stmt 1 discriminator 3 view .LVU259
- 719              		.loc 1 156 29 is_stmt 0 discriminator 3 view .LVU260
- 720 00d4 E16E     		ldr	r1, [r4, #108]
- 721              		.loc 1 156 33 discriminator 3 view .LVU261
- 722 00d6 D140     		lsrs	r1, r1, r2
- 723              		.loc 1 156 7 discriminator 3 view .LVU262
- 724 00d8 03F11C02 		add	r2, r3, #28
- 725              		.loc 1 156 16 discriminator 3 view .LVU263
- 726 00dc A954     		strb	r1, [r5, r2]
+ 715              		.loc 1 156 3 is_stmt 1 discriminator 3 view .LVU255
+ 716              		.loc 1 156 29 is_stmt 0 discriminator 3 view .LVU256
+ 717 00d4 E16E     		ldr	r1, [r4, #108]
+ 718              		.loc 1 156 33 discriminator 3 view .LVU257
+ 719 00d6 21FA02F2 		lsr	r2, r1, r2
+ 720              		.loc 1 156 7 discriminator 3 view .LVU258
+ 721 00da 03F11C01 		add	r1, r3, #28
+ 722              		.loc 1 156 16 discriminator 3 view .LVU259
+ 723 00de 6A54     		strb	r2, [r5, r1]
  148:Core/Src/nyan_sha256.c **** 		hash[i]      = (ctx->state[0] >> (24 - i * 8)) & 0x000000ff;
- 727              		.loc 1 148 21 is_stmt 1 discriminator 3 view .LVU264
- 728 00de 0133     		adds	r3, r3, #1
-ARM GAS  /tmp/cc5fpCQQ.s 			page 17
+ 724              		.loc 1 148 21 is_stmt 1 discriminator 3 view .LVU260
+ 725 00e0 0133     		adds	r3, r3, #1
+ 726              	.LVL57:
+ 727              	.L27:
+ 148:Core/Src/nyan_sha256.c **** 		hash[i]      = (ctx->state[0] >> (24 - i * 8)) & 0x000000ff;
+ARM GAS  /tmp/ccxR7PgV.s 			page 17
 
 
- 729              	.LVL59:
- 730              	.L27:
+ 728              		.loc 1 148 14 discriminator 1 view .LVU261
  148:Core/Src/nyan_sha256.c **** 		hash[i]      = (ctx->state[0] >> (24 - i * 8)) & 0x000000ff;
- 731              		.loc 1 148 16 discriminator 1 view .LVU265
- 732 00e0 032B     		cmp	r3, #3
- 733 00e2 D4D9     		bls	.L28
+ 729              		.loc 1 148 2 is_stmt 0 discriminator 1 view .LVU262
+ 730 00e2 032B     		cmp	r3, #3
+ 731 00e4 D3D9     		bls	.L28
  157:Core/Src/nyan_sha256.c **** 	}
  158:Core/Src/nyan_sha256.c **** }...
- 734              		.loc 1 158 1 is_stmt 0 view .LVU266
- 735 00e4 38BD     		pop	{r3, r4, r5, pc}
- 736              		.loc 1 158 1 view .LVU267
- 737              		.cfi_endproc
- 738              	.LFE3:
- 740              		.section	.rodata.k,"a"
- 741              		.align	2
- 744              	k:
- 745 0000 982F8A42 		.word	1116352408
- 746 0004 91443771 		.word	1899447441
- 747 0008 CFFBC0B5 		.word	-1245643825
- 748 000c A5DBB5E9 		.word	-373957723
- 749 0010 5BC25639 		.word	961987163
- 750 0014 F111F159 		.word	1508970993
- 751 0018 A4823F92 		.word	-1841331548
- 752 001c D55E1CAB 		.word	-1424204075
- 753 0020 98AA07D8 		.word	-670586216
- 754 0024 015B8312 		.word	310598401
- 755 0028 BE853124 		.word	607225278
- 756 002c C37D0C55 		.word	1426881987
- 757 0030 745DBE72 		.word	1925078388
- 758 0034 FEB1DE80 		.word	-2132889090
- 759 0038 A706DC9B 		.word	-1680079193
- 760 003c 74F19BC1 		.word	-1046744716
- 761 0040 C1699BE4 		.word	-459576895
- 762 0044 8647BEEF 		.word	-272742522
- 763 0048 C69DC10F 		.word	264347078
- 764 004c CCA10C24 		.word	604807628
- 765 0050 6F2CE92D 		.word	770255983
- 766 0054 AA84744A 		.word	1249150122
- 767 0058 DCA9B05C 		.word	1555081692
- 768 005c DA88F976 		.word	1996064986
- 769 0060 52513E98 		.word	-1740746414
- 770 0064 6DC631A8 		.word	-1473132947
- 771 0068 C82703B0 		.word	-1341970488
- 772 006c C77F59BF 		.word	-1084653625
- 773 0070 F30BE0C6 		.word	-958395405
- 774 0074 4791A7D5 		.word	-710438585
- 775 0078 5163CA06 		.word	113926993
- 776 007c 67292914 		.word	338241895
- 777 0080 850AB727 		.word	666307205
- 778 0084 38211B2E 		.word	773529912
- 779 0088 FC6D2C4D 		.word	1294757372
- 780 008c 130D3853 		.word	1396182291
- 781 0090 54730A65 		.word	1695183700
- 782 0094 BB0A6A76 		.word	1986661051
- 783 0098 2EC9C281 		.word	-2117940946
- 784 009c 852C7292 		.word	-1838011259
- 785 00a0 A1E8BFA2 		.word	-1564481375
-ARM GAS  /tmp/cc5fpCQQ.s 			page 18
+ 732              		.loc 1 158 1 view .LVU263
+ 733 00e6 38BD     		pop	{r3, r4, r5, pc}
+ 734              		.loc 1 158 1 view .LVU264
+ 735              		.cfi_endproc
+ 736              	.LFE3:
+ 738              		.section	.rodata.k,"a"
+ 739              		.align	2
+ 740              		.set	.LANCHOR0,. + 0
+ 743              	k:
+ 744 0000 982F8A42 		.word	1116352408
+ 745 0004 91443771 		.word	1899447441
+ 746 0008 CFFBC0B5 		.word	-1245643825
+ 747 000c A5DBB5E9 		.word	-373957723
+ 748 0010 5BC25639 		.word	961987163
+ 749 0014 F111F159 		.word	1508970993
+ 750 0018 A4823F92 		.word	-1841331548
+ 751 001c D55E1CAB 		.word	-1424204075
+ 752 0020 98AA07D8 		.word	-670586216
+ 753 0024 015B8312 		.word	310598401
+ 754 0028 BE853124 		.word	607225278
+ 755 002c C37D0C55 		.word	1426881987
+ 756 0030 745DBE72 		.word	1925078388
+ 757 0034 FEB1DE80 		.word	-2132889090
+ 758 0038 A706DC9B 		.word	-1680079193
+ 759 003c 74F19BC1 		.word	-1046744716
+ 760 0040 C1699BE4 		.word	-459576895
+ 761 0044 8647BEEF 		.word	-272742522
+ 762 0048 C69DC10F 		.word	264347078
+ 763 004c CCA10C24 		.word	604807628
+ 764 0050 6F2CE92D 		.word	770255983
+ 765 0054 AA84744A 		.word	1249150122
+ 766 0058 DCA9B05C 		.word	1555081692
+ 767 005c DA88F976 		.word	1996064986
+ 768 0060 52513E98 		.word	-1740746414
+ 769 0064 6DC631A8 		.word	-1473132947
+ 770 0068 C82703B0 		.word	-1341970488
+ 771 006c C77F59BF 		.word	-1084653625
+ 772 0070 F30BE0C6 		.word	-958395405
+ 773 0074 4791A7D5 		.word	-710438585
+ 774 0078 5163CA06 		.word	113926993
+ 775 007c 67292914 		.word	338241895
+ 776 0080 850AB727 		.word	666307205
+ 777 0084 38211B2E 		.word	773529912
+ 778 0088 FC6D2C4D 		.word	1294757372
+ 779 008c 130D3853 		.word	1396182291
+ 780 0090 54730A65 		.word	1695183700
+ 781 0094 BB0A6A76 		.word	1986661051
+ 782 0098 2EC9C281 		.word	-2117940946
+ 783 009c 852C7292 		.word	-1838011259
+ 784 00a0 A1E8BFA2 		.word	-1564481375
+ARM GAS  /tmp/ccxR7PgV.s 			page 18
 
 
- 786 00a4 4B661AA8 		.word	-1474664885
- 787 00a8 708B4BC2 		.word	-1035236496
- 788 00ac A3516CC7 		.word	-949202525
- 789 00b0 19E892D1 		.word	-778901479
- 790 00b4 240699D6 		.word	-694614492
- 791 00b8 85350EF4 		.word	-200395387
- 792 00bc 70A06A10 		.word	275423344
- 793 00c0 16C1A419 		.word	430227734
- 794 00c4 086C371E 		.word	506948616
- 795 00c8 4C774827 		.word	659060556
- 796 00cc B5BCB034 		.word	883997877
- 797 00d0 B30C1C39 		.word	958139571
- 798 00d4 4AAAD84E 		.word	1322822218
- 799 00d8 4FCA9C5B 		.word	1537002063
- 800 00dc F36F2E68 		.word	1747873779
- 801 00e0 EE828F74 		.word	1955562222
- 802 00e4 6F63A578 		.word	2024104815
- 803 00e8 1478C884 		.word	-2067236844
- 804 00ec 0802C78C 		.word	-1933114872
- 805 00f0 FAFFBE90 		.word	-1866530822
- 806 00f4 EB6C50A4 		.word	-1538233109
- 807 00f8 F7A3F9BE 		.word	-1090935817
- 808 00fc F27871C6 		.word	-965641998
- 809              		.text
- 810              	.Letext0:
- 811              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 812              		.file 3 "Core/Inc/nyan_sha256.h"
- 813              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 814              		.file 5 "<built-in>"
-ARM GAS  /tmp/cc5fpCQQ.s 			page 19
+ 785 00a4 4B661AA8 		.word	-1474664885
+ 786 00a8 708B4BC2 		.word	-1035236496
+ 787 00ac A3516CC7 		.word	-949202525
+ 788 00b0 19E892D1 		.word	-778901479
+ 789 00b4 240699D6 		.word	-694614492
+ 790 00b8 85350EF4 		.word	-200395387
+ 791 00bc 70A06A10 		.word	275423344
+ 792 00c0 16C1A419 		.word	430227734
+ 793 00c4 086C371E 		.word	506948616
+ 794 00c8 4C774827 		.word	659060556
+ 795 00cc B5BCB034 		.word	883997877
+ 796 00d0 B30C1C39 		.word	958139571
+ 797 00d4 4AAAD84E 		.word	1322822218
+ 798 00d8 4FCA9C5B 		.word	1537002063
+ 799 00dc F36F2E68 		.word	1747873779
+ 800 00e0 EE828F74 		.word	1955562222
+ 801 00e4 6F63A578 		.word	2024104815
+ 802 00e8 1478C884 		.word	-2067236844
+ 803 00ec 0802C78C 		.word	-1933114872
+ 804 00f0 FAFFBE90 		.word	-1866530822
+ 805 00f4 EB6C50A4 		.word	-1538233109
+ 806 00f8 F7A3F9BE 		.word	-1090935817
+ 807 00fc F27871C6 		.word	-965641998
+ 808              		.text
+ 809              	.Letext0:
+ 810              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h"
+ 811              		.file 3 "Core/Inc/nyan_sha256.h"
+ 812              		.file 4 "<built-in>"
+ARM GAS  /tmp/ccxR7PgV.s 			page 19
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 nyan_sha256.c
-     /tmp/cc5fpCQQ.s:21     .text.sha256_transform:00000000 $t
-     /tmp/cc5fpCQQ.s:27     .text.sha256_transform:00000000 sha256_transform
-     /tmp/cc5fpCQQ.s:333    .text.sha256_transform:00000170 $d
-     /tmp/cc5fpCQQ.s:744    .rodata.k:00000000 k
-     /tmp/cc5fpCQQ.s:338    .text.sha256_init:00000000 $t
-     /tmp/cc5fpCQQ.s:344    .text.sha256_init:00000000 sha256_init
-     /tmp/cc5fpCQQ.s:400    .text.sha256_init:00000038 $d
-     /tmp/cc5fpCQQ.s:411    .text.sha256_update:00000000 $t
-     /tmp/cc5fpCQQ.s:417    .text.sha256_update:00000000 sha256_update
-     /tmp/cc5fpCQQ.s:494    .text.sha256_final:00000000 $t
-     /tmp/cc5fpCQQ.s:500    .text.sha256_final:00000000 sha256_final
-     /tmp/cc5fpCQQ.s:741    .rodata.k:00000000 $d
+                            *ABS*:0000000000000000 nyan_sha256.c
+     /tmp/ccxR7PgV.s:20     .text.sha256_transform:0000000000000000 $t
+     /tmp/ccxR7PgV.s:26     .text.sha256_transform:0000000000000000 sha256_transform
+     /tmp/ccxR7PgV.s:329    .text.sha256_transform:0000000000000160 $d
+     /tmp/ccxR7PgV.s:334    .text.sha256_init:0000000000000000 $t
+     /tmp/ccxR7PgV.s:340    .text.sha256_init:0000000000000000 sha256_init
+     /tmp/ccxR7PgV.s:396    .text.sha256_init:0000000000000038 $d
+     /tmp/ccxR7PgV.s:407    .text.sha256_update:0000000000000000 $t
+     /tmp/ccxR7PgV.s:413    .text.sha256_update:0000000000000000 sha256_update
+     /tmp/ccxR7PgV.s:491    .text.sha256_final:0000000000000000 $t
+     /tmp/ccxR7PgV.s:497    .text.sha256_final:0000000000000000 sha256_final
+     /tmp/ccxR7PgV.s:739    .rodata.k:0000000000000000 $d
+     /tmp/ccxR7PgV.s:743    .rodata.k:0000000000000000 k
 
 UNDEFINED SYMBOLS
 memset

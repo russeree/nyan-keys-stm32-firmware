@@ -1,0 +1,88 @@
+ARM GAS  /tmp/ccHYxYWF.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"nyan_bitcoin.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.NyanBitcoinInit,"ax",%progbits
+  20              		.align	1
+  21              		.global	NyanBitcoinInit
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	NyanBitcoinInit:
+  27              	.LVL0:
+  28              	.LFB141:
+  29              		.file 1 "Core/Src/nyan_bitcoin.c"
+   1:Core/Src/nyan_bitcoin.c **** /**
+   2:Core/Src/nyan_bitcoin.c ****  * @file nyan_bitcoin.c
+   3:Core/Src/nyan_bitcoin.c ****  * @brief opt-in Bitcoin mining functionality for the nayn keys keyboard.
+   4:Core/Src/nyan_bitcoin.c ****  */
+   5:Core/Src/nyan_bitcoin.c **** 
+   6:Core/Src/nyan_bitcoin.c **** #include "nyan_bitcoin.h"
+   7:Core/Src/nyan_bitcoin.c **** 
+   8:Core/Src/nyan_bitcoin.c **** NyanBitcoinReturn NyanBitcoinInit(NyanBitcoin* bitcoin)
+   9:Core/Src/nyan_bitcoin.c **** {
+  30              		.loc 1 9 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  35              		.loc 1 9 1 is_stmt 0 view .LVU1
+  36 0000 0346     		mov	r3, r0
+  10:Core/Src/nyan_bitcoin.c ****     bitcoin->enabled = true;
+  37              		.loc 1 10 5 is_stmt 1 view .LVU2
+  38              		.loc 1 10 22 is_stmt 0 view .LVU3
+  39 0002 0120     		movs	r0, #1
+  40              	.LVL1:
+  41              		.loc 1 10 22 view .LVU4
+  42 0004 1870     		strb	r0, [r3]
+  11:Core/Src/nyan_bitcoin.c ****     bitcoin->active = false;
+  43              		.loc 1 11 5 is_stmt 1 view .LVU5
+  44              		.loc 1 11 21 is_stmt 0 view .LVU6
+  45 0006 0022     		movs	r2, #0
+  46 0008 5A70     		strb	r2, [r3, #1]
+  12:Core/Src/nyan_bitcoin.c ****     bitcoin->current_nonce = 0; 
+ARM GAS  /tmp/ccHYxYWF.s 			page 2
+
+
+  47              		.loc 1 12 5 is_stmt 1 view .LVU7
+  48              		.loc 1 12 28 is_stmt 0 view .LVU8
+  49 000a 5A65     		str	r2, [r3, #84]
+  13:Core/Src/nyan_bitcoin.c ****     
+  14:Core/Src/nyan_bitcoin.c ****     return NYAN_BITCOIN_SUCCESS;
+  50              		.loc 1 14 5 is_stmt 1 view .LVU9
+  15:Core/Src/nyan_bitcoin.c **** }...
+  51              		.loc 1 15 1 is_stmt 0 view .LVU10
+  52 000c 7047     		bx	lr
+  53              		.cfi_endproc
+  54              	.LFE141:
+  56              		.text
+  57              	.Letext0:
+  58              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+  59              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+  60              		.file 4 "Core/Inc/nyan_bitcoin.h"
+ARM GAS  /tmp/ccHYxYWF.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 nyan_bitcoin.c
+     /tmp/ccHYxYWF.s:20     .text.NyanBitcoinInit:0000000000000000 $t
+     /tmp/ccHYxYWF.s:26     .text.NyanBitcoinInit:0000000000000000 NyanBitcoinInit
+
+NO UNDEFINED SYMBOLS

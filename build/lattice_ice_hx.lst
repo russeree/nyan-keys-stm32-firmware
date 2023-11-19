@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccLp5Mvj.s 			page 1
+ARM GAS  /tmp/ccoBuaoC.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,16 +19,16 @@ ARM GAS  /tmp/ccLp5Mvj.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.file 1 "Core/Src/lattice_ice_hx.c"
-  20              		.section	.text.FPGAGetBitstreamData,"ax",%progbits
-  21              		.align	1
-  22              		.global	FPGAGetBitstreamData
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	FPGAGetBitstreamData:
-  28              	.LVL0:
-  29              	.LFB145:
+  19              		.section	.text.FPGAGetBitstreamData,"ax",%progbits
+  20              		.align	1
+  21              		.global	FPGAGetBitstreamData
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	FPGAGetBitstreamData:
+  27              	.LVL0:
+  28              	.LFB145:
+  29              		.file 1 "Core/Src/lattice_ice_hx.c"
    1:Core/Src/lattice_ice_hx.c **** /**
    2:Core/Src/lattice_ice_hx.c ****  * Lattice ICE40HX NyanOS - Nyan Keys Driver
    3:Core/Src/lattice_ice_hx.c ****  * @author Reese Russell
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccLp5Mvj.s 			page 1
   27:Core/Src/lattice_ice_hx.c ****     const uint8_t lattice_dummy_bits = 0x00;
   28:Core/Src/lattice_ice_hx.c ****     HAL_SPI_Transmit(&hspi4, (uint8_t *)&lattice_dummy_bits, 1, 100);
   29:Core/Src/lattice_ice_hx.c ****     HAL_GPIO_WritePin(SPI4_SS_GPIO_Port, SPI4_SS_Pin, GPIO_PIN_RESET);
-ARM GAS  /tmp/ccLp5Mvj.s 			page 2
+ARM GAS  /tmp/ccoBuaoC.s 			page 2
 
 
   30:Core/Src/lattice_ice_hx.c ****     // Uncompress and write the bitstream - This happens all in one file to keep the ram footprint 
@@ -93,40 +93,41 @@ ARM GAS  /tmp/ccLp5Mvj.s 			page 1
   46:Core/Src/lattice_ice_hx.c ****     // First lets work out the chunk logic
   40              		.loc 1 46 1 view .LVU4
   41 0006 70B5     		push	{r4, r5, r6, lr}
-  42              		.cfi_def_cfa_offset 16
-  43              		.cfi_offset 4, -16
-  44              		.cfi_offset 5, -12
-  45              		.cfi_offset 6, -8
-  46              		.cfi_offset 14, -4
-  47 0008 0546     		mov	r5, r0
+  42              	.LCFI0:
+  43              		.cfi_def_cfa_offset 16
+  44              		.cfi_offset 4, -16
+  45              		.cfi_offset 5, -12
+  46              		.cfi_offset 6, -8
+  47              		.cfi_offset 14, -4
+  48 0008 0546     		mov	r5, r0
   49:Core/Src/lattice_ice_hx.c ****         return FPGA_FAILURE;
   50:Core/Src/lattice_ice_hx.c ****     
   51:Core/Src/lattice_ice_hx.c ****     // Chunk loading and tracking
   52:Core/Src/lattice_ice_hx.c ****     uint16_t chunks = fpga->bitstream_compressed_size / EEPROM_DRIVER_TX_BUF_SZ;
-  48              		.loc 1 52 5 is_stmt 1 view .LVU5
-  49              	.LVL1:
+  49              		.loc 1 52 5 is_stmt 1 view .LVU5
+  50              	.LVL1:
   53:Core/Src/lattice_ice_hx.c ****     chunks += fpga->bitstream_compressed_size % EEPROM_DRIVER_TX_BUF_SZ  == 0 ? 0 : 1;
-  50              		.loc 1 53 5 view .LVU6
-  51              		.loc 1 53 83 is_stmt 0 view .LVU7
-  52 000a 11F07F06 		ands	r6, r1, #127
-  53 000e 18BF     		it	ne
-  54 0010 0126     		movne	r6, #1
-  55              	.LVL2:
+  51              		.loc 1 53 5 view .LVU6
+  52              		.loc 1 53 83 is_stmt 0 view .LVU7
+  53 000a 11F07F06 		ands	r6, r1, #127
+  54 000e 18BF     		it	ne
+  55 0010 0126     		movne	r6, #1
+  56              	.LVL2:
   54:Core/Src/lattice_ice_hx.c ****     if(chunks == 0)
-  56              		.loc 1 54 5 is_stmt 1 view .LVU8
-  57              		.loc 1 54 7 is_stmt 0 view .LVU9
-  58 0012 16EBD116 		adds	r6, r6, r1, lsr #7
-  59              	.LVL3:
-  60              		.loc 1 54 7 view .LVU10
-ARM GAS  /tmp/ccLp5Mvj.s 			page 3
+  57              		.loc 1 54 5 is_stmt 1 view .LVU8
+  58              		.loc 1 54 7 is_stmt 0 view .LVU9
+  59 0012 16EBD116 		adds	r6, r6, r1, lsr #7
+  60              	.LVL3:
+ARM GAS  /tmp/ccoBuaoC.s 			page 3
 
 
-  61 0016 01D1     		bne	.L15
+  61              		.loc 1 54 7 view .LVU10
+  62 0016 01D1     		bne	.L15
   55:Core/Src/lattice_ice_hx.c ****         return FPGA_FAILURE;
-  62              		.loc 1 55 16 view .LVU11
-  63 0018 0020     		movs	r0, #0
-  64              	.LVL4:
-  65              	.L2:
+  63              		.loc 1 55 16 view .LVU11
+  64 0018 0020     		movs	r0, #0
+  65              	.LVL4:
+  66              	.L2:
   56:Core/Src/lattice_ice_hx.c ****     
   57:Core/Src/lattice_ice_hx.c ****     // Reallocate the memory needed to hold the compressed bitstream
   58:Core/Src/lattice_ice_hx.c ****     uint8_t* temp_ptr = realloc(fpga->p_bitstream_compressed, fpga->bitstream_compressed_size);
@@ -153,474 +154,485 @@ ARM GAS  /tmp/ccLp5Mvj.s 			page 1
   79:Core/Src/lattice_ice_hx.c **** 
   80:Core/Src/lattice_ice_hx.c ****     return FPGA_SUCCESS;
   81:Core/Src/lattice_ice_hx.c **** }
-  66              		.loc 1 81 1 view .LVU12
-  67 001a 70BD     		pop	{r4, r5, r6, pc}
-  68              	.LVL5:
-  69              	.L15:
+  67              		.loc 1 81 1 view .LVU12
+  68 001a 70BD     		pop	{r4, r5, r6, pc}
+  69              	.LVL5:
+  70              	.L15:
   58:Core/Src/lattice_ice_hx.c ****     if (temp_ptr == NULL) {
-  70              		.loc 1 58 5 is_stmt 1 view .LVU13
+  71              		.loc 1 58 5 is_stmt 1 view .LVU13
   58:Core/Src/lattice_ice_hx.c ****     if (temp_ptr == NULL) {
-  71              		.loc 1 58 25 is_stmt 0 view .LVU14
-  72 001c 4068     		ldr	r0, [r0, #4]
-  73              	.LVL6:
+  72              		.loc 1 58 25 is_stmt 0 view .LVU14
+  73 001c 4068     		ldr	r0, [r0, #4]
+  74              	.LVL6:
   58:Core/Src/lattice_ice_hx.c ****     if (temp_ptr == NULL) {
-  74              		.loc 1 58 25 view .LVU15
-  75 001e FFF7FEFF 		bl	realloc
-  76              	.LVL7:
+  75              		.loc 1 58 25 view .LVU15
+  76 001e FFF7FEFF 		bl	realloc
+  77              	.LVL7:
   59:Core/Src/lattice_ice_hx.c ****         // Free the original memory as its contents are not needed
-  77              		.loc 1 59 5 is_stmt 1 view .LVU16
+  78              		.loc 1 59 5 is_stmt 1 view .LVU16
   59:Core/Src/lattice_ice_hx.c ****         // Free the original memory as its contents are not needed
-  78              		.loc 1 59 8 is_stmt 0 view .LVU17
-  79 0022 10B1     		cbz	r0, .L16
+  79              		.loc 1 59 8 is_stmt 0 view .LVU17
+  80 0022 10B1     		cbz	r0, .L16
   67:Core/Src/lattice_ice_hx.c **** 
-  80              		.loc 1 67 5 is_stmt 1 view .LVU18
+  81              		.loc 1 67 5 is_stmt 1 view .LVU18
   67:Core/Src/lattice_ice_hx.c **** 
-  81              		.loc 1 67 34 is_stmt 0 view .LVU19
-  82 0024 6860     		str	r0, [r5, #4]
-  70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
-ARM GAS  /tmp/ccLp5Mvj.s 			page 4
+  82              		.loc 1 67 34 is_stmt 0 view .LVU19
+  83 0024 6860     		str	r0, [r5, #4]
+ARM GAS  /tmp/ccoBuaoC.s 			page 4
 
 
-  83              		.loc 1 70 5 is_stmt 1 view .LVU20
-  84              	.LBB2:
   70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
-  85              		.loc 1 70 10 view .LVU21
-  86              	.LVL8:
+  84              		.loc 1 70 5 is_stmt 1 view .LVU20
+  85              	.LBB2:
   70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
-  87              		.loc 1 70 19 is_stmt 0 view .LVU22
-  88 0026 0024     		movs	r4, #0
+  86              		.loc 1 70 10 view .LVU21
+  87              	.LVL8:
   70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
-  89              		.loc 1 70 5 view .LVU23
-  90 0028 14E0     		b	.L4
-  91              	.LVL9:
-  92              	.L16:
+  88              		.loc 1 70 19 is_stmt 0 view .LVU22
+  89 0026 0024     		movs	r4, #0
   70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
-  93              		.loc 1 70 5 view .LVU24
-  94              	.LBE2:
+  90              		.loc 1 70 5 view .LVU23
+  91 0028 14E0     		b	.L4
+  92              	.LVL9:
+  93              	.L16:
+  70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
+  94              		.loc 1 70 5 view .LVU24
+  95              	.LBE2:
   61:Core/Src/lattice_ice_hx.c ****         fpga->p_bitstream_compressed = NULL; // Avoid dangling pointer
-  95              		.loc 1 61 9 is_stmt 1 view .LVU25
-  96 002a 6868     		ldr	r0, [r5, #4]
-  97              	.LVL10:
+  96              		.loc 1 61 9 is_stmt 1 view .LVU25
+  97 002a 6868     		ldr	r0, [r5, #4]
+  98              	.LVL10:
   61:Core/Src/lattice_ice_hx.c ****         fpga->p_bitstream_compressed = NULL; // Avoid dangling pointer
-  98              		.loc 1 61 9 is_stmt 0 view .LVU26
-  99 002c FFF7FEFF 		bl	free
- 100              	.LVL11:
+  99              		.loc 1 61 9 is_stmt 0 view .LVU26
+ 100 002c FFF7FEFF 		bl	free
+ 101              	.LVL11:
   62:Core/Src/lattice_ice_hx.c ****         return FPGA_FAILURE;
- 101              		.loc 1 62 9 is_stmt 1 view .LVU27
+ 102              		.loc 1 62 9 is_stmt 1 view .LVU27
   62:Core/Src/lattice_ice_hx.c ****         return FPGA_FAILURE;
- 102              		.loc 1 62 38 is_stmt 0 view .LVU28
- 103 0030 0020     		movs	r0, #0
- 104 0032 6860     		str	r0, [r5, #4]
+ 103              		.loc 1 62 38 is_stmt 0 view .LVU28
+ 104 0030 0020     		movs	r0, #0
+ 105 0032 6860     		str	r0, [r5, #4]
   63:Core/Src/lattice_ice_hx.c ****     }
- 105              		.loc 1 63 9 is_stmt 1 view .LVU29
+ 106              		.loc 1 63 9 is_stmt 1 view .LVU29
   63:Core/Src/lattice_ice_hx.c ****     }
- 106              		.loc 1 63 16 is_stmt 0 view .LVU30
- 107 0034 F1E7     		b	.L2
- 108              	.LVL12:
- 109              	.L7:
- 110              	.LBB4:
- 111              	.LBB3:
+ 107              		.loc 1 63 16 is_stmt 0 view .LVU30
+ 108 0034 F1E7     		b	.L2
+ 109              	.LVL12:
+ 110              	.L7:
+ 111              	.LBB4:
+ 112              	.LBB3:
   76:Core/Src/lattice_ice_hx.c ****         }
- 112              		.loc 1 76 13 is_stmt 1 discriminator 3 view .LVU31
+ 113              		.loc 1 76 13 is_stmt 1 discriminator 3 view .LVU31
   76:Core/Src/lattice_ice_hx.c ****         }
- 113              		.loc 1 76 17 is_stmt 0 discriminator 3 view .LVU32
- 114 0036 6868     		ldr	r0, [r5, #4]
+ 114              		.loc 1 76 17 is_stmt 0 discriminator 3 view .LVU32
+ 115 0036 6868     		ldr	r0, [r5, #4]
   76:Core/Src/lattice_ice_hx.c ****         }
- 115              		.loc 1 76 72 discriminator 3 view .LVU33
- 116 0038 03EBC411 		add	r1, r3, r4, lsl #7
+ 116              		.loc 1 76 72 discriminator 3 view .LVU33
+ 117 0038 03EBC411 		add	r1, r3, r4, lsl #7
   76:Core/Src/lattice_ice_hx.c ****         }
- 117              		.loc 1 76 99 discriminator 3 view .LVU34
- 118 003c 0E4A     		ldr	r2, .L18
- 119 003e 1A44     		add	r2, r2, r3
- 120 0040 92F88520 		ldrb	r2, [r2, #133]	@ zero_extendqisi2
+ 118              		.loc 1 76 99 discriminator 3 view .LVU34
+ 119 003c 0E4A     		ldr	r2, .L18
+ 120 003e 1A44     		add	r2, r2, r3
+ 121 0040 92F88520 		ldrb	r2, [r2, #133]	@ zero_extendqisi2
   76:Core/Src/lattice_ice_hx.c ****         }
- 121              		.loc 1 76 80 discriminator 3 view .LVU35
- 122 0044 4254     		strb	r2, [r0, r1]
+ 122              		.loc 1 76 80 discriminator 3 view .LVU35
+ 123 0044 4254     		strb	r2, [r0, r1]
   75:Core/Src/lattice_ice_hx.c ****             fpga->p_bitstream_compressed[blk * EEPROM_DRIVER_TX_BUF_SZ + byte] = nos_eeprom.rx_buf[
- 123              		.loc 1 75 63 is_stmt 1 discriminator 3 view .LVU36
-ARM GAS  /tmp/ccLp5Mvj.s 			page 5
+ARM GAS  /tmp/ccoBuaoC.s 			page 5
 
 
- 124 0046 0133     		adds	r3, r3, #1
- 125              	.LVL13:
+ 124              		.loc 1 75 63 is_stmt 1 discriminator 3 view .LVU36
+ 125 0046 0133     		adds	r3, r3, #1
+ 126              	.LVL13:
   75:Core/Src/lattice_ice_hx.c ****             fpga->p_bitstream_compressed[blk * EEPROM_DRIVER_TX_BUF_SZ + byte] = nos_eeprom.rx_buf[
- 126              		.loc 1 75 63 is_stmt 0 discriminator 3 view .LVU37
- 127 0048 DBB2     		uxtb	r3, r3
- 128              	.LVL14:
- 129              	.L6:
+ 127              		.loc 1 75 63 is_stmt 0 discriminator 3 view .LVU37
+ 128 0048 DBB2     		uxtb	r3, r3
+ 129              	.LVL14:
+ 130              	.L6:
   75:Core/Src/lattice_ice_hx.c ****             fpga->p_bitstream_compressed[blk * EEPROM_DRIVER_TX_BUF_SZ + byte] = nos_eeprom.rx_buf[
- 130              		.loc 1 75 36 is_stmt 1 discriminator 1 view .LVU38
- 131 004a 13F0800F 		tst	r3, #128
- 132 004e F2D0     		beq	.L7
- 133              	.LBE3:
+ 131              		.loc 1 75 31 is_stmt 1 discriminator 1 view .LVU38
+  75:Core/Src/lattice_ice_hx.c ****             fpga->p_bitstream_compressed[blk * EEPROM_DRIVER_TX_BUF_SZ + byte] = nos_eeprom.rx_buf[
+ 132              		.loc 1 75 9 is_stmt 0 discriminator 1 view .LVU39
+ 133 004a 13F0800F 		tst	r3, #128
+ 134 004e F2D0     		beq	.L7
+ 135              	.LBE3:
   70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
- 134              		.loc 1 70 42 discriminator 2 view .LVU39
- 135 0050 0134     		adds	r4, r4, #1
- 136              	.LVL15:
+ 136              		.loc 1 70 42 is_stmt 1 discriminator 2 view .LVU40
+ 137 0050 0134     		adds	r4, r4, #1
+ 138              	.LVL15:
   70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
- 137              		.loc 1 70 42 is_stmt 0 discriminator 2 view .LVU40
- 138 0052 A4B2     		uxth	r4, r4
- 139              	.LVL16:
- 140              	.L4:
+ 139              		.loc 1 70 42 is_stmt 0 discriminator 2 view .LVU41
+ 140 0052 A4B2     		uxth	r4, r4
+ 141              	.LVL16:
+ 142              	.L4:
   70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
- 141              		.loc 1 70 32 is_stmt 1 discriminator 1 view .LVU41
- 142 0054 B442     		cmp	r4, r6
- 143 0056 0BD2     		bcs	.L17
+ 143              		.loc 1 70 28 is_stmt 1 discriminator 1 view .LVU42
+  70:Core/Src/lattice_ice_hx.c ****         // Fetch 128 Bytes
+ 144              		.loc 1 70 5 is_stmt 0 discriminator 1 view .LVU43
+ 145 0054 B442     		cmp	r4, r6
+ 146 0056 0BD2     		bcs	.L17
   72:Core/Src/lattice_ice_hx.c ****         while(nos_eeprom.rx_inflight){}
- 144              		.loc 1 72 9 view .LVU42
- 145 0058 E201     		lsls	r2, r4, #7
- 146 005a 8023     		movs	r3, #128
- 147 005c 12B2     		sxth	r2, r2
- 148 005e 0121     		movs	r1, #1
- 149 0060 0548     		ldr	r0, .L18
- 150 0062 FFF7FEFF 		bl	EepromRead
- 151              	.LVL17:
+ 147              		.loc 1 72 9 is_stmt 1 view .LVU44
+ 148 0058 E201     		lsls	r2, r4, #7
+ 149 005a 8023     		movs	r3, #128
+ 150 005c 12B2     		sxth	r2, r2
+ 151 005e 0121     		movs	r1, #1
+ 152 0060 0548     		ldr	r0, .L18
+ 153 0062 FFF7FEFF 		bl	EepromRead
+ 154              	.LVL17:
   73:Core/Src/lattice_ice_hx.c ****         // Write them to the allocated compressed bitstream buffer
- 152              		.loc 1 73 9 view .LVU43
- 153              	.L5:
+ 155              		.loc 1 73 9 view .LVU45
+ 156              	.L5:
   73:Core/Src/lattice_ice_hx.c ****         // Write them to the allocated compressed bitstream buffer
- 154              		.loc 1 73 39 discriminator 1 view .LVU44
+ 157              		.loc 1 73 39 discriminator 1 view .LVU46
   73:Core/Src/lattice_ice_hx.c ****         // Write them to the allocated compressed bitstream buffer
- 155              		.loc 1 73 15 discriminator 1 view .LVU45
+ 158              		.loc 1 73 14 discriminator 1 view .LVU47
   73:Core/Src/lattice_ice_hx.c ****         // Write them to the allocated compressed bitstream buffer
- 156              		.loc 1 73 25 is_stmt 0 discriminator 1 view .LVU46
- 157 0066 044B     		ldr	r3, .L18
- 158 0068 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 159              		.loc 1 73 25 is_stmt 0 discriminator 1 view .LVU48
+ 160 0066 044B     		ldr	r3, .L18
+ 161 0068 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
   73:Core/Src/lattice_ice_hx.c ****         // Write them to the allocated compressed bitstream buffer
- 159              		.loc 1 73 15 discriminator 1 view .LVU47
- 160 006a 002B     		cmp	r3, #0
- 161 006c FBD1     		bne	.L5
- 162 006e ECE7     		b	.L6
- 163              	.L17:
- 164              	.LBE4:
-  80:Core/Src/lattice_ice_hx.c **** }
- 165              		.loc 1 80 12 view .LVU48
- 166 0070 0120     		movs	r0, #1
- 167              	.LBB5:
- 168 0072 D2E7     		b	.L2
-ARM GAS  /tmp/ccLp5Mvj.s 			page 6
+ 162              		.loc 1 73 14 discriminator 1 view .LVU49
+ 163 006a 002B     		cmp	r3, #0
+ 164 006c FBD1     		bne	.L5
+ 165 006e ECE7     		b	.L6
+ 166              	.L17:
+ 167              	.LBE4:
+ARM GAS  /tmp/ccoBuaoC.s 			page 6
 
 
- 169              	.LVL18:
- 170              	.L9:
- 171              		.cfi_def_cfa_offset 0
- 172              		.cfi_restore 4
- 173              		.cfi_restore 5
- 174              		.cfi_restore 6
- 175              		.cfi_restore 14
   80:Core/Src/lattice_ice_hx.c **** }
- 176              		.loc 1 80 12 view .LVU49
- 177              	.LBE5:
+ 168              		.loc 1 80 12 view .LVU50
+ 169 0070 0120     		movs	r0, #1
+ 170              	.LBB5:
+ 171 0072 D2E7     		b	.L2
+ 172              	.LVL18:
+ 173              	.L9:
+ 174              	.LCFI1:
+ 175              		.cfi_def_cfa_offset 0
+ 176              		.cfi_restore 4
+ 177              		.cfi_restore 5
+ 178              		.cfi_restore 6
+ 179              		.cfi_restore 14
+  80:Core/Src/lattice_ice_hx.c **** }
+ 180              		.loc 1 80 12 view .LVU51
+ 181              	.LBE5:
   49:Core/Src/lattice_ice_hx.c ****     
- 178              		.loc 1 49 16 view .LVU50
- 179 0074 0020     		movs	r0, #0
- 180              	.LVL19:
- 181              		.loc 1 81 1 view .LVU51
- 182 0076 7047     		bx	lr
- 183              	.L19:
- 184              		.align	2
- 185              	.L18:
- 186 0078 00000000 		.word	nos_eeprom
- 187              		.cfi_endproc
- 188              	.LFE145:
- 190              		.section	.text.FPGAGetBitstreamCompressedSize,"ax",%progbits
- 191              		.align	1
- 192              		.global	FPGAGetBitstreamCompressedSize
- 193              		.syntax unified
- 194              		.thumb
- 195              		.thumb_func
- 197              	FPGAGetBitstreamCompressedSize:
- 198              	.LVL20:
- 199              	.LFB146:
+ 182              		.loc 1 49 16 view .LVU52
+ 183 0074 0020     		movs	r0, #0
+ 184              	.LVL19:
+ 185              		.loc 1 81 1 view .LVU53
+ 186 0076 7047     		bx	lr
+ 187              	.L19:
+ 188              		.align	2
+ 189              	.L18:
+ 190 0078 00000000 		.word	nos_eeprom
+ 191              		.cfi_endproc
+ 192              	.LFE145:
+ 194              		.section	.text.FPGAGetBitstreamCompressedSize,"ax",%progbits
+ 195              		.align	1
+ 196              		.global	FPGAGetBitstreamCompressedSize
+ 197              		.syntax unified
+ 198              		.thumb
+ 199              		.thumb_func
+ 201              	FPGAGetBitstreamCompressedSize:
+ 202              	.LVL20:
+ 203              	.LFB146:
   82:Core/Src/lattice_ice_hx.c **** 
   83:Core/Src/lattice_ice_hx.c **** FPGAReturn FPGAGetBitstreamCompressedSize(LatticeIceHX* fpga)
   84:Core/Src/lattice_ice_hx.c **** {
- 200              		.loc 1 84 1 is_stmt 1 view -0
- 201              		.cfi_startproc
- 202              		@ args = 0, pretend = 0, frame = 0
- 203              		@ frame_needed = 0, uses_anonymous_args = 0
- 204              		.loc 1 84 1 is_stmt 0 view .LVU53
- 205 0000 10B5     		push	{r4, lr}
- 206              		.cfi_def_cfa_offset 8
- 207              		.cfi_offset 4, -8
- 208              		.cfi_offset 14, -4
- 209 0002 0446     		mov	r4, r0
+ 204              		.loc 1 84 1 is_stmt 1 view -0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 0
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              		.loc 1 84 1 is_stmt 0 view .LVU55
+ 209 0000 10B5     		push	{r4, lr}
+ 210              	.LCFI2:
+ 211              		.cfi_def_cfa_offset 8
+ 212              		.cfi_offset 4, -8
+ 213              		.cfi_offset 14, -4
+ 214 0002 0446     		mov	r4, r0
   85:Core/Src/lattice_ice_hx.c ****     // We need to fetch the owners name from the eeprom - !!!FIXME!!! Polled
   86:Core/Src/lattice_ice_hx.c ****     EepromRead(&nos_eeprom, false, ADDR_FPGA_BITSTREAM_LEN, SIZE_FPGA_BITSTREAM_LEN);
- 210              		.loc 1 86 5 is_stmt 1 view .LVU54
- 211 0004 1023     		movs	r3, #16
- 212 0006 B022     		movs	r2, #176
- 213 0008 0021     		movs	r1, #0
- 214 000a 0648     		ldr	r0, .L23
- 215              	.LVL21:
- 216              		.loc 1 86 5 is_stmt 0 view .LVU55
- 217 000c FFF7FEFF 		bl	EepromRead
- 218              	.LVL22:
+ 215              		.loc 1 86 5 is_stmt 1 view .LVU56
+ 216 0004 1023     		movs	r3, #16
+ 217 0006 B022     		movs	r2, #176
+ 218 0008 0021     		movs	r1, #0
+ARM GAS  /tmp/ccoBuaoC.s 			page 7
+
+
+ 219 000a 0648     		ldr	r0, .L23
+ 220              	.LVL21:
+ 221              		.loc 1 86 5 is_stmt 0 view .LVU57
+ 222 000c FFF7FEFF 		bl	EepromRead
+ 223              	.LVL22:
   87:Core/Src/lattice_ice_hx.c ****     while(nos_eeprom.rx_inflight){}
- 219              		.loc 1 87 5 is_stmt 1 view .LVU56
-ARM GAS  /tmp/ccLp5Mvj.s 			page 7
-
-
- 220              	.L21:
- 221              		.loc 1 87 35 discriminator 1 view .LVU57
- 222              		.loc 1 87 11 discriminator 1 view .LVU58
- 223              		.loc 1 87 21 is_stmt 0 discriminator 1 view .LVU59
- 224 0010 044B     		ldr	r3, .L23
- 225 0012 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
- 226              		.loc 1 87 11 discriminator 1 view .LVU60
- 227 0014 002B     		cmp	r3, #0
- 228 0016 FBD1     		bne	.L21
+ 224              		.loc 1 87 5 is_stmt 1 view .LVU58
+ 225              	.L21:
+ 226              		.loc 1 87 35 discriminator 1 view .LVU59
+ 227              		.loc 1 87 10 discriminator 1 view .LVU60
+ 228              		.loc 1 87 21 is_stmt 0 discriminator 1 view .LVU61
+ 229 0010 044B     		ldr	r3, .L23
+ 230 0012 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 231              		.loc 1 87 10 discriminator 1 view .LVU62
+ 232 0014 002B     		cmp	r3, #0
+ 233 0016 FBD1     		bne	.L21
   88:Core/Src/lattice_ice_hx.c ****     // Cast the eeprom as a pointer of shorts
   89:Core/Src/lattice_ice_hx.c ****     uint16_t *rx_buf = (uint16_t *)nos_eeprom.rx_buf;
- 229              		.loc 1 89 5 is_stmt 1 view .LVU61
- 230              	.LVL23:
+ 234              		.loc 1 89 5 is_stmt 1 view .LVU63
+ 235              	.LVL23:
   90:Core/Src/lattice_ice_hx.c ****     fpga->bitstream_compressed_size = rx_buf[SIZE_FPGA_BITSTREAM_LEN/2 - 2]; //Little Endian Cast? 
- 231              		.loc 1 90 5 view .LVU62
- 232              		.loc 1 90 37 is_stmt 0 view .LVU63
- 233 0018 024B     		ldr	r3, .L23
- 234 001a B3F89130 		ldrh	r3, [r3, #145]	@ unaligned
- 235 001e 6380     		strh	r3, [r4, #2]	@ movhi
+ 236              		.loc 1 90 5 view .LVU64
+ 237              		.loc 1 90 37 is_stmt 0 view .LVU65
+ 238 0018 024B     		ldr	r3, .L23
+ 239 001a B3F89130 		ldrh	r3, [r3, #145]	@ unaligned
+ 240 001e 6380     		strh	r3, [r4, #2]	@ movhi
   91:Core/Src/lattice_ice_hx.c **** 
   92:Core/Src/lattice_ice_hx.c ****     return FPGA_SUCCESS;
- 236              		.loc 1 92 5 is_stmt 1 view .LVU64
+ 241              		.loc 1 92 5 is_stmt 1 view .LVU66
   93:Core/Src/lattice_ice_hx.c **** }...
- 237              		.loc 1 93 1 is_stmt 0 view .LVU65
- 238 0020 0120     		movs	r0, #1
- 239 0022 10BD     		pop	{r4, pc}
- 240              	.LVL24:
- 241              	.L24:
- 242              		.loc 1 93 1 view .LVU66
- 243              		.align	2
- 244              	.L23:
- 245 0024 00000000 		.word	nos_eeprom
- 246              		.cfi_endproc
- 247              	.LFE146:
- 249              		.section	.text.FPGAInit,"ax",%progbits
- 250              		.align	1
- 251              		.global	FPGAInit
- 252              		.syntax unified
- 253              		.thumb
- 254              		.thumb_func
- 256              	FPGAInit:
- 257              	.LVL25:
- 258              	.LFB144:
+ 242              		.loc 1 93 1 is_stmt 0 view .LVU67
+ 243 0020 0120     		movs	r0, #1
+ 244 0022 10BD     		pop	{r4, pc}
+ 245              	.LVL24:
+ 246              	.L24:
+ 247              		.loc 1 93 1 view .LVU68
+ 248              		.align	2
+ 249              	.L23:
+ 250 0024 00000000 		.word	nos_eeprom
+ 251              		.cfi_endproc
+ 252              	.LFE146:
+ 254              		.section	.text.FPGAInit,"ax",%progbits
+ 255              		.align	1
+ 256              		.global	FPGAInit
+ 257              		.syntax unified
+ 258              		.thumb
+ 259              		.thumb_func
+ 261              	FPGAInit:
+ 262              	.LVL25:
+ 263              	.LFB144:
   14:Core/Src/lattice_ice_hx.c **** {
- 259              		.loc 1 14 1 is_stmt 1 view -0
- 260              		.cfi_startproc
- 261              		@ args = 0, pretend = 0, frame = 8
- 262              		@ frame_needed = 0, uses_anonymous_args = 0
+ 264              		.loc 1 14 1 is_stmt 1 view -0
+ 265              		.cfi_startproc
+ 266              		@ args = 0, pretend = 0, frame = 8
+ 267              		@ frame_needed = 0, uses_anonymous_args = 0
   14:Core/Src/lattice_ice_hx.c **** {
- 263              		.loc 1 14 1 is_stmt 0 view .LVU68
- 264 0000 70B5     		push	{r4, r5, r6, lr}
- 265              		.cfi_def_cfa_offset 16
- 266              		.cfi_offset 4, -16
- 267              		.cfi_offset 5, -12
- 268              		.cfi_offset 6, -8
- 269              		.cfi_offset 14, -4
- 270 0002 82B0     		sub	sp, sp, #8
-ARM GAS  /tmp/ccLp5Mvj.s 			page 8
+ 268              		.loc 1 14 1 is_stmt 0 view .LVU70
+ARM GAS  /tmp/ccoBuaoC.s 			page 8
 
 
- 271              		.cfi_def_cfa_offset 24
- 272 0004 0546     		mov	r5, r0
+ 269 0000 70B5     		push	{r4, r5, r6, lr}
+ 270              	.LCFI3:
+ 271              		.cfi_def_cfa_offset 16
+ 272              		.cfi_offset 4, -16
+ 273              		.cfi_offset 5, -12
+ 274              		.cfi_offset 6, -8
+ 275              		.cfi_offset 14, -4
+ 276 0002 82B0     		sub	sp, sp, #8
+ 277              	.LCFI4:
+ 278              		.cfi_def_cfa_offset 24
+ 279 0004 0546     		mov	r5, r0
   16:Core/Src/lattice_ice_hx.c ****     fpga->configured = false;
- 273              		.loc 1 16 5 is_stmt 1 view .LVU69
+ 280              		.loc 1 16 5 is_stmt 1 view .LVU71
   16:Core/Src/lattice_ice_hx.c ****     fpga->configured = false;
- 274              		.loc 1 16 22 is_stmt 0 view .LVU70
- 275 0006 0026     		movs	r6, #0
- 276 0008 0670     		strb	r6, [r0]
+ 281              		.loc 1 16 22 is_stmt 0 view .LVU72
+ 282 0006 0026     		movs	r6, #0
+ 283 0008 0670     		strb	r6, [r0]
   17:Core/Src/lattice_ice_hx.c ****     FPGAGetBitstreamCompressedSize(fpga);
- 277              		.loc 1 17 5 is_stmt 1 view .LVU71
- 278 000a FFF7FEFF 		bl	FPGAGetBitstreamCompressedSize
- 279              	.LVL26:
+ 284              		.loc 1 17 5 is_stmt 1 view .LVU73
+ 285 000a FFF7FEFF 		bl	FPGAGetBitstreamCompressedSize
+ 286              	.LVL26:
   18:Core/Src/lattice_ice_hx.c ****     FPGAGetBitstreamData(fpga);
- 280              		.loc 1 18 5 view .LVU72
- 281 000e 2846     		mov	r0, r5
- 282 0010 FFF7FEFF 		bl	FPGAGetBitstreamData
- 283              	.LVL27:
+ 287              		.loc 1 18 5 view .LVU74
+ 288 000e 2846     		mov	r0, r5
+ 289 0010 FFF7FEFF 		bl	FPGAGetBitstreamData
+ 290              	.LVL27:
   20:Core/Src/lattice_ice_hx.c ****     HAL_GPIO_WritePin(SPI4_SS_GPIO_Port, SPI4_SS_Pin, GPIO_PIN_RESET);
- 284              		.loc 1 20 5 view .LVU73
- 285 0014 224C     		ldr	r4, .L31
- 286 0016 3246     		mov	r2, r6
- 287 0018 0821     		movs	r1, #8
- 288 001a 2046     		mov	r0, r4
- 289 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
- 290              	.LVL28:
+ 291              		.loc 1 20 5 view .LVU75
+ 292 0014 224C     		ldr	r4, .L31
+ 293 0016 3246     		mov	r2, r6
+ 294 0018 0821     		movs	r1, #8
+ 295 001a 2046     		mov	r0, r4
+ 296 001c FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 297              	.LVL28:
   21:Core/Src/lattice_ice_hx.c ****     HAL_GPIO_WritePin(FPGA_config_nrst_GPIO_Port, FPGA_config_nrst_Pin, GPIO_PIN_RESET);
- 291              		.loc 1 21 5 view .LVU74
- 292 0020 3246     		mov	r2, r6
- 293 0022 1021     		movs	r1, #16
- 294 0024 2046     		mov	r0, r4
- 295 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 296              	.LVL29:
+ 298              		.loc 1 21 5 view .LVU76
+ 299 0020 3246     		mov	r2, r6
+ 300 0022 1021     		movs	r1, #16
+ 301 0024 2046     		mov	r0, r4
+ 302 0026 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 303              	.LVL29:
   22:Core/Src/lattice_ice_hx.c ****     HAL_Delay(1); // Much longer than the needed 200ns but easy to implement
- 297              		.loc 1 22 5 view .LVU75
- 298 002a 0120     		movs	r0, #1
- 299 002c FFF7FEFF 		bl	HAL_Delay
- 300              	.LVL30:
+ 304              		.loc 1 22 5 view .LVU77
+ 305 002a 0120     		movs	r0, #1
+ 306 002c FFF7FEFF 		bl	HAL_Delay
+ 307              	.LVL30:
   23:Core/Src/lattice_ice_hx.c ****     HAL_GPIO_WritePin(FPGA_config_nrst_GPIO_Port, FPGA_config_nrst_Pin, GPIO_PIN_SET);
- 301              		.loc 1 23 5 view .LVU76
- 302 0030 0122     		movs	r2, #1
- 303 0032 1021     		movs	r1, #16
- 304 0034 2046     		mov	r0, r4
- 305 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 306              	.LVL31:
+ 308              		.loc 1 23 5 view .LVU78
+ 309 0030 0122     		movs	r2, #1
+ 310 0032 1021     		movs	r1, #16
+ 311 0034 2046     		mov	r0, r4
+ 312 0036 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 313              	.LVL31:
   24:Core/Src/lattice_ice_hx.c ****     HAL_Delay(3); // This lets the internal configuration memory clear
- 307              		.loc 1 24 5 view .LVU77
- 308 003a 0320     		movs	r0, #3
- 309 003c FFF7FEFF 		bl	HAL_Delay
- 310              	.LVL32:
+ 314              		.loc 1 24 5 view .LVU79
+ 315 003a 0320     		movs	r0, #3
+ 316 003c FFF7FEFF 		bl	HAL_Delay
+ARM GAS  /tmp/ccoBuaoC.s 			page 9
+
+
+ 317              	.LVL32:
   26:Core/Src/lattice_ice_hx.c ****     HAL_GPIO_WritePin(SPI4_SS_GPIO_Port, SPI4_SS_Pin, GPIO_PIN_SET);
- 311              		.loc 1 26 5 view .LVU78
- 312 0040 0122     		movs	r2, #1
- 313 0042 0821     		movs	r1, #8
- 314 0044 2046     		mov	r0, r4
- 315 0046 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 316              	.LVL33:
+ 318              		.loc 1 26 5 view .LVU80
+ 319 0040 0122     		movs	r2, #1
+ 320 0042 0821     		movs	r1, #8
+ 321 0044 2046     		mov	r0, r4
+ 322 0046 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 323              	.LVL33:
   27:Core/Src/lattice_ice_hx.c ****     const uint8_t lattice_dummy_bits = 0x00;
-ARM GAS  /tmp/ccLp5Mvj.s 			page 9
-
-
- 317              		.loc 1 27 5 view .LVU79
+ 324              		.loc 1 27 5 view .LVU81
   27:Core/Src/lattice_ice_hx.c ****     const uint8_t lattice_dummy_bits = 0x00;
- 318              		.loc 1 27 19 is_stmt 0 view .LVU80
- 319 004a 8DF80760 		strb	r6, [sp, #7]
+ 325              		.loc 1 27 19 is_stmt 0 view .LVU82
+ 326 004a 8DF80760 		strb	r6, [sp, #7]
   28:Core/Src/lattice_ice_hx.c ****     HAL_SPI_Transmit(&hspi4, (uint8_t *)&lattice_dummy_bits, 1, 100);
- 320              		.loc 1 28 5 is_stmt 1 view .LVU81
- 321 004e 6423     		movs	r3, #100
- 322 0050 0122     		movs	r2, #1
- 323 0052 0DF10701 		add	r1, sp, #7
- 324 0056 1348     		ldr	r0, .L31+4
- 325 0058 FFF7FEFF 		bl	HAL_SPI_Transmit
- 326              	.LVL34:
+ 327              		.loc 1 28 5 is_stmt 1 view .LVU83
+ 328 004e 6423     		movs	r3, #100
+ 329 0050 0122     		movs	r2, #1
+ 330 0052 0DF10701 		add	r1, sp, #7
+ 331 0056 1348     		ldr	r0, .L31+4
+ 332 0058 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 333              	.LVL34:
   29:Core/Src/lattice_ice_hx.c ****     HAL_GPIO_WritePin(SPI4_SS_GPIO_Port, SPI4_SS_Pin, GPIO_PIN_RESET);
- 327              		.loc 1 29 5 view .LVU82
- 328 005c 3246     		mov	r2, r6
- 329 005e 0821     		movs	r1, #8
- 330 0060 2046     		mov	r0, r4
- 331 0062 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 332              	.LVL35:
+ 334              		.loc 1 29 5 view .LVU84
+ 335 005c 3246     		mov	r2, r6
+ 336 005e 0821     		movs	r1, #8
+ 337 0060 2046     		mov	r0, r4
+ 338 0062 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 339              	.LVL35:
   31:Core/Src/lattice_ice_hx.c ****     WriteUncomprBitstream(&ice_uncompr, fpga->p_bitstream_compressed, fpga->bitstream_compressed_si
- 333              		.loc 1 31 5 view .LVU83
- 334 0066 6A88     		ldrh	r2, [r5, #2]
- 335 0068 6968     		ldr	r1, [r5, #4]
- 336 006a 0F48     		ldr	r0, .L31+8
- 337 006c FFF7FEFF 		bl	WriteUncomprBitstream
- 338              	.LVL36:
+ 340              		.loc 1 31 5 view .LVU85
+ 341 0066 6A88     		ldrh	r2, [r5, #2]
+ 342 0068 6968     		ldr	r1, [r5, #4]
+ 343 006a 0F48     		ldr	r0, .L31+8
+ 344 006c FFF7FEFF 		bl	WriteUncomprBitstream
+ 345              	.LVL36:
   32:Core/Src/lattice_ice_hx.c ****     while(!fpga->configured){
- 339              		.loc 1 32 5 view .LVU84
- 340              	.L27:
+ 346              		.loc 1 32 5 view .LVU86
+ 347              	.L27:
   33:Core/Src/lattice_ice_hx.c ****     }
- 341              		.loc 1 33 5 discriminator 1 view .LVU85
+ 348              		.loc 1 33 5 discriminator 1 view .LVU87
   32:Core/Src/lattice_ice_hx.c ****     while(!fpga->configured){
- 342              		.loc 1 32 11 discriminator 1 view .LVU86
+ 349              		.loc 1 32 10 discriminator 1 view .LVU88
   32:Core/Src/lattice_ice_hx.c ****     while(!fpga->configured){
- 343              		.loc 1 32 16 is_stmt 0 discriminator 1 view .LVU87
- 344 0070 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 350              		.loc 1 32 16 is_stmt 0 discriminator 1 view .LVU89
+ 351 0070 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
   32:Core/Src/lattice_ice_hx.c ****     while(!fpga->configured){
- 345              		.loc 1 32 11 discriminator 1 view .LVU88
- 346 0072 002B     		cmp	r3, #0
- 347 0074 FCD0     		beq	.L27
- 348              	.LBB6:
+ 352              		.loc 1 32 10 discriminator 1 view .LVU90
+ 353 0072 002B     		cmp	r3, #0
+ 354 0074 FCD0     		beq	.L27
+ 355              	.LBB6:
   35:Core/Src/lattice_ice_hx.c ****     for(uint8_t dummy_byte = 0; dummy_byte < 10; ++dummy_byte) {
- 349              		.loc 1 35 17 view .LVU89
- 350 0076 0024     		movs	r4, #0
- 351 0078 08E0     		b	.L26
- 352              	.LVL37:
- 353              	.L28:
+ 356              		.loc 1 35 17 view .LVU91
+ 357 0076 0024     		movs	r4, #0
+ 358 0078 08E0     		b	.L26
+ 359              	.LVL37:
+ 360              	.L28:
   36:Core/Src/lattice_ice_hx.c ****         HAL_SPI_Transmit(&hspi4, (uint8_t *)&lattice_dummy_bits, 1, 100);
- 354              		.loc 1 36 9 is_stmt 1 discriminator 3 view .LVU90
- 355 007a 6423     		movs	r3, #100
- 356 007c 0122     		movs	r2, #1
- 357 007e 0DF10701 		add	r1, sp, #7
- 358 0082 0848     		ldr	r0, .L31+4
- 359 0084 FFF7FEFF 		bl	HAL_SPI_Transmit
- 360              	.LVL38:
-  35:Core/Src/lattice_ice_hx.c ****     for(uint8_t dummy_byte = 0; dummy_byte < 10; ++dummy_byte) {
- 361              		.loc 1 35 50 discriminator 3 view .LVU91
-ARM GAS  /tmp/ccLp5Mvj.s 			page 10
+ARM GAS  /tmp/ccoBuaoC.s 			page 10
 
 
- 362 0088 0134     		adds	r4, r4, #1
- 363              	.LVL39:
+ 361              		.loc 1 36 9 is_stmt 1 discriminator 3 view .LVU92
+ 362 007a 6423     		movs	r3, #100
+ 363 007c 0122     		movs	r2, #1
+ 364 007e 0DF10701 		add	r1, sp, #7
+ 365 0082 0848     		ldr	r0, .L31+4
+ 366 0084 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 367              	.LVL38:
   35:Core/Src/lattice_ice_hx.c ****     for(uint8_t dummy_byte = 0; dummy_byte < 10; ++dummy_byte) {
- 364              		.loc 1 35 50 is_stmt 0 discriminator 3 view .LVU92
- 365 008a E4B2     		uxtb	r4, r4
- 366              	.LVL40:
- 367              	.L26:
+ 368              		.loc 1 35 50 discriminator 3 view .LVU93
+ 369 0088 0134     		adds	r4, r4, #1
+ 370              	.LVL39:
   35:Core/Src/lattice_ice_hx.c ****     for(uint8_t dummy_byte = 0; dummy_byte < 10; ++dummy_byte) {
- 368              		.loc 1 35 44 is_stmt 1 discriminator 1 view .LVU93
- 369 008c 092C     		cmp	r4, #9
- 370 008e F4D9     		bls	.L28
- 371              	.LBE6:
+ 371              		.loc 1 35 50 is_stmt 0 discriminator 3 view .LVU94
+ 372 008a E4B2     		uxtb	r4, r4
+ 373              	.LVL40:
+ 374              	.L26:
+  35:Core/Src/lattice_ice_hx.c ****     for(uint8_t dummy_byte = 0; dummy_byte < 10; ++dummy_byte) {
+ 375              		.loc 1 35 33 is_stmt 1 discriminator 1 view .LVU95
+  35:Core/Src/lattice_ice_hx.c ****     for(uint8_t dummy_byte = 0; dummy_byte < 10; ++dummy_byte) {
+ 376              		.loc 1 35 5 is_stmt 0 discriminator 1 view .LVU96
+ 377 008c 092C     		cmp	r4, #9
+ 378 008e F4D9     		bls	.L28
+ 379              	.LBE6:
   39:Core/Src/lattice_ice_hx.c ****     free(fpga->p_bitstream_compressed);
- 372              		.loc 1 39 5 view .LVU94
- 373 0090 6868     		ldr	r0, [r5, #4]
- 374 0092 FFF7FEFF 		bl	free
- 375              	.LVL41:
+ 380              		.loc 1 39 5 is_stmt 1 view .LVU97
+ 381 0090 6868     		ldr	r0, [r5, #4]
+ 382 0092 FFF7FEFF 		bl	free
+ 383              	.LVL41:
   40:Core/Src/lattice_ice_hx.c ****     fpga->p_bitstream_compressed = NULL;
- 376              		.loc 1 40 5 view .LVU95
+ 384              		.loc 1 40 5 view .LVU98
   40:Core/Src/lattice_ice_hx.c ****     fpga->p_bitstream_compressed = NULL;
- 377              		.loc 1 40 34 is_stmt 0 view .LVU96
- 378 0096 0023     		movs	r3, #0
- 379 0098 6B60     		str	r3, [r5, #4]
+ 385              		.loc 1 40 34 is_stmt 0 view .LVU99
+ 386 0096 0023     		movs	r3, #0
+ 387 0098 6B60     		str	r3, [r5, #4]
   42:Core/Src/lattice_ice_hx.c ****     return FPGA_SUCCESS;
- 380              		.loc 1 42 5 is_stmt 1 view .LVU97
+ 388              		.loc 1 42 5 is_stmt 1 view .LVU100
   43:Core/Src/lattice_ice_hx.c **** }
- 381              		.loc 1 43 1 is_stmt 0 view .LVU98
- 382 009a 0120     		movs	r0, #1
- 383 009c 02B0     		add	sp, sp, #8
- 384              		.cfi_def_cfa_offset 16
- 385              		@ sp needed
- 386 009e 70BD     		pop	{r4, r5, r6, pc}
- 387              	.LVL42:
- 388              	.L32:
+ 389              		.loc 1 43 1 is_stmt 0 view .LVU101
+ 390 009a 0120     		movs	r0, #1
+ 391 009c 02B0     		add	sp, sp, #8
+ 392              	.LCFI5:
+ 393              		.cfi_def_cfa_offset 16
+ 394              		@ sp needed
+ 395 009e 70BD     		pop	{r4, r5, r6, pc}
+ 396              	.LVL42:
+ 397              	.L32:
   43:Core/Src/lattice_ice_hx.c **** }
- 389              		.loc 1 43 1 view .LVU99
- 390              		.align	2
- 391              	.L31:
- 392 00a0 00100240 		.word	1073876992
- 393 00a4 00000000 		.word	hspi4
- 394 00a8 00000000 		.word	ice_uncompr
- 395              		.cfi_endproc
- 396              	.LFE144:
- 398              		.text
- 399              	.Letext0:
- 400              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 401              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 402              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 403              		.file 5 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 404              		.file 6 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 405              		.file 7 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 406              		.file 8 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
- 407              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
- 408              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
- 409              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
- 410              		.file 12 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
- 411              		.file 13 "Core/Inc/24xx_eeprom.h"
-ARM GAS  /tmp/ccLp5Mvj.s 			page 11
+ 398              		.loc 1 43 1 view .LVU102
+ 399              		.align	2
+ 400              	.L31:
+ 401 00a0 00100240 		.word	1073876992
+ 402 00a4 00000000 		.word	hspi4
+ 403 00a8 00000000 		.word	ice_uncompr
+ 404              		.cfi_endproc
+ 405              	.LFE144:
+ 407              		.text
+ 408              	.Letext0:
+ARM GAS  /tmp/ccoBuaoC.s 			page 11
 
 
- 412              		.file 14 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
- 413              		.file 15 "Core/Inc/iceuncompr.h"
- 414              		.file 16 "Core/Inc/spi.h"
- 415              		.file 17 "Core/Inc/lattice_ice_hx.h"
- 416              		.file 18 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-n
- 417              		.file 19 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
-ARM GAS  /tmp/ccLp5Mvj.s 			page 12
+ 409              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h"
+ 410              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 411              		.file 4 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h"
+ 412              		.file 5 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h"
+ 413              		.file 6 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/lock.h"
+ 414              		.file 7 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 415              		.file 8 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
+ 416              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 417              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
+ 418              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 419              		.file 12 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
+ 420              		.file 13 "Core/Inc/24xx_eeprom.h"
+ 421              		.file 14 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h"
+ 422              		.file 15 "Core/Inc/iceuncompr.h"
+ 423              		.file 16 "Core/Inc/spi.h"
+ 424              		.file 17 "Core/Inc/lattice_ice_hx.h"
+ 425              		.file 18 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h"
+ 426              		.file 19 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
+ARM GAS  /tmp/ccoBuaoC.s 			page 12
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 lattice_ice_hx.c
-     /tmp/ccLp5Mvj.s:21     .text.FPGAGetBitstreamData:00000000 $t
-     /tmp/ccLp5Mvj.s:27     .text.FPGAGetBitstreamData:00000000 FPGAGetBitstreamData
-     /tmp/ccLp5Mvj.s:186    .text.FPGAGetBitstreamData:00000078 $d
-     /tmp/ccLp5Mvj.s:191    .text.FPGAGetBitstreamCompressedSize:00000000 $t
-     /tmp/ccLp5Mvj.s:197    .text.FPGAGetBitstreamCompressedSize:00000000 FPGAGetBitstreamCompressedSize
-     /tmp/ccLp5Mvj.s:245    .text.FPGAGetBitstreamCompressedSize:00000024 $d
-     /tmp/ccLp5Mvj.s:250    .text.FPGAInit:00000000 $t
-     /tmp/ccLp5Mvj.s:256    .text.FPGAInit:00000000 FPGAInit
-     /tmp/ccLp5Mvj.s:392    .text.FPGAInit:000000a0 $d
+                            *ABS*:0000000000000000 lattice_ice_hx.c
+     /tmp/ccoBuaoC.s:20     .text.FPGAGetBitstreamData:0000000000000000 $t
+     /tmp/ccoBuaoC.s:26     .text.FPGAGetBitstreamData:0000000000000000 FPGAGetBitstreamData
+     /tmp/ccoBuaoC.s:190    .text.FPGAGetBitstreamData:0000000000000078 $d
+     /tmp/ccoBuaoC.s:195    .text.FPGAGetBitstreamCompressedSize:0000000000000000 $t
+     /tmp/ccoBuaoC.s:201    .text.FPGAGetBitstreamCompressedSize:0000000000000000 FPGAGetBitstreamCompressedSize
+     /tmp/ccoBuaoC.s:250    .text.FPGAGetBitstreamCompressedSize:0000000000000024 $d
+     /tmp/ccoBuaoC.s:255    .text.FPGAInit:0000000000000000 $t
+     /tmp/ccoBuaoC.s:261    .text.FPGAInit:0000000000000000 FPGAInit
+     /tmp/ccoBuaoC.s:401    .text.FPGAInit:00000000000000a0 $d
 
 UNDEFINED SYMBOLS
 realloc

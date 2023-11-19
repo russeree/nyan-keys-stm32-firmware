@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccHwxxUw.s 			page 1
+ARM GAS  /tmp/ccAxQTa8.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccHwxxUw.s 			page 1
   41              		.loc 1 15 5 is_stmt 1 view .LVU2
   42 0004 0122     		movs	r2, #1
   43 0006 1146     		mov	r1, r2
-ARM GAS  /tmp/ccHwxxUw.s 			page 2
+ARM GAS  /tmp/ccAxQTa8.s 			page 2
 
 
   44 0008 0348     		ldr	r0, .L3
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccHwxxUw.s 			page 1
   30:Core/Src/nyan_keys.c **** }...
   86              		.loc 1 30 1 is_stmt 0 view .LVU14
   87 0004 0120     		movs	r0, #1
-ARM GAS  /tmp/ccHwxxUw.s 			page 3
+ARM GAS  /tmp/ccAxQTa8.s 			page 3
 
 
   88              	.LVL5:
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccHwxxUw.s 			page 1
  136              		.set	.LANCHOR0,. + 0
  139              	keys_registers_addresses:
  140 0000 01020304 		.ascii	"\001\002\003\004\005\006\007\000\000"
-ARM GAS  /tmp/ccHwxxUw.s 			page 4
+ARM GAS  /tmp/ccAxQTa8.s 			page 4
 
 
  140      05060700 
@@ -194,19 +194,19 @@ ARM GAS  /tmp/ccHwxxUw.s 			page 1
  149              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
  150              		.file 9 "Core/Inc/nyan_keys.h"
  151              		.file 10 "Core/Inc/spi.h"
-ARM GAS  /tmp/ccHwxxUw.s 			page 5
+ARM GAS  /tmp/ccAxQTa8.s 			page 5
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 nyan_keys.c
-     /tmp/ccHwxxUw.s:20     .text.NyanKeysInit:0000000000000000 $t
-     /tmp/ccHwxxUw.s:26     .text.NyanKeysInit:0000000000000000 NyanKeysInit
-     /tmp/ccHwxxUw.s:62     .text.NyanKeysInit:0000000000000018 $d
-     /tmp/ccHwxxUw.s:67     .text.NyanGetKeys:0000000000000000 $t
-     /tmp/ccHwxxUw.s:73     .text.NyanGetKeys:0000000000000000 NyanGetKeys
-     /tmp/ccHwxxUw.s:128    .text.NyanGetKeys:000000000000002c $d
-     /tmp/ccHwxxUw.s:135    .data.keys_registers_addresses:0000000000000000 $d
-     /tmp/ccHwxxUw.s:139    .data.keys_registers_addresses:0000000000000000 keys_registers_addresses
+     /tmp/ccAxQTa8.s:20     .text.NyanKeysInit:0000000000000000 $t
+     /tmp/ccAxQTa8.s:26     .text.NyanKeysInit:0000000000000000 NyanKeysInit
+     /tmp/ccAxQTa8.s:62     .text.NyanKeysInit:0000000000000018 $d
+     /tmp/ccAxQTa8.s:67     .text.NyanGetKeys:0000000000000000 $t
+     /tmp/ccAxQTa8.s:73     .text.NyanGetKeys:0000000000000000 NyanGetKeys
+     /tmp/ccAxQTa8.s:128    .text.NyanGetKeys:000000000000002c $d
+     /tmp/ccAxQTa8.s:135    .data.keys_registers_addresses:0000000000000000 $d
+     /tmp/ccAxQTa8.s:139    .data.keys_registers_addresses:0000000000000000 keys_registers_addresses
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

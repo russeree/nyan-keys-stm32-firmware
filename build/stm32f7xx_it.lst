@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccOozFap.s 			page 1
+ARM GAS  /tmp/ccVawZCC.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
   28:Core/Src/stm32f7xx_it.c **** 
   29:Core/Src/stm32f7xx_it.c **** /* Private typedef -----------------------------------------------------------*/
   30:Core/Src/stm32f7xx_it.c **** /* USER CODE BEGIN TD */
-ARM GAS  /tmp/ccOozFap.s 			page 2
+ARM GAS  /tmp/ccVawZCC.s 			page 2
 
 
   31:Core/Src/stm32f7xx_it.c **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
   30              		.cfi_startproc
   31              		@ Volatile: function does not return.
   32              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccOozFap.s 			page 3
+ARM GAS  /tmp/ccVawZCC.s 			page 3
 
 
   33              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
   66 0004 0122     		movs	r2, #1
   67 0006 1146     		mov	r1, r2
   68 0008 2046     		mov	r0, r4
-ARM GAS  /tmp/ccOozFap.s 			page 4
+ARM GAS  /tmp/ccVawZCC.s 			page 4
 
 
   69 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  117:Core/Src/stm32f7xx_it.c **** void MemManage_Handler(void)
  118:Core/Src/stm32f7xx_it.c **** {
  113              		.loc 1 118 1 view -0
-ARM GAS  /tmp/ccOozFap.s 			page 5
+ARM GAS  /tmp/ccVawZCC.s 			page 5
 
 
  114              		.cfi_startproc
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  145              		.loc 1 137 9 discriminator 1 view .LVU19
  146 0000 FEE7     		b	.L11
  147              		.cfi_endproc
-ARM GAS  /tmp/ccOozFap.s 			page 6
+ARM GAS  /tmp/ccVawZCC.s 			page 6
 
 
  148              	.LFE147:
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  183              		.cfi_startproc
  184              		@ args = 0, pretend = 0, frame = 0
  185              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccOozFap.s 			page 7
+ARM GAS  /tmp/ccVawZCC.s 			page 7
 
 
  186              		@ link register save eliminated.
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  188:Core/Src/stm32f7xx_it.c **** void PendSV_Handler(void)
  189:Core/Src/stm32f7xx_it.c **** {
  220              		.loc 1 189 1 view -0
-ARM GAS  /tmp/ccOozFap.s 			page 8
+ARM GAS  /tmp/ccVawZCC.s 			page 8
 
 
  221              		.cfi_startproc
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  259              		.syntax unified
  260              		.thumb
  261              		.thumb_func
-ARM GAS  /tmp/ccOozFap.s 			page 9
+ARM GAS  /tmp/ccVawZCC.s 			page 9
 
 
  263              	DMA1_Stream0_IRQHandler:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  232:Core/Src/stm32f7xx_it.c ****   * @brief This function handles DMA1 stream3 global interrupt.
  233:Core/Src/stm32f7xx_it.c ****   */
  234:Core/Src/stm32f7xx_it.c **** void DMA1_Stream3_IRQHandler(void)
-ARM GAS  /tmp/ccOozFap.s 			page 10
+ARM GAS  /tmp/ccVawZCC.s 			page 10
 
 
  235:Core/Src/stm32f7xx_it.c **** {
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  251:Core/Src/stm32f7xx_it.c **** 
  252:Core/Src/stm32f7xx_it.c ****   /* USER CODE END DMA1_Stream4_IRQn 0 */
  253:Core/Src/stm32f7xx_it.c ****   HAL_DMA_IRQHandler(&hdma_spi2_tx);
-ARM GAS  /tmp/ccOozFap.s 			page 11
+ARM GAS  /tmp/ccVawZCC.s 			page 11
 
 
  336              		.loc 1 253 3 view .LVU40
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  374 000a 00BF     		.align	2
  375              	.L33:
  376 000c 00000000 		.word	hdma_i2c1_tx
-ARM GAS  /tmp/ccOozFap.s 			page 12
+ARM GAS  /tmp/ccVawZCC.s 			page 12
 
 
  377              		.cfi_endproc
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  287:Core/Src/stm32f7xx_it.c **** /**
  288:Core/Src/stm32f7xx_it.c ****   * @brief This function handles TIM1 capture compare interrupt.
  289:Core/Src/stm32f7xx_it.c ****   */
-ARM GAS  /tmp/ccOozFap.s 			page 13
+ARM GAS  /tmp/ccVawZCC.s 			page 13
 
 
  290:Core/Src/stm32f7xx_it.c **** void TIM1_CC_IRQHandler(void)
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  306:Core/Src/stm32f7xx_it.c **** 
  307:Core/Src/stm32f7xx_it.c ****   /* USER CODE END I2C1_EV_IRQn 0 */
  308:Core/Src/stm32f7xx_it.c ****   HAL_I2C_EV_IRQHandler(&hi2c1);
-ARM GAS  /tmp/ccOozFap.s 			page 14
+ARM GAS  /tmp/ccVawZCC.s 			page 14
 
 
  460              		.loc 1 308 3 view .LVU52
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  498 000a 00BF     		.align	2
  499              	.L49:
  500 000c 00000000 		.word	hi2c1
-ARM GAS  /tmp/ccOozFap.s 			page 15
+ARM GAS  /tmp/ccVawZCC.s 			page 15
 
 
  501              		.cfi_endproc
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  342:Core/Src/stm32f7xx_it.c **** /**
  343:Core/Src/stm32f7xx_it.c ****   * @brief This function handles TIM8 capture compare interrupt.
  344:Core/Src/stm32f7xx_it.c ****   */
-ARM GAS  /tmp/ccOozFap.s 			page 16
+ARM GAS  /tmp/ccVawZCC.s 			page 16
 
 
  345:Core/Src/stm32f7xx_it.c **** void TIM8_CC_IRQHandler(void)
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  361:Core/Src/stm32f7xx_it.c ****   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
  362:Core/Src/stm32f7xx_it.c ****   /* USER CODE END TIM6_DAC_IRQn 0 */
  363:Core/Src/stm32f7xx_it.c ****   HAL_TIM_IRQHandler(&htim6);
-ARM GAS  /tmp/ccOozFap.s 			page 17
+ARM GAS  /tmp/ccVawZCC.s 			page 17
 
 
  584              		.loc 1 363 3 view .LVU64
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  625              		.cfi_endproc
  626              	.LFE164:
  628              		.section	.text.OTG_HS_IRQHandler,"ax",%progbits
-ARM GAS  /tmp/ccOozFap.s 			page 18
+ARM GAS  /tmp/ccVawZCC.s 			page 18
 
 
  629              		.align	1
@@ -1078,76 +1078,76 @@ ARM GAS  /tmp/ccOozFap.s 			page 1
  671              		.file 12 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pcd.h"
  672              		.file 13 "Core/Inc/spi.h"
  673              		.file 14 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
-ARM GAS  /tmp/ccOozFap.s 			page 19
+ARM GAS  /tmp/ccVawZCC.s 			page 19
 
 
  674              		.file 15 "Core/Inc/nyan_os.h"
-ARM GAS  /tmp/ccOozFap.s 			page 20
+ARM GAS  /tmp/ccVawZCC.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f7xx_it.c
-     /tmp/ccOozFap.s:20     .text.NMI_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
-     /tmp/ccOozFap.s:44     .text.HardFault_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:50     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-     /tmp/ccOozFap.s:100    .text.HardFault_Handler:0000000000000038 $d
-     /tmp/ccOozFap.s:105    .text.MemManage_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:111    .text.MemManage_Handler:0000000000000000 MemManage_Handler
-     /tmp/ccOozFap.s:128    .text.BusFault_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:134    .text.BusFault_Handler:0000000000000000 BusFault_Handler
-     /tmp/ccOozFap.s:151    .text.UsageFault_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:157    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
-     /tmp/ccOozFap.s:174    .text.SVC_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:180    .text.SVC_Handler:0000000000000000 SVC_Handler
-     /tmp/ccOozFap.s:193    .text.DebugMon_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:199    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
-     /tmp/ccOozFap.s:212    .text.PendSV_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:218    .text.PendSV_Handler:0000000000000000 PendSV_Handler
-     /tmp/ccOozFap.s:231    .text.SysTick_Handler:0000000000000000 $t
-     /tmp/ccOozFap.s:237    .text.SysTick_Handler:0000000000000000 SysTick_Handler
-     /tmp/ccOozFap.s:257    .text.DMA1_Stream0_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:263    .text.DMA1_Stream0_IRQHandler:0000000000000000 DMA1_Stream0_IRQHandler
-     /tmp/ccOozFap.s:283    .text.DMA1_Stream0_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:288    .text.DMA1_Stream3_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:294    .text.DMA1_Stream3_IRQHandler:0000000000000000 DMA1_Stream3_IRQHandler
-     /tmp/ccOozFap.s:314    .text.DMA1_Stream3_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:319    .text.DMA1_Stream4_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:325    .text.DMA1_Stream4_IRQHandler:0000000000000000 DMA1_Stream4_IRQHandler
-     /tmp/ccOozFap.s:345    .text.DMA1_Stream4_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:350    .text.DMA1_Stream6_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:356    .text.DMA1_Stream6_IRQHandler:0000000000000000 DMA1_Stream6_IRQHandler
-     /tmp/ccOozFap.s:376    .text.DMA1_Stream6_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:381    .text.TIM1_UP_TIM10_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:387    .text.TIM1_UP_TIM10_IRQHandler:0000000000000000 TIM1_UP_TIM10_IRQHandler
-     /tmp/ccOozFap.s:407    .text.TIM1_UP_TIM10_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:412    .text.TIM1_CC_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:418    .text.TIM1_CC_IRQHandler:0000000000000000 TIM1_CC_IRQHandler
-     /tmp/ccOozFap.s:438    .text.TIM1_CC_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:443    .text.I2C1_EV_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:449    .text.I2C1_EV_IRQHandler:0000000000000000 I2C1_EV_IRQHandler
-     /tmp/ccOozFap.s:469    .text.I2C1_EV_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:474    .text.I2C1_ER_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:480    .text.I2C1_ER_IRQHandler:0000000000000000 I2C1_ER_IRQHandler
-     /tmp/ccOozFap.s:500    .text.I2C1_ER_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:505    .text.SPI2_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:511    .text.SPI2_IRQHandler:0000000000000000 SPI2_IRQHandler
-     /tmp/ccOozFap.s:531    .text.SPI2_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:536    .text.TIM8_CC_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:542    .text.TIM8_CC_IRQHandler:0000000000000000 TIM8_CC_IRQHandler
-     /tmp/ccOozFap.s:562    .text.TIM8_CC_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:567    .text.TIM6_DAC_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:573    .text.TIM6_DAC_IRQHandler:0000000000000000 TIM6_DAC_IRQHandler
-     /tmp/ccOozFap.s:593    .text.TIM6_DAC_IRQHandler:000000000000000c $d
-     /tmp/ccOozFap.s:598    .text.TIM7_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:604    .text.TIM7_IRQHandler:0000000000000000 TIM7_IRQHandler
-     /tmp/ccOozFap.s:624    .text.TIM7_IRQHandler:000000000000000c $d
-ARM GAS  /tmp/ccOozFap.s 			page 21
+     /tmp/ccVawZCC.s:20     .text.NMI_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:26     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/ccVawZCC.s:44     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:50     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/ccVawZCC.s:100    .text.HardFault_Handler:0000000000000038 $d
+     /tmp/ccVawZCC.s:105    .text.MemManage_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:111    .text.MemManage_Handler:0000000000000000 MemManage_Handler
+     /tmp/ccVawZCC.s:128    .text.BusFault_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:134    .text.BusFault_Handler:0000000000000000 BusFault_Handler
+     /tmp/ccVawZCC.s:151    .text.UsageFault_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:157    .text.UsageFault_Handler:0000000000000000 UsageFault_Handler
+     /tmp/ccVawZCC.s:174    .text.SVC_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:180    .text.SVC_Handler:0000000000000000 SVC_Handler
+     /tmp/ccVawZCC.s:193    .text.DebugMon_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:199    .text.DebugMon_Handler:0000000000000000 DebugMon_Handler
+     /tmp/ccVawZCC.s:212    .text.PendSV_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:218    .text.PendSV_Handler:0000000000000000 PendSV_Handler
+     /tmp/ccVawZCC.s:231    .text.SysTick_Handler:0000000000000000 $t
+     /tmp/ccVawZCC.s:237    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/ccVawZCC.s:257    .text.DMA1_Stream0_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:263    .text.DMA1_Stream0_IRQHandler:0000000000000000 DMA1_Stream0_IRQHandler
+     /tmp/ccVawZCC.s:283    .text.DMA1_Stream0_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:288    .text.DMA1_Stream3_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:294    .text.DMA1_Stream3_IRQHandler:0000000000000000 DMA1_Stream3_IRQHandler
+     /tmp/ccVawZCC.s:314    .text.DMA1_Stream3_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:319    .text.DMA1_Stream4_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:325    .text.DMA1_Stream4_IRQHandler:0000000000000000 DMA1_Stream4_IRQHandler
+     /tmp/ccVawZCC.s:345    .text.DMA1_Stream4_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:350    .text.DMA1_Stream6_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:356    .text.DMA1_Stream6_IRQHandler:0000000000000000 DMA1_Stream6_IRQHandler
+     /tmp/ccVawZCC.s:376    .text.DMA1_Stream6_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:381    .text.TIM1_UP_TIM10_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:387    .text.TIM1_UP_TIM10_IRQHandler:0000000000000000 TIM1_UP_TIM10_IRQHandler
+     /tmp/ccVawZCC.s:407    .text.TIM1_UP_TIM10_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:412    .text.TIM1_CC_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:418    .text.TIM1_CC_IRQHandler:0000000000000000 TIM1_CC_IRQHandler
+     /tmp/ccVawZCC.s:438    .text.TIM1_CC_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:443    .text.I2C1_EV_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:449    .text.I2C1_EV_IRQHandler:0000000000000000 I2C1_EV_IRQHandler
+     /tmp/ccVawZCC.s:469    .text.I2C1_EV_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:474    .text.I2C1_ER_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:480    .text.I2C1_ER_IRQHandler:0000000000000000 I2C1_ER_IRQHandler
+     /tmp/ccVawZCC.s:500    .text.I2C1_ER_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:505    .text.SPI2_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:511    .text.SPI2_IRQHandler:0000000000000000 SPI2_IRQHandler
+     /tmp/ccVawZCC.s:531    .text.SPI2_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:536    .text.TIM8_CC_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:542    .text.TIM8_CC_IRQHandler:0000000000000000 TIM8_CC_IRQHandler
+     /tmp/ccVawZCC.s:562    .text.TIM8_CC_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:567    .text.TIM6_DAC_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:573    .text.TIM6_DAC_IRQHandler:0000000000000000 TIM6_DAC_IRQHandler
+     /tmp/ccVawZCC.s:593    .text.TIM6_DAC_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:598    .text.TIM7_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:604    .text.TIM7_IRQHandler:0000000000000000 TIM7_IRQHandler
+     /tmp/ccVawZCC.s:624    .text.TIM7_IRQHandler:000000000000000c $d
+ARM GAS  /tmp/ccVawZCC.s 			page 21
 
 
-     /tmp/ccOozFap.s:629    .text.OTG_HS_IRQHandler:0000000000000000 $t
-     /tmp/ccOozFap.s:635    .text.OTG_HS_IRQHandler:0000000000000000 OTG_HS_IRQHandler
-     /tmp/ccOozFap.s:655    .text.OTG_HS_IRQHandler:000000000000000c $d
+     /tmp/ccVawZCC.s:629    .text.OTG_HS_IRQHandler:0000000000000000 $t
+     /tmp/ccVawZCC.s:635    .text.OTG_HS_IRQHandler:0000000000000000 OTG_HS_IRQHandler
+     /tmp/ccVawZCC.s:655    .text.OTG_HS_IRQHandler:000000000000000c $d
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

@@ -66,6 +66,7 @@ Core/Src/system_stm32f7xx.c \
 Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pcd.c \
 Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_pcd_ex.c \
 Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_ll_usb.c \
+Core/Src/nyan_bitcoin.c \
 Core/Src/nyan_leds.c \
 Core/Src/nyan_os.c \
 Core/Src/nyan_keys.c \

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccW6Up5O.s 			page 1
+ARM GAS  /tmp/ccHvWBnU.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,16 +19,16 @@ ARM GAS  /tmp/ccW6Up5O.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.file 1 "Core/Src/iceuncompr.c"
-  20              		.section	.text.read_bit,"ax",%progbits
-  21              		.align	1
-  22              		.global	read_bit
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	read_bit:
-  28              	.LVL0:
-  29              	.LFB144:
+  19              		.section	.text.read_bit,"ax",%progbits
+  20              		.align	1
+  21              		.global	read_bit
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	read_bit:
+  27              	.LVL0:
+  28              	.LFB144:
+  29              		.file 1 "Core/Src/iceuncompr.c"
    1:Core/Src/iceuncompr.c **** /**
    2:Core/Src/iceuncompr.c ****  * @file iceuncompr.c
    3:Core/Src/iceuncompr.c ****  * @brief Implementation file for ICE decompression utility.
@@ -45,50 +45,51 @@ ARM GAS  /tmp/ccW6Up5O.s 			page 1
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		.loc 1 10 31 is_stmt 0 view .LVU1
   35 0000 10B5     		push	{r4, lr}
-  36              		.cfi_def_cfa_offset 8
-  37              		.cfi_offset 4, -8
-  38              		.cfi_offset 14, -4
-  39 0002 0446     		mov	r4, r0
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0446     		mov	r4, r0
   11:Core/Src/iceuncompr.c ****     if (ice->read_bitcounter == 0) {
-  40              		.loc 1 11 5 is_stmt 1 view .LVU2
-  41              		.loc 1 11 12 is_stmt 0 view .LVU3
-  42 0004 C368     		ldr	r3, [r0, #12]
-  43              		.loc 1 11 8 view .LVU4
-  44 0006 4BB9     		cbnz	r3, .L2
+  41              		.loc 1 11 5 is_stmt 1 view .LVU2
+  42              		.loc 1 11 12 is_stmt 0 view .LVU3
+  43 0004 C368     		ldr	r3, [r0, #12]
+  44              		.loc 1 11 8 view .LVU4
+  45 0006 4BB9     		cbnz	r3, .L2
   12:Core/Src/iceuncompr.c ****         ice->read_bitcounter = 8;
-  45              		.loc 1 12 9 is_stmt 1 view .LVU5
-  46              		.loc 1 12 30 is_stmt 0 view .LVU6
-ARM GAS  /tmp/ccW6Up5O.s 			page 2
+  46              		.loc 1 12 9 is_stmt 1 view .LVU5
+ARM GAS  /tmp/ccHvWBnU.s 			page 2
 
 
-  47 0008 0823     		movs	r3, #8
-  48 000a C360     		str	r3, [r0, #12]
+  47              		.loc 1 12 30 is_stmt 0 view .LVU6
+  48 0008 0823     		movs	r3, #8
+  49 000a C360     		str	r3, [r0, #12]
   13:Core/Src/iceuncompr.c ****         if (ice->input_data_fh != NULL) {
-  49              		.loc 1 13 9 is_stmt 1 view .LVU7
-  50              		.loc 1 13 16 is_stmt 0 view .LVU8
-  51 000c 0068     		ldr	r0, [r0]
-  52              	.LVL1:
-  53              		.loc 1 13 12 view .LVU9
-  54 000e 68B1     		cbz	r0, .L4
-  55              	.LBB2:
+  50              		.loc 1 13 9 is_stmt 1 view .LVU7
+  51              		.loc 1 13 16 is_stmt 0 view .LVU8
+  52 000c 0068     		ldr	r0, [r0]
+  53              	.LVL1:
+  54              		.loc 1 13 12 view .LVU9
+  55 000e 68B1     		cbz	r0, .L4
+  56              	.LBB2:
   14:Core/Src/iceuncompr.c ****             int ch = fgetc(ice->input_data_fh);
-  56              		.loc 1 14 13 is_stmt 1 view .LVU10
-  57              		.loc 1 14 22 is_stmt 0 view .LVU11
-  58 0010 FFF7FEFF 		bl	fgetc
-  59              	.LVL2:
+  57              		.loc 1 14 13 is_stmt 1 view .LVU10
+  58              		.loc 1 14 22 is_stmt 0 view .LVU11
+  59 0010 FFF7FEFF 		bl	fgetc
+  60              	.LVL2:
   15:Core/Src/iceuncompr.c ****             if (ch != EOF) {
-  60              		.loc 1 15 13 is_stmt 1 view .LVU12
-  61              		.loc 1 15 16 is_stmt 0 view .LVU13
-  62 0014 B0F1FF3F 		cmp	r0, #-1
-  63 0018 07D0     		beq	.L1
+  61              		.loc 1 15 13 is_stmt 1 view .LVU12
+  62              		.loc 1 15 16 is_stmt 0 view .LVU13
+  63 0014 B0F1FF3F 		cmp	r0, #-1
+  64 0018 07D0     		beq	.L1
   16:Core/Src/iceuncompr.c ****                 ice->read_buffer = ch;
-  64              		.loc 1 16 17 is_stmt 1 view .LVU14
-  65              		.loc 1 16 34 is_stmt 0 view .LVU15
-  66 001a 2061     		str	r0, [r4, #16]
-  67              	.LVL3:
-  68              	.L2:
-  69              		.loc 1 16 34 view .LVU16
-  70              	.LBE2:
+  65              		.loc 1 16 17 is_stmt 1 view .LVU14
+  66              		.loc 1 16 34 is_stmt 0 view .LVU15
+  67 001a 2061     		str	r0, [r4, #16]
+  68              	.LVL3:
+  69              	.L2:
+  70              		.loc 1 16 34 view .LVU16
+  71              	.LBE2:
   17:Core/Src/iceuncompr.c ****             } else {
   18:Core/Src/iceuncompr.c ****                 // Handle end of file or error
   19:Core/Src/iceuncompr.c ****                 return EOF;
@@ -100,90 +101,89 @@ ARM GAS  /tmp/ccW6Up5O.s 			page 1
   25:Core/Src/iceuncompr.c ****     }
   26:Core/Src/iceuncompr.c **** 
   27:Core/Src/iceuncompr.c ****     ice->read_bitcounter--;
-  71              		.loc 1 27 5 is_stmt 1 view .LVU17
-  72              		.loc 1 27 8 is_stmt 0 view .LVU18
-  73 001c E368     		ldr	r3, [r4, #12]
-  74              		.loc 1 27 25 view .LVU19
-  75 001e 013B     		subs	r3, r3, #1
-  76 0020 E360     		str	r3, [r4, #12]
+  72              		.loc 1 27 5 is_stmt 1 view .LVU17
+  73              		.loc 1 27 8 is_stmt 0 view .LVU18
+  74 001c E068     		ldr	r0, [r4, #12]
+  75              		.loc 1 27 25 view .LVU19
+  76 001e 431E     		subs	r3, r0, #1
+  77 0020 E360     		str	r3, [r4, #12]
   28:Core/Src/iceuncompr.c ****     return (ice->read_buffer >> ice->read_bitcounter) & 1;
-  77              		.loc 1 28 5 is_stmt 1 view .LVU20
-  78              		.loc 1 28 16 is_stmt 0 view .LVU21
-  79 0022 2069     		ldr	r0, [r4, #16]
-  80              		.loc 1 28 30 view .LVU22
-  81 0024 D840     		lsrs	r0, r0, r3
-  82              		.loc 1 28 55 view .LVU23
-  83 0026 00F00100 		and	r0, r0, #1
-  84              	.L1:
+  78              		.loc 1 28 5 is_stmt 1 view .LVU20
+  79              		.loc 1 28 16 is_stmt 0 view .LVU21
+  80 0022 2069     		ldr	r0, [r4, #16]
+  81              		.loc 1 28 30 view .LVU22
+  82 0024 D840     		lsrs	r0, r0, r3
+  83              		.loc 1 28 55 view .LVU23
+  84 0026 00F00100 		and	r0, r0, #1
+  85              	.L1:
   29:Core/Src/iceuncompr.c **** }
-  85              		.loc 1 29 1 view .LVU24
-  86 002a 10BD     		pop	{r4, pc}
-ARM GAS  /tmp/ccW6Up5O.s 			page 3
+  86              		.loc 1 29 1 view .LVU24
+ARM GAS  /tmp/ccHvWBnU.s 			page 3
 
 
-  87              	.LVL4:
-  88              	.L4:
+  87 002a 10BD     		pop	{r4, pc}
+  88              	.LVL4:
+  89              	.L4:
   23:Core/Src/iceuncompr.c ****         }
-  89              		.loc 1 23 20 view .LVU25
-  90 002c 4FF0FF30 		mov	r0, #-1
-  91 0030 FBE7     		b	.L1
-  92              		.cfi_endproc
-  93              	.LFE144:
-  95              		.section	.text.write_bit,"ax",%progbits
-  96              		.align	1
-  97              		.global	write_bit
-  98              		.syntax unified
-  99              		.thumb
- 100              		.thumb_func
- 102              	write_bit:
- 103              	.LVL5:
- 104              	.LFB145:
+  90              		.loc 1 23 20 view .LVU25
+  91 002c 4FF0FF30 		mov	r0, #-1
+  92 0030 FBE7     		b	.L1
+  93              		.cfi_endproc
+  94              	.LFE144:
+  96              		.section	.text.write_bit,"ax",%progbits
+  97              		.align	1
+  98              		.global	write_bit
+  99              		.syntax unified
+ 100              		.thumb
+ 101              		.thumb_func
+ 103              	write_bit:
+ 104              	.LVL5:
+ 105              	.LFB145:
   30:Core/Src/iceuncompr.c **** 
   31:Core/Src/iceuncompr.c **** // Function to write a bit to the output buffer
   32:Core/Src/iceuncompr.c **** void write_bit(Iceuncompr *ice, int value) {
- 105              		.loc 1 32 44 is_stmt 1 view -0
- 106              		.cfi_startproc
- 107              		@ args = 0, pretend = 0, frame = 0
- 108              		@ frame_needed = 0, uses_anonymous_args = 0
- 109              		.loc 1 32 44 is_stmt 0 view .LVU27
- 110 0000 10B5     		push	{r4, lr}
- 111              		.cfi_def_cfa_offset 8
- 112              		.cfi_offset 4, -8
- 113              		.cfi_offset 14, -4
- 114 0002 0446     		mov	r4, r0
+ 106              		.loc 1 32 44 is_stmt 1 view -0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              		.loc 1 32 44 is_stmt 0 view .LVU27
+ 111 0000 10B5     		push	{r4, lr}
+ 112              	.LCFI1:
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 4, -8
+ 115              		.cfi_offset 14, -4
+ 116 0002 0446     		mov	r4, r0
   33:Core/Src/iceuncompr.c ****     ice->write_bitcounter--;
- 115              		.loc 1 33 5 is_stmt 1 view .LVU28
- 116              		.loc 1 33 8 is_stmt 0 view .LVU29
- 117 0004 4369     		ldr	r3, [r0, #20]
- 118              		.loc 1 33 26 view .LVU30
- 119 0006 013B     		subs	r3, r3, #1
- 120 0008 4361     		str	r3, [r0, #20]
+ 117              		.loc 1 33 5 is_stmt 1 view .LVU28
+ 118              		.loc 1 33 8 is_stmt 0 view .LVU29
+ 119 0004 4369     		ldr	r3, [r0, #20]
+ 120              		.loc 1 33 26 view .LVU30
+ 121 0006 013B     		subs	r3, r3, #1
+ 122 0008 4361     		str	r3, [r0, #20]
   34:Core/Src/iceuncompr.c **** 
   35:Core/Src/iceuncompr.c ****     if (value)
- 121              		.loc 1 35 5 is_stmt 1 view .LVU31
- 122              		.loc 1 35 8 is_stmt 0 view .LVU32
- 123 000a 21B1     		cbz	r1, .L7
+ 123              		.loc 1 35 5 is_stmt 1 view .LVU31
+ 124              		.loc 1 35 8 is_stmt 0 view .LVU32
+ 125 000a 29B1     		cbz	r1, .L7
   36:Core/Src/iceuncompr.c ****         ice->write_buffer |= 1 << ice->write_bitcounter;
- 124              		.loc 1 36 9 is_stmt 1 view .LVU33
- 125              		.loc 1 36 12 is_stmt 0 view .LVU34
- 126 000c 027E     		ldrb	r2, [r0, #24]	@ zero_extendqisi2
- 127              		.loc 1 36 32 view .LVU35
- 128 000e 0121     		movs	r1, #1
- 129              	.LVL6:
- 130              		.loc 1 36 32 view .LVU36
- 131 0010 9940     		lsls	r1, r1, r3
- 132              		.loc 1 36 27 view .LVU37
- 133 0012 0A43     		orrs	r2, r2, r1
- 134 0014 0276     		strb	r2, [r0, #24]
+ 126              		.loc 1 36 9 is_stmt 1 view .LVU33
+ 127              		.loc 1 36 32 is_stmt 0 view .LVU34
+ 128 000c 0122     		movs	r2, #1
+ 129 000e 02FA03F1 		lsl	r1, r2, r3
+ 130              	.LVL6:
+ 131              		.loc 1 36 27 view .LVU35
+ 132 0012 027E     		ldrb	r2, [r0, #24]	@ zero_extendqisi2
+ 133 0014 0A43     		orrs	r2, r2, r1
+ 134 0016 0276     		strb	r2, [r0, #24]
  135              	.L7:
   37:Core/Src/iceuncompr.c **** 
   38:Core/Src/iceuncompr.c ****     if (ice->write_bitcounter == 0) {
-ARM GAS  /tmp/ccW6Up5O.s 			page 4
+ARM GAS  /tmp/ccHvWBnU.s 			page 4
 
 
- 136              		.loc 1 38 5 is_stmt 1 view .LVU38
- 137              		.loc 1 38 8 is_stmt 0 view .LVU39
- 138 0016 03B1     		cbz	r3, .L10
+ 136              		.loc 1 38 5 is_stmt 1 view .LVU36
+ 137              		.loc 1 38 8 is_stmt 0 view .LVU37
+ 138 0018 03B1     		cbz	r3, .L10
  139              	.LVL7:
  140              	.L6:
   39:Core/Src/iceuncompr.c ****         // Write the byte to the SPI channel
@@ -192,37 +192,37 @@ ARM GAS  /tmp/ccW6Up5O.s 			page 1
   42:Core/Src/iceuncompr.c ****         ice->write_buffer = 0;
   43:Core/Src/iceuncompr.c ****     }
   44:Core/Src/iceuncompr.c **** }
- 141              		.loc 1 44 1 view .LVU40
- 142 0018 10BD     		pop	{r4, pc}
+ 141              		.loc 1 44 1 view .LVU38
+ 142 001a 10BD     		pop	{r4, pc}
  143              	.LVL8:
  144              	.L10:
   40:Core/Src/iceuncompr.c ****         ice->write_bitcounter = 8;
- 145              		.loc 1 40 9 is_stmt 1 view .LVU41
- 146 001a 6423     		movs	r3, #100
- 147 001c 0122     		movs	r2, #1
- 148 001e 04F11801 		add	r1, r4, #24
- 149 0022 0448     		ldr	r0, .L11
+ 145              		.loc 1 40 9 is_stmt 1 view .LVU39
+ 146 001c 6423     		movs	r3, #100
+ 147 001e 0122     		movs	r2, #1
+ 148 0020 04F11801 		add	r1, r4, #24
+ 149 0024 0348     		ldr	r0, .L11
  150              	.LVL9:
   40:Core/Src/iceuncompr.c ****         ice->write_bitcounter = 8;
- 151              		.loc 1 40 9 is_stmt 0 view .LVU42
- 152 0024 FFF7FEFF 		bl	HAL_SPI_Transmit
+ 151              		.loc 1 40 9 is_stmt 0 view .LVU40
+ 152 0026 FFF7FEFF 		bl	HAL_SPI_Transmit
  153              	.LVL10:
   41:Core/Src/iceuncompr.c ****         ice->write_buffer = 0;
- 154              		.loc 1 41 9 is_stmt 1 view .LVU43
+ 154              		.loc 1 41 9 is_stmt 1 view .LVU41
   41:Core/Src/iceuncompr.c ****         ice->write_buffer = 0;
- 155              		.loc 1 41 31 is_stmt 0 view .LVU44
- 156 0028 0823     		movs	r3, #8
- 157 002a 6361     		str	r3, [r4, #20]
+ 155              		.loc 1 41 31 is_stmt 0 view .LVU42
+ 156 002a 0823     		movs	r3, #8
+ 157 002c 6361     		str	r3, [r4, #20]
   42:Core/Src/iceuncompr.c ****     }
- 158              		.loc 1 42 9 is_stmt 1 view .LVU45
+ 158              		.loc 1 42 9 is_stmt 1 view .LVU43
   42:Core/Src/iceuncompr.c ****     }
- 159              		.loc 1 42 27 is_stmt 0 view .LVU46
- 160 002c 0023     		movs	r3, #0
- 161 002e 2376     		strb	r3, [r4, #24]
- 162              		.loc 1 44 1 view .LVU47
- 163 0030 F2E7     		b	.L6
+ 159              		.loc 1 42 27 is_stmt 0 view .LVU44
+ 160 002e 0023     		movs	r3, #0
+ 161 0030 2376     		strb	r3, [r4, #24]
+ 162              		.loc 1 44 1 view .LVU45
+ 163 0032 F2E7     		b	.L6
  164              	.L12:
- 165 0032 00BF     		.align	2
+ 165              		.align	2
  166              	.L11:
  167 0034 00000000 		.word	hspi4
  168              		.cfi_endproc
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccW6Up5O.s 			page 1
  180              	.LFB146:
   45:Core/Src/iceuncompr.c **** 
   46:Core/Src/iceuncompr.c **** // Function to read an integer from the input stream
-ARM GAS  /tmp/ccW6Up5O.s 			page 5
+ARM GAS  /tmp/ccHvWBnU.s 			page 5
 
 
   47:Core/Src/iceuncompr.c **** int read_int(Iceuncompr *ice, int bits) {
@@ -246,569 +246,573 @@ ARM GAS  /tmp/ccW6Up5O.s 			page 1
  182              		.cfi_startproc
  183              		@ args = 0, pretend = 0, frame = 0
  184              		@ frame_needed = 0, uses_anonymous_args = 0
- 185              		.loc 1 47 41 is_stmt 0 view .LVU49
+ 185              		.loc 1 47 41 is_stmt 0 view .LVU47
  186 0000 70B5     		push	{r4, r5, r6, lr}
- 187              		.cfi_def_cfa_offset 16
- 188              		.cfi_offset 4, -16
- 189              		.cfi_offset 5, -12
- 190              		.cfi_offset 6, -8
- 191              		.cfi_offset 14, -4
- 192 0002 0546     		mov	r5, r0
+ 187              	.LCFI2:
+ 188              		.cfi_def_cfa_offset 16
+ 189              		.cfi_offset 4, -16
+ 190              		.cfi_offset 5, -12
+ 191              		.cfi_offset 6, -8
+ 192              		.cfi_offset 14, -4
+ 193 0002 0546     		mov	r5, r0
   48:Core/Src/iceuncompr.c ****     int ret = 0;
- 193              		.loc 1 48 5 is_stmt 1 view .LVU50
- 194              	.LVL12:
+ 194              		.loc 1 48 5 is_stmt 1 view .LVU48
+ 195              	.LVL12:
   49:Core/Src/iceuncompr.c ****     while (bits-- > 0) {
- 195              		.loc 1 49 5 view .LVU51
+ 196              		.loc 1 49 5 view .LVU49
   48:Core/Src/iceuncompr.c ****     int ret = 0;
- 196              		.loc 1 48 9 is_stmt 0 view .LVU52
- 197 0004 0026     		movs	r6, #0
- 198              		.loc 1 49 11 view .LVU53
- 199 0006 00E0     		b	.L14
- 200              	.LVL13:
- 201              	.L16:
+ 197              		.loc 1 48 9 is_stmt 0 view .LVU50
+ 198 0004 0026     		movs	r6, #0
+ 199              		.loc 1 49 11 view .LVU51
+ 200 0006 00E0     		b	.L14
+ 201              	.LVL13:
+ 202              	.L16:
   47:Core/Src/iceuncompr.c ****     int ret = 0;
- 202              		.loc 1 47 41 view .LVU54
- 203 0008 2146     		mov	r1, r4
- 204              	.LVL14:
- 205              	.L14:
- 206              		.loc 1 49 19 is_stmt 1 view .LVU55
- 207              		.loc 1 49 16 is_stmt 0 view .LVU56
- 208 000a 4C1E     		subs	r4, r1, #1
- 209              	.LVL15:
- 210              		.loc 1 49 19 view .LVU57
- 211 000c 0029     		cmp	r1, #0
- 212 000e 0CDD     		ble	.L13
- 213              	.LBB3:
+ 203              		.loc 1 47 41 view .LVU52
+ 204 0008 2146     		mov	r1, r4
+ 205              	.LVL14:
+ 206              	.L14:
+ 207              		.loc 1 49 11 is_stmt 1 view .LVU53
+ 208              		.loc 1 49 16 is_stmt 0 view .LVU54
+ 209 000a 4C1E     		subs	r4, r1, #1
+ 210              	.LVL15:
+ 211              		.loc 1 49 11 view .LVU55
+ 212 000c 0029     		cmp	r1, #0
+ 213 000e 0CDD     		ble	.L13
+ 214              	.LBB3:
   50:Core/Src/iceuncompr.c ****         int bit = read_bit(ice);
- 214              		.loc 1 50 9 is_stmt 1 view .LVU58
- 215              		.loc 1 50 19 is_stmt 0 view .LVU59
- 216 0010 2846     		mov	r0, r5
- 217 0012 FFF7FEFF 		bl	read_bit
- 218              	.LVL16:
+ 215              		.loc 1 50 9 is_stmt 1 view .LVU56
+ 216              		.loc 1 50 19 is_stmt 0 view .LVU57
+ 217 0010 2846     		mov	r0, r5
+ 218 0012 FFF7FEFF 		bl	read_bit
+ 219              	.LVL16:
   51:Core/Src/iceuncompr.c ****         if (bit == EOF) {
- 219              		.loc 1 51 9 is_stmt 1 view .LVU60
- 220              		.loc 1 51 12 is_stmt 0 view .LVU61
- 221 0016 B0F1FF3F 		cmp	r0, #-1
- 222 001a 05D0     		beq	.L18
+ 220              		.loc 1 51 9 is_stmt 1 view .LVU58
+ 221              		.loc 1 51 12 is_stmt 0 view .LVU59
+ 222 0016 B0F1FF3F 		cmp	r0, #-1
+ 223 001a 05D0     		beq	.L18
   52:Core/Src/iceuncompr.c ****             return EOF;  // Handle EOF or error
   53:Core/Src/iceuncompr.c ****         }
   54:Core/Src/iceuncompr.c ****         if (bit) {
- 223              		.loc 1 54 9 is_stmt 1 view .LVU62
- 224              		.loc 1 54 12 is_stmt 0 view .LVU63
- 225 001c 0028     		cmp	r0, #0
- 226 001e F3D0     		beq	.L16
+ 224              		.loc 1 54 9 is_stmt 1 view .LVU60
+ 225              		.loc 1 54 12 is_stmt 0 view .LVU61
+ 226 001c 0028     		cmp	r0, #0
+ 227 001e F3D0     		beq	.L16
+ARM GAS  /tmp/ccHvWBnU.s 			page 6
+
+
   55:Core/Src/iceuncompr.c ****             ret |= 1 << bits;
-ARM GAS  /tmp/ccW6Up5O.s 			page 6
-
-
- 227              		.loc 1 55 13 is_stmt 1 view .LVU64
- 228              		.loc 1 55 22 is_stmt 0 view .LVU65
- 229 0020 0123     		movs	r3, #1
- 230 0022 A340     		lsls	r3, r3, r4
- 231              		.loc 1 55 17 view .LVU66
- 232 0024 1E43     		orrs	r6, r6, r3
- 233              	.LVL17:
- 234              		.loc 1 55 17 view .LVU67
- 235 0026 EFE7     		b	.L16
- 236              	.L18:
+ 228              		.loc 1 55 13 is_stmt 1 view .LVU62
+ 229              		.loc 1 55 22 is_stmt 0 view .LVU63
+ 230 0020 0123     		movs	r3, #1
+ 231 0022 A340     		lsls	r3, r3, r4
+ 232              		.loc 1 55 17 view .LVU64
+ 233 0024 1E43     		orrs	r6, r6, r3
+ 234              	.LVL17:
+ 235              		.loc 1 55 17 view .LVU65
+ 236 0026 EFE7     		b	.L16
+ 237              	.L18:
   52:Core/Src/iceuncompr.c ****             return EOF;  // Handle EOF or error
- 237              		.loc 1 52 20 view .LVU68
- 238 0028 0646     		mov	r6, r0
- 239              	.LVL18:
- 240              	.L13:
+ 238              		.loc 1 52 20 view .LVU66
+ 239 0028 0646     		mov	r6, r0
+ 240              	.LVL18:
+ 241              	.L13:
   52:Core/Src/iceuncompr.c ****             return EOF;  // Handle EOF or error
- 241              		.loc 1 52 20 view .LVU69
- 242              	.LBE3:
+ 242              		.loc 1 52 20 view .LVU67
+ 243              	.LBE3:
   56:Core/Src/iceuncompr.c ****         }
   57:Core/Src/iceuncompr.c ****     }
   58:Core/Src/iceuncompr.c ****     return ret;
   59:Core/Src/iceuncompr.c **** }
- 243              		.loc 1 59 1 view .LVU70
- 244 002a 3046     		mov	r0, r6
- 245 002c 70BD     		pop	{r4, r5, r6, pc}
- 246              		.loc 1 59 1 view .LVU71
- 247              		.cfi_endproc
- 248              	.LFE146:
- 250              		.section	.text.write_zeros,"ax",%progbits
- 251              		.align	1
- 252              		.global	write_zeros
- 253              		.syntax unified
- 254              		.thumb
- 255              		.thumb_func
- 257              	write_zeros:
- 258              	.LVL19:
- 259              	.LFB147:
+ 244              		.loc 1 59 1 view .LVU68
+ 245 002a 3046     		mov	r0, r6
+ 246 002c 70BD     		pop	{r4, r5, r6, pc}
+ 247              		.loc 1 59 1 view .LVU69
+ 248              		.cfi_endproc
+ 249              	.LFE146:
+ 251              		.section	.text.write_zeros,"ax",%progbits
+ 252              		.align	1
+ 253              		.global	write_zeros
+ 254              		.syntax unified
+ 255              		.thumb
+ 256              		.thumb_func
+ 258              	write_zeros:
+ 259              	.LVL19:
+ 260              	.LFB147:
   60:Core/Src/iceuncompr.c **** 
   61:Core/Src/iceuncompr.c **** // Function to write zeros to the output buffer
   62:Core/Src/iceuncompr.c **** void write_zeros(Iceuncompr *ice, int bits) {
- 260              		.loc 1 62 45 is_stmt 1 view -0
- 261              		.cfi_startproc
- 262              		@ args = 0, pretend = 0, frame = 0
- 263              		@ frame_needed = 0, uses_anonymous_args = 0
- 264              		.loc 1 62 45 is_stmt 0 view .LVU73
- 265 0000 38B5     		push	{r3, r4, r5, lr}
- 266              		.cfi_def_cfa_offset 16
- 267              		.cfi_offset 3, -16
- 268              		.cfi_offset 4, -12
- 269              		.cfi_offset 5, -8
- 270              		.cfi_offset 14, -4
- 271 0002 0546     		mov	r5, r0
+ 261              		.loc 1 62 45 is_stmt 1 view -0
+ 262              		.cfi_startproc
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265              		.loc 1 62 45 is_stmt 0 view .LVU71
+ 266 0000 38B5     		push	{r3, r4, r5, lr}
+ 267              	.LCFI3:
+ 268              		.cfi_def_cfa_offset 16
+ 269              		.cfi_offset 3, -16
+ 270              		.cfi_offset 4, -12
+ 271              		.cfi_offset 5, -8
+ 272              		.cfi_offset 14, -4
+ 273 0002 0546     		mov	r5, r0
   63:Core/Src/iceuncompr.c ****     while (bits-- > 0) {
- 272              		.loc 1 63 5 is_stmt 1 view .LVU74
- 273              		.loc 1 63 11 is_stmt 0 view .LVU75
- 274 0004 04E0     		b	.L21
- 275              	.LVL20:
-ARM GAS  /tmp/ccW6Up5O.s 			page 7
+ 274              		.loc 1 63 5 is_stmt 1 view .LVU72
+ 275              		.loc 1 63 11 is_stmt 0 view .LVU73
+ARM GAS  /tmp/ccHvWBnU.s 			page 7
 
 
- 276              	.L22:
+ 276 0004 04E0     		b	.L21
+ 277              	.LVL20:
+ 278              	.L22:
   64:Core/Src/iceuncompr.c ****         write_bit(ice, 0);
- 277              		.loc 1 64 9 is_stmt 1 view .LVU76
- 278 0006 0021     		movs	r1, #0
- 279 0008 2846     		mov	r0, r5
- 280 000a FFF7FEFF 		bl	write_bit
- 281              	.LVL21:
+ 279              		.loc 1 64 9 is_stmt 1 view .LVU74
+ 280 0006 0021     		movs	r1, #0
+ 281 0008 2846     		mov	r0, r5
+ 282 000a FFF7FEFF 		bl	write_bit
+ 283              	.LVL21:
   63:Core/Src/iceuncompr.c ****     while (bits-- > 0) {
- 282              		.loc 1 63 16 is_stmt 0 view .LVU77
- 283 000e 2146     		mov	r1, r4
- 284              	.LVL22:
- 285              	.L21:
+ 284              		.loc 1 63 16 is_stmt 0 view .LVU75
+ 285 000e 2146     		mov	r1, r4
+ 286              	.LVL22:
+ 287              	.L21:
   63:Core/Src/iceuncompr.c ****     while (bits-- > 0) {
- 286              		.loc 1 63 19 is_stmt 1 view .LVU78
+ 288              		.loc 1 63 11 is_stmt 1 view .LVU76
   63:Core/Src/iceuncompr.c ****     while (bits-- > 0) {
- 287              		.loc 1 63 16 is_stmt 0 view .LVU79
- 288 0010 4C1E     		subs	r4, r1, #1
- 289              	.LVL23:
+ 289              		.loc 1 63 16 is_stmt 0 view .LVU77
+ 290 0010 4C1E     		subs	r4, r1, #1
+ 291              	.LVL23:
   63:Core/Src/iceuncompr.c ****     while (bits-- > 0) {
- 290              		.loc 1 63 19 view .LVU80
- 291 0012 0029     		cmp	r1, #0
- 292 0014 F7DC     		bgt	.L22
+ 292              		.loc 1 63 11 view .LVU78
+ 293 0012 0029     		cmp	r1, #0
+ 294 0014 F7DC     		bgt	.L22
   65:Core/Src/iceuncompr.c ****     }
   66:Core/Src/iceuncompr.c **** }
- 293              		.loc 1 66 1 view .LVU81
- 294 0016 38BD     		pop	{r3, r4, r5, pc}
- 295              		.loc 1 66 1 view .LVU82
- 296              		.cfi_endproc
- 297              	.LFE147:
- 299              		.section	.text.ice_uncompress,"ax",%progbits
- 300              		.align	1
- 301              		.global	ice_uncompress
- 302              		.syntax unified
- 303              		.thumb
- 304              		.thumb_func
- 306              	ice_uncompress:
- 307              	.LVL24:
- 308              	.LFB148:
+ 295              		.loc 1 66 1 view .LVU79
+ 296 0016 38BD     		pop	{r3, r4, r5, pc}
+ 297              		.loc 1 66 1 view .LVU80
+ 298              		.cfi_endproc
+ 299              	.LFE147:
+ 301              		.section	.text.ice_uncompress,"ax",%progbits
+ 302              		.align	1
+ 303              		.global	ice_uncompress
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 308              	ice_uncompress:
+ 309              	.LVL24:
+ 310              	.LFB148:
   67:Core/Src/iceuncompr.c **** 
   68:Core/Src/iceuncompr.c **** // Main decompression function
   69:Core/Src/iceuncompr.c **** int ice_uncompress(Iceuncompr *ice) {
- 309              		.loc 1 69 37 is_stmt 1 view -0
- 310              		.cfi_startproc
- 311              		@ args = 0, pretend = 0, frame = 0
- 312              		@ frame_needed = 0, uses_anonymous_args = 0
- 313              		.loc 1 69 37 is_stmt 0 view .LVU84
- 314 0000 38B5     		push	{r3, r4, r5, lr}
- 315              		.cfi_def_cfa_offset 16
- 316              		.cfi_offset 3, -16
- 317              		.cfi_offset 4, -12
- 318              		.cfi_offset 5, -8
- 319              		.cfi_offset 14, -4
- 320 0002 0446     		mov	r4, r0
+ 311              		.loc 1 69 37 is_stmt 1 view -0
+ 312              		.cfi_startproc
+ 313              		@ args = 0, pretend = 0, frame = 0
+ 314              		@ frame_needed = 0, uses_anonymous_args = 0
+ 315              		.loc 1 69 37 is_stmt 0 view .LVU82
+ 316 0000 38B5     		push	{r3, r4, r5, lr}
+ 317              	.LCFI4:
+ 318              		.cfi_def_cfa_offset 16
+ 319              		.cfi_offset 3, -16
+ 320              		.cfi_offset 4, -12
+ 321              		.cfi_offset 5, -8
+ 322              		.cfi_offset 14, -4
+ 323 0002 0446     		mov	r4, r0
   70:Core/Src/iceuncompr.c ****     ice->read_bitcounter = 0;
- 321              		.loc 1 70 5 is_stmt 1 view .LVU85
- 322              		.loc 1 70 26 is_stmt 0 view .LVU86
- 323 0004 0023     		movs	r3, #0
-ARM GAS  /tmp/ccW6Up5O.s 			page 8
+ARM GAS  /tmp/ccHvWBnU.s 			page 8
 
 
- 324 0006 C360     		str	r3, [r0, #12]
+ 324              		.loc 1 70 5 is_stmt 1 view .LVU83
+ 325              		.loc 1 70 26 is_stmt 0 view .LVU84
+ 326 0004 0023     		movs	r3, #0
+ 327 0006 C360     		str	r3, [r0, #12]
   71:Core/Src/iceuncompr.c ****     ice->write_bitcounter = 8;
- 325              		.loc 1 71 5 is_stmt 1 view .LVU87
- 326              		.loc 1 71 27 is_stmt 0 view .LVU88
- 327 0008 0822     		movs	r2, #8
- 328 000a 4261     		str	r2, [r0, #20]
+ 328              		.loc 1 71 5 is_stmt 1 view .LVU85
+ 329              		.loc 1 71 27 is_stmt 0 view .LVU86
+ 330 0008 0822     		movs	r2, #8
+ 331 000a 4261     		str	r2, [r0, #20]
   72:Core/Src/iceuncompr.c ****     ice->write_buffer = 0;
- 329              		.loc 1 72 5 is_stmt 1 view .LVU89
- 330              		.loc 1 72 23 is_stmt 0 view .LVU90
- 331 000c 0376     		strb	r3, [r0, #24]
+ 332              		.loc 1 72 5 is_stmt 1 view .LVU87
+ 333              		.loc 1 72 23 is_stmt 0 view .LVU88
+ 334 000c 0376     		strb	r3, [r0, #24]
   73:Core/Src/iceuncompr.c **** 
   74:Core/Src/iceuncompr.c ****     int magic1_ok = read_int(ice, 32) == 0x49434543;
- 332              		.loc 1 74 5 is_stmt 1 view .LVU91
- 333              		.loc 1 74 21 is_stmt 0 view .LVU92
- 334 000e 2021     		movs	r1, #32
- 335 0010 FFF7FEFF 		bl	read_int
- 336              	.LVL25:
- 337              		.loc 1 74 21 view .LVU93
- 338 0014 0546     		mov	r5, r0
- 339              	.LVL26:
+ 335              		.loc 1 74 5 is_stmt 1 view .LVU89
+ 336              		.loc 1 74 21 is_stmt 0 view .LVU90
+ 337 000e 2021     		movs	r1, #32
+ 338 0010 FFF7FEFF 		bl	read_int
+ 339              	.LVL25:
+ 340              		.loc 1 74 21 view .LVU91
+ 341 0014 0546     		mov	r5, r0
+ 342              	.LVL26:
   75:Core/Src/iceuncompr.c ****     int magic2_ok = read_int(ice, 32) == 0x4f4d5052;
- 340              		.loc 1 75 5 is_stmt 1 view .LVU94
- 341              		.loc 1 75 21 is_stmt 0 view .LVU95
- 342 0016 2021     		movs	r1, #32
- 343 0018 2046     		mov	r0, r4
- 344              	.LVL27:
- 345              		.loc 1 75 21 view .LVU96
- 346 001a FFF7FEFF 		bl	read_int
- 347              	.LVL28:
+ 343              		.loc 1 75 5 is_stmt 1 view .LVU92
+ 344              		.loc 1 75 21 is_stmt 0 view .LVU93
+ 345 0016 2021     		movs	r1, #32
+ 346 0018 2046     		mov	r0, r4
+ 347              	.LVL27:
+ 348              		.loc 1 75 21 view .LVU94
+ 349 001a FFF7FEFF 		bl	read_int
+ 350              	.LVL28:
   76:Core/Src/iceuncompr.c **** 
   77:Core/Src/iceuncompr.c ****     if (!magic1_ok || !magic2_ok) {
- 348              		.loc 1 77 5 is_stmt 1 view .LVU97
- 349              		.loc 1 77 8 is_stmt 0 view .LVU98
- 350 001e 384A     		ldr	r2, .L41
- 351 0020 384B     		ldr	r3, .L41+4
- 352 0022 9842     		cmp	r0, r3
- 353 0024 08BF     		it	eq
- 354 0026 9542     		cmpeq	r5, r2
- 355 0028 0DD0     		beq	.L26
+ 351              		.loc 1 77 5 is_stmt 1 view .LVU95
+ 352              		.loc 1 77 8 is_stmt 0 view .LVU96
+ 353 001e 384A     		ldr	r2, .L41
+ 354 0020 384B     		ldr	r3, .L41+4
+ 355 0022 9842     		cmp	r0, r3
+ 356 0024 08BF     		it	eq
+ 357 0026 9542     		cmpeq	r5, r2
+ 358 0028 0DD0     		beq	.L26
   78:Core/Src/iceuncompr.c ****         return 1;
- 356              		.loc 1 78 16 view .LVU99
- 357 002a 0125     		movs	r5, #1
- 358              	.LVL29:
- 359              		.loc 1 78 16 view .LVU100
- 360 002c 65E0     		b	.L24
- 361              	.LVL30:
- 362              	.L37:
+ 359              		.loc 1 78 16 view .LVU97
+ 360 002a 0125     		movs	r5, #1
+ 361              	.LVL29:
+ 362              		.loc 1 78 16 view .LVU98
+ 363 002c 65E0     		b	.L24
+ 364              	.LVL30:
+ 365              	.L37:
   79:Core/Src/iceuncompr.c ****     }
   80:Core/Src/iceuncompr.c **** 
   81:Core/Src/iceuncompr.c ****     while (1) {
   82:Core/Src/iceuncompr.c ****         if (read_bit(ice)) {
   83:Core/Src/iceuncompr.c ****             write_zeros(ice, read_int(ice, 2));
- 363              		.loc 1 83 13 is_stmt 1 view .LVU101
- 364 002e 0221     		movs	r1, #2
- 365 0030 2046     		mov	r0, r4
- 366 0032 FFF7FEFF 		bl	read_int
- 367              	.LVL31:
-ARM GAS  /tmp/ccW6Up5O.s 			page 9
+ 366              		.loc 1 83 13 is_stmt 1 view .LVU99
+ 367 002e 0221     		movs	r1, #2
+ARM GAS  /tmp/ccHvWBnU.s 			page 9
 
 
- 368 0036 0146     		mov	r1, r0
- 369 0038 2046     		mov	r0, r4
- 370 003a FFF7FEFF 		bl	write_zeros
- 371              	.LVL32:
+ 368 0030 2046     		mov	r0, r4
+ 369 0032 FFF7FEFF 		bl	read_int
+ 370              	.LVL31:
+ 371 0036 0146     		mov	r1, r0
+ 372 0038 2046     		mov	r0, r4
+ 373 003a FFF7FEFF 		bl	write_zeros
+ 374              	.LVL32:
   84:Core/Src/iceuncompr.c ****             write_bit(ice, 1);
- 372              		.loc 1 84 13 view .LVU102
- 373 003e 0121     		movs	r1, #1
- 374 0040 2046     		mov	r0, r4
- 375 0042 FFF7FEFF 		bl	write_bit
- 376              	.LVL33:
- 377              	.L26:
+ 375              		.loc 1 84 13 view .LVU100
+ 376 003e 0121     		movs	r1, #1
+ 377 0040 2046     		mov	r0, r4
+ 378 0042 FFF7FEFF 		bl	write_bit
+ 379              	.LVL33:
+ 380              	.L26:
   81:Core/Src/iceuncompr.c ****         if (read_bit(ice)) {
- 378              		.loc 1 81 5 view .LVU103
+ 381              		.loc 1 81 5 view .LVU101
   82:Core/Src/iceuncompr.c ****             write_zeros(ice, read_int(ice, 2));
- 379              		.loc 1 82 9 view .LVU104
+ 382              		.loc 1 82 9 view .LVU102
   82:Core/Src/iceuncompr.c ****             write_zeros(ice, read_int(ice, 2));
- 380              		.loc 1 82 13 is_stmt 0 view .LVU105
- 381 0046 2046     		mov	r0, r4
- 382 0048 FFF7FEFF 		bl	read_bit
- 383              	.LVL34:
+ 383              		.loc 1 82 13 is_stmt 0 view .LVU103
+ 384 0046 2046     		mov	r0, r4
+ 385 0048 FFF7FEFF 		bl	read_bit
+ 386              	.LVL34:
   82:Core/Src/iceuncompr.c ****             write_zeros(ice, read_int(ice, 2));
- 384              		.loc 1 82 12 view .LVU106
- 385 004c 0028     		cmp	r0, #0
- 386 004e EED1     		bne	.L37
+ 387              		.loc 1 82 12 view .LVU104
+ 388 004c 0028     		cmp	r0, #0
+ 389 004e EED1     		bne	.L37
   85:Core/Src/iceuncompr.c ****         } else if (read_bit(ice)) {
- 387              		.loc 1 85 16 is_stmt 1 view .LVU107
- 388              		.loc 1 85 20 is_stmt 0 view .LVU108
- 389 0050 2046     		mov	r0, r4
- 390 0052 FFF7FEFF 		bl	read_bit
- 391              	.LVL35:
- 392              		.loc 1 85 19 view .LVU109
- 393 0056 C8B9     		cbnz	r0, .L38
+ 390              		.loc 1 85 16 is_stmt 1 view .LVU105
+ 391              		.loc 1 85 20 is_stmt 0 view .LVU106
+ 392 0050 2046     		mov	r0, r4
+ 393 0052 FFF7FEFF 		bl	read_bit
+ 394              	.LVL35:
+ 395              		.loc 1 85 19 view .LVU107
+ 396 0056 C8B9     		cbnz	r0, .L38
   86:Core/Src/iceuncompr.c ****             write_zeros(ice, read_int(ice, 5));
   87:Core/Src/iceuncompr.c ****             write_bit(ice, 1);
   88:Core/Src/iceuncompr.c ****         } else if (read_bit(ice)) {
- 394              		.loc 1 88 16 is_stmt 1 view .LVU110
- 395              		.loc 1 88 20 is_stmt 0 view .LVU111
- 396 0058 2046     		mov	r0, r4
- 397 005a FFF7FEFF 		bl	read_bit
- 398              	.LVL36:
- 399              		.loc 1 88 19 view .LVU112
- 400 005e 10BB     		cbnz	r0, .L39
+ 397              		.loc 1 88 16 is_stmt 1 view .LVU108
+ 398              		.loc 1 88 20 is_stmt 0 view .LVU109
+ 399 0058 2046     		mov	r0, r4
+ 400 005a FFF7FEFF 		bl	read_bit
+ 401              	.LVL36:
+ 402              		.loc 1 88 19 view .LVU110
+ 403 005e 10BB     		cbnz	r0, .L39
   89:Core/Src/iceuncompr.c ****             write_zeros(ice, read_int(ice, 8));
   90:Core/Src/iceuncompr.c ****             write_bit(ice, 1);
   91:Core/Src/iceuncompr.c ****         } else if (read_bit(ice)) {
- 401              		.loc 1 91 16 is_stmt 1 view .LVU113
- 402              		.loc 1 91 20 is_stmt 0 view .LVU114
- 403 0060 2046     		mov	r0, r4
- 404 0062 FFF7FEFF 		bl	read_bit
- 405              	.LVL37:
- 406              		.loc 1 91 19 view .LVU115
- 407 0066 58BB     		cbnz	r0, .L40
+ 404              		.loc 1 91 16 is_stmt 1 view .LVU111
+ 405              		.loc 1 91 20 is_stmt 0 view .LVU112
+ 406 0060 2046     		mov	r0, r4
+ 407 0062 FFF7FEFF 		bl	read_bit
+ 408              	.LVL37:
+ 409              		.loc 1 91 19 view .LVU113
+ 410 0066 58BB     		cbnz	r0, .L40
   92:Core/Src/iceuncompr.c ****             int n = read_int(ice, 6);
   93:Core/Src/iceuncompr.c ****             while (n--) {
+ARM GAS  /tmp/ccHvWBnU.s 			page 10
+
+
   94:Core/Src/iceuncompr.c ****                 write_bit(ice, read_bit(ice));
   95:Core/Src/iceuncompr.c ****             }
   96:Core/Src/iceuncompr.c ****             write_bit(ice, 1);
-ARM GAS  /tmp/ccW6Up5O.s 			page 10
-
-
   97:Core/Src/iceuncompr.c ****         } else if (read_bit(ice)) {
- 408              		.loc 1 97 16 is_stmt 1 view .LVU116
- 409              		.loc 1 97 20 is_stmt 0 view .LVU117
- 410 0068 2046     		mov	r0, r4
- 411 006a FFF7FEFF 		bl	read_bit
- 412              	.LVL38:
- 413              		.loc 1 97 19 view .LVU118
- 414 006e 0546     		mov	r5, r0
- 415 0070 D8B3     		cbz	r0, .L34
+ 411              		.loc 1 97 16 is_stmt 1 view .LVU114
+ 412              		.loc 1 97 20 is_stmt 0 view .LVU115
+ 413 0068 2046     		mov	r0, r4
+ 414 006a FFF7FEFF 		bl	read_bit
+ 415              	.LVL38:
+ 416              		.loc 1 97 19 view .LVU116
+ 417 006e 0546     		mov	r5, r0
+ 418 0070 D8B3     		cbz	r0, .L34
   98:Core/Src/iceuncompr.c ****             write_zeros(ice, read_int(ice, 23));
- 416              		.loc 1 98 13 is_stmt 1 view .LVU119
- 417 0072 1721     		movs	r1, #23
- 418 0074 2046     		mov	r0, r4
- 419 0076 FFF7FEFF 		bl	read_int
- 420              	.LVL39:
- 421 007a 0146     		mov	r1, r0
- 422 007c 2046     		mov	r0, r4
- 423 007e FFF7FEFF 		bl	write_zeros
- 424              	.LVL40:
+ 419              		.loc 1 98 13 is_stmt 1 view .LVU117
+ 420 0072 1721     		movs	r1, #23
+ 421 0074 2046     		mov	r0, r4
+ 422 0076 FFF7FEFF 		bl	read_int
+ 423              	.LVL39:
+ 424 007a 0146     		mov	r1, r0
+ 425 007c 2046     		mov	r0, r4
+ 426 007e FFF7FEFF 		bl	write_zeros
+ 427              	.LVL40:
   99:Core/Src/iceuncompr.c ****             write_bit(ice, 1);
- 425              		.loc 1 99 13 view .LVU120
- 426 0082 0121     		movs	r1, #1
- 427 0084 2046     		mov	r0, r4
- 428 0086 FFF7FEFF 		bl	write_bit
- 429              	.LVL41:
- 430 008a DCE7     		b	.L26
- 431              	.L38:
+ 428              		.loc 1 99 13 view .LVU118
+ 429 0082 0121     		movs	r1, #1
+ 430 0084 2046     		mov	r0, r4
+ 431 0086 FFF7FEFF 		bl	write_bit
+ 432              	.LVL41:
+ 433 008a DCE7     		b	.L26
+ 434              	.L38:
   86:Core/Src/iceuncompr.c ****             write_bit(ice, 1);
- 432              		.loc 1 86 13 view .LVU121
- 433 008c 0521     		movs	r1, #5
- 434 008e 2046     		mov	r0, r4
- 435 0090 FFF7FEFF 		bl	read_int
- 436              	.LVL42:
- 437 0094 0146     		mov	r1, r0
- 438 0096 2046     		mov	r0, r4
- 439 0098 FFF7FEFF 		bl	write_zeros
- 440              	.LVL43:
+ 435              		.loc 1 86 13 view .LVU119
+ 436 008c 0521     		movs	r1, #5
+ 437 008e 2046     		mov	r0, r4
+ 438 0090 FFF7FEFF 		bl	read_int
+ 439              	.LVL42:
+ 440 0094 0146     		mov	r1, r0
+ 441 0096 2046     		mov	r0, r4
+ 442 0098 FFF7FEFF 		bl	write_zeros
+ 443              	.LVL43:
   87:Core/Src/iceuncompr.c ****         } else if (read_bit(ice)) {
- 441              		.loc 1 87 13 view .LVU122
- 442 009c 0121     		movs	r1, #1
- 443 009e 2046     		mov	r0, r4
- 444 00a0 FFF7FEFF 		bl	write_bit
- 445              	.LVL44:
- 446 00a4 CFE7     		b	.L26
- 447              	.L39:
+ 444              		.loc 1 87 13 view .LVU120
+ 445 009c 0121     		movs	r1, #1
+ 446 009e 2046     		mov	r0, r4
+ 447 00a0 FFF7FEFF 		bl	write_bit
+ 448              	.LVL44:
+ 449 00a4 CFE7     		b	.L26
+ 450              	.L39:
   89:Core/Src/iceuncompr.c ****             write_bit(ice, 1);
- 448              		.loc 1 89 13 view .LVU123
- 449 00a6 0821     		movs	r1, #8
- 450 00a8 2046     		mov	r0, r4
- 451 00aa FFF7FEFF 		bl	read_int
- 452              	.LVL45:
- 453 00ae 0146     		mov	r1, r0
- 454 00b0 2046     		mov	r0, r4
- 455 00b2 FFF7FEFF 		bl	write_zeros
- 456              	.LVL46:
+ 451              		.loc 1 89 13 view .LVU121
+ 452 00a6 0821     		movs	r1, #8
+ 453 00a8 2046     		mov	r0, r4
+ 454 00aa FFF7FEFF 		bl	read_int
+ 455              	.LVL45:
+ 456 00ae 0146     		mov	r1, r0
+ 457 00b0 2046     		mov	r0, r4
+ 458 00b2 FFF7FEFF 		bl	write_zeros
+ARM GAS  /tmp/ccHvWBnU.s 			page 11
+
+
+ 459              	.LVL46:
   90:Core/Src/iceuncompr.c ****         } else if (read_bit(ice)) {
- 457              		.loc 1 90 13 view .LVU124
-ARM GAS  /tmp/ccW6Up5O.s 			page 11
-
-
- 458 00b6 0121     		movs	r1, #1
- 459 00b8 2046     		mov	r0, r4
- 460 00ba FFF7FEFF 		bl	write_bit
- 461              	.LVL47:
- 462 00be C2E7     		b	.L26
- 463              	.L40:
- 464              	.LBB4:
+ 460              		.loc 1 90 13 view .LVU122
+ 461 00b6 0121     		movs	r1, #1
+ 462 00b8 2046     		mov	r0, r4
+ 463 00ba FFF7FEFF 		bl	write_bit
+ 464              	.LVL47:
+ 465 00be C2E7     		b	.L26
+ 466              	.L40:
+ 467              	.LBB4:
   92:Core/Src/iceuncompr.c ****             while (n--) {
- 465              		.loc 1 92 13 view .LVU125
+ 468              		.loc 1 92 13 view .LVU123
   92:Core/Src/iceuncompr.c ****             while (n--) {
- 466              		.loc 1 92 21 is_stmt 0 view .LVU126
- 467 00c0 0621     		movs	r1, #6
- 468 00c2 2046     		mov	r0, r4
- 469 00c4 FFF7FEFF 		bl	read_int
- 470              	.LVL48:
+ 469              		.loc 1 92 21 is_stmt 0 view .LVU124
+ 470 00c0 0621     		movs	r1, #6
+ 471 00c2 2046     		mov	r0, r4
+ 472 00c4 FFF7FEFF 		bl	read_int
+ 473              	.LVL48:
   93:Core/Src/iceuncompr.c ****                 write_bit(ice, read_bit(ice));
- 471              		.loc 1 93 13 is_stmt 1 view .LVU127
+ 474              		.loc 1 93 13 is_stmt 1 view .LVU125
   93:Core/Src/iceuncompr.c ****                 write_bit(ice, read_bit(ice));
- 472              		.loc 1 93 19 is_stmt 0 view .LVU128
- 473 00c8 07E0     		b	.L32
- 474              	.LVL49:
- 475              	.L33:
+ 475              		.loc 1 93 19 is_stmt 0 view .LVU126
+ 476 00c8 07E0     		b	.L32
+ 477              	.LVL49:
+ 478              	.L33:
   94:Core/Src/iceuncompr.c ****             }
- 476              		.loc 1 94 17 is_stmt 1 view .LVU129
- 477 00ca 2046     		mov	r0, r4
- 478 00cc FFF7FEFF 		bl	read_bit
- 479              	.LVL50:
- 480 00d0 0146     		mov	r1, r0
- 481 00d2 2046     		mov	r0, r4
- 482 00d4 FFF7FEFF 		bl	write_bit
- 483              	.LVL51:
+ 479              		.loc 1 94 17 is_stmt 1 view .LVU127
+ 480 00ca 2046     		mov	r0, r4
+ 481 00cc FFF7FEFF 		bl	read_bit
+ 482              	.LVL50:
+ 483 00d0 0146     		mov	r1, r0
+ 484 00d2 2046     		mov	r0, r4
+ 485 00d4 FFF7FEFF 		bl	write_bit
+ 486              	.LVL51:
   93:Core/Src/iceuncompr.c ****                 write_bit(ice, read_bit(ice));
- 484              		.loc 1 93 21 is_stmt 0 view .LVU130
- 485 00d8 2846     		mov	r0, r5
- 486              	.LVL52:
- 487              	.L32:
+ 487              		.loc 1 93 21 is_stmt 0 view .LVU128
+ 488 00d8 2846     		mov	r0, r5
+ 489              	.LVL52:
+ 490              	.L32:
   93:Core/Src/iceuncompr.c ****                 write_bit(ice, read_bit(ice));
- 488              		.loc 1 93 20 is_stmt 1 view .LVU131
+ 491              		.loc 1 93 19 is_stmt 1 view .LVU129
   93:Core/Src/iceuncompr.c ****                 write_bit(ice, read_bit(ice));
- 489              		.loc 1 93 21 is_stmt 0 view .LVU132
- 490 00da 451E     		subs	r5, r0, #1
- 491              	.LVL53:
+ 492              		.loc 1 93 21 is_stmt 0 view .LVU130
+ 493 00da 451E     		subs	r5, r0, #1
+ 494              	.LVL53:
   93:Core/Src/iceuncompr.c ****                 write_bit(ice, read_bit(ice));
- 492              		.loc 1 93 20 view .LVU133
- 493 00dc 0028     		cmp	r0, #0
- 494 00de F4D1     		bne	.L33
+ 495              		.loc 1 93 19 view .LVU131
+ 496 00dc 0028     		cmp	r0, #0
+ 497 00de F4D1     		bne	.L33
   96:Core/Src/iceuncompr.c ****         } else if (read_bit(ice)) {
- 495              		.loc 1 96 13 is_stmt 1 view .LVU134
- 496 00e0 0121     		movs	r1, #1
- 497 00e2 2046     		mov	r0, r4
- 498 00e4 FFF7FEFF 		bl	write_bit
- 499              	.LVL54:
- 500              	.LBE4:
- 501 00e8 ADE7     		b	.L26
- 502              	.LVL55:
- 503              	.L34:
+ 498              		.loc 1 96 13 is_stmt 1 view .LVU132
+ 499 00e0 0121     		movs	r1, #1
+ 500 00e2 2046     		mov	r0, r4
+ 501 00e4 FFF7FEFF 		bl	write_bit
+ 502              	.LVL54:
+ 503              	.LBE4:
+ 504 00e8 ADE7     		b	.L26
+ARM GAS  /tmp/ccHvWBnU.s 			page 12
+
+
+ 505              	.LVL55:
+ 506              	.L34:
  100:Core/Src/iceuncompr.c ****         } else {
-ARM GAS  /tmp/ccW6Up5O.s 			page 12
-
-
  101:Core/Src/iceuncompr.c ****             write_zeros(ice, read_int(ice, 23));
- 504              		.loc 1 101 13 view .LVU135
- 505 00ea 1721     		movs	r1, #23
- 506 00ec 2046     		mov	r0, r4
- 507 00ee FFF7FEFF 		bl	read_int
- 508              	.LVL56:
- 509 00f2 0146     		mov	r1, r0
- 510 00f4 2046     		mov	r0, r4
- 511 00f6 FFF7FEFF 		bl	write_zeros
- 512              	.LVL57:
+ 507              		.loc 1 101 13 view .LVU133
+ 508 00ea 1721     		movs	r1, #23
+ 509 00ec 2046     		mov	r0, r4
+ 510 00ee FFF7FEFF 		bl	read_int
+ 511              	.LVL56:
+ 512 00f2 0146     		mov	r1, r0
+ 513 00f4 2046     		mov	r0, r4
+ 514 00f6 FFF7FEFF 		bl	write_zeros
+ 515              	.LVL57:
  102:Core/Src/iceuncompr.c ****             break;
- 513              		.loc 1 102 13 view .LVU136
+ 516              		.loc 1 102 13 view .LVU134
  103:Core/Src/iceuncompr.c ****         }
  104:Core/Src/iceuncompr.c ****     }
  105:Core/Src/iceuncompr.c **** 
  106:Core/Src/iceuncompr.c ****     return 0;
- 514              		.loc 1 106 5 view .LVU137
- 515              	.L24:
+ 517              		.loc 1 106 5 view .LVU135
+ 518              	.L24:
  107:Core/Src/iceuncompr.c **** }
- 516              		.loc 1 107 1 is_stmt 0 view .LVU138
- 517 00fa 2846     		mov	r0, r5
- 518 00fc 38BD     		pop	{r3, r4, r5, pc}
- 519              	.LVL58:
- 520              	.L42:
- 521              		.loc 1 107 1 view .LVU139
- 522 00fe 00BF     		.align	2
- 523              	.L41:
- 524 0100 43454349 		.word	1229145411
- 525 0104 52504D4F 		.word	1330466898
- 526              		.cfi_endproc
- 527              	.LFE148:
- 529              		.section	.rodata.WriteUncomprBitstream.str1.4,"aMS",%progbits,1
- 530              		.align	2
- 531              	.LC0:
- 532 0000 726200   		.ascii	"rb\000"
- 533              		.section	.text.WriteUncomprBitstream,"ax",%progbits
- 534              		.align	1
- 535              		.global	WriteUncomprBitstream
- 536              		.syntax unified
- 537              		.thumb
- 538              		.thumb_func
- 540              	WriteUncomprBitstream:
- 541              	.LVL59:
- 542              	.LFB149:
+ 519              		.loc 1 107 1 is_stmt 0 view .LVU136
+ 520 00fa 2846     		mov	r0, r5
+ 521 00fc 38BD     		pop	{r3, r4, r5, pc}
+ 522              	.LVL58:
+ 523              	.L42:
+ 524              		.loc 1 107 1 view .LVU137
+ 525 00fe 00BF     		.align	2
+ 526              	.L41:
+ 527 0100 43454349 		.word	1229145411
+ 528 0104 52504D4F 		.word	1330466898
+ 529              		.cfi_endproc
+ 530              	.LFE148:
+ 532              		.section	.rodata.WriteUncomprBitstream.str1.4,"aMS",%progbits,1
+ 533              		.align	2
+ 534              	.LC0:
+ 535 0000 726200   		.ascii	"rb\000"
+ 536              		.section	.text.WriteUncomprBitstream,"ax",%progbits
+ 537              		.align	1
+ 538              		.global	WriteUncomprBitstream
+ 539              		.syntax unified
+ 540              		.thumb
+ 541              		.thumb_func
+ 543              	WriteUncomprBitstream:
+ 544              	.LVL59:
+ 545              	.LFB149:
  108:Core/Src/iceuncompr.c **** 
  109:Core/Src/iceuncompr.c **** bool WriteUncomprBitstream(Iceuncompr *ice, uint8_t *input_data, uint32_t size)
  110:Core/Src/iceuncompr.c **** {
- 543              		.loc 1 110 1 is_stmt 1 view -0
- 544              		.cfi_startproc
- 545              		@ args = 0, pretend = 0, frame = 0
- 546              		@ frame_needed = 0, uses_anonymous_args = 0
- 547              		.loc 1 110 1 is_stmt 0 view .LVU141
- 548 0000 10B5     		push	{r4, lr}
- 549              		.cfi_def_cfa_offset 8
- 550              		.cfi_offset 4, -8
- 551              		.cfi_offset 14, -4
- 552 0002 0446     		mov	r4, r0
-ARM GAS  /tmp/ccW6Up5O.s 			page 13
+ 546              		.loc 1 110 1 is_stmt 1 view -0
+ 547              		.cfi_startproc
+ 548              		@ args = 0, pretend = 0, frame = 0
+ 549              		@ frame_needed = 0, uses_anonymous_args = 0
+ 550              		.loc 1 110 1 is_stmt 0 view .LVU139
+ 551 0000 10B5     		push	{r4, lr}
+ 552              	.LCFI5:
+ARM GAS  /tmp/ccHvWBnU.s 			page 13
 
 
- 553 0004 0846     		mov	r0, r1
- 554              	.LVL60:
- 555              		.loc 1 110 1 view .LVU142
- 556 0006 1146     		mov	r1, r2
- 557              	.LVL61:
+ 553              		.cfi_def_cfa_offset 8
+ 554              		.cfi_offset 4, -8
+ 555              		.cfi_offset 14, -4
+ 556 0002 0446     		mov	r4, r0
+ 557 0004 0846     		mov	r0, r1
+ 558              	.LVL60:
+ 559              		.loc 1 110 1 view .LVU140
+ 560 0006 1146     		mov	r1, r2
+ 561              	.LVL61:
  111:Core/Src/iceuncompr.c ****     // Create a filehandle to work with for bitstream decompression.
  112:Core/Src/iceuncompr.c ****     ice->input_data_fh = fmemopen(input_data, size, "rb");
- 558              		.loc 1 112 5 is_stmt 1 view .LVU143
- 559              		.loc 1 112 26 is_stmt 0 view .LVU144
- 560 0008 054A     		ldr	r2, .L47
- 561              	.LVL62:
- 562              		.loc 1 112 26 view .LVU145
- 563 000a FFF7FEFF 		bl	fmemopen
- 564              	.LVL63:
- 565              		.loc 1 112 24 view .LVU146
- 566 000e 2060     		str	r0, [r4]
+ 562              		.loc 1 112 5 is_stmt 1 view .LVU141
+ 563              		.loc 1 112 26 is_stmt 0 view .LVU142
+ 564 0008 054A     		ldr	r2, .L47
+ 565              	.LVL62:
+ 566              		.loc 1 112 26 view .LVU143
+ 567 000a FFF7FEFF 		bl	fmemopen
+ 568              	.LVL63:
+ 569              		.loc 1 112 24 view .LVU144
+ 570 000e 2060     		str	r0, [r4]
  113:Core/Src/iceuncompr.c ****     // Flush the contents of the buffer
  114:Core/Src/iceuncompr.c ****     if(!ice->input_data_fh)
- 567              		.loc 1 114 5 is_stmt 1 view .LVU147
- 568              		.loc 1 114 7 is_stmt 0 view .LVU148
- 569 0010 20B1     		cbz	r0, .L45
+ 571              		.loc 1 114 5 is_stmt 1 view .LVU145
+ 572              		.loc 1 114 7 is_stmt 0 view .LVU146
+ 573 0010 20B1     		cbz	r0, .L45
  115:Core/Src/iceuncompr.c ****         return false;
  116:Core/Src/iceuncompr.c ****     
  117:Core/Src/iceuncompr.c ****     ice_uncompress(ice);
- 570              		.loc 1 117 5 is_stmt 1 view .LVU149
- 571 0012 2046     		mov	r0, r4
- 572 0014 FFF7FEFF 		bl	ice_uncompress
- 573              	.LVL64:
+ 574              		.loc 1 117 5 is_stmt 1 view .LVU147
+ 575 0012 2046     		mov	r0, r4
+ 576 0014 FFF7FEFF 		bl	ice_uncompress
+ 577              	.LVL64:
  118:Core/Src/iceuncompr.c **** 
  119:Core/Src/iceuncompr.c ****     return true;
- 574              		.loc 1 119 5 view .LVU150
- 575              		.loc 1 119 12 is_stmt 0 view .LVU151
- 576 0018 0120     		movs	r0, #1
- 577              	.L44:
+ 578              		.loc 1 119 5 view .LVU148
+ 579              		.loc 1 119 12 is_stmt 0 view .LVU149
+ 580 0018 0120     		movs	r0, #1
+ 581              	.L44:
  120:Core/Src/iceuncompr.c **** }
- 578              		.loc 1 120 1 view .LVU152
- 579 001a 10BD     		pop	{r4, pc}
- 580              	.LVL65:
- 581              	.L45:
+ 582              		.loc 1 120 1 view .LVU150
+ 583 001a 10BD     		pop	{r4, pc}
+ 584              	.LVL65:
+ 585              	.L45:
  115:Core/Src/iceuncompr.c ****         return false;
- 582              		.loc 1 115 16 view .LVU153
- 583 001c 0020     		movs	r0, #0
- 584 001e FCE7     		b	.L44
- 585              	.L48:
- 586              		.align	2
- 587              	.L47:
- 588 0020 00000000 		.word	.LC0
- 589              		.cfi_endproc
- 590              	.LFE149:
- 592              		.text
- 593              	.Letext0:
- 594              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 595              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 596              		.file 4 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 597              		.file 5 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 598              		.file 6 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 599              		.file 7 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
-ARM GAS  /tmp/ccW6Up5O.s 			page 14
+ 586              		.loc 1 115 16 view .LVU151
+ 587 001c 0020     		movs	r0, #0
+ 588 001e FCE7     		b	.L44
+ 589              	.L48:
+ 590              		.align	2
+ 591              	.L47:
+ 592 0020 00000000 		.word	.LC0
+ 593              		.cfi_endproc
+ 594              	.LFE149:
+ 596              		.text
+ 597              	.Letext0:
+ 598              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 599              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ARM GAS  /tmp/ccHvWBnU.s 			page 14
 
 
- 600              		.file 8 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 601              		.file 9 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
- 602              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
- 603              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
- 604              		.file 12 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
- 605              		.file 13 "Core/Inc/iceuncompr.h"
- 606              		.file 14 "Core/Inc/spi.h"
-ARM GAS  /tmp/ccW6Up5O.s 			page 15
+ 600              		.file 4 "/opt/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h"
+ 601              		.file 5 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h"
+ 602              		.file 6 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/reent.h"
+ 603              		.file 7 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/lock.h"
+ 604              		.file 8 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h"
+ 605              		.file 9 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
+ 606              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 607              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 608              		.file 12 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
+ 609              		.file 13 "Core/Inc/iceuncompr.h"
+ 610              		.file 14 "Core/Inc/spi.h"
+ARM GAS  /tmp/ccHvWBnU.s 			page 15
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 iceuncompr.c
-     /tmp/ccW6Up5O.s:21     .text.read_bit:00000000 $t
-     /tmp/ccW6Up5O.s:27     .text.read_bit:00000000 read_bit
-     /tmp/ccW6Up5O.s:96     .text.write_bit:00000000 $t
-     /tmp/ccW6Up5O.s:102    .text.write_bit:00000000 write_bit
-     /tmp/ccW6Up5O.s:167    .text.write_bit:00000034 $d
-     /tmp/ccW6Up5O.s:172    .text.read_int:00000000 $t
-     /tmp/ccW6Up5O.s:178    .text.read_int:00000000 read_int
-     /tmp/ccW6Up5O.s:251    .text.write_zeros:00000000 $t
-     /tmp/ccW6Up5O.s:257    .text.write_zeros:00000000 write_zeros
-     /tmp/ccW6Up5O.s:300    .text.ice_uncompress:00000000 $t
-     /tmp/ccW6Up5O.s:306    .text.ice_uncompress:00000000 ice_uncompress
-     /tmp/ccW6Up5O.s:524    .text.ice_uncompress:00000100 $d
-     /tmp/ccW6Up5O.s:530    .rodata.WriteUncomprBitstream.str1.4:00000000 $d
-     /tmp/ccW6Up5O.s:534    .text.WriteUncomprBitstream:00000000 $t
-     /tmp/ccW6Up5O.s:540    .text.WriteUncomprBitstream:00000000 WriteUncomprBitstream
-     /tmp/ccW6Up5O.s:588    .text.WriteUncomprBitstream:00000020 $d
+                            *ABS*:0000000000000000 iceuncompr.c
+     /tmp/ccHvWBnU.s:20     .text.read_bit:0000000000000000 $t
+     /tmp/ccHvWBnU.s:26     .text.read_bit:0000000000000000 read_bit
+     /tmp/ccHvWBnU.s:97     .text.write_bit:0000000000000000 $t
+     /tmp/ccHvWBnU.s:103    .text.write_bit:0000000000000000 write_bit
+     /tmp/ccHvWBnU.s:167    .text.write_bit:0000000000000034 $d
+     /tmp/ccHvWBnU.s:172    .text.read_int:0000000000000000 $t
+     /tmp/ccHvWBnU.s:178    .text.read_int:0000000000000000 read_int
+     /tmp/ccHvWBnU.s:252    .text.write_zeros:0000000000000000 $t
+     /tmp/ccHvWBnU.s:258    .text.write_zeros:0000000000000000 write_zeros
+     /tmp/ccHvWBnU.s:302    .text.ice_uncompress:0000000000000000 $t
+     /tmp/ccHvWBnU.s:308    .text.ice_uncompress:0000000000000000 ice_uncompress
+     /tmp/ccHvWBnU.s:527    .text.ice_uncompress:0000000000000100 $d
+     /tmp/ccHvWBnU.s:533    .rodata.WriteUncomprBitstream.str1.4:0000000000000000 $d
+     /tmp/ccHvWBnU.s:537    .text.WriteUncomprBitstream:0000000000000000 $t
+     /tmp/ccHvWBnU.s:543    .text.WriteUncomprBitstream:0000000000000000 WriteUncomprBitstream
+     /tmp/ccHvWBnU.s:592    .text.WriteUncomprBitstream:0000000000000020 $d
 
 UNDEFINED SYMBOLS
 fgetc
