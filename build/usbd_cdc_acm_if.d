@@ -43,7 +43,7 @@ build/usbd_cdc_acm_if.o: \
  Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ctlreq.h \
  Composite/AL94.I-CUBE-USBD-COMPOSITE_conf.h Core/Inc/nyan_os.h \
  Core/Inc/24xx_eeprom.h Core/Inc/lattice_ice_hx.h Core/Inc/iceuncompr.h \
- Core/Inc/spi.h Core/Inc/main.h
+ Core/Inc/spi.h Core/Inc/main.h Core/Inc/nyan_bitcoin.h
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/App/usbd_cdc_acm_if.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Class/CDC_ACM/Inc/usbd_cdc_acm.h:
 Middlewares/Third_Party/AL94_USB_Composite/COMPOSITE/Core/Inc/usbd_ioreq.h:
@@ -95,3 +95,4 @@ Core/Inc/lattice_ice_hx.h:
 Core/Inc/iceuncompr.h:
 Core/Inc/spi.h:
 Core/Inc/main.h:
+Core/Inc/nyan_bitcoin.h:

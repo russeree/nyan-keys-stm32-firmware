@@ -35,7 +35,6 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 extern NyanOS nos;
-extern Eeprom24xx nos_eeprom;
 /* USER CODE END PV */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -260,7 +259,7 @@ static int8_t CDC_Control(uint8_t cdc_ch, uint8_t cmd, uint8_t *pbuf, uint16_t l
   case CDC_SET_CONTROL_LINE_STATE:
     if (pbuf[0] & 0x01) { // Check if DTR bit is set
       // Initialize the NyanOS for this session - Invalidates all other sessions
-      NyanOsInit(&nos, &nos_eeprom);
+      NyanOsInit(&nos);
       nos.send_welcome_screen = true;
     }
     break;

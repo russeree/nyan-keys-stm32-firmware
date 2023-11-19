@@ -5,6 +5,7 @@
 #include <main.h>
 #include "24xx_eeprom.h"
 #include "lattice_ice_hx.h"
+#include "nyan_bitcoin.h"
 #include "nyan_eeprom_map.h"
 
 #define _NYAN_WELCOME_GUARD_TIME 30 // Currently a multiple of TIM7 Period (.777 seconds)
@@ -18,7 +19,9 @@
 
 #define _NYAN_NUM_COMMANDS (sizeof(nyan_commands) / sizeof(nyan_commands[0]))
 
-extern LatticeIceHX nos_fpga;  // Lattice ICE40HX4k FPGA driver access
+extern Eeprom24xx nos_eeprom;    // 24xx Based EEPROM
+extern LatticeIceHX nos_fpga;    // Lattice ICE40HX4k FPGA driver access
+extern NyanBitcoin nyan_bitcoin; // Nyan Keys Background Bitcoin Miner
 
 static const char* const nyan_commands[] = {
     "getinfo",
@@ -57,7 +60,10 @@ typedef struct {
     bool send_welcome_screen; // This inits to false; Don't reset in init sequence.
     uint8_t send_welcome_screen_guard; // Guards against double welcome screens with a longer timer value.
     char exe_char;
-    Eeprom24xx* eeprom;
+    // Drivers
+    Eeprom24xx *eeprom;
+    NyanBitcoin *nyan_bitcoin;
+    // State
     NyanStates state;
     NyanExe exe;
     bool exe_in_progress;
@@ -89,7 +95,7 @@ typedef struct {
  * @param eeprom Pointer to the EEPROM driver struct.
  * @return NyanReturn indicating success or failure.
  */
-NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom);
+NyanReturn NyanOsInit(volatile NyanOS* nos);
 
 /**
  * @brief Decodes the currently buffered command in NyanOS.

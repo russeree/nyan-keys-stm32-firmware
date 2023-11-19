@@ -105,7 +105,7 @@ int main(void)
   /* USER CODE BEGIN Init */
   system_status_led_angle = 0;
   EepromInit(&nos_eeprom, true, true);
-  NyanOsInit(&nos, &nos_eeprom);
+  NyanOsInit(&nos);
   /* USER CODE END Init */
 
   /* Configure the system clock */

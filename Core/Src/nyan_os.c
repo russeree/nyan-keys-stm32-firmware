@@ -17,11 +17,15 @@
 #include "nyan_sha256.h"
 #include "nyan_strings.h"
 
-NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
+NyanReturn NyanOsInit(volatile NyanOS* nos)
 {
     // Set the operational state
     nos->state = READY;
     nos->exe = NYAN_EXE_IDLE;
+
+    // Init the driver pointers
+    nos->eeprom = &nos_eeprom;
+    nos->nyan_bitcoin = &nyan_bitcoin;
 
     // Default init the OS vars
     nos->command_buffer_num_args = 0;
@@ -31,9 +35,6 @@ NyanReturn NyanOsInit(volatile NyanOS* nos, Eeprom24xx* eeprom)
     nos->tx_chunks_partial_bytes = 0;
     nos->tx_chunk = 0;
     nos->cdc_ch = _NYAN_CDC_CHANNEL;
-
-    // EEPROM Driver access
-    nos->eeprom = eeprom;
 
     // Manual Setting of the memory because of the volatile qualifier.
     ClearNyanCommandBuffer(nos);
