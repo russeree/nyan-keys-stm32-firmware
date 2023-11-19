@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccPbOnfM.s 			page 1
+ARM GAS  /tmp/ccHwxxUw.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -19,16 +19,16 @@ ARM GAS  /tmp/ccPbOnfM.s 			page 1
   16              		.text
   17              	.Ltext0:
   18              		.cfi_sections	.debug_frame
-  19              		.file 1 "Core/Src/nyan_keys.c"
-  20              		.section	.text.NyanKeysInit,"ax",%progbits
-  21              		.align	1
-  22              		.global	NyanKeysInit
-  23              		.syntax unified
-  24              		.thumb
-  25              		.thumb_func
-  27              	NyanKeysInit:
-  28              	.LVL0:
-  29              	.LFB141:
+  19              		.section	.text.NyanKeysInit,"ax",%progbits
+  20              		.align	1
+  21              		.global	NyanKeysInit
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	NyanKeysInit:
+  27              	.LVL0:
+  28              	.LFB141:
+  29              		.file 1 "Core/Src/nyan_keys.c"
    1:Core/Src/nyan_keys.c **** /**
    2:Core/Src/nyan_keys.c ****  * NyanKeys FPGA IP Driver (SPI2)
    3:Core/Src/nyan_keys.c ****  * @author Reese Russell
@@ -49,161 +49,164 @@ ARM GAS  /tmp/ccPbOnfM.s 			page 1
   33              		@ frame_needed = 0, uses_anonymous_args = 0
   34              		.loc 1 14 1 is_stmt 0 view .LVU1
   35 0000 10B5     		push	{r4, lr}
-  36              		.cfi_def_cfa_offset 8
-  37              		.cfi_offset 4, -8
-  38              		.cfi_offset 14, -4
-  39 0002 0446     		mov	r4, r0
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 4, -8
+  39              		.cfi_offset 14, -4
+  40 0002 0446     		mov	r4, r0
   15:Core/Src/nyan_keys.c ****     HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
-  40              		.loc 1 15 5 is_stmt 1 view .LVU2
-  41 0004 0122     		movs	r2, #1
-  42 0006 1146     		mov	r1, r2
-  43 0008 0348     		ldr	r0, .L3
-ARM GAS  /tmp/ccPbOnfM.s 			page 2
+  41              		.loc 1 15 5 is_stmt 1 view .LVU2
+  42 0004 0122     		movs	r2, #1
+  43 0006 1146     		mov	r1, r2
+ARM GAS  /tmp/ccHwxxUw.s 			page 2
 
 
-  44              	.LVL1:
-  45              		.loc 1 15 5 is_stmt 0 view .LVU3
-  46 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
-  47              	.LVL2:
+  44 0008 0348     		ldr	r0, .L3
+  45              	.LVL1:
+  46              		.loc 1 15 5 is_stmt 0 view .LVU3
+  47 000a FFF7FEFF 		bl	HAL_GPIO_WritePin
+  48              	.LVL2:
   16:Core/Src/nyan_keys.c ****     keys->key_read_inflight = false;
-  48              		.loc 1 16 5 is_stmt 1 view .LVU4
-  49              		.loc 1 16 29 is_stmt 0 view .LVU5
-  50 000e 0023     		movs	r3, #0
-  51 0010 2370     		strb	r3, [r4]
+  49              		.loc 1 16 5 is_stmt 1 view .LVU4
+  50              		.loc 1 16 29 is_stmt 0 view .LVU5
+  51 000e 0023     		movs	r3, #0
+  52 0010 2370     		strb	r3, [r4]
   17:Core/Src/nyan_keys.c ****     return NYAN_KEYS_SUCCESS;
-  52              		.loc 1 17 5 is_stmt 1 view .LVU6
+  53              		.loc 1 17 5 is_stmt 1 view .LVU6
   18:Core/Src/nyan_keys.c **** }
-  53              		.loc 1 18 1 is_stmt 0 view .LVU7
-  54 0012 0120     		movs	r0, #1
-  55 0014 10BD     		pop	{r4, pc}
-  56              	.LVL3:
-  57              	.L4:
-  58              		.loc 1 18 1 view .LVU8
-  59 0016 00BF     		.align	2
-  60              	.L3:
-  61 0018 00080240 		.word	1073874944
-  62              		.cfi_endproc
-  63              	.LFE141:
-  65              		.section	.text.NyanGetKeys,"ax",%progbits
-  66              		.align	1
-  67              		.global	NyanGetKeys
-  68              		.syntax unified
-  69              		.thumb
-  70              		.thumb_func
-  72              	NyanGetKeys:
-  73              	.LVL4:
-  74              	.LFB142:
+  54              		.loc 1 18 1 is_stmt 0 view .LVU7
+  55 0012 0120     		movs	r0, #1
+  56 0014 10BD     		pop	{r4, pc}
+  57              	.LVL3:
+  58              	.L4:
+  59              		.loc 1 18 1 view .LVU8
+  60 0016 00BF     		.align	2
+  61              	.L3:
+  62 0018 00080240 		.word	1073874944
+  63              		.cfi_endproc
+  64              	.LFE141:
+  66              		.section	.text.NyanGetKeys,"ax",%progbits
+  67              		.align	1
+  68              		.global	NyanGetKeys
+  69              		.syntax unified
+  70              		.thumb
+  71              		.thumb_func
+  73              	NyanGetKeys:
+  74              	.LVL4:
+  75              	.LFB142:
   19:Core/Src/nyan_keys.c **** 
   20:Core/Src/nyan_keys.c **** NyanKeysReturn NyanGetKeys(NyanKeys *keys)
   21:Core/Src/nyan_keys.c **** {
-  75              		.loc 1 21 1 is_stmt 1 view -0
-  76              		.cfi_startproc
-  77              		@ args = 0, pretend = 0, frame = 0
-  78              		@ frame_needed = 0, uses_anonymous_args = 0
+  76              		.loc 1 21 1 is_stmt 1 view -0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 0, uses_anonymous_args = 0
   22:Core/Src/nyan_keys.c ****     //Send out the DMA and we will get the results back from the FPGA 
   23:Core/Src/nyan_keys.c ****     if(!keys->key_read_inflight) {
-  79              		.loc 1 23 5 view .LVU10
-  80              		.loc 1 23 13 is_stmt 0 view .LVU11
-  81 0000 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
-  82              		.loc 1 23 7 view .LVU12
-  83 0002 0BB1     		cbz	r3, .L11
+  80              		.loc 1 23 5 view .LVU10
+  81              		.loc 1 23 13 is_stmt 0 view .LVU11
+  82 0000 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+  83              		.loc 1 23 7 view .LVU12
+  84 0002 0BB1     		cbz	r3, .L11
   24:Core/Src/nyan_keys.c ****         HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_RESET);
   25:Core/Src/nyan_keys.c ****         HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], &keys->key_states[0], siz
   26:Core/Src/nyan_keys.c ****         keys->key_read_inflight = true;
   27:Core/Src/nyan_keys.c ****     }
   28:Core/Src/nyan_keys.c **** 
   29:Core/Src/nyan_keys.c ****     return NYAN_KEYS_SUCCESS;
-  84              		.loc 1 29 5 is_stmt 1 view .LVU13
+  85              		.loc 1 29 5 is_stmt 1 view .LVU13
   30:Core/Src/nyan_keys.c **** }...
-  85              		.loc 1 30 1 is_stmt 0 view .LVU14
-  86 0004 0120     		movs	r0, #1
-  87              	.LVL5:
-ARM GAS  /tmp/ccPbOnfM.s 			page 3
+  86              		.loc 1 30 1 is_stmt 0 view .LVU14
+  87 0004 0120     		movs	r0, #1
+ARM GAS  /tmp/ccHwxxUw.s 			page 3
 
 
-  88              		.loc 1 30 1 view .LVU15
-  89 0006 7047     		bx	lr
-  90              	.LVL6:
-  91              	.L11:
+  88              	.LVL5:
+  89              		.loc 1 30 1 view .LVU15
+  90 0006 7047     		bx	lr
+  91              	.LVL6:
+  92              	.L11:
   21:Core/Src/nyan_keys.c **** {
-  92              		.loc 1 21 1 view .LVU16
-  93 0008 10B5     		push	{r4, lr}
-  94              		.cfi_def_cfa_offset 8
-  95              		.cfi_offset 4, -8
-  96              		.cfi_offset 14, -4
-  97 000a 0446     		mov	r4, r0
+  93              		.loc 1 21 1 view .LVU16
+  94 0008 10B5     		push	{r4, lr}
+  95              	.LCFI1:
+  96              		.cfi_def_cfa_offset 8
+  97              		.cfi_offset 4, -8
+  98              		.cfi_offset 14, -4
+  99 000a 0446     		mov	r4, r0
   24:Core/Src/nyan_keys.c ****         HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_RESET);
-  98              		.loc 1 24 9 is_stmt 1 view .LVU17
-  99 000c 0022     		movs	r2, #0
- 100 000e 0121     		movs	r1, #1
- 101 0010 0648     		ldr	r0, .L12
- 102              	.LVL7:
+ 100              		.loc 1 24 9 is_stmt 1 view .LVU17
+ 101 000c 0022     		movs	r2, #0
+ 102 000e 0121     		movs	r1, #1
+ 103 0010 0648     		ldr	r0, .L12
+ 104              	.LVL7:
   24:Core/Src/nyan_keys.c ****         HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_RESET);
- 103              		.loc 1 24 9 is_stmt 0 view .LVU18
- 104 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
- 105              	.LVL8:
+ 105              		.loc 1 24 9 is_stmt 0 view .LVU18
+ 106 0012 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 107              	.LVL8:
   25:Core/Src/nyan_keys.c ****         HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], &keys->key_states[0], siz
- 106              		.loc 1 25 9 is_stmt 1 view .LVU19
- 107 0016 0923     		movs	r3, #9
- 108 0018 621C     		adds	r2, r4, #1
- 109 001a 0549     		ldr	r1, .L12+4
- 110 001c 0548     		ldr	r0, .L12+8
- 111 001e FFF7FEFF 		bl	HAL_SPI_TransmitReceive_DMA
- 112              	.LVL9:
+ 108              		.loc 1 25 9 is_stmt 1 view .LVU19
+ 109 0016 0923     		movs	r3, #9
+ 110 0018 621C     		adds	r2, r4, #1
+ 111 001a 0549     		ldr	r1, .L12+4
+ 112 001c 0548     		ldr	r0, .L12+8
+ 113 001e FFF7FEFF 		bl	HAL_SPI_TransmitReceive_DMA
+ 114              	.LVL9:
   26:Core/Src/nyan_keys.c ****         keys->key_read_inflight = true;
- 113              		.loc 1 26 9 view .LVU20
+ 115              		.loc 1 26 9 view .LVU20
   26:Core/Src/nyan_keys.c ****         keys->key_read_inflight = true;
- 114              		.loc 1 26 33 is_stmt 0 view .LVU21
- 115 0022 0123     		movs	r3, #1
- 116 0024 2370     		strb	r3, [r4]
+ 116              		.loc 1 26 33 is_stmt 0 view .LVU21
+ 117 0022 0123     		movs	r3, #1
+ 118 0024 2370     		strb	r3, [r4]
   29:Core/Src/nyan_keys.c ****     return NYAN_KEYS_SUCCESS;
- 117              		.loc 1 29 5 is_stmt 1 view .LVU22
- 118              		.loc 1 30 1 is_stmt 0 view .LVU23
- 119 0026 0120     		movs	r0, #1
- 120 0028 10BD     		pop	{r4, pc}
- 121              	.LVL10:
- 122              	.L13:
- 123              		.loc 1 30 1 view .LVU24
- 124 002a 00BF     		.align	2
- 125              	.L12:
- 126 002c 00080240 		.word	1073874944
- 127 0030 00000000 		.word	keys_registers_addresses
- 128 0034 00000000 		.word	hspi2
- 129              		.cfi_endproc
- 130              	.LFE142:
- 132              		.section	.data.keys_registers_addresses,"aw"
- 133              		.align	2
- 136              	keys_registers_addresses:
- 137 0000 01020304 		.ascii	"\001\002\003\004\005\006\007\000\000"
- 137      05060700 
- 137      00
- 138              		.text
-ARM GAS  /tmp/ccPbOnfM.s 			page 4
+ 119              		.loc 1 29 5 is_stmt 1 view .LVU22
+ 120              		.loc 1 30 1 is_stmt 0 view .LVU23
+ 121 0026 0120     		movs	r0, #1
+ 122 0028 10BD     		pop	{r4, pc}
+ 123              	.LVL10:
+ 124              	.L13:
+ 125              		.loc 1 30 1 view .LVU24
+ 126 002a 00BF     		.align	2
+ 127              	.L12:
+ 128 002c 00080240 		.word	1073874944
+ 129 0030 00000000 		.word	.LANCHOR0
+ 130 0034 00000000 		.word	hspi2
+ 131              		.cfi_endproc
+ 132              	.LFE142:
+ 134              		.section	.data.keys_registers_addresses,"aw"
+ 135              		.align	2
+ 136              		.set	.LANCHOR0,. + 0
+ 139              	keys_registers_addresses:
+ 140 0000 01020304 		.ascii	"\001\002\003\004\005\006\007\000\000"
+ARM GAS  /tmp/ccHwxxUw.s 			page 4
 
 
- 139              	.Letext0:
- 140              		.file 2 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 141              		.file 3 "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-no
- 142              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
- 143              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
- 144              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
- 145              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
- 146              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
- 147              		.file 9 "Core/Inc/nyan_keys.h"
- 148              		.file 10 "Core/Inc/spi.h"
-ARM GAS  /tmp/ccPbOnfM.s 			page 5
+ 140      05060700 
+ 140      00
+ 141              		.text
+ 142              	.Letext0:
+ 143              		.file 2 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h"
+ 144              		.file 3 "/opt/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h"
+ 145              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f723xx.h"
+ 146              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 147              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
+ 148              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 149              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_spi.h"
+ 150              		.file 9 "Core/Inc/nyan_keys.h"
+ 151              		.file 10 "Core/Inc/spi.h"
+ARM GAS  /tmp/ccHwxxUw.s 			page 5
 
 
 DEFINED SYMBOLS
-                            *ABS*:00000000 nyan_keys.c
-     /tmp/ccPbOnfM.s:21     .text.NyanKeysInit:00000000 $t
-     /tmp/ccPbOnfM.s:27     .text.NyanKeysInit:00000000 NyanKeysInit
-     /tmp/ccPbOnfM.s:61     .text.NyanKeysInit:00000018 $d
-     /tmp/ccPbOnfM.s:66     .text.NyanGetKeys:00000000 $t
-     /tmp/ccPbOnfM.s:72     .text.NyanGetKeys:00000000 NyanGetKeys
-     /tmp/ccPbOnfM.s:126    .text.NyanGetKeys:0000002c $d
-     /tmp/ccPbOnfM.s:136    .data.keys_registers_addresses:00000000 keys_registers_addresses
-     /tmp/ccPbOnfM.s:133    .data.keys_registers_addresses:00000000 $d
+                            *ABS*:0000000000000000 nyan_keys.c
+     /tmp/ccHwxxUw.s:20     .text.NyanKeysInit:0000000000000000 $t
+     /tmp/ccHwxxUw.s:26     .text.NyanKeysInit:0000000000000000 NyanKeysInit
+     /tmp/ccHwxxUw.s:62     .text.NyanKeysInit:0000000000000018 $d
+     /tmp/ccHwxxUw.s:67     .text.NyanGetKeys:0000000000000000 $t
+     /tmp/ccHwxxUw.s:73     .text.NyanGetKeys:0000000000000000 NyanGetKeys
+     /tmp/ccHwxxUw.s:128    .text.NyanGetKeys:000000000000002c $d
+     /tmp/ccHwxxUw.s:135    .data.keys_registers_addresses:0000000000000000 $d
+     /tmp/ccHwxxUw.s:139    .data.keys_registers_addresses:0000000000000000 keys_registers_addresses
 
 UNDEFINED SYMBOLS
 HAL_GPIO_WritePin

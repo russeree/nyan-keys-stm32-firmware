@@ -1,0 +1,25 @@
+{
+    "files.associations": {
+        "gpio.h": "c",
+        "main.h": "c",
+        "cstdint": "cpp",
+        "compare": "c",
+        "usbd_cdc_acm_if.h": "c",
+        "nyan_os.h": "c",
+        "24xx_eeprom.h": "c"
+    },
+    "cSpell.words": [
+        "BITSTREAM",
+        "Eeprom",
+        "HODL",
+        "Iceuncompr",
+        "leds",
+        "merkle",
+        "nayn",
+        "NYAN",
+        "uncompr"
+    ],
+    "cortex-debug.armToolchainPath": "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.3.1-1.2.1/.content/bin",
+    "cortex-debug.openocdPath": "/home/qrsnap/.config/Code/User/globalStorage/bmd.stm32-for-vscode/@xpack-dev-tools/openocd/0.12.0-2.1/.content/bin/openocd",
+    "cortex-debug.variableUseNaturalFormat": false
+}
