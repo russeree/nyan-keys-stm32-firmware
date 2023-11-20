@@ -30,4 +30,7 @@ extern const uint8_t nyan_keys_write_bitcoin_miner_block_version_success[];
 //COMMAND: bitcoin-miner-set-prv-block-hash
 extern const uint8_t nyan_keys_write_bitcoin_miner_prv_block_hash_success[];
 
+//COMMAND: bitcoin-miner-set-merkle-root-hash
+extern const uint8_t nyan_keys_write_bitcoin_miner_merkle_root_hash_success[];
+
 #endif // NYAN_STRINGS

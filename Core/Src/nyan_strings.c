@@ -34,3 +34,6 @@ const uint8_t nyan_keys_write_bitcoin_miner_block_version_success[] = "Nyan BitC
 
 //COMMAND: bitcoin-miner-set-prv-block-hash
 const uint8_t nyan_keys_write_bitcoin_miner_prv_block_hash_success[] = "Nyan BitCoin Miner previous block hash set successfully.\r\n";
+
+//COMMAND: bitcoin-miner-set-merkle-root-hash
+const uint8_t nyan_keys_write_bitcoin_miner_merkle_root_hash_success[] = "Nyan BitCoin Miner merkle root hash set successfully.\r\n";

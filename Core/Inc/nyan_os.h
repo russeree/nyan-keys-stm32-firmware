@@ -27,8 +27,9 @@ static const char* const nyan_commands[] = {
     "getinfo",
     "write-bitstream",
     "set-owner",
-    "bitcoin-miner-set-version"
-    "bitcoin-miner-set-prv-block-hash"
+    "bitcoin-miner-set-version",
+    "bitcoin-miner-set-prv-block-hash",
+    "bitcoin-miner-set-merkle-root-hash"
 };
 
 typedef enum {
@@ -48,6 +49,7 @@ typedef enum {
     NYAN_EXE_SET_OWNER,
     NYAN_EXE_BITCOIN_MINER_SET_BLOCK_VERSION,
     NYAN_EXE_BITCOIN_MINER_SET_PRV_BLOCK_HASH,
+    NYAN_EXE_BITCOIN_MINER_SET_MERKLE_ROOT_HASH,
     NYAN_EXE_COMMAND_NOT_SUPPORTED,
     NYAN_EXE_IDLE
 } NyanExe;
@@ -229,6 +231,35 @@ NyanReturn NyanExeWriteBitcoinBlockHeaderVersion(volatile NyanOS* nos);
  * NOS_FAILURE is returned.
  */
 NyanReturn NyanExeWriteBitcoinPrvBlockHash(volatile NyanOS* nos);
+
+/**
+ * @brief Executes the operation of writing the Merkle root hash for a Bitcoin block in the Nyan Keys Operating System.
+ *
+ * @param nos A pointer to a volatile NyanOS structure.
+ * @return NyanReturn Returns NOS_SUCCESS on successful execution or NOS_FAILURE on failure.
+ *
+ * This function handles the task of writing the Merkle root hash for a Bitcoin block in the NyanOS.
+ * It first checks if the system is already in DIRECT_BUFFER_ACCESS state and returns NOS_FAILURE if so,
+ * ensuring that the system is not in the middle of another direct buffer manipulation operation.
+ * The function then sets the execution state to NYAN_EXE_IDLE as an acknowledgment of the command reception.
+ *
+ * The function proceeds to create a 32-byte buffer for the purpose of receiving the Merkle root hash. 
+ * If the memory allocation for this buffer fails, it sets the state to READY and returns NOS_FAILURE.
+ * 
+ * Once the system state is set to DIRECT_BUFFER_ACCESS, the function enters a loop, waiting for the 
+ * byte array to be filled with incoming data. This loop continues until the entire buffer is filled, 
+ * indicating that the full Merkle root hash has been received. Currently, there is no implemented 
+ * mechanism to abort this process prematurely.
+ *
+ * After the reception of the full Merkle root hash, the function copies this data into the 
+ * Merkle root hash field of the Bitcoin block header in the Nyan Bitcoin structure. It then frees 
+ * the allocated buffer and sets the system state to READY.
+ *
+ * The function concludes by printing a success message using the NyanPrint function and returns NOS_SUCCESS.
+ * If any step of the process fails (like being in an inappropriate state or memory allocation failure), 
+ * the function returns NOS_FAILURE.
+ */
+NyanReturn NyanExeWriteBitcoinMerkleRootHash(volatile NyanOS* nos);
 
 /**
  * Clear and nullify the NyanOS command buffer

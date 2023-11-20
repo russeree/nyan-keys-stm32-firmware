@@ -228,12 +228,14 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe = NYAN_EXE_IDLE;
             return NOS_SUCCESS;
+
         case NYAN_EXE_SET_OWNER:
             NyanExeSetOwner(nos);
             NyanPrint(nos, (char*)&nyan_keys_set_owner_success[0], strlen((char*)nyan_keys_set_owner_success));
             NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe = NYAN_EXE_IDLE;
             return NOS_SUCCESS;
+
         case NYAN_EXE_WRITE_BITSTREAM :
             HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
             nos->exe_in_progress = true;
@@ -243,6 +245,7 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             nos->exe = NYAN_EXE_IDLE;
             HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
             return NOS_SUCCESS;
+
         case NYAN_EXE_BITCOIN_MINER_SET_BLOCK_VERSION :
             HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
             nos->exe_in_progress = true;
@@ -252,6 +255,7 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             nos->exe = NYAN_EXE_IDLE;
             HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
             return NOS_SUCCESS;
+
         case NYAN_EXE_BITCOIN_MINER_SET_PRV_BLOCK_HASH :
             HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
             nos->exe_in_progress = true;
@@ -261,14 +265,26 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             nos->exe = NYAN_EXE_IDLE;
             HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
             return NOS_SUCCESS;
+
+        case NYAN_EXE_BITCOIN_MINER_SET_MERKLE_ROOT_HASH :
+            HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
+            nos->exe_in_progress = true;
+            NyanExeWriteBitcoinMerkleRootHash(nos);
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
+            nos->exe_in_progress = false;
+            nos->exe = NYAN_EXE_IDLE;
+            HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
+
         case NYAN_EXE_IDLE :
             return NOS_SUCCESS;
+
         case NYAN_EXE_COMMAND_NOT_SUPPORTED :
             NyanPrint(nos, (char*)&nyan_keys_unknown_command[0], strlen((char*)nyan_keys_unknown_command));
             NyanPrint(nos, (char*)&nyan_keys_newline[0], strlen((char*)nyan_keys_newline));
             NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe = NYAN_EXE_IDLE;
             return NOS_SUCCESS;
+            
         default:
             // The execution state is out of bounds correct this.
             nos->exe = NYAN_EXE_IDLE;
@@ -592,6 +608,41 @@ NyanReturn NyanExeWriteBitcoinPrvBlockHash(volatile NyanOS* nos)
     nos->state = READY;
 
     NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_prv_block_hash_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_prv_block_hash_success));
+
+    return NOS_SUCCESS;
+}
+
+NyanReturn NyanExeWriteBitcoinMerkleRootHash(volatile NyanOS* nos)
+{
+    // If we get here an are already in direct buffer access mode; FAIL
+    if(nos->state == DIRECT_BUFFER_ACCESS)
+        return NOS_FAILURE;
+
+    // Set the state to NYAN_EXE_IDLE to show that we have ack'd the command
+    nos->exe = NYAN_EXE_IDLE;
+
+    // Create a 4 byte buffer to ingress the block version
+    nos->bytes_array_size = 32;
+    nos->bytes_array = (uint8_t*)malloc(nos->bytes_array_size * sizeof(uint8_t));
+    if(nos->bytes_array == NULL) {
+        // Handle memory allocation failure
+        nos->state = READY;
+        return NOS_FAILURE;
+    }
+    
+    nos->state = DIRECT_BUFFER_ACCESS;
+
+    while(nos->bytes_received != nos->bytes_array_size) {
+        // During this period we just loop until the byte array is full
+        // The user can exit this loop by just filling the buffer up for now.
+        // Enabling am abort sequence would be a next step
+    }
+
+    memcpy(nos->nyan_bitcoin->block_header.merkle_root_hash, nos->bytes_array, 32);
+    free(nos->bytes_array);
+    nos->state = READY;
+
+    NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_merkle_root_hash_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_merkle_root_hash_success));
 
     return NOS_SUCCESS;
 }
