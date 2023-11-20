@@ -24,6 +24,9 @@ extern const uint8_t nyan_keys_write_bitstream_info_success[];
 extern const uint8_t nyan_keys_write_bitstream_error_size[];
 extern const uint8_t nyan_keys_write_bitstream_error_size_tx_busy[];
 
+// COMMAND: bitcoin-miner-set
+extern const uint8_t nyan_keys_write_bitcoin_miner_failed_arg[];
+
 // COMMAND: bitcoin-miner-set version
 extern const uint8_t nyan_keys_write_bitcoin_miner_block_version_success[];
 

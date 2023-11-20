@@ -29,6 +29,16 @@ const uint8_t nyan_keys_write_bitstream_info_success[] = "Nyan Keys FPGA bitstre
 const uint8_t nyan_keys_write_bitstream_error_size[] = "Failed to parse bitstream length, size must be less than 65535 bytes.\r\n";
 const uint8_t nyan_keys_write_bitstream_error_size_tx_busy[] = "Failed to write bitstream length, TX buffer is busy.\r\n";
 
+// COMMAND: bitcoin-miner-set
+const uint8_t nyan_keys_write_bitcoin_miner_failed_arg[] = 
+"Failed to parse arg1 please use\r\n"
+"version\r\n"
+"prv-block-header-hash\r\n"
+"merkle-root-hash\r\n"
+"timestamp\r\n"
+"nbits\r\n"
+"nonce\r\n";
+
 //COMMAND: bitcoin-miner-set version
 const uint8_t nyan_keys_write_bitcoin_miner_block_version_success[] = "Nyan BitCoin Miner block template version set successfully.\r\n";
 

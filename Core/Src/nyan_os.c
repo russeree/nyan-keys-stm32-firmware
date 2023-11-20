@@ -545,8 +545,10 @@ NyanReturn NyanExeWriteBitcoinMiner(volatile NyanOS* nos)
         nos->bytes_array_size = 4;
     else if (strcmp((char *)nos->command_arg_buffer[1], "nonce") == 0)
         nos->bytes_array_size = 4;
-    else
+    else {
+        NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_failed_arg[0], strlen((char*)nyan_keys_write_bitcoin_miner_failed_arg));
         return NOS_FAILURE;
+    }
     
     
     nos->bytes_array = (uint8_t*)malloc(nos->bytes_array_size * sizeof(uint8_t));
@@ -583,8 +585,7 @@ NyanReturn NyanExeWriteBitcoinMiner(volatile NyanOS* nos)
     } else if (strcmp((char *)nos->command_arg_buffer[1], "nonce") == 0) {
         memcpy(nos->nyan_bitcoin->block_header.nonce, nos->bytes_array, nos->bytes_array_size);
         NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_nonce[0], strlen((char*)nyan_keys_write_bitcoin_miner_nonce));
-    } else
-        return NOS_FAILURE;
+    }
 
     free(nos->bytes_array);
     nos->state = READY;
