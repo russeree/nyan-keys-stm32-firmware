@@ -26,7 +26,8 @@ extern NyanBitcoin nyan_bitcoin; // Nyan Keys Background Bitcoin Miner
 static const char* const nyan_commands[] = {
     "getinfo",
     "write-bitstream",
-    "set-owner"
+    "set-owner",
+    "bitcoin-miner-set-version"
 };
 
 typedef enum {
@@ -45,6 +46,7 @@ typedef enum {
     NYAN_EXE_WRITE_BITSTREAM,
     NYAN_EXE_SET_OWNER,
     NYAN_EXE_COMMAND_NOT_SUPPORTED,
+    NYAN_EXE_BITCOIN_MINER_SET_BLOCK_VERSION,
     NYAN_EXE_IDLE
 } NyanExe;
 
@@ -57,6 +59,7 @@ typedef struct {
  * NyanOS has a pretty decent sized bug where the buffer to send over USB-CDC greater than 129 TX gets disabled 
  */
 typedef struct {
+    // Configuration
     bool send_welcome_screen; // This inits to false; Don't reset in init sequence.
     uint8_t send_welcome_screen_guard; // Guards against double welcome screens with a longer timer value.
     char exe_char;
@@ -176,6 +179,26 @@ NyanReturn NyanExeSetOwner(volatile NyanOS* nos);
  * @brief Write an FPGA Bitstream to the EEPROM in 128 byte chunks 
  */
 NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos);
+
+/**
+ * @brief Writes the Bitcoin block header version into the NyanOS structure.
+ *
+ * This function is responsible for handling the write operation of the Bitcoin block header version
+ * into the NyanOS structure. It checks the current state of the NyanOS and if it is in
+ * DIRECT_BUFFER_ACCESS state, the function fails. Otherwise, it allocates a 4-byte buffer to store
+ * the block version, waits for the buffer to be filled with data, and then copies this data into
+ * the Bitcoin block header version field in the NyanOS structure.
+ *
+ * @param nos A pointer to the volatile NyanOS structure.
+ *
+ * @return NyanReturn An enum value indicating the success or failure of the operation.
+ *         Returns NOS_SUCCESS on successful write operation, and NOS_FAILURE on failure
+ *         (e.g., if already in DIRECT_BUFFER_ACCESS mode or memory allocation fails).
+ *
+ * @note This function puts the NyanOS into DIRECT_BUFFER_ACCESS state during operation and
+ *       back to READY state upon completion.
+ */
+NyanReturn NyanExeWriteBitcoinBlockHeaderVersion(volatile NyanOS* nos);
 
 /**
  * Clear and nullify the NyanOS command buffer
