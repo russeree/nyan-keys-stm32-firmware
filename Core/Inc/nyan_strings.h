@@ -24,13 +24,23 @@ extern const uint8_t nyan_keys_write_bitstream_info_success[];
 extern const uint8_t nyan_keys_write_bitstream_error_size[];
 extern const uint8_t nyan_keys_write_bitstream_error_size_tx_busy[];
 
-// COMMAND: bitcoin-miner-set-version
+// COMMAND: bitcoin-miner-set version
 extern const uint8_t nyan_keys_write_bitcoin_miner_block_version_success[];
 
-//COMMAND: bitcoin-miner-set-prv-block-hash
+//COMMAND: bitcoin-miner-set prv-block-hash
 extern const uint8_t nyan_keys_write_bitcoin_miner_prv_block_hash_success[];
 
-//COMMAND: bitcoin-miner-set-merkle-root-hash
+//COMMAND: bitcoin-miner-set merkle-root-hash
 extern const uint8_t nyan_keys_write_bitcoin_miner_merkle_root_hash_success[];
+
+//COMMAND: bitcoin-miner-set timestamp
+extern const uint8_t nyan_keys_write_bitcoin_miner_timestamp[];
+
+//COMMAND: bitcoin-miner-set nbits
+extern const uint8_t nyan_keys_write_bitcoin_miner_nbits[];
+
+//COMMAND: bitcoin-miner-set nonce
+extern const uint8_t nyan_keys_write_bitcoin_miner_nonce[];
+
 
 #endif // NYAN_STRINGS

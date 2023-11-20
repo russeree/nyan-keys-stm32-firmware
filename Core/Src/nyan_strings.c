@@ -29,11 +29,20 @@ const uint8_t nyan_keys_write_bitstream_info_success[] = "Nyan Keys FPGA bitstre
 const uint8_t nyan_keys_write_bitstream_error_size[] = "Failed to parse bitstream length, size must be less than 65535 bytes.\r\n";
 const uint8_t nyan_keys_write_bitstream_error_size_tx_busy[] = "Failed to write bitstream length, TX buffer is busy.\r\n";
 
-//COMMAND: bitcoin-miner-set-version
+//COMMAND: bitcoin-miner-set version
 const uint8_t nyan_keys_write_bitcoin_miner_block_version_success[] = "Nyan BitCoin Miner block template version set successfully.\r\n";
 
-//COMMAND: bitcoin-miner-set-prv-block-hash
+//COMMAND: bitcoin-miner-set prv-block-hash
 const uint8_t nyan_keys_write_bitcoin_miner_prv_block_hash_success[] = "Nyan BitCoin Miner previous block hash set successfully.\r\n";
 
-//COMMAND: bitcoin-miner-set-merkle-root-hash
+//COMMAND: bitcoin-miner-set merkle-root-hash
 const uint8_t nyan_keys_write_bitcoin_miner_merkle_root_hash_success[] = "Nyan BitCoin Miner merkle root hash set successfully.\r\n";
+
+//COMMAND: bitcoin-miner-set timestamp
+const uint8_t nyan_keys_write_bitcoin_miner_timestamp[] = "Nyan BitCoin Miner timestamp set successfully.\r\n";
+
+//COMMAND: bitcoin-miner-set nbits
+const uint8_t nyan_keys_write_bitcoin_miner_nbits[] = "Nyan BitCoin Miner nbits set successfully.\r\n" ;
+
+//COMMAND: bitcoin-miner-set nonce
+const uint8_t nyan_keys_write_bitcoin_miner_nonce[] = "Nyan BitCoin Miner nonce set successfully.\r\n";

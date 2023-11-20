@@ -246,34 +246,15 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
             return NOS_SUCCESS;
 
-        case NYAN_EXE_BITCOIN_MINER_SET_BLOCK_VERSION :
+        case NYAN_EXE_BITCOIN_MINER_SET:
             HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
             nos->exe_in_progress = true;
-            NyanExeWriteBitcoinBlockHeaderVersion(nos);
+            NyanExeWriteBitcoinMiner(nos);
             NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe_in_progress = false;
             nos->exe = NYAN_EXE_IDLE;
             HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
             return NOS_SUCCESS;
-
-        case NYAN_EXE_BITCOIN_MINER_SET_PRV_BLOCK_HASH :
-            HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
-            nos->exe_in_progress = true;
-            NyanExeWriteBitcoinPrvBlockHash(nos);
-            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
-            nos->exe_in_progress = false;
-            nos->exe = NYAN_EXE_IDLE;
-            HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
-            return NOS_SUCCESS;
-
-        case NYAN_EXE_BITCOIN_MINER_SET_MERKLE_ROOT_HASH :
-            HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
-            nos->exe_in_progress = true;
-            NyanExeWriteBitcoinMerkleRootHash(nos);
-            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
-            nos->exe_in_progress = false;
-            nos->exe = NYAN_EXE_IDLE;
-            HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
 
         case NYAN_EXE_IDLE :
             return NOS_SUCCESS;
@@ -284,7 +265,7 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe = NYAN_EXE_IDLE;
             return NOS_SUCCESS;
-            
+
         default:
             // The execution state is out of bounds correct this.
             nos->exe = NYAN_EXE_IDLE;
@@ -542,17 +523,32 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos)
     return NOS_SUCCESS;
 }
 
-NyanReturn NyanExeWriteBitcoinBlockHeaderVersion(volatile NyanOS* nos)
+NyanReturn NyanExeWriteBitcoinMiner(volatile NyanOS* nos)
 {
+    // Set the state to NYAN_EXE_IDLE to show that we have ack'd the command
+    nos->exe = NYAN_EXE_IDLE;
+
     // If we get here an are already in direct buffer access mode; FAIL
     if(nos->state == DIRECT_BUFFER_ACCESS)
         return NOS_FAILURE;
 
-    // Set the state to NYAN_EXE_IDLE to show that we have ack'd the command
-    nos->exe = NYAN_EXE_IDLE;
-
-    // Create a 4 byte buffer to ingress the block version
-    nos->bytes_array_size = 4;
+    // Create buffers 
+    if (strcmp((char *)nos->command_arg_buffer[1], "version") == 0)
+        nos->bytes_array_size = 4;
+    else if (strcmp((char *)nos->command_arg_buffer[1], "prv-block-header-hash") == 0)
+        nos->bytes_array_size = 32;
+    else if (strcmp((char *)nos->command_arg_buffer[1], "merkle-root-hash") == 0)
+        nos->bytes_array_size = 32;
+    else if (strcmp((char *)nos->command_arg_buffer[1], "timestamp") == 0)
+        nos->bytes_array_size = 4;
+    else if (strcmp((char *)nos->command_arg_buffer[1], "nbits") == 0)
+        nos->bytes_array_size = 4;
+    else if (strcmp((char *)nos->command_arg_buffer[1], "nonce") == 0)
+        nos->bytes_array_size = 4;
+    else
+        return NOS_FAILURE;
+    
+    
     nos->bytes_array = (uint8_t*)malloc(nos->bytes_array_size * sizeof(uint8_t));
     if(nos->bytes_array == NULL) {
         // Handle memory allocation failure
@@ -568,46 +564,30 @@ NyanReturn NyanExeWriteBitcoinBlockHeaderVersion(volatile NyanOS* nos)
         // Enabling am abort sequence would be a next step
     }
 
-    memcpy(nos->nyan_bitcoin->block_header.version, nos->bytes_array, 4);
-    free(nos->bytes_array);
-    nos->state = READY;
-
-    NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_block_version_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_block_version_success));
-
-    return NOS_SUCCESS;
-}
-
-NyanReturn NyanExeWriteBitcoinPrvBlockHash(volatile NyanOS* nos)
-{
-    // If we get here an are already in direct buffer access mode; FAIL
-    if(nos->state == DIRECT_BUFFER_ACCESS)
+    // Handle data and print results
+    if (strcmp((char *)nos->command_arg_buffer[1], "version") == 0) {
+        memcpy(nos->nyan_bitcoin->block_header.version, nos->bytes_array, nos->bytes_array_size);
+        NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_block_version_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_block_version_success));
+    } else if (strcmp((char *)nos->command_arg_buffer[1], "prv-block-header-hash") == 0) {
+        memcpy(nos->nyan_bitcoin->block_header.prv_block_header_hash, nos->bytes_array, nos->bytes_array_size);
+        NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_prv_block_hash_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_prv_block_hash_success));
+    } else if (strcmp((char *)nos->command_arg_buffer[1], "merkle-root-hash") == 0) {
+        memcpy(nos->nyan_bitcoin->block_header.merkle_root_hash, nos->bytes_array, nos->bytes_array_size);
+        NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_merkle_root_hash_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_merkle_root_hash_success));
+    } else if (strcmp((char *)nos->command_arg_buffer[1], "timestamp") == 0) {
+        memcpy(nos->nyan_bitcoin->block_header.timestamp, nos->bytes_array, nos->bytes_array_size);
+        NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_timestamp[0], strlen((char*)nyan_keys_write_bitcoin_miner_timestamp));
+    } else if (strcmp((char *)nos->command_arg_buffer[1], "nbits") == 0) {
+        memcpy(nos->nyan_bitcoin->block_header.n_bits, nos->bytes_array, nos->bytes_array_size);
+        NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_nbits[0], strlen((char*)nyan_keys_write_bitcoin_miner_nbits));
+    } else if (strcmp((char *)nos->command_arg_buffer[1], "nonce") == 0) {
+        memcpy(nos->nyan_bitcoin->block_header.nonce, nos->bytes_array, nos->bytes_array_size);
+        NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_nonce[0], strlen((char*)nyan_keys_write_bitcoin_miner_nonce));
+    } else
         return NOS_FAILURE;
 
-    // Set the state to NYAN_EXE_IDLE to show that we have ack'd the command
-    nos->exe = NYAN_EXE_IDLE;
-
-    // Create a 4 byte buffer to ingress the block version
-    nos->bytes_array_size = 32;
-    nos->bytes_array = (uint8_t*)malloc(nos->bytes_array_size * sizeof(uint8_t));
-    if(nos->bytes_array == NULL) {
-        // Handle memory allocation failure
-        nos->state = READY;
-        return NOS_FAILURE;
-    }
-    
-    nos->state = DIRECT_BUFFER_ACCESS;
-
-    while(nos->bytes_received != nos->bytes_array_size) {
-        // During this period we just loop until the byte array is full
-        // The user can exit this loop by just filling the buffer up for now.
-        // Enabling am abort sequence would be a next step
-    }
-
-    memcpy(nos->nyan_bitcoin->block_header.prv_block_header_hash, nos->bytes_array, 32);
     free(nos->bytes_array);
     nos->state = READY;
-
-    NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_prv_block_hash_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_prv_block_hash_success));
 
     return NOS_SUCCESS;
 }

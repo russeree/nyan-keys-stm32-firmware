@@ -27,9 +27,7 @@ static const char* const nyan_commands[] = {
     "getinfo",
     "write-bitstream",
     "set-owner",
-    "bitcoin-miner-set-version",
-    "bitcoin-miner-set-prv-block-hash",
-    "bitcoin-miner-set-merkle-root-hash"
+    "bitcoin-miner-set"
 };
 
 typedef enum {
@@ -47,9 +45,7 @@ typedef enum {
     NYAN_EXE_GET_INFO,
     NYAN_EXE_WRITE_BITSTREAM,
     NYAN_EXE_SET_OWNER,
-    NYAN_EXE_BITCOIN_MINER_SET_BLOCK_VERSION,
-    NYAN_EXE_BITCOIN_MINER_SET_PRV_BLOCK_HASH,
-    NYAN_EXE_BITCOIN_MINER_SET_MERKLE_ROOT_HASH,
+    NYAN_EXE_BITCOIN_MINER_SET,
     NYAN_EXE_COMMAND_NOT_SUPPORTED,
     NYAN_EXE_IDLE
 } NyanExe;
@@ -185,81 +181,40 @@ NyanReturn NyanExeSetOwner(volatile NyanOS* nos);
 NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos);
 
 /**
- * @brief Writes the Bitcoin block header version into the NyanOS structure.
- *
- * This function is responsible for handling the write operation of the Bitcoin block header version
- * into the NyanOS structure. It checks the current state of the NyanOS and if it is in
- * DIRECT_BUFFER_ACCESS state, the function fails. Otherwise, it allocates a 4-byte buffer to store
- * the block version, waits for the buffer to be filled with data, and then copies this data into
- * the Bitcoin block header version field in the NyanOS structure.
- *
- * @param nos A pointer to the volatile NyanOS structure.
- *
- * @return NyanReturn An enum value indicating the success or failure of the operation.
- *         Returns NOS_SUCCESS on successful write operation, and NOS_FAILURE on failure
- *         (e.g., if already in DIRECT_BUFFER_ACCESS mode or memory allocation fails).
- *
- * @note This function puts the NyanOS into DIRECT_BUFFER_ACCESS state during operation and
- *       back to READY state upon completion.
- */
-NyanReturn NyanExeWriteBitcoinBlockHeaderVersion(volatile NyanOS* nos);
-
-/**
- * @brief Executes writing of the previous block hash for a Bitcoin block in the Nyan Keys Operating System.
+ * @brief Executes a command to write various Bitcoin miner related data in the Nyan Keys Operating System (NOS).
  *
  * @param nos A pointer to a volatile NyanOS structure.
- * @return NyanReturn Indicates the success or failure of the function.
+ * @return NyanReturn Indicates success (NOS_SUCCESS) or failure (NOS_FAILURE) of the operation.
  *
- * This function is responsible for writing the previous block hash of a Bitcoin block. 
- * It checks if the system is in DIRECT_BUFFER_ACCESS state and fails if so, ensuring 
- * that the system is not currently engaged in direct buffer manipulation. It sets the 
- * execution state to NYAN_EXE_IDLE, acknowledging the command.
+ * This function is responsible for handling different commands related to Bitcoin mining operations
+ * in the Nyan Keys Operating System. It begins by setting the execution state to NYAN_EXE_IDLE, indicating
+ * that a command has been acknowledged.
  *
- * The function then allocates a 32-byte buffer for ingressing the block version. If 
- * memory allocation fails, the state is set to READY and the function returns NOS_FAILURE.
- * 
- * Once in DIRECT_BUFFER_ACCESS state, the function loops until the byte array is filled 
- * with incoming data. This looping mechanism expects the user to fill the buffer, and 
- * currently, there is no implemented mechanism to abort this process.
+ * The function checks if the system is already in DIRECT_BUFFER_ACCESS mode. If so, it returns NOS_FAILURE,
+ * indicating that it cannot proceed with direct buffer access operations already in progress.
  *
- * After the buffer is filled, it copies the data to the previous block header hash in 
- * the Nyan Bitcoin structure, then frees the allocated buffer, sets the state to READY, 
- * and prints a success message.
+ * Depending on the command specified in `nos->command_arg_buffer[1]`, the function allocates a buffer of 
+ * appropriate size to store incoming data. The supported commands and their corresponding data sizes are:
+ * - "version": 4 bytes
+ * - "prv-block-header-hash": 32 bytes
+ * - "merkle-root-hash": 32 bytes
+ * - "timestamp": 4 bytes
+ * - "nbits": 4 bytes
+ * - "nonce": 4 bytes
+ * If the command is not recognized, the function returns NOS_FAILURE.
  *
- * If the operation completes successfully, NOS_SUCCESS is returned. If there are issues 
- * in the process, such as being in an inappropriate state or memory allocation failure, 
- * NOS_FAILURE is returned.
+ * After successful buffer allocation, the function waits in a loop until the buffer is completely filled
+ * with incoming data, indicated by `nos->bytes_received` matching `nos->bytes_array_size`.
+ *
+ * Once the data is received, it is copied to the appropriate field in the `nyan_bitcoin->block_header` structure
+ * and a success message is printed using the NyanPrint function. The specific field and message depend on the 
+ * command received.
+ *
+ * Finally, the allocated buffer is freed, the system state is set to READY, and the function returns NOS_SUCCESS
+ * indicating successful execution of the command. If any step in the process fails, the function returns 
+ * NOS_FAILURE.
  */
-NyanReturn NyanExeWriteBitcoinPrvBlockHash(volatile NyanOS* nos);
-
-/**
- * @brief Executes the operation of writing the Merkle root hash for a Bitcoin block in the Nyan Keys Operating System.
- *
- * @param nos A pointer to a volatile NyanOS structure.
- * @return NyanReturn Returns NOS_SUCCESS on successful execution or NOS_FAILURE on failure.
- *
- * This function handles the task of writing the Merkle root hash for a Bitcoin block in the NyanOS.
- * It first checks if the system is already in DIRECT_BUFFER_ACCESS state and returns NOS_FAILURE if so,
- * ensuring that the system is not in the middle of another direct buffer manipulation operation.
- * The function then sets the execution state to NYAN_EXE_IDLE as an acknowledgment of the command reception.
- *
- * The function proceeds to create a 32-byte buffer for the purpose of receiving the Merkle root hash. 
- * If the memory allocation for this buffer fails, it sets the state to READY and returns NOS_FAILURE.
- * 
- * Once the system state is set to DIRECT_BUFFER_ACCESS, the function enters a loop, waiting for the 
- * byte array to be filled with incoming data. This loop continues until the entire buffer is filled, 
- * indicating that the full Merkle root hash has been received. Currently, there is no implemented 
- * mechanism to abort this process prematurely.
- *
- * After the reception of the full Merkle root hash, the function copies this data into the 
- * Merkle root hash field of the Bitcoin block header in the Nyan Bitcoin structure. It then frees 
- * the allocated buffer and sets the system state to READY.
- *
- * The function concludes by printing a success message using the NyanPrint function and returns NOS_SUCCESS.
- * If any step of the process fails (like being in an inappropriate state or memory allocation failure), 
- * the function returns NOS_FAILURE.
- */
-NyanReturn NyanExeWriteBitcoinMerkleRootHash(volatile NyanOS* nos);
+NyanReturn NyanExeWriteBitcoinMiner(volatile NyanOS* nos);
 
 /**
  * Clear and nullify the NyanOS command buffer
