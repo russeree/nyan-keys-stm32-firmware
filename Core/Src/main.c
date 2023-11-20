@@ -155,7 +155,7 @@ int main(void)
     else
       FPGAInit(&nos_fpga);
     /* USER CODE END WHILE */
-
+    NyanBitcoinHashHeader(&nyan_bitcoin);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
