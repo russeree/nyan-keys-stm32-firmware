@@ -21,12 +21,12 @@ typedef enum {
  * Merkle root hash, timestamp, bits, and nonce. Nyan GUI can modify these values
  */
 typedef struct {
-    uint8_t version[4];              /**< Version of the block. */
+    uint8_t version[4];                /**< Version of the block. */
     uint8_t prv_block_header_hash[32]; /**< Hash of the previous block header. */
-    uint8_t merkle_root_hash[32];     /**< Merkle root hash. */
-    uint8_t timestamp[4];             /**< Timestamp of the block. */
-    uint8_t n_bits[4];                /**< Difficulty target of the block. */
-    uint8_t nonce[4];                 /**< Nonce used for mining. */
+    uint8_t merkle_root_hash[32];      /**< Merkle root hash. */
+    uint8_t timestamp[4];              /**< Timestamp of the block. */
+    uint8_t n_bits[4];                 /**< Difficulty target of the block. */
+    uint8_t nonce[4];                  /**< Nonce used for mining. */
 } NyanBitcoinHeader;
 
 /** 

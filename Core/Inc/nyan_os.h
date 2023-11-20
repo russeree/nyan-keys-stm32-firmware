@@ -28,6 +28,7 @@ static const char* const nyan_commands[] = {
     "write-bitstream",
     "set-owner",
     "bitcoin-miner-set-version"
+    "bitcoin-miner-set-prv-block-hash"
 };
 
 typedef enum {
@@ -45,8 +46,9 @@ typedef enum {
     NYAN_EXE_GET_INFO,
     NYAN_EXE_WRITE_BITSTREAM,
     NYAN_EXE_SET_OWNER,
-    NYAN_EXE_COMMAND_NOT_SUPPORTED,
     NYAN_EXE_BITCOIN_MINER_SET_BLOCK_VERSION,
+    NYAN_EXE_BITCOIN_MINER_SET_PRV_BLOCK_HASH,
+    NYAN_EXE_COMMAND_NOT_SUPPORTED,
     NYAN_EXE_IDLE
 } NyanExe;
 
@@ -199,6 +201,34 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos);
  *       back to READY state upon completion.
  */
 NyanReturn NyanExeWriteBitcoinBlockHeaderVersion(volatile NyanOS* nos);
+
+/**
+ * @brief Executes writing of the previous block hash for a Bitcoin block in the Nyan Keys Operating System.
+ *
+ * @param nos A pointer to a volatile NyanOS structure.
+ * @return NyanReturn Indicates the success or failure of the function.
+ *
+ * This function is responsible for writing the previous block hash of a Bitcoin block. 
+ * It checks if the system is in DIRECT_BUFFER_ACCESS state and fails if so, ensuring 
+ * that the system is not currently engaged in direct buffer manipulation. It sets the 
+ * execution state to NYAN_EXE_IDLE, acknowledging the command.
+ *
+ * The function then allocates a 32-byte buffer for ingressing the block version. If 
+ * memory allocation fails, the state is set to READY and the function returns NOS_FAILURE.
+ * 
+ * Once in DIRECT_BUFFER_ACCESS state, the function loops until the byte array is filled 
+ * with incoming data. This looping mechanism expects the user to fill the buffer, and 
+ * currently, there is no implemented mechanism to abort this process.
+ *
+ * After the buffer is filled, it copies the data to the previous block header hash in 
+ * the Nyan Bitcoin structure, then frees the allocated buffer, sets the state to READY, 
+ * and prints a success message.
+ *
+ * If the operation completes successfully, NOS_SUCCESS is returned. If there are issues 
+ * in the process, such as being in an inappropriate state or memory allocation failure, 
+ * NOS_FAILURE is returned.
+ */
+NyanReturn NyanExeWriteBitcoinPrvBlockHash(volatile NyanOS* nos);
 
 /**
  * Clear and nullify the NyanOS command buffer

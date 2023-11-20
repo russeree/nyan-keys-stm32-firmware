@@ -56,8 +56,8 @@ NyanReturn NyanWelcomeDisplay(volatile NyanOS *nos)
     if(nos->send_welcome_screen) {
         nos->send_welcome_screen = 0x00;
         if(nos->send_welcome_screen_guard++ == 0){
-            NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], sizeof(strlen((char*)nyan_keys_welcome_text)));
-            NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(strlen((char*)nyan_keys_path_text)));
+            NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], strlen((char*)nyan_keys_welcome_text));
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
         }
     }
 
@@ -92,7 +92,7 @@ NyanReturn NyanAddInputBuffer(volatile NyanOS *nos, uint8_t *pbuf, uint32_t *Len
                     // Handle the action of executing a command by pressing enter
                     NyanDecode(nos);
                     ClearNyanCommandBuffer(nos);
-                    NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(strlen((char*)nyan_keys_newline)));
+                    NyanPrint(nos, (char*)&nyan_keys_newline[0], strlen((char*)nyan_keys_newline));
                     break;
                 } else if(nos->command_buffer_pos >= _NYAN_CMD_BUF_LEN - 1) {
                     // Handle out of command buffer space on next char
@@ -224,21 +224,21 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
     switch(nos->exe) {
         case NYAN_EXE_GET_INFO :
             NyanExeGetinfo(nos);
-            NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(strlen((char*)nyan_keys_newline)));
-            NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(strlen((char*)nyan_keys_path_text)));
+            NyanPrint(nos, (char*)&nyan_keys_newline[0], strlen((char*)nyan_keys_newline));
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe = NYAN_EXE_IDLE;
             return NOS_SUCCESS;
         case NYAN_EXE_SET_OWNER:
             NyanExeSetOwner(nos);
-            NyanPrint(nos, (char*)&nyan_keys_set_owner_success[0], sizeof(strlen((char*)nyan_keys_set_owner_success)));
-            NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(strlen((char*)nyan_keys_path_text)));
+            NyanPrint(nos, (char*)&nyan_keys_set_owner_success[0], strlen((char*)nyan_keys_set_owner_success));
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe = NYAN_EXE_IDLE;
             return NOS_SUCCESS;
         case NYAN_EXE_WRITE_BITSTREAM :
             HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
             nos->exe_in_progress = true;
             NyanExeWriteFpgaBitstream(nos);
-            NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(strlen((char*)nyan_keys_path_text)));
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe_in_progress = false;
             nos->exe = NYAN_EXE_IDLE;
             HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
@@ -247,7 +247,16 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
             nos->exe_in_progress = true;
             NyanExeWriteBitcoinBlockHeaderVersion(nos);
-            NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(strlen((char*)nyan_keys_path_text)));
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
+            nos->exe_in_progress = false;
+            nos->exe = NYAN_EXE_IDLE;
+            HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
+            return NOS_SUCCESS;
+        case NYAN_EXE_BITCOIN_MINER_SET_PRV_BLOCK_HASH :
+            HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
+            nos->exe_in_progress = true;
+            NyanExeWriteBitcoinPrvBlockHash(nos);
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe_in_progress = false;
             nos->exe = NYAN_EXE_IDLE;
             HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
@@ -255,9 +264,9 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
         case NYAN_EXE_IDLE :
             return NOS_SUCCESS;
         case NYAN_EXE_COMMAND_NOT_SUPPORTED :
-            NyanPrint(nos, (char*)&nyan_keys_unknown_command[0], sizeof(strlen((char*)nyan_keys_unknown_command)));
-            NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(strlen((char*)nyan_keys_newline)));
-            NyanPrint(nos, (char*)&nyan_keys_path_text[0], sizeof(strlen((char*)nyan_keys_path_text)));
+            NyanPrint(nos, (char*)&nyan_keys_unknown_command[0], strlen((char*)nyan_keys_unknown_command));
+            NyanPrint(nos, (char*)&nyan_keys_newline[0], strlen((char*)nyan_keys_newline));
+            NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
             nos->exe = NYAN_EXE_IDLE;
             return NOS_SUCCESS;
         default:
@@ -320,10 +329,10 @@ NyanReturn NyanExeGetinfo(volatile NyanOS* nos)
     char owner[SIZE_BOARD_OWNER];
     strncpy(owner, (const char *)nos->eeprom->rx_buf, SIZE_BOARD_OWNER);
 
-    NyanPrint(nos, (char*)&nyan_keys_getinfo[0], sizeof(strlen((char*)nyan_keys_getinfo)));
-    NyanPrint(nos, (char*)&nyan_keys_getinfo_owner[0], sizeof(strlen((char*)nyan_keys_getinfo_owner)));
+    NyanPrint(nos, (char*)&nyan_keys_getinfo[0], strlen((char*)nyan_keys_getinfo));
+    NyanPrint(nos, (char*)&nyan_keys_getinfo_owner[0], strlen((char*)nyan_keys_getinfo_owner));
     NyanPrint(nos, owner, strlen(owner));
-    NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(strlen((char*)nyan_keys_newline)));
+    NyanPrint(nos, (char*)&nyan_keys_newline[0], strlen((char*)nyan_keys_newline));
 
     return NOS_SUCCESS;
 }
@@ -408,14 +417,14 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos)
     if(nos->bytes_array_size  > 0xFFFF) {
         //Print Error, Clear buffer, Set ready state. 
         nos->bytes_array_size = 0;
-        NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size[0], sizeof(strlen((char*)nyan_keys_write_bitstream_error_size)));
+        NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size[0], strlen((char*)nyan_keys_write_bitstream_error_size));
         return NOS_FAILURE;
     }
     // Write the length of the bitstream we are accepting to the EEPROM - 16 bytes - 
     uint32_t size_array[4] = { 0x00, 0x00, 0x00, nos->bytes_array_size };
     if(nos->eeprom->tx_inflight) {
         //Print Error, Clear buffer, Set ready state. 
-        NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size_tx_busy[0], sizeof(strlen((char*)nyan_keys_write_bitstream_error_size_tx_busy)));
+        NyanPrint(nos, (char*)&nyan_keys_write_bitstream_error_size_tx_busy[0], strlen((char*)nyan_keys_write_bitstream_error_size_tx_busy));
         return NOS_FAILURE;
     }
     // Copy the data to the EEPROM buffer for writing
@@ -463,7 +472,7 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos)
     hexString[SHA256_BLOCK_SIZE * 2] = '\0';
     
     NyanPrint(nos, (char*)&hexString[0], SHA256_BLOCK_SIZE * 2);
-    NyanPrint(nos, (char*)&nyan_keys_newline[0], sizeof(strlen((char*)nyan_keys_newline)));
+    NyanPrint(nos, (char*)&nyan_keys_newline[0], strlen((char*)nyan_keys_newline));
 
     // Calculate the number iterations 
     unsigned int r = nos->bytes_array_size % EEPROM_DRIVER_TX_BUF_SZ;
@@ -547,7 +556,42 @@ NyanReturn NyanExeWriteBitcoinBlockHeaderVersion(volatile NyanOS* nos)
     free(nos->bytes_array);
     nos->state = READY;
 
-    NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_block_version_success[0], sizeof(strlen((char*)nyan_keys_write_bitcoin_miner_block_version_success)));
+    NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_block_version_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_block_version_success));
+
+    return NOS_SUCCESS;
+}
+
+NyanReturn NyanExeWriteBitcoinPrvBlockHash(volatile NyanOS* nos)
+{
+    // If we get here an are already in direct buffer access mode; FAIL
+    if(nos->state == DIRECT_BUFFER_ACCESS)
+        return NOS_FAILURE;
+
+    // Set the state to NYAN_EXE_IDLE to show that we have ack'd the command
+    nos->exe = NYAN_EXE_IDLE;
+
+    // Create a 4 byte buffer to ingress the block version
+    nos->bytes_array_size = 32;
+    nos->bytes_array = (uint8_t*)malloc(nos->bytes_array_size * sizeof(uint8_t));
+    if(nos->bytes_array == NULL) {
+        // Handle memory allocation failure
+        nos->state = READY;
+        return NOS_FAILURE;
+    }
+    
+    nos->state = DIRECT_BUFFER_ACCESS;
+
+    while(nos->bytes_received != nos->bytes_array_size) {
+        // During this period we just loop until the byte array is full
+        // The user can exit this loop by just filling the buffer up for now.
+        // Enabling am abort sequence would be a next step
+    }
+
+    memcpy(nos->nyan_bitcoin->block_header.prv_block_header_hash, nos->bytes_array, 32);
+    free(nos->bytes_array);
+    nos->state = READY;
+
+    NyanPrint(nos, (char*)&nyan_keys_write_bitcoin_miner_prv_block_hash_success[0], strlen((char*)nyan_keys_write_bitcoin_miner_prv_block_hash_success));
 
     return NOS_SUCCESS;
 }
