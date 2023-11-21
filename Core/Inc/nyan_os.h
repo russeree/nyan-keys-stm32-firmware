@@ -35,61 +35,89 @@ typedef enum {
     NOS_SUCCESS
 } NyanReturn;
 
+/**
+ * @enum NyanStates
+ * @brief Enumeration of the possible states of NyanOS.
+ *
+ * This enumeration defines the various states that NyanOS can be in during its operation.
+ * The states indicate whether the system is ready, not ready, or in a mode that allows
+ * direct buffer access.
+ */
 typedef enum {
-    NOT_READY,
-    READY,
-    DIRECT_BUFFER_ACCESS
+    NOT_READY,            /**< The system is not ready for operations. */
+    READY,                /**< The system is ready and operational. */
+    DIRECT_BUFFER_ACCESS  /**< The system is in a mode that allows direct buffer access. */
 } NyanStates;
 
+/**
+ * @enum NyanExe
+ * @brief Enumeration of executable commands in NyanOS.
+ *
+ * This enumeration defines the set of possible commands or operations that can be executed by the NyanOS.
+ * It includes commands for retrieving information, writing bitstreams, setting the owner, configuring a Bitcoin miner,
+ * handling unsupported commands, and an idle state.
+ */
 typedef enum {
-    NYAN_EXE_GET_INFO,
-    NYAN_EXE_WRITE_BITSTREAM,
-    NYAN_EXE_SET_OWNER,
-    NYAN_EXE_BITCOIN_MINER_SET,
-    NYAN_EXE_COMMAND_NOT_SUPPORTED,
-    NYAN_EXE_IDLE
+    NYAN_EXE_GET_INFO,                /**< Execute command to get system information. */
+    NYAN_EXE_WRITE_BITSTREAM,         /**< Execute command to write a bitstream to FPGA. */
+    NYAN_EXE_SET_OWNER,               /**< Execute command to set the owner of the system. */
+    NYAN_EXE_BITCOIN_MINER_SET,       /**< Execute command to configure the Bitcoin miner. */
+    NYAN_EXE_COMMAND_NOT_SUPPORTED,   /**< Indicator for an unsupported or unrecognized command. */
+    NYAN_EXE_IDLE                     /**< System is in an idle state, not currently executing any command. */
 } NyanExe;
 
+/**
+ * @struct NyanString
+ * @brief Structure for handling strings in NyanOS.
+ *
+ * This structure is used for managing strings within the NyanOS. It provides a way to handle 
+ * dynamic strings with associated size information, facilitating easier management of string 
+ * operations such as allocation, resizing, and deallocation.
+ */
 typedef struct {
-    uint8_t* p_array;
-    size_t size;
+    uint8_t* p_array; /**< Pointer to the character array representing the string. */
+    size_t size;      /**< Size of the string, indicating the number of characters it contains. */
 } NyanString;
 
 /**
- * NyanOS has a pretty decent sized bug where the buffer to send over USB-CDC greater than 129 TX gets disabled 
+ * @struct NyanOS
+ * @brief Struct representing the state and configuration of the NyanOS.
+ *
+ * NyanOS is designed for handling various operations in the Nyan Keys hardware, 
+ * including EEPROM and Bitcoin Miner management, command processing, and USB CDC communication.
+ * It contains configuration flags, state variables, buffers for input and output, and pointers 
+ * to driver instances.
  */
 typedef struct {
-    // Configuration
-    bool send_welcome_screen; // This inits to false; Don't reset in init sequence.
-    uint8_t send_welcome_screen_guard; // Guards against double welcome screens with a longer timer value.
-    char exe_char;
-    // Drivers
-    Eeprom24xx *eeprom;
-    NyanBitcoin *nyan_bitcoin;
-    // State
-    NyanStates state;
-    NyanExe exe;
-    bool exe_in_progress;
-    uint8_t command_buffer[_NYAN_CMD_BUF_LEN + 1];
-    uint8_t command_buffer_pos;
-    uint8_t command_buffer_num_args;
-    uint8_t cdc_ch;
-    // USB CDC Transmission Buffer
-    bool tx_inflight; // This inits to false; Don't reset in init sequence.
-    bool tx_bulk_transfer_in_progress;
-    uint8_t tx_chunks_solid; // Complete _NYAN_CDC_TX_MAX_LEN sized chunks
-    uint8_t tx_chunks_partial_bytes; // Number of bytes of a partial chunk that exist. 
-    uint8_t tx_chunk;
-    NyanString tx_buffer;
-    // DIRECT_BUFFER_ACCESS USB CDC Rx Buffer - Some of these vars need to be renamed
-    uint8_t rx_buffer[_NYAN_CDC_RX_BUF_SZ];
-    uint8_t rx_buffer_sz;
-    uint32_t bytes_received;
-    uint32_t bytes_array_size;
-    uint8_t* bytes_array;
-    // Allocated buffers
-    uint8_t* command_arg_buffer[_NYAN_CMD_MAX_ARGS];
-    uint8_t* data_buffer;
+    bool        send_welcome_screen;                    /**< Flag to indicate if the welcome screen should be sent. Initialized to false. */
+    uint8_t     send_welcome_screen_guard;              /**< Timer value to prevent multiple welcome screens. */
+    char        exe_char;                               /**< ASCII character that triggers command evaluation. */
+
+    Eeprom24xx  *eeprom;                                /**< Pointer to NyanOS EEPROM driver. */
+    NyanBitcoin *nyan_bitcoin;                          /**< Pointer to NyanOS Bitcoin Miner driver. */
+
+    NyanStates  state;                                  /**< Current state of NyanOS. */
+    NyanExe     exe;                                    /**< The program to be executed. */
+    uint8_t     command_buffer[_NYAN_CMD_BUF_LEN + 1];  /**< Buffer storing user-inputted commands. */
+    uint8_t     command_buffer_pos;                     /**< Position of the cursor in the command buffer. */
+    uint8_t     command_buffer_num_args;                /**< Number of arguments in the last command. */
+    bool        exe_in_progress;                        /**< Flag indicating if a program is being executed. */
+
+    uint8_t     cdc_ch;                                 /**< Active CDC channel used. Should always be 0 for Nyan OS. */
+    bool        tx_inflight;                            /**< Flag for ongoing transmission. Initialized to false. */
+    bool        tx_bulk_transfer_in_progress;           /**< Flag for ongoing bulk transfer over USB. */
+    uint8_t     tx_chunks_solid;                        /**< Number of complete _NYAN_CDC_TX_MAX_LEN sized chunks to be sent. */
+    uint8_t     tx_chunks_partial_bytes;                /**< Number of bytes in a partial chunk. */
+    uint8_t     tx_chunk;                               /**< Current chunk number to be sent. */
+    NyanString  tx_buffer;                              /**< Transmission buffer. */
+
+    uint8_t     rx_buffer[_NYAN_CDC_RX_BUF_SZ];         /**< Buffer for received USB CDC data. */
+    uint8_t     rx_buffer_sz;                           /**< Current size of the receive buffer. */
+    uint32_t    bytes_received;                         /**< Number of bytes received in Direct Buffer Mode. */
+    uint32_t    bytes_array_size;                       /**< Size of the receive buffer in Direct Buffer Mode. */
+    uint8_t*    bytes_array;                            /**< Buffer holding the received data in Direct Buffer Mode. */
+
+    uint8_t*    command_arg_buffer[_NYAN_CMD_MAX_ARGS]; /**< Buffers to store command arguments. */
 } NyanOS;
 
 /**
