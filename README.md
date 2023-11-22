@@ -36,6 +36,8 @@ On the Nyan Keys 0.8x - 0.9x boards there are 5 status leds that are activated u
 
 The system status LED should pulse at a rate of 1.287hz and have a period of 777ms. This is driven by TIM1 and TIM6 using interrupts.
 
+The FPGA configuration LED will always match the pin status of ```c_done``` of the Lattice FPGA. ```c_done``` is an active high signal and will only go high once the FPGA has been programmed __AND__ the 47 dummy bits have been sent over the SPI bus. NyanOS handles all of this without any additional programming using the ```FPGAInit``` function in ```lattice_ice_hx.c```
+
 ### FPGA Bitstream Loading
 The NyanOS out of the box should support any Lattice Ice40HX FPGAs that are also supported by [IceStorm](https://github.com/YosysHQ/icestorm). For a complete hardware support list visit. [https://clifford.at/icestorm](https://clifford.at/icestorm) The flow for synthesizing, placing, and routing is outlined below
 
