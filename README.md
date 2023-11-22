@@ -1,7 +1,17 @@
-# NyanOS Firmware (NOS)
+<div align="center">
+ <img src="assets/images/icon_square.png" width="120" height="120">
+</div>
+
+<br>
+
+<div align="center">
+    <h1>NyanOS 🐱 (NOS) - A Fast Keyboard Firmware</h1>
+</div>
+
 ## Nyan Keys Keyboard Firmware
 STM32F723 Firmware for the Nyan Keys keyboard. This architecture places the highest priority on peformance and reliability.
-Some of th primary responsibilies of NOS are.
+
+Some of the primary responsibility of NOS are.
  - USB 2.0 HS - HID/CDC composite device
  - Serial console
  - EEPROM master
