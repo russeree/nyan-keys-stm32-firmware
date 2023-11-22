@@ -9,25 +9,50 @@
 </div>
 
 ## Nyan Keys Keyboard Firmware
-STM32F723 Firmware for the Nyan Keys keyboard. This architecture places the highest priority on peformance and reliability.
+STM32F723 Firmware for the Nyan Keys keyboard. This architecture places the highest priority on performance, latency, and reliability.
 
-Some of the primary responsibility of NOS are.
- - USB 2.0 HS - HID/CDC composite device
- - Serial console
- - EEPROM master
- - FPGA bitstream programmer
- - Status indication - 5 Leds
+### Supported Hardware
+
+| MCU         | Description               |
+| ----------- | ------------------------- |
+| STM32F723xx | STM32 F7 w/ USB2.0 HS PHY |
+
+### Responsibilities 
+ - __USB 2.0 HS HID/CDC composite device__
+ - __Serial console via USB__
+ - __EEPROM master - FPGA Bitstream Storage__
+ - __FPGA bitstream programmer - SPI Master__
+ - __Status indication - 5 Leds__
+ - __Bitcoin Miner - opt-in__
+ - __USB HID Interface @ 8000hz Polling__
+ - __SPI Master to FPGA switch serializer and debouncer__
 
 ### Status Indication
 On the Nyan Keys 0.8x - 0.9x boards there are 5 status leds that are activated upon boot. The labels for these LED(s) are as follows
 | ID   | Name        | Description            |
 | ---- | ----------- | ---------------------- |
 | 0    | LED_0       | MCU Functional POST    |
-| 1    | LED_1       | FPGA Configured        |
+| 5    | LED_1       | FPGA Configured        |
 
-The system status LED should pulse at a rate of 1.287hz and have a period of 777ms. This is driven by TIM1 and TIM6 using interupts.
+The system status LED should pulse at a rate of 1.287hz and have a period of 777ms. This is driven by TIM1 and TIM6 using interrupts.
 
-TIM1 (Timer 1)
+### FPGA Bitstream Loading
+The NyanOS out of the box should support any Lattice Ice40HX FPGAs that are also supported by [IceStorm](https://github.com/YosysHQ/icestorm). For a complete hardware support list visit. [https://clifford.at/icestorm](https://clifford.at/icestorm) The flow for synthesizing, placing, and routing is outlined below
+
+1. ```yosys <args>```
+2. ```nextpnr <args>```
+3. ```icepack <bitstream.asc> <bitstream.bin```
+4. ```icecompr.py < bitstream.bin > bitstream_compr.bin```
+
+The icecompr tool is utilized to compress the bitstream, typically achieving a final ratio of approximately 25-30%. This compression allows an Ice40HX4K bitstream to fit on a 1Mbit I2C EEPROM. Without compression, the bitstream would occupy 131070 bytes, exceeding the capacity of the I2C EEPROM.
+
+In NyanOS, the FPGA is treated as an SPI slave. The system manages all dummy bits both before (8 bits) and after (47 bits) the bitstream programming. NyanOS sends 48 dummy bits to the slave, as 47 is not divisible by 8, and thus it rounds up.
+
+The FPGA bitstream programming in NyanOS occurs at startup and typically takes 2-3 seconds. This duration is primarily due to loading the bitstream from the I2C bus at 200KHz. Speed improvements might be possible in future updates by using lower value pull-up resistors. Currently, 10K resistors are used in Nyan Keys hardware.
+
+__NOTE:__ The time to load the Bitstream is roughly 2-3 seconds and will occur on device power-on. The FPGA can be reprogrammed without a complete device reset, by setting the nos_fpga->configured to false. The main loop will eventually catch this after the interrupts complete and reload the bitstream from the contents of the EEPROM IC that are in Bank 1, using the value stored in the EEPROM bank 0 EEPROM FPGA Bitstream Len address 0x00B0 aligned as 4 Words, where each word is little endian encoded. This will be fixed later but current functions correct and you can use the ```write-bitstream <size>``` command and this will all be handled. __THE MAXIMUM BITSTREAM SIZE IS 65536 BYTES__ anything more and you will get a size error returned.
+
+User input to keys is not handled until the FPGA bitstream is loaded. Any keys pressed before configuration will not be relayed via the HID peripheral. 
 
 ### EEPROM Address Layout
 | Block | Address     | Description            | Length |
@@ -60,5 +85,5 @@ TIM1 (Timer 1)
 | 0     | 0x01D0      | Reserved 17            | 16     |
 | 0     | 0x01E0      | Reserved 18            | 16     |
 | 0     | 0x01F0      | Reserved 19            | 16     |
-| 1     | 0x0000      | FPGA Bitstream         | 8192   |
+| 1     | 0x0000      | FPGA Bitstream         | 65535  |
 
