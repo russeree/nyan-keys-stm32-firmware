@@ -35,16 +35,10 @@ _Please make a PR if you decide to use NyanOS for your keyboard PCB_
  - __USB HID Interface @ 8000hz Polling__
  - __SPI Master to FPGA switch serializer and debouncer__
 
-### Status Indication
-On the Nyan Keys 0.8x - 0.9x boards there are 5 status leds that are activated upon boot. The labels for these LED(s) are as follows
-| ID   | Name        | Description            |
-| ---- | ----------- | ---------------------- |
-| 0    | LED_0       | MCU Functional POST    |
-| 5    | LED_1       | FPGA Configured        |
 
-The system status LED should pulse at a rate of 1.287hz and have a period of 777ms. This is driven by TIM1 and TIM6 using interrupts.
 
-The FPGA configuration LED will always match the pin status of ```c_done``` of the Lattice FPGA. ```c_done``` is an active high signal and will only go high once the FPGA has been programmed __AND__ the 47 dummy bits have been sent over the SPI bus. NyanOS handles all of this without any additional programming using the ```FPGAInit``` function in ```lattice_ice_hx.c```
+### NyanOS Terminal
+One of the nicer features of NyanOS is a fully functional USB-CDC (_serial_) interface to interact with NyanOSk. Currently functionality is limited to only the most necessary commands for keyboard operation and configuration. 
 
 ### FPGA Bitstream Loading
 The NyanOS out of the box should support any Lattice Ice40HX FPGAs that are also supported by [IceStorm](https://github.com/YosysHQ/icestorm). For a complete hardware support list visit. [https://clifford.at/icestorm](https://clifford.at/icestorm) The flow for synthesizing, placing, and routing is outlined below
@@ -63,6 +57,17 @@ The FPGA bitstream programming in NyanOS occurs at startup and typically takes 2
 __NOTE:__ The time to load the Bitstream is roughly 2-3 seconds and will occur on device power-on. The FPGA can be reprogrammed without a complete device reset, by setting the nos_fpga->configured to false. The main loop will eventually catch this after the interrupts complete and reload the bitstream from the contents of the EEPROM IC that are in Bank 1, using the value stored in the EEPROM bank 0 EEPROM FPGA Bitstream Len address 0x00B0 aligned as 4 Words, where each word is little endian encoded. This will be fixed later but current functions correct and you can use the ```write-bitstream <size>``` command and this will all be handled. __THE MAXIMUM BITSTREAM SIZE IS 65536 BYTES__ anything more and you will get a size error returned.
 
 User input to keys is not handled until the FPGA bitstream is loaded. Any keys pressed before configuration will not be relayed via the HID peripheral. 
+
+### Status Indication
+On the Nyan Keys 0.8x - 0.9x boards there are 5 status leds that are activated upon boot. The labels for these LED(s) are as follows
+| ID   | Name        | Description            |
+| ---- | ----------- | ---------------------- |
+| 0    | LED_0       | MCU Functional POST    |
+| 5    | LED_1       | FPGA Configured        |
+
+The system status LED should pulse at a rate of 1.287hz and have a period of 777ms. This is driven by TIM1 and TIM6 using interrupts.
+
+The FPGA configuration LED will always match the pin status of ```c_done``` of the Lattice FPGA. ```c_done``` is an active high signal and will only go high once the FPGA has been programmed __AND__ the 47 dummy bits have been sent over the SPI bus. NyanOS handles all of this without any additional programming using the ```FPGAInit``` function in ```lattice_ice_hx.c```
 
 ### EEPROM Address Layout
 | Block | Address     | Description            | Length |
