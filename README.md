@@ -13,6 +13,14 @@ STM32F723 Firmware for the Nyan Keys keyboard. This architecture places the high
 
 ### Supported Hardware
 
+#### Keyboard PCBs
+| PCB            | Description               |
+| -------------- | ------------------------- |
+| NyanKeys Proto | Nyan Keys Prototype 0     |
+
+Please make a PR if you decide to use NyanOS for your keyboard PCB
+
+#### MCUs
 | MCU         | Description               |
 | ----------- | ------------------------- |
 | STM32F723xx | STM32 F7 w/ USB2.0 HS PHY |
