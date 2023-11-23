@@ -8,7 +8,7 @@
 #include "nyan_bitcoin.h"
 #include "nyan_eeprom_map.h"
 
-#define _NYAN_WELCOME_GUARD_TIME 210 // Currently a multiple of TIM7 Period (.777 seconds)
+#define _NYAN_WELCOME_GUARD_TIME 4 // Currently a multiple of TIM7 Period (.777 seconds)
 #define _NYAN_CDC_CHANNEL 0
 #define _NYAN_CDC_RX_BUF_SZ 512
 #define _NYAN_CDC_TX_MAX_LEN 128

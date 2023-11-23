@@ -6,7 +6,8 @@
         "compare": "c",
         "usbd_cdc_acm_if.h": "c",
         "nyan_os.h": "c",
-        "24xx_eeprom.h": "c"
+        "24xx_eeprom.h": "c",
+        "lattice_ice_hx.h": "c"
     },
     "cSpell.words": [
         "BITSTREAM",

@@ -57,7 +57,7 @@ NyanReturn NyanWelcomeDisplay(volatile NyanOS *nos)
         // Set to zero if the welcome screen is sent within the guarded period
         nos->send_welcome_screen = 0x00;
         // If the guard has expired send send the Welcome Screen -> increment 
-        if(nos->send_welcome_screen_guard++ == 0){
+        if(nos->send_welcome_screen_guard++ <= 1){
             NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], strlen((char*)nyan_keys_welcome_text));
             NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
         }
