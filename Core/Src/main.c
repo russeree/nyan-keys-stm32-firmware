@@ -63,12 +63,12 @@
 /* USER CODE BEGIN PV */
 double system_status_led_angle; // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
 
-volatile NyanOS nos;      // NyanOS - Main Operating System
-Iceuncompr ice_uncompr;   // Decompression agent - FPGA Bitstream 
-Eeprom24xx nos_eeprom;    // 24xx Based EEPROM
-LatticeIceHX nos_fpga;    // Lattice ICE40HX4k FPGA driver
-NyanBitcoin nyan_bitcoin; // Nyan Keys Background Bitcoin Miner
-NyanKeys nyan_keys;       // Nyan Keys FPGA Switch driver FPGA -> SPI -> STM32
+volatile NyanOS nos;            // NyanOS - Main Operating System
+volatile Eeprom24xx nos_eeprom; // 24xx Based EEPROM
+Iceuncompr ice_uncompr;         // Decompression agent - FPGA Bitstream 
+LatticeIceHX nos_fpga;          // Lattice ICE40HX4k FPGA driver
+NyanBitcoin nyan_bitcoin;       // Nyan Keys Background Bitcoin Miner
+NyanKeys nyan_keys;             // Nyan Keys FPGA Switch driver FPGA -> SPI -> STM32
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

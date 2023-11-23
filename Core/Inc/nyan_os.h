@@ -8,7 +8,7 @@
 #include "nyan_bitcoin.h"
 #include "nyan_eeprom_map.h"
 
-#define _NYAN_WELCOME_GUARD_TIME 4 // Currently a multiple of TIM7 Period (.777 seconds)
+#define _NYAN_WELCOME_GUARD_TIME 6 // Currently a multiple of TIM7 Period (.777 seconds)
 #define _NYAN_CDC_CHANNEL 0
 #define _NYAN_CDC_RX_BUF_SZ 512
 #define _NYAN_CDC_TX_MAX_LEN 128
@@ -19,7 +19,7 @@
 
 #define _NYAN_NUM_COMMANDS (sizeof(nyan_commands) / sizeof(nyan_commands[0]))
 
-extern Eeprom24xx nos_eeprom;    // 24xx Based EEPROM
+extern volatile Eeprom24xx nos_eeprom;    // 24xx Based EEPROM
 extern LatticeIceHX nos_fpga;    // Lattice ICE40HX4k FPGA driver access
 extern NyanBitcoin nyan_bitcoin; // Nyan Keys Background Bitcoin Miner
 
