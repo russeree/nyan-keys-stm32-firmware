@@ -18,8 +18,8 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USB_HID_KEYBAORD_H
-#define __USB_HID_KEYBAORD_H
+#ifndef __USB_HID_KEYBOARD_H
+#define __USB_HID_KEYBOARD_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -44,12 +44,12 @@ extern "C" {
 
 #define HID_KEYBOARD_STR_DESC                               "Nyan Keys - FPGA Keyboard"
 
-#define HID_KEYBOARD_EPIN_SIZE                              0x08U
+#define HID_KEYBOARD_EPIN_SIZE                              0x80U //Increase size for USB2.0 HS NKRO Extended Report
 
 #define HID_KEYBOARD_CONFIG_DESC_SIZE                       34U
 #define HID_KEYBOARD_DESC_SIZE                              9U
 
-#define HID_KEYBOARD_REPORT_DESC_SIZE                       187U
+#define HID_KEYBOARD_REPORT_DESC_SIZE                       65U
 
 #define HID_KEYBOARD_DESCRIPTOR_TYPE                        0x21U
 #define HID_KEYBOARD_REPORT_DESC                            0x22U
@@ -119,7 +119,7 @@ extern uint8_t HID_KEYBOARD_STR_DESC_IDX;
 /** @defgroup USB_CORE_Exported_Functions
   * @{
   */
-uint8_t USBD_HID_Keybaord_SendReport(USBD_HandleTypeDef *pdev, uint8_t *report, uint16_t len);
+uint8_t USBD_HID_Keyboard_SendReport(USBD_HandleTypeDef *pdev, uint8_t *report, uint16_t len);
 uint32_t USBD_HID_Keyboard_GetPollingInterval(USBD_HandleTypeDef *pdev);
 
 void USBD_Update_HID_KBD_DESC(uint8_t *desc, uint8_t itf_no, uint8_t in_ep, uint8_t str_idx);
@@ -132,7 +132,7 @@ void USBD_Update_HID_KBD_DESC(uint8_t *desc, uint8_t itf_no, uint8_t in_ep, uint
 }
 #endif
 
-#endif /* __USB_HID_KEYBAORD_H */
+#endif /* __USB_HID_KEYBOARD_H */
 /**
   * @}
   */
