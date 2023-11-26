@@ -442,6 +442,7 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos)
         return NOS_FAILURE;
     }
 
+    // Enter direct buffer access mode
     nos->state = DIRECT_BUFFER_ACCESS;
 
     while(nos->bytes_received != nos->bytes_array_size) {
@@ -465,6 +466,7 @@ NyanReturn NyanExeWriteFpgaBitstream(volatile NyanOS* nos)
     }
     hexString[SHA256_BLOCK_SIZE * 2] = '\0';
 
+     NyanPrint(nos, (char*)nyan_keys_write_bitstream_info_eeprom_write_completed, strlen((char*)nyan_keys_write_bitstream_info_eeprom_write_completed));
     NyanPrint(nos, (char*)&hexString[0], SHA256_BLOCK_SIZE * 2);
     NyanPrint(nos, (char*)&nyan_keys_newline[0], strlen((char*)nyan_keys_newline));
 

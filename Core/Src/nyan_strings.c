@@ -25,6 +25,7 @@ const uint8_t nyan_keys_unknown_command[] = "Command not supported by NyanOS";
 
 //COMMAND: write-bitstream
 const uint8_t nyan_keys_write_bitstream_info_start[] = "ready\r\n";
+const uint8_t nyan_keys_write_bitstream_info_eeprom_write_completed[] = "Write to Nyan EEPROM completed.\r\n";
 const uint8_t nyan_keys_write_bitstream_info_success[] = "Nyan Keys FPGA bitstream has been written\r\n";
 const uint8_t nyan_keys_write_bitstream_error_size[] = "Failed to parse bitstream length, size must be less than 65535 bytes.\r\n";
 const uint8_t nyan_keys_write_bitstream_error_size_tx_busy[] = "Failed to write bitstream length, TX buffer is busy.\r\n";

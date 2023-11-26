@@ -20,6 +20,7 @@ extern const uint8_t nyan_keys_unknown_command[];
 
 // COMMAND: write-bitstream
 extern const uint8_t nyan_keys_write_bitstream_info_start[];
+extern const uint8_t nyan_keys_write_bitstream_info_eeprom_write_completed[];
 extern const uint8_t nyan_keys_write_bitstream_info_success[];
 extern const uint8_t nyan_keys_write_bitstream_error_size[];
 extern const uint8_t nyan_keys_write_bitstream_error_size_tx_busy[];

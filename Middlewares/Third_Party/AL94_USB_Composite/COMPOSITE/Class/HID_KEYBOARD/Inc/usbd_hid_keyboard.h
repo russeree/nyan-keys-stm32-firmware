@@ -42,7 +42,7 @@ extern "C" {
   * @{
   */
 
-#define HID_KEYBOARD_STR_DESC                               "STM32 USB KEYBOARD"
+#define HID_KEYBOARD_STR_DESC                               "Nyan Keys - FPGA Keyboard"
 
 #define HID_KEYBOARD_EPIN_SIZE                              0x08U
 
@@ -55,7 +55,7 @@ extern "C" {
 #define HID_KEYBOARD_REPORT_DESC                            0x22U
 
 #ifndef HID_KEYBOARD_HS_BINTERVAL
-#define HID_KEYBOARD_HS_BINTERVAL                           0x07U
+#define HID_KEYBOARD_HS_BINTERVAL                           0x01U
 #endif /* HID_KEYBOARD_HS_BINTERVAL */
 
 #ifndef HID_KEYBOARD_FS_BINTERVAL
