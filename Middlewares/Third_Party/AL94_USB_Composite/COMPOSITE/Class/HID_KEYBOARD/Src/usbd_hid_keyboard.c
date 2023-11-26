@@ -290,13 +290,13 @@ __ALIGN_BEGIN static uint8_t HID_KEYBOARD_ReportDesc[HID_KEYBOARD_REPORT_DESC_SI
     0x75, 0x01,                     /* Report Size (1), */
     0x81, 0x01,                     /* Input (Const,Array,Abs,No Wrap,Linear,Preferred State,No Null Position) */
     /* hybrid of keys */
-    0x95, 0x3E,                     /* Report Count (70 - 8 Keys), */
+    0x95, 0x34,                     /* Report Count (60 - 8 Keys), */
     0x75, 0x01,                     /* Report Size (1), */
     0x15, 0x00,                     /* Logical Minimum (0), */
     0x25, 0x01,                     /* Logical Maximum(1), */
     0x05, 0x07,                     /* Usage Page (Key Codes), */
     0x19, 0x00,                     /* Usage Minimum (0), */
-    0x29, 0x3E,                     /* Usage Maximum (70 - 8 Keys), */
+    0x29, 0x34,                     /* Usage Maximum (60 - 8 Keys), */
     0x81, 0x02,                     /* Input (Data, Variable, Absolute), */
     0xc0                            /* End Collection */
 };
