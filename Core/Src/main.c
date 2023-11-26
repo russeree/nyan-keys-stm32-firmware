@@ -31,6 +31,7 @@
 // USB Composite device support
 #include "usb_device.h"
 #include "usbd_cdc_acm_if.h"
+#include "usbd_hid_keyboard.h"
 // Nyan Keys Specific Hardware
 #include "24xx_eeprom.h"
 #include "iceuncompr.h"
@@ -61,6 +62,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+extern USBD_HandleTypeDef hUsbDevice;
+
 double system_status_led_angle; // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
 
 // Volatile Interrupt Variables
@@ -159,7 +162,7 @@ int main(void)
     else
       FPGAInit(&nos_fpga);
     /* USER CODE END WHILE */
-    NyanBitcoinHashHeader(&nyan_bitcoin);
+    //NyanBitcoinHashHeader(&nyan_bitcoin);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -220,7 +223,11 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
+  // We are done reading. Now convert the latest state to a descriptor report - push the report to inflight
   nyan_keys.key_read_inflight = false;
+  NyanBuildHidReportFromKeyStates(&nyan_keys, &nyan_hid_report);
+  USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
+  // Deactivate Slave Select Line
   HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
 }
 

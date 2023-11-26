@@ -11,6 +11,7 @@
 
 #define NUM_KEYS 61 /**< Number of key state bits to be read from FPGA over SPI */
 #define NUM_HID_KEYS 60 /**< Number of keys that could have any impact on the HID descriptor */
+#define KEYS_WARMUP_READS 2 /**< Number of spi read to perform to allow key states post init to settle */
 
 /**
  * @enum NyanKeysReturn
@@ -25,7 +26,7 @@ typedef enum {
  * @struct NyanKeyBoardDescriptor
  * @brief Structure for USB Report.
  */
-typedef struct {
+typedef struct __attribute__((aligned(4))) {
     uint8_t MODIFIER;        /**< Modifier keys state */
     uint8_t RESERVED;        /**< Reserved byte */
     uint8_t BOOTKEYCODE[8];  /**< Boot key codes */
@@ -47,7 +48,9 @@ typedef enum {
  */
 typedef struct {
     bool key_read_inflight;                   /**< Flag to indicate if a key read is in progress */
-    uint8_t key_states[((NUM_KEYS + 7) / 8)]; /**< Array to hold the state of each key */
+    bool warmed_up;                           /**< We allow for KEYS_WARMUP_READS before allowing the processing of keys */
+    uint32_t warm_up_reads;                   /**< A count of the number of reads to deremine if the warmup flag can go true */
+    uint8_t key_states[((NUM_KEYS + 7) / 8) + 1]; /**< Array to hold the state of each key */
     uint8_t boot_byte_cnt;
     uint8_t ext_byte_cnt;
 } NyanKeys;

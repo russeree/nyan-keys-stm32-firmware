@@ -4,6 +4,7 @@
  */
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "nyan_keys.h"
 #include "spi.h"
@@ -15,7 +16,8 @@ bool NyanGetKeyState(NyanKeys *keys, int key)
 {
     int byteIndex = key / 8;
     int bitIndex = key % 8;
-    return (keys->key_states[byteIndex] & (1 << bitIndex)) != 0;
+    // We offset the byte index by 1 to account for the dummy first byte;
+    return (keys->key_states[byteIndex + 1] & (1 << bitIndex)) != 0;
 }
 
 NyanKeysReturn NyanStuctAllocator(NyanKeys *keys, volatile NyanKeyBoardDescriptor *desc, uint8_t hid_scan_code)
@@ -32,7 +34,11 @@ NyanKeysReturn NyanStuctAllocator(NyanKeys *keys, volatile NyanKeyBoardDescripto
 NyanKeysReturn NyanKeysInit(NyanKeys *keys)
 {
     HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
+
     keys->key_read_inflight = false;
+    keys->warm_up_reads = 0;
+    keys->warmed_up = false;
+
     return NYAN_KEYS_SUCCESS;
 }
 
@@ -50,13 +56,24 @@ NyanKeysReturn NyanGetKeys(NyanKeys *keys)
 
 NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyBoardDescriptor *desc)
 {
+    // Determine the warmup state of Nyan Keys FPGA outputs
+    if (keys->warm_up_reads < KEYS_WARMUP_READS) {
+        keys->warm_up_reads++;
+        if (keys->warm_up_reads >= KEYS_WARMUP_READS) {
+            keys->warmed_up = true;
+        }
+    }
+
+    // Nullify the descriptor report
+    memset((void*)desc, 0, sizeof(NyanKeyBoardDescriptor));
+
     // Set descriptor report counters to 0
     keys->boot_byte_cnt = 0;
     keys->ext_byte_cnt = 0;
 
     // Iterate through the keys and process their states - Perform actions on state
     for (Keyboard60PercentKeys key = ESC; key < NUM_KEYS; ++key) {
-        if(!NyanGetKeyState(keys, key)){
+        if(!NyanGetKeyState(keys, key) && keys->warmed_up) {
             switch (key) {
                 case ESC:
                     NyanStuctAllocator(keys, desc, KEY_ESC);
@@ -66,15 +83,12 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
                     break;
                 case CAPS:
                     NyanStuctAllocator(keys, desc, KEY_CAPSLOCK);
-                    // Handle Modifier
                     break;
                 case L_SHIFT:
                     NyanStuctAllocator(keys, desc, KEY_LEFTSHIFT);
-                    // Handle SHIFT (requires determining left or right)
                     break;
                 case LEFT_CTRL:
                     NyanStuctAllocator(keys, desc, KEY_LEFTCTRL);  
-                    // Handle Modifier
                     break;
                 case NUM_1:
                     NyanStuctAllocator(keys, desc, KEY_1);
@@ -232,7 +246,7 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
                 case N:
                     NyanStuctAllocator(keys, desc, KEY_N);
                     break;
-                case J:
+                case J:  
                     NyanStuctAllocator(keys, desc, KEY_J);
                     break;
                 case U:
