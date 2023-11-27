@@ -22,9 +22,9 @@ bool NyanGetKeyState(NyanKeys *keys, int key)
 
 NyanKeysReturn NyanStuctAllocator(NyanKeys *keys, volatile NyanKeyBoardDescriptor *desc, uint8_t hid_scan_code)
 {
-    if(keys->boot_byte_cnt < 8)
+    if(keys->boot_byte_cnt < NUM_BOOT_KEYS)
         desc->BOOTKEYCODE[keys->boot_byte_cnt++] = hid_scan_code;
-    if(keys->ext_byte_cnt < NUM_HID_KEYS - 8)
+    if(keys->ext_byte_cnt < NUM_HYBRID_KEYS)
         desc->EXTKEYCODE[keys->boot_byte_cnt++] = hid_scan_code;
     else
         return NYAN_KEYS_FAILURE;

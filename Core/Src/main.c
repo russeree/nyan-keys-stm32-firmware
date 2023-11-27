@@ -235,7 +235,7 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
   memcpy((void *)(raw_hid_report + 2), (uint8_t*)nyan_hid_report.BOOTKEYCODE, sizeof(nyan_hid_report.BOOTKEYCODE));
   memcpy((void *)(raw_hid_report + 2 + sizeof(nyan_hid_report.BOOTKEYCODE)), (uint8_t*)nyan_hid_report.EXTKEYCODE, sizeof(nyan_hid_report.EXTKEYCODE));
 
-  USBD_HID_Keyboard_SendReport(&hUsbDevice, raw_hid_report, sizeof(raw_hid_report));
+  USBD_HID_Keyboard_SendReport(&hUsbDevice, &raw_hid_report[0], sizeof(raw_hid_report));
   // Deactivate Slave Select Line
   HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
 }

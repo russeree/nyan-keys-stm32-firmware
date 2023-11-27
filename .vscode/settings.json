@@ -12,7 +12,8 @@
         "spi.h": "c",
         "usb_hid_keys.h": "c",
         "nyan_keys.h": "c",
-        "usb_device.h": "c"
+        "usb_device.h": "c",
+        "usbd_hid_keyboard.h": "c"
     },
     "cSpell.words": [
         "BINTERVAL",
