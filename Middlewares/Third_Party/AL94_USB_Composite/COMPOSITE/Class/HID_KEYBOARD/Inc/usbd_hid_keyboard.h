@@ -44,7 +44,8 @@ extern "C" {
 
 #define HID_KEYBOARD_STR_DESC                               "Nyan Keys - FPGA Keyboard"
 
-#define HID_KEYBOARD_EPIN_SIZE                              0x11 //Increase size for USB2.0 HS NKRO Extended Report
+#define HID_KEYBOARD_EPIN_SIZE_HS                           0x80 // Increase size for USB2.0 HS NKRO Extended Report
+#define HID_KEYBOARD_EPIN_SIZE_FS                           0x08 // Full Speed Legacy Compatibility
 
 #define HID_KEYBOARD_CONFIG_DESC_SIZE                       34U
 #define HID_KEYBOARD_DESC_SIZE                              9U

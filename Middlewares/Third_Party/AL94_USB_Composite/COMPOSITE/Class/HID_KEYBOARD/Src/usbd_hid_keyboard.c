@@ -153,7 +153,7 @@ __ALIGN_BEGIN static uint8_t USBD_HID_KEYBOARD_CfgFSDesc[HID_KEYBOARD_CONFIG_DES
         0x01,                       /* bNumEndpoints */
         0x03,                       /* bInterfaceClass: HID */
         0x01,                       /* bInterfaceSubClass : 1=BOOT, 0=no boot */
-        0x01,                       /* nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse */
+        0x00,                       /* nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse */
         _HID_KEYBOARD_STR_DESC_IDX, /* iInterface: Index of string descriptor */
         /******************** Descriptor of Keyboard HID ********************/
         /* 18 */
@@ -171,8 +171,8 @@ __ALIGN_BEGIN static uint8_t USBD_HID_KEYBOARD_CfgFSDesc[HID_KEYBOARD_CONFIG_DES
         0x07,                   /* bLength: Endpoint Descriptor size */
         USB_DESC_TYPE_ENDPOINT, /* bDescriptorType:*/
         _HID_KEYBOARD_IN_EP,    /* bEndpointAddress: Endpoint Address (IN) */
-        0x03,                   /* bmAttributes: Interrupt endpoint */
-        HID_KEYBOARD_EPIN_SIZE, /* wMaxPacketSize: 4 Byte max */
+        0x03,                       /* bmAttributes: Interrupt endpoint */
+        HID_KEYBOARD_EPIN_SIZE_FS, /* wMaxPacketSize: 4 Byte max */
         0x00,
         HID_KEYBOARD_FS_BINTERVAL, /* bInterval: Polling Interval */
                                    /* 34 */
@@ -223,7 +223,7 @@ __ALIGN_BEGIN static uint8_t USBD_HID_KEYBOARD_CfgHSDesc[HID_KEYBOARD_CONFIG_DES
         USB_DESC_TYPE_ENDPOINT, /* bDescriptorType: */
         _HID_KEYBOARD_IN_EP,    /* bEndpointAddress: Endpoint Address (IN) */
         0x03,                   /* bmAttributes: Interrupt endpoint */
-        HID_KEYBOARD_EPIN_SIZE, /* wMaxPacketSize: 4 Byte max */
+        HID_KEYBOARD_EPIN_SIZE_HS, /* wMaxPacketSize: 4 Byte max */
         0x00,
         HID_KEYBOARD_HS_BINTERVAL, /* bInterval: Polling Interval */
                                    /* 34 */
@@ -325,14 +325,17 @@ static uint8_t USBD_HID_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx)
   if (pdev->dev_speed == USBD_SPEED_HIGH)
   {
     pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].bInterval = HID_KEYBOARD_HS_BINTERVAL;
+    /* Open EP IN - High Speed */
+    (void)USBD_LL_OpenEP(pdev, HID_KEYBOARD_IN_EP, USBD_EP_TYPE_INTR, HID_KEYBOARD_EPIN_SIZE_HS);
   }
   else /* LOW and FULL-speed endpoints */
   {
     pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].bInterval = HID_KEYBOARD_FS_BINTERVAL;
+    /* Open EP IN - High Speed */
+    (void)USBD_LL_OpenEP(pdev, HID_KEYBOARD_IN_EP, USBD_EP_TYPE_INTR, HID_KEYBOARD_EPIN_SIZE_FS);
   }
 
-  /* Open EP IN */
-  (void)USBD_LL_OpenEP(pdev, HID_KEYBOARD_IN_EP, USBD_EP_TYPE_INTR, HID_KEYBOARD_EPIN_SIZE);
+  
   pdev->ep_in[HID_KEYBOARD_IN_EP & 0xFU].is_used = 1U;
 
   hhid->state = KEYBOARD_HID_IDLE;

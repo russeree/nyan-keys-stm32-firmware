@@ -65,7 +65,7 @@
 extern USBD_HandleTypeDef hUsbDevice;
 
 double system_status_led_angle; // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
-uint8_t raw_hid_report[NUM_HID_KEYS + 2];
+volatile uint8_t raw_hid_report[NUM_HID_KEYS + 2] __attribute__((aligned(4)));
 
 
 // Volatile Interrupt Variables
@@ -227,15 +227,15 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
   // We are done reading. Now convert the latest state to a descriptor report - push the report to inflight
   nyan_keys.key_read_inflight = false;
-  NyanBuildHidReportFromKeyStates(&nyan_keys, &nyan_hid_report);
 
-  // Build the raw HID report to send !!!FIXME!!! This might be able to be removed later.
+  // Build a new HID Report and send
+  NyanBuildHidReportFromKeyStates(&nyan_keys, &nyan_hid_report);
   raw_hid_report[0] = nyan_hid_report.MODIFIER;
   raw_hid_report[1] = nyan_hid_report.RESERVED;
   memcpy((void *)(raw_hid_report + 2), (uint8_t*)nyan_hid_report.BOOTKEYCODE, sizeof(nyan_hid_report.BOOTKEYCODE));
   memcpy((void *)(raw_hid_report + 2 + sizeof(nyan_hid_report.BOOTKEYCODE)), (uint8_t*)nyan_hid_report.EXTKEYCODE, sizeof(nyan_hid_report.EXTKEYCODE));
+  USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)raw_hid_report, sizeof(raw_hid_report));
 
-  USBD_HID_Keyboard_SendReport(&hUsbDevice, &raw_hid_report[0], sizeof(raw_hid_report));
   // Deactivate Slave Select Line
   HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
 }
