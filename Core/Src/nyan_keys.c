@@ -24,7 +24,7 @@ NyanKeysReturn NyanStuctAllocator(NyanKeys *keys, volatile NyanKeyBoardDescripto
 {
     if(keys->boot_byte_cnt < NUM_BOOT_KEYS)
         desc->BOOTKEYCODE[keys->boot_byte_cnt++] = hid_scan_code;
-    if(keys->ext_byte_cnt < NUM_HYBRID_KEYS)
+    else if(keys->ext_byte_cnt < NUM_HYBRID_KEYS)
         desc->EXTKEYCODE[keys->boot_byte_cnt++] = hid_scan_code;
     else
         return NYAN_KEYS_FAILURE;
@@ -47,8 +47,10 @@ NyanKeysReturn NyanGetKeys(NyanKeys *keys)
     //Send out the DMA and we will get the results back from the FPGA 
     if(!keys->key_read_inflight) {
         HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_RESET);
-        HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], &keys->key_states[0], sizeof(keys_registers_addresses));
         keys->key_read_inflight = true;
+        if (HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], &keys->key_states[0], sizeof(keys_registers_addresses)) != HAL_OK) {
+            keys->key_read_inflight = false; 
+        }
     }
 
     return NYAN_KEYS_SUCCESS;

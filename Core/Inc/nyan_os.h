@@ -19,7 +19,7 @@
 
 #define _NYAN_NUM_COMMANDS (sizeof(nyan_commands) / sizeof(nyan_commands[0]))
 
-extern volatile Eeprom24xx nos_eeprom;    // 24xx Based EEPROM
+extern Eeprom24xx nos_eeprom;    // 24xx Based EEPROM
 extern LatticeIceHX nos_fpga;    // Lattice ICE40HX4k FPGA driver access
 extern NyanBitcoin nyan_bitcoin; // Nyan Keys Background Bitcoin Miner
 

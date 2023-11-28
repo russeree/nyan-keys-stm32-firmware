@@ -153,7 +153,7 @@ __ALIGN_BEGIN static uint8_t USBD_HID_KEYBOARD_CfgFSDesc[HID_KEYBOARD_CONFIG_DES
         0x01,                       /* bNumEndpoints */
         0x03,                       /* bInterfaceClass: HID */
         0x01,                       /* bInterfaceSubClass : 1=BOOT, 0=no boot */
-        0x00,                       /* nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse */
+        0x01,                       /* nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse */
         _HID_KEYBOARD_STR_DESC_IDX, /* iInterface: Index of string descriptor */
         /******************** Descriptor of Keyboard HID ********************/
         /* 18 */
@@ -262,33 +262,28 @@ __ALIGN_BEGIN static uint8_t USBD_HID_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_
 /*  HID keyboard report descriptor */
 __ALIGN_BEGIN static uint8_t HID_KEYBOARD_ReportDesc[HID_KEYBOARD_REPORT_DESC_SIZE] __ALIGN_END =
 {
-    0x05, 0x01,                     /* Usage Page (Generic Desktop), */
-    0x09, 0x06,                     /* Usage (Keyboard), */
-    0xA1, 0x01,                     /* Collection (Application), */
-    0x85, 0x04,                     /* Report ID (4), */
-    /* hybrid of modifiers */
-    0x75, 0x01,                     /* Report Size (1), */
-    0x95, 0x08,                     /* Report Count (8), */
-    0x05, 0x07,                     /* Usage Page (Key Codes), */
-    0x19, 0xE0,                     /* Usage Minimum (224), */
-    0x29, 0xE7,                     /* Usage Maximum (231), */
-    0x15, 0x00,                     /* Logical Minimum (0), */
-    0x25, 0x01,                     /* Logical Maximum (1), */
-    0x81, 0x02,                     /* Input (Data, Variable, Absolute), ;Modifier byte */
-    /* Padding / fake boot keyboard */
-    0x95, 0x38,                     /* Report Count (56), */
-    0x75, 0x01,                     /* Report Size (1), */
-    0x81, 0x01,                     /* Input (Const,Array,Abs,No Wrap,Linear,Preferred State,No Null Position) */
-    /* hybrid of keys */
-    0x95, 0x34,                     /* Report Count (60 - 8 Keys), */
-    0x75, 0x01,                     /* Report Size (1), */
-    0x15, 0x00,                     /* Logical Minimum (0), */
-    0x25, 0x01,                     /* Logical Maximum(1), */
-    0x05, 0x07,                     /* Usage Page (Key Codes), */
-    0x19, 0x00,                     /* Usage Minimum (0), */
-    0x29, 0x34,                     /* Usage Maximum (60 - 8 Keys), */
-    0x81, 0x02,                     /* Input (Data, Variable, Absolute), */
-    0xc0                            /* End Collection */
+        0x05, 0x01,        // Usage Page (Generic Desktop Ctrls)
+        0x09, 0x06,        // Usage (Keyboard)
+        0xA1, 0x01,        // Collection (Application)
+        0x05, 0x07,        //   Usage Page (Kbrd/Keypad)
+        0x19, 0xE0,        //   Usage Minimum (0xE0)
+        0x29, 0xE7,        //   Usage Maximum (0xE7)
+        0x15, 0x00,        //   Logical Minimum (0)
+        0x25, 0x01,        //   Logical Maximum (1)
+        0x95, 0x08,        //   Report Count (8)
+        0x75, 0x01,        //   Report Size (1)
+        0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+
+        0x05, 0x07,        //   Usage Page (Kbrd/Keypad)
+        0x95, 0x3D,        //   Report Count (54)
+        0x75, 0x08,        //   Report Size (1)
+        0x15, 0x00,        //   Logical Minimum (0)
+        0x25, 0x65,        //   Logical Maximum (1)
+        0x19, 0x00,        //   Usage Minimum (0x00)
+        0x29, 0x65,        //   Usage Maximum (0xE7)
+        0x81, 0x00,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+
+        0xC0,              // End Collection
 };
 
 /**

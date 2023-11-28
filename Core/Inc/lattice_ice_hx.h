@@ -7,7 +7,7 @@
 #include "iceuncompr.h"
 
 // We need access to the eeprom to read it's contents (Bitstream and size)
-extern volatile Eeprom24xx nos_eeprom;
+extern Eeprom24xx nos_eeprom;
 extern Iceuncompr ice_uncompr;
 
 typedef enum {

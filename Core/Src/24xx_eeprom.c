@@ -9,7 +9,7 @@
 #include "24xx_eeprom.h"
 
 
-EepromReturn EepromInit(volatile Eeprom24xx* eeprom, bool a0, bool a1)   
+EepromReturn EepromInit(Eeprom24xx* eeprom, bool a0, bool a1)   
 {
     eeprom->a0 = a0;
     eeprom->a1 = a1;
@@ -22,14 +22,14 @@ EepromReturn EepromInit(volatile Eeprom24xx* eeprom, bool a0, bool a1)
     return EEPROM_SUCCESS;
 }
 
-EepromReturn EepromFlushTxBuff(volatile Eeprom24xx* eeprom)
+EepromReturn EepromFlushTxBuff(Eeprom24xx* eeprom)
 {
     memset((void*)eeprom->tx_buf, 0, sizeof(eeprom->tx_buf));
 
     return EEPROM_SUCCESS;
 }
 
-uint8_t EepromCreateControlByte(volatile Eeprom24xx* eeprom, bool read, bool b0)
+uint8_t EepromCreateControlByte(Eeprom24xx* eeprom, bool read, bool b0)
 {
     uint8_t ctrl_byte = EEPROM_CTRL_MASK_CODE;
 
@@ -45,7 +45,7 @@ uint8_t EepromCreateControlByte(volatile Eeprom24xx* eeprom, bool read, bool b0)
     return ctrl_byte;
 }
 
-EepromReturn EepromWrite(volatile Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len)
+EepromReturn EepromWrite(Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len)
 {
     if(eeprom->tx_inflight)
         return EEPROM_FAILURE;
@@ -60,7 +60,7 @@ EepromReturn EepromWrite(volatile Eeprom24xx* eeprom, bool b0, short eeprom_addr
     return EEPROM_SUCCESS;
 }
 
-EepromReturn EepromRead(volatile Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len)
+EepromReturn EepromRead(Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len)
 {
     if(eeprom->rx_inflight)
         return EEPROM_FAILURE;

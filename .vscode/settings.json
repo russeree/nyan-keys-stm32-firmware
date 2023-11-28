@@ -13,7 +13,8 @@
         "usb_hid_keys.h": "c",
         "nyan_keys.h": "c",
         "usb_device.h": "c",
-        "usbd_hid_keyboard.h": "c"
+        "usbd_hid_keyboard.h": "c",
+        "usbd_ioreq.h": "c"
     },
     "cSpell.words": [
         "BINTERVAL",
