@@ -73,192 +73,368 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
     keys->boot_byte_cnt = 0;
     keys->ext_byte_cnt = 0;
 
+    // Get the state of the alternate function key
+    bool alt_fn = !NyanGetKeyState(keys, FN);
+
     // Iterate through the keys and process their states - Perform actions on state
     for (Keyboard60PercentKeys key = ESC; key < NUM_KEYS; ++key) {
-        if(!NyanGetKeyState(keys, key) && keys->warmed_up) {
+         if(!NyanGetKeyState(keys, key) && keys->warmed_up) {
             switch (key) {
                 case ESC:
-                    NyanStuctAllocator(keys, desc, KEY_ESC);
+                    if(alt_fn) {
+                        NyanStuctAllocator(keys, desc, KEY_GRAVE);
+                    }
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_ESC);
                     break;
                 case TAB:
-                    NyanStuctAllocator(keys, desc, KEY_TAB);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_TAB);
                     break;
                 case CAPS:
-                    NyanStuctAllocator(keys, desc, KEY_CAPSLOCK);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_CAPSLOCK);
                     break;
                 case L_SHIFT:
-                    NyanStuctAllocator(keys, desc, KEY_LEFTSHIFT);
+                    desc->MODIFIER |= KEY_MOD_LSHIFT;
+                    if(alt_fn) {
+
+                    }
+                    else {
+                        NyanStuctAllocator(keys, desc, KEY_LEFTSHIFT);
+                    }
                     break;
                 case LEFT_CTRL:
-                    NyanStuctAllocator(keys, desc, KEY_LEFTCTRL);  
+                    desc->MODIFIER |= KEY_MOD_LCTRL;
+                    if(alt_fn) {}
+                    else {
+                        NyanStuctAllocator(keys, desc, KEY_LEFTCTRL);  
+                    }
                     break;
                 case NUM_1:
-                    NyanStuctAllocator(keys, desc, KEY_1);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F1);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_1);
                     break;
                 case L_WIN:
-                    NyanStuctAllocator(keys, desc, KEY_LEFTMETA);
+                    desc->MODIFIER |= KEY_MOD_LMETA;
+                    if(alt_fn) {}
+                    else {
+                        NyanStuctAllocator(keys, desc, KEY_LEFTMETA);
+                    }
                     break;
                 case L_ALT:
-                    NyanStuctAllocator(keys, desc, KEY_LEFTALT);
+                    desc->MODIFIER |= KEY_MOD_LALT;
+                    if(alt_fn) {}
+                    else {
+                        NyanStuctAllocator(keys, desc, KEY_LEFTALT);
+                    }
                     break;
                 case Q:
-                    NyanStuctAllocator(keys, desc, KEY_Q);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_Q);
                     break;
                 case A:
-                    NyanStuctAllocator(keys, desc, KEY_A);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_LEFT);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_A);
                     break;
                 case Z:
-                    NyanStuctAllocator(keys, desc, KEY_Z);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_Z);
                     break;
                 case NUM_2:
-                    NyanStuctAllocator(keys, desc, KEY_2);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F2);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_2);
                     break;
                 case W:
-                    NyanStuctAllocator(keys, desc, KEY_W);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_UP);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_W);
                     break;
                 case S:
-                    NyanStuctAllocator(keys, desc, KEY_S);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_DOWN);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_S);
                     break;
                 case X:
-                    NyanStuctAllocator(keys, desc, KEY_X);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_X);
                     break;
                 case C:
-                    NyanStuctAllocator(keys, desc, KEY_C);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_C);
                     break;
                 case D:
-                    NyanStuctAllocator(keys, desc, KEY_D);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_RIGHT);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_D);
                     break;
                 case K:
-                    NyanStuctAllocator(keys, desc, KEY_K);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_HOME);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_K);
                     break;
                 case I:
-                    NyanStuctAllocator(keys, desc, KEY_I);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_SYSRQ);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_I);
                     break;
                 case NUM_8:
-                    NyanStuctAllocator(keys, desc, KEY_8);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F8);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_8);
                     break;
                 case L_ANGLE_BRACKET:
-                    NyanStuctAllocator(keys, desc, KEY_COMMA);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_END);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_COMMA);
                     break;
                 case L:
-                    NyanStuctAllocator(keys, desc, KEY_L);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_PAGEUP);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_L);
                     break;
                 case O:
-                    NyanStuctAllocator(keys, desc, KEY_O);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_SCROLLLOCK);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_O);
                     break;
                 case NUM_9:
-                    NyanStuctAllocator(keys, desc, KEY_9);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F9);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_9);
                     break;
                 case R_ANGLE_BRACKET:
-                    NyanStuctAllocator(keys, desc, KEY_DOT);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_PAGEDOWN);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_DOT);
                     break;
                 case COLON:
-                    NyanStuctAllocator(keys, desc, KEY_SEMICOLON);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_LEFT);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_SEMICOLON);
                     break;
                 case P:
-                    NyanStuctAllocator(keys, desc, KEY_P);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_PAUSE);
+                    else 
+                        NyanStuctAllocator(keys, desc, KEY_P);
                     break;
                 case NUM_0:
-                    NyanStuctAllocator(keys, desc, KEY_0);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F10);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_0);
                     break;
                 case QUESTION_MARK:
-                    NyanStuctAllocator(keys, desc, KEY_SLASH);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_DOWN);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_SLASH);
                     break;
                 case L_SQUARE_BRACKET:
-                    NyanStuctAllocator(keys, desc, KEY_LEFTBRACE);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_UP);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_LEFTBRACE);
                     break;
                 case R_WIN:
-                    NyanStuctAllocator(keys, desc, KEY_RIGHTMETA);
+                    desc->MODIFIER |= KEY_MOD_LMETA;
+                    if(alt_fn) {}
+                    else {
+                        NyanStuctAllocator(keys, desc, KEY_RIGHTMETA);
+                    }
                     break;
                 case FN:
                     // This should never be called.
                     break;
                 case MINUS:
-                    NyanStuctAllocator(keys, desc, KEY_MINUS);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F11);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_MINUS);
                     break;
                 case QUOTE:
-                    NyanStuctAllocator(keys, desc, KEY_APOSTROPHE);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_RIGHT);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_APOSTROPHE);
                     break;
                 case MENU:
-                    NyanStuctAllocator(keys, desc, KEY_PROPS);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_PROPS);
                     break;
                 case R_SQUARE_BRACKET:
-                    NyanStuctAllocator(keys, desc, KEY_RIGHTBRACE);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_RIGHTBRACE);
                     break;
                 case PLUS:
-                    NyanStuctAllocator(keys, desc, KEY_EQUAL);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F12);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_EQUAL);
                     break;
                 case R_SHIFT:
-                    NyanStuctAllocator(keys, desc, KEY_RIGHTSHIFT);
+                    desc->MODIFIER |= KEY_MOD_RSHIFT;
+                    if(alt_fn) {}
+                    else {
+                        NyanStuctAllocator(keys, desc, KEY_RIGHTSHIFT);
+                    }
                     break;
                 case ENTER:
-                    NyanStuctAllocator(keys, desc, KEY_ENTER);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_ENTER);
                     break;
                 case SLASH:
-                    NyanStuctAllocator(keys, desc, KEY_SLASH);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_INSERT);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_SLASH);
                     break;
                 case BACKSPACE:
-                    NyanStuctAllocator(keys, desc, KEY_BACKSPACE);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_DELETE);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_BACKSPACE);
                     break;
                 case R_CTRL:
-                    NyanStuctAllocator(keys, desc, KEY_RIGHTCTRL);
+                    desc->MODIFIER |= KEY_MOD_RCTRL;
+                    if(alt_fn) {}
+                    else {
+                        NyanStuctAllocator(keys, desc, KEY_RIGHTCTRL);
+                    }
                     break;
                 case E:
-                    NyanStuctAllocator(keys, desc, KEY_E);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_E);
                     break;
                 case NUM_3:
-                    NyanStuctAllocator(keys, desc, KEY_3);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F3);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_3);
                     break;
                 case V:
-                    NyanStuctAllocator(keys, desc, KEY_V);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_V);
                     break;
                 case F:
-                    NyanStuctAllocator(keys, desc, KEY_F);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_F);
                     break;
                 case R:
-                    NyanStuctAllocator(keys, desc, KEY_R);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_R);
                     break;
                 case NUM_4:
-                    NyanStuctAllocator(keys, desc, KEY_4);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F4);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_4);
                     break;
                 case SPACE:
-                    NyanStuctAllocator(keys, desc, KEY_SPACE);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_SPACE);
                     break;
                 case B:
-                    NyanStuctAllocator(keys, desc, KEY_B);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_MEDIA_VOLUMEDOWN);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_B);
                     break;
                 case G:
-                    NyanStuctAllocator(keys, desc, KEY_G);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_G);
                     break;
                 case T:
-                    NyanStuctAllocator(keys, desc, KEY_T);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_T);
                     break;
                 case NUM_5:
-                    NyanStuctAllocator(keys, desc, KEY_5);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F5);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_5);
                     break;
                 case H:
-                    NyanStuctAllocator(keys, desc, KEY_H);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_HOME);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_H);
                     break;
                 case Y:
-                    NyanStuctAllocator(keys, desc, KEY_Y);
+                    if(alt_fn) {}
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_Y);
                     break;
                 case NUM_6:
-                    NyanStuctAllocator(keys, desc, KEY_6);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F6);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_6);
                     break;
                 case N:
-                    NyanStuctAllocator(keys, desc, KEY_N);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_MEDIA_VOLUMEUP);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_N);
                     break;
-                case J:  
-                    NyanStuctAllocator(keys, desc, KEY_J);
+                case J:
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_LEFT);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_J);
                     break;
                 case U:
-                    NyanStuctAllocator(keys, desc, KEY_U);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_PAGEUP);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_U);
                     break;
                 case NUM_7:
-                    NyanStuctAllocator(keys, desc, KEY_7);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_F7);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_7);
                     break;
                 case M:
-                    NyanStuctAllocator(keys, desc, KEY_M);
+                    if(alt_fn)
+                        NyanStuctAllocator(keys, desc, KEY_MEDIA_MUTE);
+                    else
+                        NyanStuctAllocator(keys, desc, KEY_M);
                     break;
                 default:
                     // Handle any other case

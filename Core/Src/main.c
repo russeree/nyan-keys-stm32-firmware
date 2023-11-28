@@ -235,6 +235,7 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
   raw_hid_report[1] = nyan_hid_report.RESERVED;
   memcpy((void *)(raw_hid_report + 2), (uint8_t*)nyan_hid_report.BOOTKEYCODE, sizeof(nyan_hid_report.BOOTKEYCODE));
   memcpy((void *)(raw_hid_report + 2 + sizeof(nyan_hid_report.BOOTKEYCODE)), (uint8_t*)nyan_hid_report.EXTKEYCODE, sizeof(nyan_hid_report.EXTKEYCODE));
+  // Submit the new report to be broadcast
   USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)raw_hid_report, sizeof(raw_hid_report));
   // Deactivate Slave Select Line
   HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
@@ -243,6 +244,12 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 void HAL_I2C_MemTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 {
   nos_eeprom.tx_inflight = false;
+}
+
+void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+{
+  // If there is SPI error just throw.
+  Error_Handler();
 }
 
 void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *I2cHandle)

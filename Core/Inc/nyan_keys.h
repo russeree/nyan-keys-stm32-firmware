@@ -13,7 +13,7 @@
 #define NUM_HID_KEYS 60 /**< Number of keys that could have any impact on the HID descriptor - We remove the FN Keys */
 #define NUM_BOOT_KEYS 6 /**< Number of keys that can occupy the boot bytes compatible section of nyan keys*/
 #define NUM_HYBRID_KEYS (NUM_HID_KEYS - NUM_BOOT_KEYS) /**< Number of keys that can occupy the extended scancodes bytes section of nyan keys for NRKO*/
-#define KEYS_WARMUP_READS 100 /**< Number of spi read to perform to allow key states post init to settle */
+#define KEYS_WARMUP_READS 200 /**< Number of spi read to perform to allow key states post init to settle */
 
 /**
  * @enum NyanKeysReturn
