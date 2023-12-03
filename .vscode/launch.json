@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "showDevDebugOutput": "parsed",
+            "cwd": "${workspaceRoot}",
+            "executable": "./build/nyan_keys.elf",
+            "name": "Debug STM32",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "preLaunchTask": "Build STM",
+            "device": "stm32f723",
+            "configFiles": [
+                "openocd.cfg"
+            ],
+            "svdFile": "STM32F7x.svd"
+        },
+        {
+            "showDevDebugOutput": "parsed",
+            "cwd": "${workspaceRoot}",
+            "executable": "./build/nyan_keys.elf",
+            "name": "Attach STM32",
+            "request": "attach",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "preLaunchTask": "Build STM",
+            "device": "stm32f723",
+            "configFiles": [
+                "openocd.cfg"
+            ],
+            "svdFile": "STM32F7x.svd"
+        }
+    ]
+}
