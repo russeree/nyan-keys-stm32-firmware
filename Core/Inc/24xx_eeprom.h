@@ -15,13 +15,13 @@
 // Definitions
 #define EEPROM_DRIVER_TX_BUF_SZ  128     /**< Size of the transmit buffer. */
 #define EEPROM_DRIVER_RX_BUF_SZ  1024    /**< Size of the receive buffer. */
-#define EEPROM_CTRL_MASK_RW   0x01       /**< Read/Write control bit mask. */
-#define EEPROM_CTRL_MASK_A0   0x02       /**< A0 address bit mask. */
-#define EEPROM_CTRL_MASK_A1   0x04       /**< A1 address bit mask. */
-#define EEPROM_CTRL_MASK_B0   0x08       /**< B0 address bit mask. */
-#define EEPROM_CTRL_MASK_CODE 0xA0       /**< Control byte mask code for EEPROM. */
-#define EEPROM_PAGE_SIZE      0x7F       /**< Maximum number of bytes in a single TX. */
-#define EEPROM_MAX_ADDR_SIZE  0xFFFF     /**< Max address value for a single block (2^16-1). */
+#define EEPROM_CTRL_MASK_RW      0x01    /**< Read/Write control bit mask. */
+#define EEPROM_CTRL_MASK_A0      0x02    /**< A0 address bit mask. */
+#define EEPROM_CTRL_MASK_A1      0x04    /**< A1 address bit mask. */
+#define EEPROM_CTRL_MASK_B0      0x08    /**< B0 address bit mask. */
+#define EEPROM_CTRL_MASK_CODE    0xA0    /**< Control byte mask code for EEPROM. */
+#define EEPROM_PAGE_SIZE         0x7F    /**< Maximum number of bytes in a single TX. */
+#define EEPROM_MAX_ADDR_SIZE     0xFFFF  /**< Max address value for a single block (2^16-1). */
 
 // Enumerations
 typedef enum {
@@ -33,9 +33,9 @@ typedef enum {
 typedef struct {
     bool a0;
     bool a1;
-    bool tx_inflight;
-    bool tx_failed;
-    bool rx_inflight; 
+    volatile bool tx_inflight;
+    volatile bool tx_failed;
+    volatile bool rx_inflight; 
     uint8_t tx_buf[EEPROM_DRIVER_TX_BUF_SZ]; /**< Transmit buffer. */
     uint8_t rx_buf[EEPROM_DRIVER_RX_BUF_SZ]; /**< Receive buffer. */
 } Eeprom24xx;
