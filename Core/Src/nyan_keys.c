@@ -315,7 +315,7 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
                     if(alt_fn)
                         NyanStuctAllocator(keys, desc, KEY_INSERT);
                     else
-                        NyanStuctAllocator(keys, desc, KEY_SLASH);
+                        NyanStuctAllocator(keys, desc, KEY_BACKSLASH);
                     break;
                 case BACKSPACE:
                     if(alt_fn)
