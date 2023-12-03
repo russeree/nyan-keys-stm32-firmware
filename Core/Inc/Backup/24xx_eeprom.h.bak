@@ -52,7 +52,7 @@ typedef struct {
  * @param a1 State of address line A1.
  * @return EepromReturn Status of the initialization (success or failure).
  */
-EepromReturn EepromInit(volatile Eeprom24xx* eeprom, bool a0, bool a1);
+EepromReturn EepromInit(Eeprom24xx* eeprom, bool a0, bool a1);
 
 /**
  * @brief Flushes the transmit buffer of the EEPROM.
@@ -62,7 +62,7 @@ EepromReturn EepromInit(volatile Eeprom24xx* eeprom, bool a0, bool a1);
  * @param eeprom Pointer to the Eeprom24xx structure.
  * @return EepromReturn Status of the flush operation (success or failure).
  */
-EepromReturn EepromFlushTxBuff(volatile Eeprom24xx* eeprom);
+EepromReturn EepromFlushTxBuff(Eeprom24xx* eeprom);
 
 /**
  * @brief Writes data to the EEPROM using the DMA interface.
@@ -75,7 +75,7 @@ EepromReturn EepromFlushTxBuff(volatile Eeprom24xx* eeprom);
  * @param len Number of bytes to read.
  * @return EepromReturn Status of the write operation (success or failure).
  */
-EepromReturn EepromWrite(volatile Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len);
+EepromReturn EepromWrite(Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len);
 
 /**
  * @brief Reads data from the EEPROM using the DMA interface.
@@ -88,6 +88,6 @@ EepromReturn EepromWrite(volatile Eeprom24xx* eeprom, bool b0, short eeprom_addr
  * @param len Number of bytes to read.
  * @return EepromReturn Status of the read operation (success or failure).
  */
-EepromReturn EepromRead(volatile Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len);
+EepromReturn EepromRead(Eeprom24xx* eeprom, bool b0, short eeprom_address, size_t len);
 
 #endif // _24XX_EEPROM_H

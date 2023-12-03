@@ -67,7 +67,6 @@ extern USBD_HandleTypeDef hUsbDevice;
 double system_status_led_angle; // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
 volatile uint8_t raw_hid_report[NUM_HID_KEYS + 2] __attribute__((aligned(4)));
 
-
 // Volatile Interrupt Variables
 volatile NyanOS nos;                              // NyanOS - Main Operating System
 volatile NyanKeyBoardDescriptor nyan_hid_report;  // Global HID Report used in the nyan keys
@@ -127,7 +126,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_SPI1_Init();
   MX_SPI2_Init();
   MX_SPI4_Init();
   MX_I2C1_Init();
@@ -137,6 +135,7 @@ int main(void)
   MX_USB_OTG_HS_PCD_Init();
   MX_RNG_Init();
   MX_TIM8_Init();
+  MX_TIM14_Init();
   /* USER CODE BEGIN 2 */
   // Activate the STM32F7 timer interrupts
   HAL_TIM_Base_Start_IT(&htim1);

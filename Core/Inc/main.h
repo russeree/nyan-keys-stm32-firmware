@@ -29,7 +29,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stdbool.h"
@@ -60,8 +59,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define SPI4_SS_Pin GPIO_PIN_3
-#define SPI4_SS_GPIO_Port GPIOE
 #define FPGA_config_nrst_Pin GPIO_PIN_4
 #define FPGA_config_nrst_GPIO_Port GPIOE
 #define Nyan_FPGA_Config_Done_Pin GPIO_PIN_13
