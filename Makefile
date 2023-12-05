@@ -22,7 +22,7 @@ TARGET = nyan_keys
 # debug build?
 DEBUG = 1
 # optimization
-OPT = -O2
+OPT = -Og
 
 
 #######################################

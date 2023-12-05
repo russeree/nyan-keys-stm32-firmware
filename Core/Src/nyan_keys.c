@@ -48,7 +48,7 @@ NyanKeysReturn NyanGetKeys(NyanKeys *keys)
     if(!keys->key_read_inflight) {
         HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_RESET);
         keys->key_read_inflight = true;
-        if (HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], &keys->key_states[0], sizeof(keys_registers_addresses)) != HAL_OK) {
+        if (HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], (uint8_t*)&keys->key_states[0], sizeof(keys_registers_addresses)) != HAL_OK) {
             keys->key_read_inflight = false; 
         }
     }
@@ -58,16 +58,9 @@ NyanKeysReturn NyanGetKeys(NyanKeys *keys)
 
 NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyBoardDescriptor *desc)
 {
-    // Determine the warmup state of Nyan Keys FPGA outputs
-    if (keys->warm_up_reads < KEYS_WARMUP_READS) {
-        keys->warm_up_reads++;
-        if (keys->warm_up_reads >= KEYS_WARMUP_READS) {
-            keys->warmed_up = true;
-        }
-    }
-
     // Nullify the descriptor report
-    memset((void*)desc, 0, sizeof(NyanKeyBoardDescriptor));
+    if(keys->warmed_up)
+        memset((void*)desc, 0, sizeof(NyanKeyBoardDescriptor));
 
     // Set descriptor report counters to 0
     keys->boot_byte_cnt = 0;
@@ -444,4 +437,15 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
     }
 
     return NYAN_KEYS_SUCCESS;
+}
+
+void NyanWarmupIncrementor(NyanKeys *keys)
+{
+    // Determine the warmup state of Nyan Keys FPGA outputs
+    if (keys->warm_up_reads < KEYS_WARMUP_READS) {
+        keys->warm_up_reads++;
+        if (keys->warm_up_reads >= KEYS_WARMUP_READS) {
+            keys->warmed_up = true;
+        }
+    }
 }

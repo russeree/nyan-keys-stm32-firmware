@@ -13,7 +13,7 @@
 #define NUM_HID_KEYS 60 /**< Number of keys that could have any impact on the HID descriptor - We remove the FN Keys */
 #define NUM_BOOT_KEYS 6 /**< Number of keys that can occupy the boot bytes compatible section of nyan keys*/
 #define NUM_HYBRID_KEYS (NUM_HID_KEYS - NUM_BOOT_KEYS) /**< Number of keys that can occupy the extended scancodes bytes section of nyan keys for NRKO*/
-#define KEYS_WARMUP_READS 200 /**< Number of spi read to perform to allow key states post init to settle */
+#define KEYS_WARMUP_READS 1000 /**< Number of spi read to perform to allow key states post init to settle */
 
 /**
  * @enum NyanKeysReturn
@@ -28,7 +28,7 @@ typedef enum {
  * @struct NyanKeyBoardDescriptor
  * @brief Structure for USB Report.
  */
-typedef struct __attribute__((aligned(4))) {
+typedef struct __attribute__((packed)) {
     uint8_t MODIFIER;                     /**< Modifier keys state */
     uint8_t RESERVED;                     /**< Reserved byte */
     uint8_t BOOTKEYCODE[NUM_BOOT_KEYS];   /**< Boot key codes */
@@ -49,10 +49,11 @@ typedef enum {
  * @brief Structure to hold the state of keys.
  */
 typedef struct {
-    bool key_read_inflight;                   /**< Flag to indicate if a key read is in progress */
-    bool warmed_up;                           /**< We allow for KEYS_WARMUP_READS before allowing the processing of keys */
-    uint32_t warm_up_reads;                   /**< A count of the number of reads to determine if the warmup flag can go true */
-    uint8_t key_states[((NUM_KEYS + 7) / 8) + 1]; /**< Array to hold the state of each key */
+    volatile bool key_read_inflight;                           /**< Flag to indicate if a key read is in progress */
+    volatile bool warmed_up;                                   /**< We allow for KEYS_WARMUP_READS before allowing the processing of keys */
+    volatile uint32_t warm_up_reads;                           /**< A count of the number of reads to determine if the warmup flag can go true */
+    volatile uint8_t key_states[((NUM_KEYS + 7) / 8) + 1];     /**< Array to hold the state of each key */
+    volatile uint8_t key_states_prv[((NUM_KEYS + 7) / 8) + 1]; /**< Previous state of each key*/
     uint8_t boot_byte_cnt;
     uint8_t ext_byte_cnt;
 } NyanKeys;
@@ -86,5 +87,12 @@ bool NyanGetKeyState(NyanKeys *keys, int key);
  * @return NyanKeysReturn success or failure.
  */
 NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyBoardDescriptor *desc);
+
+/**
+ * @brief Performs the warmup tasks for the Nyan Keys keyboard FPGA key input.
+ * @param keys Pointer to NyanKeys structure.
+ * @return NyanKeysReturn success or failure.
+ */
+void NyanWarmupIncrementor(NyanKeys *keys);
 
 #endif // NYAN_KEYS_H

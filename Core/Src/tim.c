@@ -252,7 +252,7 @@ void MX_TIM14_Init(void)
   htim14.Instance = TIM14;
   htim14.Init.Prescaler = 62499;
   htim14.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim14.Init.Period = 215;
+  htim14.Init.Period = 1727;
   htim14.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim14.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim14) != HAL_OK)
@@ -267,7 +267,6 @@ void MX_TIM14_Init(void)
 
 void HAL_TIM_OC_MspInit(TIM_HandleTypeDef* tim_ocHandle)
 {
-
   if(tim_ocHandle->Instance==TIM1)
   {
   /* USER CODE BEGIN TIM1_MspInit 0 */

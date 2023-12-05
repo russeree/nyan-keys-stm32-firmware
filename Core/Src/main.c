@@ -66,12 +66,11 @@
 extern USBD_HandleTypeDef hUsbDevice;
 
 double system_status_led_angle; // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
-volatile uint8_t raw_hid_report[NUM_HID_KEYS + 2] __attribute__((aligned(4)));
-
 
 // Volatile Interrupt Variables
-volatile NyanOS nos;                              // NyanOS - Main Operating System
-volatile NyanKeyBoardDescriptor nyan_hid_report;  // Global HID Report used in the nyan keys
+volatile NyanOS nos;                                  // NyanOS - Main Operating System
+volatile NyanKeyBoardDescriptor nyan_hid_report;      // Global HID Report used in the nyan keys
+volatile NyanKeyBoardDescriptor nyan_hid_report_prv;  // Global HID Report used for comparison optimization
 
 // Non-Volatile Globals
 Eeprom24xx nos_eeprom;          // 24xx Based EEPROM !!!FIXME!!! Can't Og+ until volatile.
@@ -234,15 +233,16 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
   nyan_keys.key_read_inflight = false;
   // Increase the performance counter
   nos.perf_keys_count_spi_calls_nxt++;
-  // Build a new HID Report and send
-  NyanBuildHidReportFromKeyStates(&nyan_keys, &nyan_hid_report);
-  // Build and modify the new pointers
-  raw_hid_report[0] = nyan_hid_report.MODIFIER;
-  raw_hid_report[1] = nyan_hid_report.RESERVED;
-  memcpy((void *)(raw_hid_report + 2), (uint8_t*)nyan_hid_report.BOOTKEYCODE, sizeof(nyan_hid_report.BOOTKEYCODE));
-  memcpy((void *)(raw_hid_report + 2 + sizeof(nyan_hid_report.BOOTKEYCODE)), (uint8_t*)nyan_hid_report.EXTKEYCODE, sizeof(nyan_hid_report.EXTKEYCODE));
-  // Submit the new report to be broadcast
-  USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)raw_hid_report, sizeof(raw_hid_report));
+  // If the Nyan Keys FPGA isn't warmed up -> increment the warmup counter.
+  if(!nyan_keys.warmed_up)
+    NyanWarmupIncrementor(&nyan_keys);
+  // Now lets compare the current HID report to the previous report
+  if(!(memcmp((uint8_t*)&nyan_keys.key_states[0], (uint8_t*)&nyan_keys.key_states_prv[0], sizeof(nyan_keys.key_states)) == 0)) {
+    // Copy the current state to the previous state
+    NyanBuildHidReportFromKeyStates(&nyan_keys, &nyan_hid_report);
+    memcpy((uint8_t*)&nyan_keys.key_states_prv[0], (uint8_t*)&nyan_keys.key_states[0], sizeof(nyan_keys.key_states));
+    USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
+  }
   // Deactivate Slave Select Line
   HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
 }
@@ -252,15 +252,17 @@ void HAL_I2C_MemTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
   nos_eeprom.tx_inflight = false;
 }
 
-void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
-{
-  // If there is SPI error just throw.
-  Error_Handler();
-}
 
 void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 {
   nos_eeprom.rx_inflight = false;
+}
+
+void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
+{
+  // This should not happen but for the sake of being robust, reinit the SPI bus.
+  MX_SPI2_Init();
+  nyan_keys.key_read_inflight = false;
 }
 
 void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *I2cHandle)
