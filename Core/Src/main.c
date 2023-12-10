@@ -65,19 +65,18 @@
 /* USER CODE BEGIN PV */
 extern USBD_HandleTypeDef hUsbDevice;
 
-double system_status_led_angle; // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
-
 // Volatile Interrupt Variables
 volatile NyanOS nos;                                  // NyanOS - Main Operating System
+volatile double system_status_led_angle;              // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
+volatile NyanKeys nyan_keys;                          // Nyan Keys FPGA Switch driver FPGA -> SPI -> STM32
 volatile NyanKeyBoardDescriptor nyan_hid_report;      // Global HID Report used in the nyan keys
 volatile NyanKeyBoardDescriptor nyan_hid_report_prv;  // Global HID Report used for comparison optimization
 
 // Non-Volatile Globals
-Eeprom24xx nos_eeprom;          // 24xx Based EEPROM !!!FIXME!!! Can't Og+ until volatile.
-Iceuncompr ice_uncompr;         // Decompression agent - FPGA Bitstream 
-LatticeIceHX nos_fpga;          // Lattice ICE40HX4k FPGA driver
-NyanBitcoin nyan_bitcoin;       // Nyan Keys Background Bitcoin Miner
-NyanKeys nyan_keys;             // Nyan Keys FPGA Switch driver FPGA -> SPI -> STM32
+Eeprom24xx   nos_eeprom;   // 24xx Based EEPROM
+Iceuncompr   ice_uncompr;  // Decompression agent - FPGA Bitstream 
+LatticeIceHX nos_fpga;     // Lattice ICE40HX4k FPGA driver
+NyanBitcoin  nyan_bitcoin; // Nyan Keys Background Bitcoin Miner
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -151,11 +150,13 @@ int main(void)
   // NyanOS (NOS) Initialization
   NyanOsInit(&nos);
   // FPGA Bitstream Loading
-  FPGAInit(&nos_fpga);
+  FPGAInit((LatticeIceHX*)&nos_fpga);
   // Load up the fast cat IP for access to your keys; happy typing.
-  NyanKeysInit(&nyan_keys);
+  NyanKeysInit((NyanKeys*)&nyan_keys);
   // Load up the bitcoin miner, comment this out or delete to disable. 
+#ifdef BITCOIN_MINER_EN
   NyanBitcoinInit(&nyan_bitcoin);
+#endif
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -163,10 +164,10 @@ int main(void)
   while (1)
   {
     if(nos_fpga.configured) {
-      NyanGetKeys(&nyan_keys);
-    }
-    else
+      NyanGetKeys((NyanKeys*)&nyan_keys);
+    } else if (!nos_fpga.configured) {
       FPGAInit(&nos_fpga);
+    }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -234,12 +235,11 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
   // Increase the performance counter
   nos.perf_keys_count_spi_calls_nxt++;
   // If the Nyan Keys FPGA isn't warmed up -> increment the warmup counter.
-  if(!nyan_keys.warmed_up)
-    NyanWarmupIncrementor(&nyan_keys);
-  // Now lets compare the current HID report to the previous report
-  if(!(memcmp((uint8_t*)&nyan_keys.key_states[0], (uint8_t*)&nyan_keys.key_states_prv[0], sizeof(nyan_keys.key_states)) == 0)) {
-    // Copy the current state to the previous state
-    NyanBuildHidReportFromKeyStates(&nyan_keys, &nyan_hid_report);
+  if(!nyan_keys.warmed_up) {
+    NyanWarmupIncrementor((NyanKeys*)&nyan_keys);
+    return;
+  } else if(!(memcmp((uint8_t*)&nyan_keys.key_states[0], (uint8_t*)&nyan_keys.key_states_prv[0], sizeof(nyan_keys.key_states)) == 0)) {
+    NyanBuildHidReportFromKeyStates((NyanKeys*)&nyan_keys, &nyan_hid_report);
     memcpy((uint8_t*)&nyan_keys.key_states_prv[0], (uint8_t*)&nyan_keys.key_states[0], sizeof(nyan_keys.key_states));
     USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
   }
@@ -263,6 +263,7 @@ void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
   // This should not happen but for the sake of being robust, reinit the SPI bus.
   MX_SPI2_Init();
   nyan_keys.key_read_inflight = false;
+  nyan_keys.key_read_failed = true;
 }
 
 void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *I2cHandle)

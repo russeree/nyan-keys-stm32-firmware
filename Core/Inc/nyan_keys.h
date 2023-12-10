@@ -50,6 +50,7 @@ typedef enum {
  */
 typedef struct {
     volatile bool key_read_inflight;                           /**< Flag to indicate if a key read is in progress */
+    volatile bool key_read_failed;                             /**< Flag to indicate that a key read has failed */
     volatile bool warmed_up;                                   /**< We allow for KEYS_WARMUP_READS before allowing the processing of keys */
     volatile uint32_t warm_up_reads;                           /**< A count of the number of reads to determine if the warmup flag can go true */
     volatile uint8_t key_states[((NUM_KEYS + 7) / 8) + 1];     /**< Array to hold the state of each key */

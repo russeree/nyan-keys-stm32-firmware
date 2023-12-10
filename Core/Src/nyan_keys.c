@@ -12,7 +12,7 @@
 
 static uint8_t keys_registers_addresses[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x00, 0x00}; // We need the last dummy byte to extract the last byte from the keys IP
 
-bool NyanGetKeyState(NyanKeys *keys, int key)
+inline bool NyanGetKeyState(NyanKeys *keys, int key)
 {
     int byteIndex = key / 8;
     int bitIndex = key % 8;
@@ -38,6 +38,7 @@ NyanKeysReturn NyanKeysInit(NyanKeys *keys)
     keys->key_read_inflight = false;
     keys->warm_up_reads = 0;
     keys->warmed_up = false;
+    keys->key_read_failed = true;
 
     return NYAN_KEYS_SUCCESS;
 }
