@@ -42,7 +42,6 @@
 #include "nyan_strings.h"
 #include "nyan_bitcoin.h"
 #include "nyan_keys.h"
-#include "nyan_temp_sensor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -146,16 +145,11 @@ int main(void)
   HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
   // USB composite device creation
   MX_USB_DEVICE_Init();
-
-  // NyanOS (NOS) Initialization
-  NyanOsInit(&nos);
-  // FPGA Bitstream Loading
-  FPGAInit((LatticeIceHX*)&nos_fpga);
-  // Load up the fast cat IP for access to your keys; happy typing.
-  NyanKeysInit((NyanKeys*)&nyan_keys);
-  // Load up the bitcoin miner, comment this out or delete to disable. 
+  NyanOsInit(&nos);                    // NyanOS (NOS) Initialization
+  FPGAInit((LatticeIceHX*)&nos_fpga);  // FPGA Bitstream Loading 
+  NyanKeysInit((NyanKeys*)&nyan_keys); // Load up the fast cat IP for access to your keys; happy typing.
 #ifdef BITCOIN_MINER_EN
-  NyanBitcoinInit(&nyan_bitcoin);
+  NyanBitcoinInit(&nyan_bitcoin);     // Load up the bitcoin miner, comment this out or delete to disable. 
 #endif
   /* USER CODE END 2 */
 
@@ -230,8 +224,6 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
-  // We are done reading. Now convert the latest state to a descriptor report - push the report to inflight
-  nyan_keys.key_read_inflight = false;
   // Increase the performance counter
   nos.perf_keys_count_spi_calls_nxt++;
   // If the Nyan Keys FPGA isn't warmed up -> increment the warmup counter.
@@ -243,8 +235,6 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
     memcpy((uint8_t*)&nyan_keys.key_states_prv[0], (uint8_t*)&nyan_keys.key_states[0], sizeof(nyan_keys.key_states));
     USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
   }
-  // Deactivate Slave Select Line
-  HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_SET);
 }
 
 void HAL_I2C_MemTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
@@ -260,10 +250,7 @@ void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 
 void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
 {
-  // This should not happen but for the sake of being robust, reinit the SPI bus.
-  MX_SPI2_Init();
-  nyan_keys.key_read_inflight = false;
-  nyan_keys.key_read_failed = true;
+  MX_SPI2_Init(); //Upon error in the SPI transmission; reset the SPI2 instance.
 }
 
 void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *I2cHandle)
@@ -289,20 +276,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_SET);
     else
       HAL_GPIO_WritePin(Nyan_Keys_LED0_GPIO_Port, Nyan_Keys_LED0_Pin, GPIO_PIN_RESET);
-  }
-  if (htim->Instance == TIM6) {
+  } if (htim->Instance == TIM6) {
     // Increment the power on pulsing LED angle [sin^2(x) + cos^2(x) = 1]
     system_status_led_angle += SYSTEM_STATUS_DEGREE_INCREMENT;
-  }
-  if (htim->Instance == TIM7) {
+  } if (htim->Instance == TIM7) {
     // Welcome MoTD guarding
     if(nos.send_welcome_screen_guard > 0) {
       if(++nos.send_welcome_screen_guard > _NYAN_WELCOME_GUARD_TIME) {
         nos.send_welcome_screen_guard = 0;
       }
     }
-  }
-  if (htim->Instance == TIM14) {
+  } if (htim->Instance == TIM14) {
     // 1 second period timer. Used for performance metrics
     nos.perf_keys_count_spi_calls = nos.perf_keys_count_spi_calls_nxt;
     nos.perf_keys_count_spi_calls_nxt = 0;
@@ -358,6 +342,8 @@ void Error_Handler(void)
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED2_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED3_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED4_Pin, GPIO_PIN_SET);
+    // Reset Nyan Keys 
+    NVIC_SystemReset();
   }
   /* USER CODE END Error_Handler_Debug */
 }

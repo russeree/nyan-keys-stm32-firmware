@@ -23,13 +23,11 @@
 #define EEPROM_PAGE_SIZE         0x7F    /**< Maximum number of bytes in a single TX. */
 #define EEPROM_MAX_ADDR_SIZE     0xFFFF  /**< Max address value for a single block (2^16-1). */
 
-// Enumerations
 typedef enum {
     EEPROM_FAILURE, /**< Indicates a failure in EEPROM operation. */
     EEPROM_SUCCESS  /**< Indicates a successful EEPROM operation. */
 } EepromReturn;
 
-// Structures
 typedef struct {
     bool a0;
     bool a1;
@@ -39,8 +37,6 @@ typedef struct {
     uint8_t tx_buf[EEPROM_DRIVER_TX_BUF_SZ]; /**< Transmit buffer. */
     uint8_t rx_buf[EEPROM_DRIVER_RX_BUF_SZ]; /**< Receive buffer. */
 } Eeprom24xx;
-
-// Function declarations
 
 /**
  * @brief Initializes an EEPROM instance.

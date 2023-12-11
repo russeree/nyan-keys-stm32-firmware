@@ -108,6 +108,8 @@ void HardFault_Handler(void)
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED2_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED3_Pin, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED4_Pin, GPIO_PIN_SET);
+    // Because continuous operations is critical reset the keyboard on failure
+    NVIC_SystemReset();
     /* USER CODE END W1_HardFault_IRQn 0 */
   }
 }

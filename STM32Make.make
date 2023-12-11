@@ -49,7 +49,6 @@ Core/Src/nyan_leds.c \
 Core/Src/nyan_os.c \
 Core/Src/nyan_sha256.c \
 Core/Src/nyan_strings.c \
-Core/Src/nyan_temp_sensor.c \
 Core/Src/rng.c \
 Core/Src/spi.c \
 Core/Src/stm32f7xx_hal_msp.c \

@@ -49,14 +49,13 @@ typedef enum {
  * @brief Structure to hold the state of keys.
  */
 typedef struct {
-    volatile bool key_read_inflight;                           /**< Flag to indicate if a key read is in progress */
-    volatile bool key_read_failed;                             /**< Flag to indicate that a key read has failed */
     volatile bool warmed_up;                                   /**< We allow for KEYS_WARMUP_READS before allowing the processing of keys */
     volatile uint32_t warm_up_reads;                           /**< A count of the number of reads to determine if the warmup flag can go true */
     volatile uint8_t key_states[((NUM_KEYS + 7) / 8) + 1];     /**< Array to hold the state of each key */
     volatile uint8_t key_states_prv[((NUM_KEYS + 7) / 8) + 1]; /**< Previous state of each key*/
-    uint8_t boot_byte_cnt;
-    uint8_t ext_byte_cnt;
+    volatile bool super_key_disabled;                          /**< Disable Super Key (Win) key */
+    uint8_t boot_byte_cnt;                                     /**< Track the number of boot compatible bytes used */
+    uint8_t ext_byte_cnt;                                      /**M Track the number of extended report bytes used */
 } NyanKeys;
 
 /**
@@ -90,8 +89,24 @@ bool NyanGetKeyState(NyanKeys *keys, int key);
 NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyBoardDescriptor *desc);
 
 /**
+ * @brief Saves the state of the Super Key disablement to the onboard eeprom
+ * @param eeprom pointer to the EEPROM driver (extern)
+ * @param disabled boolean representing if the super key is disabled or not. 
+ * @return NyanKeysReturn success or failure. 
+ */
+NyanKeysReturn NyanKeysWriteSuperDisableEEPROM(Eeprom24xx* eeprom, bool disabled);
+
+/**
+ * @brief Reads the state of the Super Key disablement to the onboard eeprom
+ * @param eeprom pointer to the EEPROM driver (extern)
+ * @return Super key enabled or disabled
+ */
+bool NyanKeysReadSuperDisableEEPROM(Eeprom24xx* eeprom);
+
+/**
  * @brief Performs the warmup tasks for the Nyan Keys keyboard FPGA key input.
  * @param keys Pointer to NyanKeys structure.
+ * @return NyanKeysReturn success or failure.
  * @return NyanKeysReturn success or failure.
  */
 void NyanWarmupIncrementor(NyanKeys *keys);

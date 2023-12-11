@@ -12,7 +12,7 @@
 #define ADDR_FPGA_BITSTREAM_LEN         0x00B0
 
 // Reserved Areas
-#define ADDR_RESERVED_0                 0x00C0
+#define ADDR_RESERVED_0                 0x00C0 /*** Now used for storing Super Key Disablement State ***/
 #define ADDR_RESERVED_1                 0x00D0
 #define ADDR_RESERVED_2                 0x00E0
 #define ADDR_RESERVED_3                 0x00F0
@@ -45,8 +45,7 @@
 #define SIZE_TOTAL_USB_CONNECTIONS      16
 #define SIZE_TOTAL_TIMES_POWERED_ON     16
 #define SIZE_FPGA_BITSTREAM_LEN         16
-#define SIZE_RESERVED                   16 
-
+#define SIZE_RESERVED                   16
 #define SIZE_FPGA_BITSTREAM             8192 
 
 #endif // _NYAN_EEPROM_MAP_H
