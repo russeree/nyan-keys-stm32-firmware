@@ -56,7 +56,10 @@ The FPGA bitstream programming in NyanOS occurs at startup and typically takes 2
 
 __NOTE:__ The time to load the Bitstream is roughly 2-3 seconds and will occur on device power-on. The FPGA can be reprogrammed without a complete device reset, by setting the nos_fpga->configured to false. The main loop will eventually catch this after the interrupts complete and reload the bitstream from the contents of the EEPROM IC that are in Bank 1, using the value stored in the EEPROM bank 0 EEPROM FPGA Bitstream Len address 0x00B0 aligned as 4 Words, where each word is little endian encoded. This will be fixed later but current functions correct and you can use the ```write-bitstream <size>``` command and this will all be handled. __THE MAXIMUM BITSTREAM SIZE IS 65536 BYTES__ anything more and you will get a size error returned.
 
-User input to keys is not handled until the FPGA bitstream is loaded. Any keys pressed before configuration will not be relayed via the HID peripheral. 
+User input to keys is not handled until the FPGA bitstream is loaded. Any keys pressed before configuration will not be relayed via the HID peripheral.
+
+### Persistent Windows Logo Key Disable
+Nyan Keys now supports Windows logo key disablement. The user just has to press [FN + Windows Logo Key] to toggle the state between enabled and disabled. Each time this is done, the state is saved to the onboard EEPROM, ensuring it persists across reboots
 
 ### Status Indication
 On the Nyan Keys 0.8x - 0.9x boards there are 5 status leds that are activated upon boot. The labels for these LED(s) are as follows
