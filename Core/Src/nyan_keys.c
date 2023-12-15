@@ -113,6 +113,7 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
                 case LEFT_CTRL:
                     desc->MODIFIER |= KEY_MOD_LCTRL;
                     NyanStuctAllocator(keys, desc, alt_fn ? KEY_LEFTCTRL : KEY_LEFTCTRL);
+                    break;
                 case NUM_1:
                     NyanStuctAllocator(keys, desc, alt_fn ? KEY_F1 : KEY_1);
                     break;
@@ -264,7 +265,13 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
                     NyanStuctAllocator(keys, desc, alt_fn ? KEY_F4 : KEY_4);
                     break;
                 case SPACE:
+                    NyanStuctAllocator(keys, desc, alt_fn ? KEY_SPACE : KEY_SPACE);
+                    break;
+                case G:
                     NyanStuctAllocator(keys, desc, alt_fn ? KEY_G : KEY_G);
+                    break;
+                case B:
+                    NyanStuctAllocator(keys, desc, alt_fn ? KEY_B : KEY_B);
                     break;
                 case T:
                     NyanStuctAllocator(keys, desc, alt_fn ? KEY_T : KEY_T);

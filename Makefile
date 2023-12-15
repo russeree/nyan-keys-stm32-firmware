@@ -72,7 +72,6 @@ Core/Src/nyan_os.c \
 Core/Src/nyan_keys.c \
 Core/Src/nyan_sha256.c \
 Core/Src/nyan_strings.c \
-Core/Src/nyan_temp_sensor.c \
 Core/Src/iceuncompr.c \
 Core/Src/lattice_ice_hx.c \
 Core/Src/24xx_eeprom.c \
