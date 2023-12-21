@@ -2,8 +2,10 @@
 
 #include <nyan_strings.h>
 
+#define NOS_VERSION "0.01"
+
 const uint8_t nyan_keys_welcome_text[] =
-"Nyan Keys Operating System (NOS) V0.01\r\n"
+"Nyan Keys Operating System (NOS) V" NOS_VERSION "\r\n"
 "Made by Portland.HODL\r\n"
 "\r\n";
 
@@ -21,9 +23,9 @@ const uint8_t nyan_keys_help[] =
 
 // COMMAND: getinfo
 const uint8_t nyan_keys_getinfo[] =
-"Version: 0.01\r\n"
+"Version: " NOS_VERSION "\r\n"
 "Author: Portland.HODL\r\n"
-"Built: 07/11/23\r\n";
+"Built: "__DATE__ "\r\n";
 
 const uint8_t nyan_keys_getinfo_owner[] = "Owner: "; // Make sure to newline after this is filled out from the EEPROM
 
