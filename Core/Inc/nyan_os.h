@@ -8,7 +8,7 @@
 #include "nyan_bitcoin.h"
 #include "nyan_eeprom_map.h"
 
-#define _NYAN_WELCOME_GUARD_TIME 15 // Currently a multiple of TIM7 Period (.777 seconds)
+#define _NYAN_WELCOME_GUARD_TIME 2 // Currently a multiple of TIM7 Period (.777 seconds)
 #define _NYAN_CDC_CHANNEL 0
 #define _NYAN_CDC_RX_BUF_SZ 512
 #define _NYAN_CDC_TX_MAX_LEN 128
@@ -120,12 +120,9 @@ typedef struct {
     uint8_t     tx_chunk;                               /**< Current chunk number to be sent. */
     NyanString  tx_buffer;                              /**< Transmission buffer. */
 
-    uint8_t     rx_buffer[_NYAN_CDC_RX_BUF_SZ];         /**< Buffer for received USB CDC data. */
-    uint8_t     rx_buffer_sz;                           /**< Current size of the receive buffer. */
     uint32_t    bytes_received;                         /**< Number of bytes received in Direct Buffer Mode. */
     uint32_t    bytes_array_size;                       /**< Size of the receive buffer in Direct Buffer Mode. */
     uint8_t*    bytes_array;                            /**< Buffer holding the received data in Direct Buffer Mode. */
-
     uint8_t*    command_arg_buffer[_NYAN_CMD_MAX_ARGS]; /**< Buffers to store command arguments. */
 
     uint32_t    perf_keys_count_spi_calls;              /**< Current readable value of the number of SPI calls to KEYS IP over 1s */

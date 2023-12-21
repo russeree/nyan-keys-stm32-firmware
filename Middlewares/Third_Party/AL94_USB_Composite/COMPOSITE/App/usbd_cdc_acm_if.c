@@ -257,8 +257,8 @@ static int8_t CDC_Control(uint8_t cdc_ch, uint8_t cmd, uint8_t *pbuf, uint16_t l
     break;
 
   case CDC_SET_CONTROL_LINE_STATE:
-    if (pbuf[0] & 0x01) { // Check if DTR bit is set
-      // Initialize the NyanOS for this session - Invalidates all other sessions
+    if (pbuf[0] & 0x01 && nos.send_welcome_screen_guard == 0x00) { // Check if DTR bit is set and there hasn't been a recent connection
+      // Init the Nyan Keys Operating System and send the welcome screen.
       NyanOsInit(&nos);
       nos.send_welcome_screen = true;
     }

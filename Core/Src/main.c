@@ -280,7 +280,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     // Increment the power on pulsing LED angle [sin^2(x) + cos^2(x) = 1]
     system_status_led_angle += SYSTEM_STATUS_DEGREE_INCREMENT;
   } if (htim->Instance == TIM7) {
-    // Welcome MoTD guarding
+    // Welcome MoTD guarding from double displays
     if(nos.send_welcome_screen_guard > 0 && ++nos.send_welcome_screen_guard > _NYAN_WELCOME_GUARD_TIME) {
       nos.send_welcome_screen_guard = 0;
     }

@@ -30,7 +30,7 @@ NyanReturn NyanOsInit(volatile NyanOS* nos)
     // Default init the OS vars
     nos->command_buffer_num_args = 0;
     nos->command_buffer_pos = 0;
-    nos->rx_buffer_sz = 0;
+    nos->exe_in_progress = false;
     nos->tx_chunks_solid = 0;
     nos->tx_chunks_partial_bytes = 0;
     nos->tx_chunk = 0;
@@ -60,7 +60,8 @@ NyanReturn NyanWelcomeDisplay(volatile NyanOS *nos)
         // Set to zero if the welcome screen is sent within the guarded period
         nos->send_welcome_screen = 0x00;
         // If the guard has expired send the Welcome Screen -> increment
-        if(nos->send_welcome_screen_guard++ <= 1) {
+        if(nos->send_welcome_screen_guard < 1) {
+            nos->send_welcome_screen_guard++;
             NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], strlen((char*)nyan_keys_welcome_text));
             NyanPrint(nos, (char*)&nyan_keys_path_text[0], strlen((char*)nyan_keys_path_text));
         }
