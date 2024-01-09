@@ -152,13 +152,14 @@ int main(void)
   NyanBitcoinInit(&nyan_bitcoin);     // Load up the bitcoin miner, comment this out or delete to disable. 
 #endif
   /* USER CODE END 2 */
-
+  bool keys_dma_started = false;
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    if(nos_fpga.configured) {
+    if(nos_fpga.configured && !keys_dma_started) {
       NyanGetKeys((NyanKeys*)&nyan_keys);
+      keys_dma_started = true;
     } else if (!nos_fpga.configured) {
       FPGAInit(&nos_fpga);
     }
@@ -224,6 +225,7 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
+  HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED1_Pin, GPIO_PIN_SET);
   // Increase the performance counter
   nos.perf_keys_count_spi_calls_nxt++;
   // If the Nyan Keys FPGA isn't warmed up -> increment the warmup counter.
@@ -235,6 +237,7 @@ void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
     memcpy((uint8_t*)&nyan_keys.key_states_prv[0], (uint8_t*)&nyan_keys.key_states[0], sizeof(nyan_keys.key_states));
     USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
   }
+  HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED1_Pin, GPIO_PIN_RESET);
 }
 
 void HAL_I2C_MemTxCpltCallback(I2C_HandleTypeDef *I2cHandle)

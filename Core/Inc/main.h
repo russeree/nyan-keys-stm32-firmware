@@ -77,6 +77,8 @@ void Error_Handler(void);
 #define Nyan_Keys_LED3_GPIO_Port GPIOD
 #define Nyan_Keys_LED4_Pin GPIO_PIN_4
 #define Nyan_Keys_LED4_GPIO_Port GPIOD
+#define Nyan_DFU_Enable_Pin GPIO_PIN_0
+#define Nyan_DFU_Enable_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 #define NYAN_SPI_GPIO_0_Pin GPIO_PIN_3
