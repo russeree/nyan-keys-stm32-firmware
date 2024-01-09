@@ -73,3 +73,6 @@ const uint8_t nyan_keys_write_bitcoin_miner_nbits[] = "Nyan BitCoin Miner nbits 
 
 //COMMAND: bitcoin-miner-set nonce
 const uint8_t nyan_keys_write_bitcoin_miner_nonce[] = "Nyan BitCoin Miner nonce set successfully.\r\n";
+
+//COMMAND: dfu-mode
+const uint8_t nyan_keys_enter_dfu_mode_reboot_warning[] = "Nyan Keys entering DFU mode and rebooting\r\n";

@@ -53,4 +53,7 @@ extern const uint8_t nyan_keys_write_bitcoin_miner_nbits[];
 //COMMAND: bitcoin-miner-set nonce
 extern const uint8_t nyan_keys_write_bitcoin_miner_nonce[];
 
+//COMMAND: dfu-mode
+extern const uint8_t nyan_keys_enter_dfu_mode_reboot_warning[];
+
 #endif // _NYAN_STRINGS

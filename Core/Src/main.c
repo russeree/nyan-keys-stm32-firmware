@@ -130,10 +130,10 @@ int main(void)
   MX_TIM7_Init();
   MX_TIM6_Init();
   MX_TIM1_Init();
-  MX_USB_OTG_HS_PCD_Init();
   MX_RNG_Init();
   MX_TIM8_Init();
   MX_TIM14_Init();
+  MX_USB_OTG_HS_PCD_Init();
   /* USER CODE BEGIN 2 */
   // Activate the STM32F7 timer interrupts
   HAL_TIM_Base_Start_IT(&htim1);
@@ -151,8 +151,9 @@ int main(void)
 #ifdef BITCOIN_MINER_EN
   NyanBitcoinInit(&nyan_bitcoin);     // Load up the bitcoin miner, comment this out or delete to disable. 
 #endif
-  /* USER CODE END 2 */
   bool keys_dma_started = false;
+  /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)

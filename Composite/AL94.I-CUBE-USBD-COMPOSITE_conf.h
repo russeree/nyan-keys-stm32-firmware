@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2023 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -27,7 +27,7 @@
 
 /**
 	MiddleWare name : AL94.I-CUBE-USBD-COMPOSITE.1.0.3
-	MiddleWare fileName : ./AL94.I-CUBE-USBD-COMPOSITE_conf.h
+	MiddleWare fileName : AL94.I-CUBE-USBD-COMPOSITE_conf.h
 	MiddleWare version :
 */
 /*---------- _USBD_USE_HS  -----------*/

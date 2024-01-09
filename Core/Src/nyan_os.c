@@ -12,7 +12,6 @@
 #include "main.h"
 #include "24xx_eeprom.h"
 #include "tim.h"
-#include "usbd_cdc_acm_if.h"
 #include "nyan_os.h"
 #include "nyan_sha256.h"
 #include "nyan_strings.h"
@@ -269,6 +268,16 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             nos->exe = NYAN_EXE_IDLE;
             HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
             return NOS_SUCCESS;
+        
+        case NYAN_EXE_DFU_MODE:
+            HAL_TIM_OC_Stop_IT(&htim8, TIM_CHANNEL_1);
+            nos->exe_in_progress = true;
+            NyanEnterDFUMode(nos);
+            NyanPrint(nos, (char*)&nyan_keys_enter_dfu_mode_reboot_warning[0], strlen((char*)nyan_keys_enter_dfu_mode_reboot_warning));
+            nos->exe_in_progress = false;
+            nos->exe = NYAN_EXE_IDLE;
+            HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
+            return NOS_SUCCESS;
 
         case NYAN_EXE_IDLE :
             return NOS_SUCCESS;
@@ -285,6 +294,13 @@ NyanReturn NyanExecute(volatile NyanOS* nos) {
             nos->exe = NYAN_EXE_IDLE;
             return NOS_FAILURE;
     }
+}
+
+NyanReturn NyanEnterDFUMode(volatile NyanOS* nos)
+{
+    nos->dfu_counter = 0;
+    nos->dfu_mode = true;
+    return NOS_SUCCESS;
 }
 
 NyanReturn NyanDecodeArgs(volatile NyanOS* nos)

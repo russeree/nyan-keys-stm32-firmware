@@ -17,7 +17,8 @@
         "usbd_ioreq.h": "c",
         "tim.h": "c",
         "nyan_temp_sensor.h": "c",
-        "nyan_bitcoin.h": "c"
+        "nyan_bitcoin.h": "c",
+        "usb_otg.h": "c"
     },
     "cSpell.words": [
         "BINTERVAL",

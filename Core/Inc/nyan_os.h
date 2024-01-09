@@ -8,6 +8,8 @@
 #include "nyan_bitcoin.h"
 #include "nyan_eeprom_map.h"
 
+#include "usb_device.h"
+
 #define _NYAN_WELCOME_GUARD_TIME 2 // Currently a multiple of TIM7 Period (.777 seconds)
 #define _NYAN_CDC_CHANNEL 0
 #define _NYAN_CDC_RX_BUF_SZ 512
@@ -19,9 +21,10 @@
 
 #define _NYAN_NUM_COMMANDS (sizeof(nyan_commands) / sizeof(nyan_commands[0]))
 
-extern Eeprom24xx nos_eeprom;    // 24xx Based EEPROM
-extern LatticeIceHX nos_fpga;    // Lattice ICE40HX4k FPGA driver access
-extern NyanBitcoin nyan_bitcoin; // Nyan Keys Background Bitcoin Miner
+extern Eeprom24xx nos_eeprom;         // 24xx Based EEPROM
+extern LatticeIceHX nos_fpga;         // Lattice ICE40HX4k FPGA driver access
+extern NyanBitcoin nyan_bitcoin;      // Nyan Keys Background Bitcoin Miner
+extern USBD_HandleTypeDef hUsbDevice; // USB Device for DFU Reset
 
 static const char* const nyan_commands[] = {
     "help",
@@ -29,7 +32,8 @@ static const char* const nyan_commands[] = {
     "getperf",
     "write-bitstream",
     "set-owner",
-    "bitcoin-miner-set"
+    "bitcoin-miner-set",
+    "dfu-mode"
 };
 
 typedef enum {
@@ -66,6 +70,7 @@ typedef enum {
     NYAN_EXE_WRITE_BITSTREAM,         /**< Execute command to write a bitstream to FPGA. */
     NYAN_EXE_SET_OWNER,               /**< Execute command to set the owner of the system. */
     NYAN_EXE_BITCOIN_MINER_SET,       /**< Execute command to configure the Bitcoin miner. */
+    NYAN_EXE_DFU_MODE,                /**< Execute command to make nyan keys enter DFU Mode: Board version > .9e*/
     NYAN_EXE_COMMAND_NOT_SUPPORTED,   /**< Indicator for an unsupported or unrecognized command. */
     NYAN_EXE_IDLE                     /**< System is in an idle state, not currently executing any command. */
 } NyanExe;
@@ -100,6 +105,8 @@ typedef struct {
 typedef struct {
     bool        send_welcome_screen;                    /**< Flag to indicate if the welcome screen should be sent. Initialized to false. */
     uint8_t     send_welcome_screen_guard;              /**< Timer value to prevent multiple welcome screens. */
+    bool        dfu_mode;                               /**< Boolean representing if Nyan Keys should enter a DFU mode */
+    bool        dfu_counter;                            /**< Number of counts to let capacitor charge up, to enable BOOT0 to go high */
     char        exe_char;                               /**< ASCII character that triggers command evaluation. */
 
     Eeprom24xx  *eeprom;                                /**< Pointer to NyanOS EEPROM driver. */
@@ -283,5 +290,10 @@ void FreeNyanCommandArgs(volatile NyanOS* nos);
  * @param nyanString Pointer to the NyanString to be freed.
  */
 void FreeNyanString(NyanString* nyanString);
+
+/**
+ * @brief Pulls pin E0 high to charge capacitor to let Nyan Keys enter th DFU mode
+ */
+NyanReturn NyanEnterDFUMode(volatile NyanOS* nos);
 
 #endif // NYAN_OS_H
