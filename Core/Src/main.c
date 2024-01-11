@@ -159,13 +159,16 @@ int main(void)
   while (1)
   {
     if(nos_fpga.configured && !keys_dma_started) {
-      NyanGetKeys((NyanKeys*)&nyan_keys);
       keys_dma_started = true;
+      NyanGetKeys((NyanKeys*)&nyan_keys);
     } else if (!nos_fpga.configured) {
       FPGAInit(&nos_fpga);
+    } else if (nos.dfu_mode) {
+      HAL_GPIO_WritePin(Nyan_DFU_Enable_GPIO_Port, Nyan_DFU_Enable_Pin, GPIO_PIN_SET);
+      HAL_Delay(1000);
+      NVIC_SystemReset();
     }
     /* USER CODE END WHILE */
-
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

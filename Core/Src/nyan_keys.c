@@ -221,7 +221,7 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
                     NyanStuctAllocator(keys, desc, alt_fn ? KEY_RIGHT : KEY_APOSTROPHE);
                     break;
                 case MENU:
-                    NyanStuctAllocator(keys, desc, alt_fn ? KEY_PROPS : KEY_PROPS);
+                    NyanStuctAllocator(keys, desc, alt_fn ? KEY_COMPOSE : KEY_COMPOSE);;
                     break;
                 case R_SQUARE_BRACKET:
                     NyanStuctAllocator(keys, desc, alt_fn ? KEY_RIGHTBRACE : KEY_RIGHTBRACE);

@@ -16,6 +16,8 @@
 #include "nyan_sha256.h"
 #include "nyan_strings.h"
 
+#include "usbd_cdc_acm_if.h"
+
 NyanReturn NyanOsInit(volatile NyanOS* nos)
 {
     // Set the operational state
