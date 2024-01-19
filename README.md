@@ -17,6 +17,8 @@ STM32F723 Firmware for the Nyan Keys keyboard. This architecture places the high
 | PCB            | Description               |
 | -------------- | ------------------------- |
 | NyanKeys Proto | Nyan Keys Prototype 0     |
+| NyanKeys 60    | Nyan Keys Production      |
+
 
 _Please make a PR if you decide to use NyanOS for your keyboard PCB_
 
@@ -34,8 +36,6 @@ _Please make a PR if you decide to use NyanOS for your keyboard PCB_
  - __Bitcoin Miner - opt-in__
  - __USB HID Interface @ 8000hz Polling__
  - __SPI Master to FPGA switch serializer and debouncer__
-
-
 
 ### NyanOS Terminal
 One of the nicer features of NyanOS is a fully functional USB-CDC (_serial_) interface to interact with NyanOSk. Currently functionality is limited to only the most necessary commands for keyboard operation and configuration. 
