@@ -57,10 +57,9 @@ NyanReturn NyanOsInit(volatile NyanOS* nos)
 
 NyanReturn NyanWelcomeDisplay(volatile NyanOS *nos)
 {
+    // This is the welcome screen that is displayed on boot - Lockout logic to prevent doubles
     if(nos->send_welcome_screen) {
-        // Set to zero if the welcome screen is sent within the guarded period
         nos->send_welcome_screen = 0x00;
-        // If the guard has expired send the Welcome Screen -> increment
         if(nos->send_welcome_screen_guard < 1) {
             nos->send_welcome_screen_guard++;
             NyanPrint(nos, (char*)&nyan_keys_welcome_text[0], strlen((char*)nyan_keys_welcome_text));
@@ -122,12 +121,9 @@ NyanReturn NyanAddInputBuffer(volatile NyanOS *nos, uint8_t *pbuf, uint32_t *Len
 
 NyanReturn NyanPrint(volatile NyanOS *nos, char* data, size_t len)
 {
-    if (!nos || !data)
+    if (!nos || !data  || (nos->tx_buffer.size + len > _NYAN_CDC_TX_BUF_SZ))
         return NOS_FAILURE;
 
-    if (nos->tx_buffer.size + len > 2048) {
-            return NOS_FAILURE;
-    }
     if (nos->tx_buffer.p_array == NULL) {
         // Since the pointer is null we need to create a new one to hold our new data!
         nos->tx_buffer.p_array = (uint8_t *)malloc(len);
@@ -137,7 +133,6 @@ NyanReturn NyanPrint(volatile NyanOS *nos, char* data, size_t len)
         nos->tx_buffer.size = len;
         memcpy(nos->tx_buffer.p_array, data, len); // Copy the data into the buffer
     } else {
-
         // The pointer is not null, so we realloc and then add the contents of data to it
         uint8_t *new_buffer = (uint8_t *)realloc(nos->tx_buffer.p_array, nos->tx_buffer.size + len);
         if (new_buffer == NULL) {

@@ -13,6 +13,7 @@
 #define _NYAN_WELCOME_GUARD_TIME 2 // Currently a multiple of TIM7 Period (.777 seconds)
 #define _NYAN_CDC_CHANNEL 0
 #define _NYAN_CDC_RX_BUF_SZ 512
+#define _NYAN_CDC_TX_BUF_SZ 1024
 #define _NYAN_CDC_TX_MAX_LEN 128
 #define _NYAN_CMD_MAX_ARGS 10
 #define _NYAN_CMD_BUF_LEN 128
@@ -31,9 +32,10 @@ static const char* const nyan_commands[] = {
     "getinfo",
     "getperf",
     "write-bitstream",
-    "set-owner",
+    "setowner",
     "bitcoin-miner-set",
-    "dfu-mode"
+    "dfumode",
+    "perfmode"
 };
 
 typedef enum {
@@ -71,6 +73,7 @@ typedef enum {
     NYAN_EXE_SET_OWNER,               /**< Execute command to set the owner of the system. */
     NYAN_EXE_BITCOIN_MINER_SET,       /**< Execute command to configure the Bitcoin miner. */
     NYAN_EXE_DFU_MODE,                /**< Execute command to make nyan keys enter DFU Mode: Board version > .9e*/
+    NYAN_EXE_PERF_MODE,               /**< Execute command to change nyan keys enter Performance Mode: Board version > .9e*/
     NYAN_EXE_COMMAND_NOT_SUPPORTED,   /**< Indicator for an unsupported or unrecognized command. */
     NYAN_EXE_IDLE                     /**< System is in an idle state, not currently executing any command. */
 } NyanExe;

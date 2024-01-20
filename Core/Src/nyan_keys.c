@@ -14,15 +14,13 @@
 
 extern Eeprom24xx nos_eeprom;
 
-static uint8_t keys_registers_addresses[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x00, 0x00}; // We need the last dummy byte to extract the last byte from the keys IP
-
 inline bool NyanGetKeyState(NyanKeys *keys, int key)
 {
     int byteIndex = key / 8;
     int bitIndex = key % 8;
 
     // We offset the byte index by 1 to account for the dummy first byte;
-    return (keys->key_states[byteIndex + 1] & (1 << bitIndex)) != 0;
+    return (keys->key_states[byteIndex] & (1 << bitIndex)) != 0;
 }
 
 NyanKeysReturn NyanStuctAllocator(NyanKeys *keys, volatile NyanKeyBoardDescriptor *desc, uint8_t hid_scan_code)
@@ -51,7 +49,7 @@ NyanKeysReturn NyanKeysInit(NyanKeys *keys)
 NyanKeysReturn NyanGetKeys(NyanKeys *keys)
 {
     // Send out the DMA and we will get the results back from the FPGA 
-    if(HAL_SPI_TransmitReceive_DMA(&hspi2, &keys_registers_addresses[0], (uint8_t*)&keys->key_states[0], sizeof(keys_registers_addresses)) != HAL_OK) {
+    if(HAL_SPI_Receive_DMA(&hspi2, (uint8_t*)&keys->key_states[0], (NUM_KEYS + 7) / 8) != HAL_OK) {
         return NYAN_KEYS_FAILURE;
     }
     

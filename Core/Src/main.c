@@ -97,6 +97,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
   /* USER CODE END 1 */
+/* Enable the CPU Cache */
 
   /* Enable I-Cache---------------------------------------------------------*/
   SCB_EnableICache();
@@ -124,7 +125,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_SPI2_Init();
+  //MX_SPI2_Init();
   MX_SPI4_Init();
   MX_I2C1_Init();
   MX_TIM7_Init();
@@ -169,6 +170,7 @@ int main(void)
       NVIC_SystemReset();
     }
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -227,7 +229,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
 {
   HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED1_Pin, GPIO_PIN_SET);
   // Increase the performance counter
