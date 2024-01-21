@@ -150,6 +150,7 @@ int main(void)
   FPGAInit((LatticeIceHX*)&nos_fpga);  // FPGA Bitstream Loading 
   NyanKeysInit((NyanKeys*)&nyan_keys); // Load up the fast cat IP for access to your keys; happy typing.
   HAL_GPIO_WritePin(keys_fpga_resetn_GPIO_Port, keys_fpga_resetn_Pin, GPIO_PIN_SET);
+  HAL_Delay(100);
 #ifdef BITCOIN_MINER_EN
   NyanBitcoinInit(&nyan_bitcoin);     // Load up the bitcoin miner, comment this out or delete to disable. 
 #endif

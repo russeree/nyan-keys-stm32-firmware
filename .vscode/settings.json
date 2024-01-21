@@ -103,6 +103,7 @@
         "Proto",
         "RALT",
         "RCTRL",
+        "resetn",
         "RIGHTALT",
         "RIGHTBRACE",
         "RIGHTCTRL",
