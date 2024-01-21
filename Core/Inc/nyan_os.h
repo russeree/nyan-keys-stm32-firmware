@@ -13,7 +13,7 @@
 #define _NYAN_WELCOME_GUARD_TIME 2 // Currently a multiple of TIM7 Period (.777 seconds)
 #define _NYAN_CDC_CHANNEL 0
 #define _NYAN_CDC_RX_BUF_SZ 512
-#define _NYAN_CDC_TX_BUF_SZ 1024
+#define _NYAN_CDC_TX_BUF_SZ 2048
 #define _NYAN_CDC_TX_MAX_LEN 128
 #define _NYAN_CMD_MAX_ARGS 10
 #define _NYAN_CMD_BUF_LEN 128

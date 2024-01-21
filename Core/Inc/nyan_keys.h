@@ -13,7 +13,6 @@
 #define NUM_HID_KEYS 60 /**< Number of keys that could have any impact on the HID descriptor - We remove the FN Keys */
 #define NUM_BOOT_KEYS 6 /**< Number of keys that can occupy the boot bytes compatible section of nyan keys*/
 #define NUM_HYBRID_KEYS (NUM_HID_KEYS - NUM_BOOT_KEYS) /**< Number of keys that can occupy the extended scancodes bytes section of nyan keys for NRKO*/
-#define KEYS_WARMUP_READS 1 /**< Number of spi read to perform to allow key states post init to settle */
 
 /**
  * @enum NyanKeysReturn
@@ -43,16 +42,13 @@ typedef enum {
     H, Y, NUM_6, N, J, U, NUM_7, M
 } Keyboard60PercentKeys;
 
-
 /**
  * @struct NyanKeys
  * @brief Structure to hold the state of keys.
  */
 typedef struct {
-    volatile bool warmed_up;                                   /**< We allow for KEYS_WARMUP_READS before allowing the processing of keys */
-    volatile uint32_t warm_up_reads;                           /**< A count of the number of reads to determine if the warmup flag can go true */
-    volatile uint8_t key_states[((NUM_KEYS + 7) / 8) + 1];     /**< Array to hold the state of each key */
-    volatile uint8_t key_states_prv[((NUM_KEYS + 7) / 8) + 1]; /**< Previous state of each key*/
+    volatile uint8_t key_states[((NUM_KEYS + 7) / 8)];         /**< Array to hold the state of each key */
+    volatile uint8_t key_states_prv[((NUM_KEYS + 7) / 8)];     /**< Previous state of each key*/
     volatile bool super_key_disabled;                          /**< Disable Super Key (Win) key */
     uint8_t boot_byte_cnt;                                     /**< Track the number of boot compatible bytes used */
     uint8_t ext_byte_cnt;                                      /**M Track the number of extended report bytes used */
@@ -102,13 +98,5 @@ NyanKeysReturn NyanKeysWriteSuperDisableEEPROM(Eeprom24xx* eeprom, bool disabled
  * @return Super key enabled or disabled
  */
 bool NyanKeysReadSuperDisableEEPROM(Eeprom24xx* eeprom);
-
-/**
- * @brief Performs the warmup tasks for the Nyan Keys keyboard FPGA key input.
- * @param keys Pointer to NyanKeys structure.
- * @return NyanKeysReturn success or failure.
- * @return NyanKeysReturn success or failure.
- */
-void NyanWarmupIncrementor(NyanKeys *keys);
 
 #endif // NYAN_KEYS_H

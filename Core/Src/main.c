@@ -69,7 +69,6 @@ volatile NyanOS nos;                                  // NyanOS - Main Operating
 volatile double system_status_led_angle;              // Used in the Sin^2(x) + Cos^2(x) = 1 [LED PWM]
 volatile NyanKeys nyan_keys;                          // Nyan Keys FPGA Switch driver FPGA -> SPI -> STM32
 volatile NyanKeyBoardDescriptor nyan_hid_report;      // Global HID Report used in the nyan keys
-volatile NyanKeyBoardDescriptor nyan_hid_report_prv;  // Global HID Report used for comparison optimization
 
 // Non-Volatile Globals
 Eeprom24xx   nos_eeprom;   // 24xx Based EEPROM
@@ -145,21 +144,25 @@ int main(void)
   HAL_TIM_OC_Start_IT(&htim1, TIM_CHANNEL_2);
   HAL_TIM_OC_Start_IT(&htim8, TIM_CHANNEL_1);
   // USB composite device creation
+  HAL_GPIO_WritePin(keys_ack_GPIO_Port, keys_ack_Pin, GPIO_PIN_RESET);
   MX_USB_DEVICE_Init();
   NyanOsInit(&nos);                    // NyanOS (NOS) Initialization
   FPGAInit((LatticeIceHX*)&nos_fpga);  // FPGA Bitstream Loading 
   NyanKeysInit((NyanKeys*)&nyan_keys); // Load up the fast cat IP for access to your keys; happy typing.
+  HAL_GPIO_WritePin(keys_fpga_resetn_GPIO_Port, keys_fpga_resetn_Pin, GPIO_PIN_SET);
 #ifdef BITCOIN_MINER_EN
   NyanBitcoinInit(&nyan_bitcoin);     // Load up the bitcoin miner, comment this out or delete to disable. 
 #endif
-  bool keys_dma_started = false;
+  // Pull the reset high
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  bool keys_dma_started = false;
   while (1)
   {
-    if(nos_fpga.configured && !keys_dma_started) {
+    if (nos_fpga.configured && !keys_dma_started) {
       keys_dma_started = true;
       NyanGetKeys((NyanKeys*)&nyan_keys);
     } else if (!nos_fpga.configured) {
@@ -229,28 +232,18 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
-  HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED1_Pin, GPIO_PIN_SET);
-  // Increase the performance counter
-  nos.perf_keys_count_spi_calls_nxt++;
-  // If the Nyan Keys FPGA isn't warmed up -> increment the warmup counter.
-  if(!nyan_keys.warmed_up) {
-    NyanWarmupIncrementor((NyanKeys*)&nyan_keys);
-    return;
-  } else if(!(memcmp((uint8_t*)&nyan_keys.key_states[0], (uint8_t*)&nyan_keys.key_states_prv[0], sizeof(nyan_keys.key_states)) == 0)) {
-    NyanBuildHidReportFromKeyStates((NyanKeys*)&nyan_keys, &nyan_hid_report);
-    memcpy((uint8_t*)&nyan_keys.key_states_prv[0], (uint8_t*)&nyan_keys.key_states[0], sizeof(nyan_keys.key_states));
-    USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
-  }
-  HAL_GPIO_WritePin(GPIOD, Nyan_Keys_LED1_Pin, GPIO_PIN_RESET);
+  NyanBuildHidReportFromKeyStates((NyanKeys*)&nyan_keys, &nyan_hid_report);
+  USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
+  HAL_GPIO_WritePin(keys_ack_GPIO_Port, keys_ack_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(keys_ack_GPIO_Port, keys_ack_Pin, GPIO_PIN_RESET);
 }
 
 void HAL_I2C_MemTxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 {
   nos_eeprom.tx_inflight = false;
 }
-
 
 void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *I2cHandle)
 {

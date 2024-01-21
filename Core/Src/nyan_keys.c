@@ -18,8 +18,6 @@ inline bool NyanGetKeyState(NyanKeys *keys, int key)
 {
     int byteIndex = key / 8;
     int bitIndex = key % 8;
-
-    // We offset the byte index by 1 to account for the dummy first byte;
     return (keys->key_states[byteIndex] & (1 << bitIndex)) != 0;
 }
 
@@ -37,10 +35,6 @@ NyanKeysReturn NyanStuctAllocator(NyanKeys *keys, volatile NyanKeyBoardDescripto
 NyanKeysReturn NyanKeysInit(NyanKeys *keys)
 {
     // We only have one device on the bus so we will just leave SS Low
-    HAL_GPIO_WritePin(Keys_Slave_Select_GPIO_Port, Keys_Slave_Select_Pin, GPIO_PIN_RESET);
-
-    keys->warm_up_reads = 0;
-    keys->warmed_up = false;
     keys->super_key_disabled = NyanKeysReadSuperDisableEEPROM(&nos_eeprom);
 
     return NYAN_KEYS_SUCCESS;
@@ -81,8 +75,7 @@ bool NyanKeysReadSuperDisableEEPROM(Eeprom24xx* eeprom)
 NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyBoardDescriptor *desc)
 {
     // Nullify the descriptor report
-    if(keys->warmed_up)
-        memset((void*)desc, 0, sizeof(NyanKeyBoardDescriptor));
+    memset((void*)desc, 0, sizeof(NyanKeyBoardDescriptor));
 
     // Set descriptor report counters to 0
     keys->boot_byte_cnt = 0;
@@ -93,7 +86,7 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
 
     // Iterate through the keys and process their states - Perform actions on state
     for (Keyboard60PercentKeys key = ESC; key < NUM_KEYS; ++key) {
-         if(!NyanGetKeyState(keys, key) && keys->warmed_up) {
+         if(!NyanGetKeyState(keys, key)) {
             switch (key) {
                 case ESC:
                     NyanStuctAllocator(keys, desc, alt_fn ? KEY_GRAVE : KEY_ESC);
@@ -309,15 +302,4 @@ NyanKeysReturn NyanBuildHidReportFromKeyStates(NyanKeys *keys, volatile NyanKeyB
     }
 
     return NYAN_KEYS_SUCCESS;
-}
-
-void NyanWarmupIncrementor(NyanKeys *keys)
-{
-    // Determine the warmup state of Nyan Keys FPGA outputs
-    if (keys->warm_up_reads < KEYS_WARMUP_READS) {
-        keys->warm_up_reads++;
-        if (keys->warm_up_reads >= KEYS_WARMUP_READS) {
-            keys->warmed_up = true;
-        }
-    }
 }
