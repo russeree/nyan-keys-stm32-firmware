@@ -124,7 +124,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_SPI2_Init();
   MX_SPI4_Init();
   MX_I2C1_Init();
   MX_TIM7_Init();
@@ -150,7 +149,7 @@ int main(void)
   FPGAInit((LatticeIceHX*)&nos_fpga);  // FPGA Bitstream Loading 
   NyanKeysInit((NyanKeys*)&nyan_keys); // Load up the fast cat IP for access to your keys; happy typing.
   HAL_GPIO_WritePin(keys_fpga_resetn_GPIO_Port, keys_fpga_resetn_Pin, GPIO_PIN_SET);
-  HAL_Delay(100);
+  HAL_Delay(10);
 #ifdef BITCOIN_MINER_EN
   NyanBitcoinInit(&nyan_bitcoin);     // Load up the bitcoin miner, comment this out or delete to disable. 
 #endif
@@ -165,6 +164,7 @@ int main(void)
   {
     if (nos_fpga.configured && !keys_dma_started) {
       keys_dma_started = true;
+      MX_SPI2_Init();
       NyanGetKeys((NyanKeys*)&nyan_keys);
     } else if (!nos_fpga.configured) {
       FPGAInit(&nos_fpga);
