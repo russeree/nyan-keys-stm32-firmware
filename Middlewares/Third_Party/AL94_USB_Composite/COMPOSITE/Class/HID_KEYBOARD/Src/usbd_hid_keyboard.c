@@ -282,6 +282,23 @@ __ALIGN_BEGIN static uint8_t HID_KEYBOARD_ReportDesc[HID_KEYBOARD_REPORT_DESC_SI
         0x19, 0x00,        //   Usage Minimum (0x00)
         0x29, 0x65,        //   Usage Maximum (0xE7)
         0x81, 0x00,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+        0xC0,              // End Collection
+
+        0x06, 0x60, 0xff,  // USAGE_PAGE (Vendor Defined Page 1)
+        0x09, 0x61,        // USAGE (Vendor Defined 1)
+        0xa1, 0x01,        // COLLECTION (Application)
+        0x09, 0x62,        //   USAGE (Vendor Defined 2)
+        0x15, 0x00,        //   LOGICAL_MINIMUM (0)
+        0x26, 0xff, 0x00,  //   LOGICAL_MAXIMUM (255)
+        0x95, 0x20,        //   REPORT_COUNT (32)
+        0x75, 0x08,        //   REPORT_SIZE (8)
+        0x81, 0x02,        //   INPUT (Data,Var,Abs)
+        0x09, 0x63,        //   USAGE (Vendor Defined 3)
+        0x15, 0x00,        //   LOGICAL_MINIMUM (0)
+        0x26, 0xff, 0x00,  //   LOGICAL_MAXIMUM (255)
+        0x95, 0x20,        //   REPORT_COUNT (32)
+        0x75, 0x08,        //   REPORT_SIZE (8)
+        0x91, 0x02,        //   OUTPUT (Data,Var,Abs,nVol)
 
         0xC0,              // End Collection
 };
