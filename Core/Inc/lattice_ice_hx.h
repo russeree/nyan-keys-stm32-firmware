@@ -74,4 +74,9 @@ FPGAReturn FPGAGetBitstreamData(LatticeIceHX* fpga);
  */
 FPGAReturn FPGAGetBitstreamCompressedSize(LatticeIceHX* fpga);
 
+/**
+ * @brief Reset the Lattice ICE40HX 4K Nyan Keys IP
+ */
+FPGAReturn FPGANyanKeysIPReset(void);
+
 #endif // LATTICE_ICE_HX_H

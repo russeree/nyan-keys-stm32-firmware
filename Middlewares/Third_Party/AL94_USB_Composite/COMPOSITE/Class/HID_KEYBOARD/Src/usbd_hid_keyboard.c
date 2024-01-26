@@ -93,7 +93,7 @@ static uint8_t USBD_HID_Init(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
 static uint8_t USBD_HID_DeInit(USBD_HandleTypeDef *pdev, uint8_t cfgidx);
 static uint8_t USBD_HID_Setup(USBD_HandleTypeDef *pdev, USBD_SetupReqTypedef *req);
 static uint8_t USBD_HID_DataIn(USBD_HandleTypeDef *pdev, uint8_t epnum);
-
+static uint8_t USBD_HID_DataOut(USBD_HandleTypeDef *pdev, uint8_t epnum);
 static uint8_t *USBD_HID_GetFSCfgDesc(uint16_t *length);
 static uint8_t *USBD_HID_GetHSCfgDesc(uint16_t *length);
 static uint8_t *USBD_HID_GetOtherSpeedCfgDesc(uint16_t *length);
@@ -114,11 +114,11 @@ USBD_ClassTypeDef USBD_HID_KEYBOARD =
         USBD_HID_Init,
         USBD_HID_DeInit,
         USBD_HID_Setup,
-        NULL,            /* EP0_TxSent */
-        NULL,            /* EP0_RxReady */
-        USBD_HID_DataIn, /* DataIn */
-        NULL,            /* DataOut */
-        NULL,            /* SOF */
+        NULL,             /* EP0_TxSent */
+        NULL,             /* EP0_RxReady */
+        USBD_HID_DataIn,  /* DataIn */
+        USBD_HID_DataOut, /* DataOut */
+        NULL,             /* SOF */
         NULL,
         NULL,
         USBD_HID_GetHSCfgDesc,
@@ -558,6 +558,23 @@ static uint8_t *USBD_HID_GetOtherSpeedCfgDesc(uint16_t *length)
   * @retval status
   */
 static uint8_t USBD_HID_DataIn(USBD_HandleTypeDef *pdev, uint8_t epnum)
+{
+  UNUSED(epnum);
+  /* Ensure that the FIFO is empty before a new transfer, this condition could
+  be caused by  a new transfer before the end of the previous transfer */
+  ((USBD_HID_Keyboard_HandleTypeDef *)pdev->pClassData_HID_Keyboard)->state = KEYBOARD_HID_IDLE;
+
+  return (uint8_t)USBD_OK;
+}
+
+/**
+  * @brief  USBD_HID_DataOut
+  *         handle data Out Stage
+  * @param  pdev: device instance
+  * @param  epnum: endpoint index
+  * @retval status
+  */
+static uint8_t USBD_HID_DataOut(USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
   UNUSED(epnum);
   /* Ensure that the FIFO is empty before a new transfer, this condition could

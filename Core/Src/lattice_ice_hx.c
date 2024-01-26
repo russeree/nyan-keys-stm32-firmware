@@ -93,3 +93,14 @@ FPGAReturn FPGAGetBitstreamCompressedSize(LatticeIceHX* fpga)
 
     return FPGA_SUCCESS;
 }
+
+FPGAReturn FPGANyanKeysIPReset(void){
+    HAL_GPIO_WritePin(keys_fpga_resetn_GPIO_Port, keys_fpga_resetn_Pin, GPIO_PIN_RESET);
+    HAL_Delay(1);
+    HAL_GPIO_WritePin(keys_fpga_resetn_GPIO_Port, keys_fpga_resetn_Pin, GPIO_PIN_SET);
+    HAL_Delay(1);
+    HAL_GPIO_WritePin(keys_ack_GPIO_Port, keys_ack_Pin, GPIO_PIN_SET);
+    HAL_Delay(1);
+    HAL_GPIO_WritePin(keys_ack_GPIO_Port, keys_ack_Pin, GPIO_PIN_RESET);
+    return FPGA_SUCCESS;
+}

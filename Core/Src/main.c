@@ -148,8 +148,6 @@ int main(void)
   NyanOsInit(&nos);                    // NyanOS (NOS) Initialization
   FPGAInit((LatticeIceHX*)&nos_fpga);  // FPGA Bitstream Loading 
   NyanKeysInit((NyanKeys*)&nyan_keys); // Load up the fast cat IP for access to your keys; happy typing.
-  HAL_GPIO_WritePin(keys_fpga_resetn_GPIO_Port, keys_fpga_resetn_Pin, GPIO_PIN_SET);
-  HAL_Delay(10);
 #ifdef BITCOIN_MINER_EN
   NyanBitcoinInit(&nyan_bitcoin);     // Load up the bitcoin miner, comment this out or delete to disable. 
 #endif
@@ -165,6 +163,7 @@ int main(void)
     if (nos_fpga.configured && !keys_dma_started) {
       keys_dma_started = true;
       MX_SPI2_Init();
+      FPGANyanKeysIPReset();
       NyanGetKeys((NyanKeys*)&nyan_keys);
     } else if (!nos_fpga.configured) {
       FPGAInit(&nos_fpga);
@@ -236,7 +235,7 @@ void SystemClock_Config(void)
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi)
 {
   NyanBuildHidReportFromKeyStates((NyanKeys*)&nyan_keys, &nyan_hid_report);
-  USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
+  //USBD_HID_Keyboard_SendReport(&hUsbDevice, (uint8_t*)&nyan_hid_report, sizeof(nyan_hid_report));
   HAL_GPIO_WritePin(keys_ack_GPIO_Port, keys_ack_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(keys_ack_GPIO_Port, keys_ack_Pin, GPIO_PIN_RESET);
 }
